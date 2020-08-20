@@ -5,7 +5,7 @@ To do
 - [x] Setup
   - [x] Create repo
   - [x] Create Unity project (2020.1.2f1)
-- [x] Feed data setup
+- [ ] Feed data setup
   - [x] Update API with basic feed data
   - [x] Get Feed data
   - [x] Convert Feed data to JSON object
