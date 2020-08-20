@@ -11,14 +11,14 @@ To do
   - [x] Convert Feed data to JSON object
   - [ ] Update API with detailed feed data
   - [ ] Build Feed data testing / monitor UI
-- [x] Visuals -> Nodes
+- [ ] Visuals -> Nodes
   - [ ] Use Feed data to build GameObjects and display in "Universe"
   - [ ] Work out GameObject motion (Jellyfish?)
   - [ ] Show product marketing categories
     - [ ] Colors
     - [ ] Trails
     - [ ] Rings
-- [x] Visuals -> Environment
+- [ ] Visuals -> Environment
   - [ ] Lighting
   - [ ] Background
 - [ ] Test in space
