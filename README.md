@@ -1,2 +1,1 @@
-# NCSU_Tally_Viz
- 
+# tally-ncsu-viz
