@@ -7,7 +7,7 @@ To do
   - [x] Create Unity project (2020.1.2f1)
 - [ ] Feed data setup
   - [x] Update API with basic feed data
-  - [x] Get Feed data
+  - [x] Get Feed data in Unity
   - [x] Convert Feed data to JSON object
   - [ ] Update API with detailed feed data
   - [ ] Build Feed data testing / monitor UI
