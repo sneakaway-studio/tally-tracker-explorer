@@ -14,10 +14,12 @@ To do
   - [x] Create EventManager
 
 - [ ] Timeline
-  - [ ] Time UI
-    - [ ] Change refresh time
-    - [ ] Start / restart playback
+  - [x] Time UI class
+    - [ ] Button: Change refresh time
+    - [ ] Button: playback restart
+    - [ ] Scrubber: playback speed
   - [ ] Create playback 
+    - [ ] Coroutine to play event at specific time
 
 - [ ] Visuals -> Nodes
   - [ ] Use Feed data to build GameObjects and display in "Universe"
@@ -26,7 +28,7 @@ To do
 - [ ] Visuals -> Details
   - [ ] Work out GameObject motion (Jellyfish?)
   - [ ] Show product marketing categories
-    - [ ] Colors
+    - [ ] [Colors](https://github.com/sneakaway-studio/tally-api/blob/master/public/assets/css/sass/custom.scss)
     - [ ] Trails
     - [ ] Rings
 - [ ] Visuals -> Environment
