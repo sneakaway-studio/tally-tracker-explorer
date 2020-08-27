@@ -12,7 +12,7 @@ public class DataManager : Singleton<DataManager>
     protected DataManager() { }
     public static new DataManager Instance;
 
-
+    // the current data
     public static string current;
 
 
@@ -86,7 +86,10 @@ public class DataManager : Singleton<DataManager>
                 Debug.Log(feedsArray[0]);
                 Debug.Log(feeds.ToString());
 
-                //for (int i = 0; i < 3; i++)
+
+                // dump current
+                current = "";
+
                 foreach (var feed in feeds)
                 {
                     var line = feed.username + ", " + feed.item + ", " +
@@ -94,8 +97,7 @@ public class DataManager : Singleton<DataManager>
                         ", " + feed.type + ", " + feed.date;
                     current += line + "<br>";
 
-                    Debug.Log(line);
-
+                    //Debug.Log(line);
                 }
 
                 // send event
