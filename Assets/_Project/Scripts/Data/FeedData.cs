@@ -11,7 +11,7 @@ public class FeedData
     public int level { get; set; }
     public string stat { get; set; }
     public int captured { get; set; }
-    public DateTime date { get; set; }
+    public DateTime time { get; set; }
 
     // "username": "andaughter",
     // "avatarPath": null,

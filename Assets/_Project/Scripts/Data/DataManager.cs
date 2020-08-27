@@ -71,7 +71,7 @@ public class DataManager : Singleton<DataManager>
                     level = (int)p["level"],
                     stat = (string)p["stat"],
                     captured = (int)p["captured"],
-                    date = (DateTime)p["date"],
+                    time = (DateTime)p["date"],
 
                 }).ToList();
 
@@ -86,7 +86,7 @@ public class DataManager : Singleton<DataManager>
                 foreach (var feed in feeds)
                 {
                     var line =
-                        feed.date + "\t" +
+                        feed.time + "\t" +
                         feed.username + ", " + feed.item + ", " +
                         feed.type + ", " + feed.name + ", " + feed.level +
                         ", " + feed.type;

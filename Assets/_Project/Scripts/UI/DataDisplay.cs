@@ -23,7 +23,7 @@ public class DataDisplay : MonoBehaviour
     // update text
     public void UpdateDisplay()
     {
-        TmText.text = DataManager.current;
+        //TmText.text = DataManager.current;
     }
 
 
