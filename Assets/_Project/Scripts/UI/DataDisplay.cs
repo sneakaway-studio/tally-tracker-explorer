@@ -8,15 +8,19 @@ public class DataDisplay : MonoBehaviour
     public TMP_Text TmText;
 
 
-    private void Start()
+
+    // listeners
+    void OnEnable()
     {
-        ApiManager.dataUpdated += UpdateDisplay;
+        EventManager.StartListening("DataUpdated", UpdateDisplay);
+    }
+    void OnDisable()
+    {
+        EventManager.StopListening("DataUpdated", UpdateDisplay);
     }
 
-    
 
-
-
+    // update text
     public void UpdateDisplay()
     {
         TmText.text = DataManager.current;
