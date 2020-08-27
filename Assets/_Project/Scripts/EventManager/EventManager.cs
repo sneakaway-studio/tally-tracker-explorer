@@ -3,10 +3,18 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
+// EventManager class from
+// https://learn.unity.com/tutorial/create-a-simple-messaging-system-with-events
+
 public class EventManager : MonoBehaviour
 {
     // hold references to events
     private Dictionary<string, UnityEvent> eventDictionary;
+    // show event count
+    public int eventCount = 0;
+    // show event names (as list because you can serialize)
+    public List<string> eventNames = new List<string>();
+
 
     // singleton
     private static EventManager eventManager;
@@ -57,6 +65,7 @@ public class EventManager : MonoBehaviour
             thisEvent.AddListener(listener);
             instance.eventDictionary.Add(eventName, thisEvent);
         }
+        UpdateEventDetails();
     }
 
     public static void StopListening(string eventName, UnityAction listener)
@@ -69,6 +78,7 @@ public class EventManager : MonoBehaviour
         {
             thisEvent.RemoveListener(listener);
         }
+        UpdateEventDetails();
     }
 
     public static void TriggerEvent(string eventName)
@@ -78,6 +88,19 @@ public class EventManager : MonoBehaviour
         {
             // invoke event 
             thisEvent.Invoke();
+        }
+    }
+
+    public static void UpdateEventDetails()
+    {
+        // get count 
+        instance.eventCount = instance.eventDictionary.Count;
+        // clear list
+        instance.eventNames.Clear();
+        // add names to list to display in inspector
+        foreach (var e in instance.eventDictionary)
+        {
+            instance.eventNames.Add(e.Key);
         }
     }
 
