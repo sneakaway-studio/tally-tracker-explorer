@@ -11,8 +11,19 @@ To do
   - [x] Convert Feed data to JSON object
   - [ ] Update API with detailed feed data
   - [ ] Build Feed data testing / monitor UI
+  - [x] Create EventManager
+
+- [ ] Timeline
+  - [ ] Time UI
+    - [ ] Change refresh time
+    - [ ] Start / restart playback
+  - [ ] Create playback 
+
 - [ ] Visuals -> Nodes
   - [ ] Use Feed data to build GameObjects and display in "Universe"
+  - [ ] Make each node respond visually with playback
+
+- [ ] Visuals -> Details
   - [ ] Work out GameObject motion (Jellyfish?)
   - [ ] Show product marketing categories
     - [ ] Colors
