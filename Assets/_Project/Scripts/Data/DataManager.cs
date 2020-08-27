@@ -12,10 +12,6 @@ public class DataManager : Singleton<DataManager>
     protected DataManager() { }
     public static new DataManager Instance;
 
-    // the current data
-    public static string current;
-
-
     // listeners 
     void OnEnable()
     {
@@ -28,20 +24,22 @@ public class DataManager : Singleton<DataManager>
 
 
 
+    // the current data as string
+    public static string current;
+    // as Dict
+    public static IList<FeedData> feeds;
 
 
-    void Start()
-    {
-        // StartCoroutine(GetRequest("https://tallysavestheinternet.com/api/feed/recent"));
-        // test for error handling
-        // StartCoroutine(GetRequest("https://error.html"));
-    }
+
 
     public void GetNewData()
     {
         StartCoroutine(GetRequest("https://tallysavestheinternet.com/api/feed/recent"));
+        // error test
+        // StartCoroutine(GetRequest("https://error.html"));
     }
 
+    // do a get request for JSON data at url
     public static IEnumerator GetRequest(string uri)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
@@ -63,7 +61,7 @@ public class DataManager : Singleton<DataManager>
                 // parse JSON array 
                 JArray feedsArray = JArray.Parse(webRequest.downloadHandler.text);
 
-                IList<FeedData> feeds = feedsArray.Select(p => new FeedData
+                feeds = feedsArray.Select(p => new FeedData
                 {
                     username = (string)p["username"],
                     avatarPath = (string)p["avatarPath"],
@@ -75,16 +73,11 @@ public class DataManager : Singleton<DataManager>
                     captured = (int)p["captured"],
                     date = (DateTime)p["date"],
 
-
-                    // AuthorName = (string)p["Author"]["Name"],
-                    // AuthorTwitter = (string)p["Author"]["Twitter"],
-                    // PostedDate = (DateTime)p["Date"],
-                    // Body = HttpUtility.HtmlDecode((string)p["BodyHtml"])
                 }).ToList();
 
 
-                Debug.Log(feedsArray[0]);
-                Debug.Log(feeds.ToString());
+                //Debug.Log(feedsArray[0]);
+                //Debug.Log(feeds.ToString());
 
 
                 // dump current
@@ -92,9 +85,11 @@ public class DataManager : Singleton<DataManager>
 
                 foreach (var feed in feeds)
                 {
-                    var line = feed.username + ", " + feed.item + ", " +
+                    var line =
+                        feed.date + "\t" +
+                        feed.username + ", " + feed.item + ", " +
                         feed.type + ", " + feed.name + ", " + feed.level +
-                        ", " + feed.type + ", " + feed.date;
+                        ", " + feed.type;
                     current += line + "<br>";
 
                     //Debug.Log(line);

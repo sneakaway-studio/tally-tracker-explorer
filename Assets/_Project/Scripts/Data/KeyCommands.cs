@@ -20,7 +20,7 @@ public class KeyCommands : MonoBehaviour
 
         if (Input.GetKeyDown("e"))
         {
-            EventManager.TriggerEvent("Destroy");
+            //EventManager.TriggerEvent("Destroy");
         }
     }
 
