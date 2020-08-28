@@ -23,6 +23,7 @@ public class Timeline : MonoBehaviour
 
     // UI
     public TMP_Text TmText;
+    public ScrollRect scrollRect;
 
 
     [SerializeField]
@@ -88,6 +89,7 @@ public class Timeline : MonoBehaviour
                //" = (" + previousTime + " - " + currentTime + ") " +
                feed.username + ", " + feed.item;
             TmText.text += log + "<br>";
+            UpdateScroll();
             //Debug.Log(log);
 
 
@@ -108,6 +110,13 @@ public class Timeline : MonoBehaviour
 
         }
 
+    }
+
+
+    public void UpdateScroll()
+    {
+        Canvas.ForceUpdateCanvases();
+        scrollRect.verticalNormalizedPosition = 0f;
     }
 
 }

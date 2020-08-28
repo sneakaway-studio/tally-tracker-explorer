@@ -22,19 +22,25 @@ public class DataManager : Singleton<DataManager>
         EventManager.StopListening("GetNewData", GetNewData);
     }
 
-
-
+    // host and endpoint for API
+    public string host;
+    public string endpoint;
     // the current data as string
     public static string current;
     // as Dict
     public static IList<FeedData> feeds;
 
-
+    private void Start()
+    {
+        host = "https://tallysavestheinternet.com/api/";
+        //endpoint = "feed/range/1/week"; // a whole week
+        endpoint = "feed/recent"; // 20 recent 
+    }
 
 
     public void GetNewData()
     {
-        StartCoroutine(GetRequest("https://tallysavestheinternet.com/api/feed/recent"));
+        StartCoroutine(GetRequest(host + endpoint));
         // error test
         // StartCoroutine(GetRequest("https://error.html"));
     }

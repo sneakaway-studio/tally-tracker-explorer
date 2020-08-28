@@ -1133,6 +1133,7 @@ MonoBehaviour:
   diffInSeconds: 0
   diffInSecondsAdj: 0
   TmText: {fileID: 406329859}
+  scrollRect: {fileID: 621607659}
   speedSlider: {fileID: 109002785}
 --- !u!1 &684599312
 GameObject:
