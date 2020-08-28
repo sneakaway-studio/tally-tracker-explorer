@@ -26,10 +26,10 @@ public class Timeline : MonoBehaviour
     public ScrollRect scrollRect;
 
 
-    [SerializeField]
-    private Slider speedSlider;
-    float speedMin = 0;
-    float speedMax = 100;
+
+    public Slider speedSlider;
+    public float speedMin = 0;
+    public float speedMax = 100;
 
 
 
