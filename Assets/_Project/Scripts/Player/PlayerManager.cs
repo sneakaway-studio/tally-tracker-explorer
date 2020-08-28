@@ -51,10 +51,14 @@ public class PlayerManager : Singleton<PlayerManager>
         spawnRotation.eulerAngles = new Vector3(0.0f, Random.Range(0.0f, 360.0f));
         if (spawnPosition != Vector3.zero)
         {
+            // instantiate prefab @ spawn position
             GameObject obj = (GameObject)Instantiate(playerPrefab, spawnPosition, spawnRotation);
-
-
+            // call Init() on Player
             obj.GetComponent<Player>().Init(username);
+            // set name in Unity Editor
+            obj.name = username;
+            // parent under PlayerManger
+            obj.transform.parent = gameObject.transform;
             // add to dict
             playerDictionary.Add(username, obj);
 
