@@ -26,6 +26,11 @@ To do
   - [ ] Make each node respond visually with playback
 
 - [ ] Visuals -> Details
+  - [ ] More style frames 
+      - [ ] "Nyan Cat" mockup
+      - [ ] Background? Floating bits that look like data, microscopic sea life, stars to give depth
+      - [ ] Background? Getting lighting to align with actual time of day
+  - [ ] Use particle system to make trails
   - [ ] Work out GameObject motion (Jellyfish?)
   - [ ] Show product marketing categories
     - [ ] [Colors](https://github.com/sneakaway-studio/tally-api/blob/master/public/assets/css/sass/custom.scss)
