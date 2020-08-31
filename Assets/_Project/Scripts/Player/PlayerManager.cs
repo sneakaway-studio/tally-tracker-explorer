@@ -48,7 +48,10 @@ public class PlayerManager : Singleton<PlayerManager>
         Vector3 spawnPosition = GetClearSpawnPosition();
 
         Quaternion spawnRotation = new Quaternion();
-        spawnRotation.eulerAngles = new Vector3(0.0f, Random.Range(0.0f, 360.0f));
+        // random rotation
+        //spawnRotation.eulerAngles = new Vector3(0.0f, Random.Range(0.0f, 360.0f));
+        // no random rotation
+        spawnRotation.eulerAngles = new Vector3(0.0f, 0);
         if (spawnPosition != Vector3.zero)
         {
             // instantiate prefab @ spawn position
