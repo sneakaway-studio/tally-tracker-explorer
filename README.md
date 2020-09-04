@@ -28,7 +28,7 @@ To do
 - [ ] Visuals -> Details
   - [ ] More style frames 
       - [ ] "Nyan Cat" mockup
-      - [ ] Background? Floating bits that look like data, microscopic sea life, stars to give depth
+      - [ ] Background? Floating bits that look like data, microscopic sea life, [stars](https://www.google.com/search?q=purple+solar+system+photos&safe=off&rlz=1C5CHFA_enUS903US909&sxsrf=ALeKk00RCUak_xDBqpXphkSi5-ToDuOktQ:1598641571840&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjyyIz4y77rAhUKVd8KHfyqAQ0Q_AUoAXoECAsQAw&biw=1309&bih=696#imgrc=-45LhfeWoXLn7M&imgdii=PURaqZr7_xEDBM) to give depth
       - [ ] Background? Getting lighting to align with actual time of day
   - [ ] Use particle system to make trails
   - [ ] Work out GameObject motion (Jellyfish?)
