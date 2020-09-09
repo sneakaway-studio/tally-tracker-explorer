@@ -2686,8 +2686,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5da044984b840abae28e183cbd05fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lables:
+  - monster
   prefab: {fileID: 4010505626693846101, guid: 1edc95efb8d7a4866b149a313687cc5e, type: 3}
-  names: []
+  count: 0
 --- !u!1 &1618669877
 GameObject:
   m_ObjectHideFlags: 0

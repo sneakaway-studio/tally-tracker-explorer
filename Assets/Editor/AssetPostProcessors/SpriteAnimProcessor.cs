@@ -8,6 +8,10 @@ using System.Linq;
 using System.IO;
 
 
+// this version uses listeners to postprocess whenever sprites are loaded
+// - might be good for more established dev workflow
+
+
 public class SpriteAnimProcessor : AssetPostprocessor
 {
 

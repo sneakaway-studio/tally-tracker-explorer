@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8c61957a1977f4e0397c4354ec58662d
+guid: 69c0ae1c300da4e79bb0894258d314d5
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -11,15 +11,6 @@ TextureImporter:
   - first:
       213: 3363310003990840048
     second: 640-anim-sheet_2
-  - first:
-      213: 3216573219096708519
-    second: 640-anim-sheet_3
-  - first:
-      213: -8186720019028195127
-    second: 640-anim-sheet_4
-  - first:
-      213: 6896402686242258772
-    second: 640-anim-sheet_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -38,7 +29,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -100,7 +91,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 666
+        width: 500
         height: 400
       alignment: 7
       pivot: {x: 0, y: -1}
@@ -119,9 +110,9 @@ TextureImporter:
       name: 640-anim-sheet_1
       rect:
         serializedVersion: 2
-        x: 666
+        x: 500
         y: 0
-        width: 666
+        width: 500
         height: 400
       alignment: 7
       pivot: {x: 0, y: -1}
@@ -140,9 +131,9 @@ TextureImporter:
       name: 640-anim-sheet_2
       rect:
         serializedVersion: 2
-        x: 1332
+        x: 1000
         y: 0
-        width: 666
+        width: 500
         height: 400
       alignment: 7
       pivot: {x: 0, y: -1}
@@ -153,69 +144,6 @@ TextureImporter:
       bones: []
       spriteID: 0f2446901a0ecae20800000000000000
       internalID: 3363310003990840048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 640-anim-sheet_3
-      rect:
-        serializedVersion: 2
-        x: 1998
-        y: 0
-        width: 666
-        height: 400
-      alignment: 7
-      pivot: {x: 0, y: -1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7a54b46fc4093ac20800000000000000
-      internalID: 3216573219096708519
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 640-anim-sheet_4
-      rect:
-        serializedVersion: 2
-        x: 2664
-        y: 0
-        width: 666
-        height: 400
-      alignment: 7
-      pivot: {x: 0, y: -1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9c8ce3e848de26e80800000000000000
-      internalID: -8186720019028195127
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 640-anim-sheet_5
-      rect:
-        serializedVersion: 2
-        x: 3330
-        y: 0
-        width: 666
-        height: 400
-      alignment: 7
-      pivot: {x: 0, y: -1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 45ff48554b1f4bf50800000000000000
-      internalID: 6896402686242258772
       vertices: []
       indices: 
       edges: []
