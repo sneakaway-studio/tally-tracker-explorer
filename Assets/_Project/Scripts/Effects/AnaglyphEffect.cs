@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Anaglyph3D shader
-// https://danielilett.com/2019-11-05-tut3-4-next-dimension/
-// more instructions https://danielilett.com/2019-10-17-tut3-1-something-fishy/
+// Anaglyph3D shader https://danielilett.com/2019-11-05-tut3-4-next-dimension/
+// source https://github.com/daniel-ilett/smo-shaders/tree/master/Assets
+// setup instructions https://danielilett.com/2019-10-17-tut3-1-something-fishy/
 
 [CreateAssetMenu(menuName = "Image Effects Ultra/Anaglyph 3D", order = 1)]
 public class AnaglyphEffect : BaseEffect
