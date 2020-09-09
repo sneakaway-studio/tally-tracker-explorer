@@ -1,0 +1,1207 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f64555a4d02094af7ba5e4388ff7bc7a
+  m_SerializeEntries:
+  - m_GUID: 00ecf8c309c284bcdbf8a2bda107404a
+    m_Address: 359-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 00ecf8c309c284bcdbf8a2bda107404a, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 00ecf8c309c284bcdbf8a2bda107404a, type: 3}
+  - m_GUID: 019f296601e834520b34f57f1a7065e1
+    m_Address: 82-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 019f296601e834520b34f57f1a7065e1, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 019f296601e834520b34f57f1a7065e1, type: 3}
+  - m_GUID: 025293e4e01674a8eac19542a948ce1b
+    m_Address: 363-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 025293e4e01674a8eac19542a948ce1b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 025293e4e01674a8eac19542a948ce1b, type: 3}
+  - m_GUID: 042a6338f75644846b0d4a92bb681404
+    m_Address: 672-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 042a6338f75644846b0d4a92bb681404, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 042a6338f75644846b0d4a92bb681404, type: 3}
+  - m_GUID: 05a4f89211d8d4938bf55e5f7e7bfa24
+    m_Address: 360-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 05a4f89211d8d4938bf55e5f7e7bfa24, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 05a4f89211d8d4938bf55e5f7e7bfa24, type: 3}
+  - m_GUID: 06c3823be87a24bc4a1bb626f7224461
+    m_Address: 601-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 06c3823be87a24bc4a1bb626f7224461, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 06c3823be87a24bc4a1bb626f7224461, type: 3}
+  - m_GUID: 082d776e802bb4822a1564db2646c8cc
+    m_Address: 220-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 082d776e802bb4822a1564db2646c8cc, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 082d776e802bb4822a1564db2646c8cc, type: 3}
+  - m_GUID: 0d58f7c5b310b46bf94784956c45116b
+    m_Address: 420-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 0d58f7c5b310b46bf94784956c45116b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 0d58f7c5b310b46bf94784956c45116b, type: 3}
+  - m_GUID: 0f9e6c2a4045e4dfdae9670aa0ec1efe
+    m_Address: 209-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 0f9e6c2a4045e4dfdae9670aa0ec1efe, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 0f9e6c2a4045e4dfdae9670aa0ec1efe, type: 3}
+  - m_GUID: 0fb4d5f7e69434b058a74821d7443475
+    m_Address: 315-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 0fb4d5f7e69434b058a74821d7443475, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 0fb4d5f7e69434b058a74821d7443475, type: 3}
+  - m_GUID: 102b6dcddc131467c9df14e74d4113c1
+    m_Address: 343-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 102b6dcddc131467c9df14e74d4113c1, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 102b6dcddc131467c9df14e74d4113c1, type: 3}
+  - m_GUID: 10688067ed1e14619a03e43d92cf4d14
+    m_Address: 158-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 10688067ed1e14619a03e43d92cf4d14, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 10688067ed1e14619a03e43d92cf4d14, type: 3}
+  - m_GUID: 132442e63aad445459a28792fafd5794
+    m_Address: 443-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 132442e63aad445459a28792fafd5794, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 132442e63aad445459a28792fafd5794, type: 3}
+  - m_GUID: 14f8c45df6dbf42f6982a7b75eac55ef
+    m_Address: 170-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 14f8c45df6dbf42f6982a7b75eac55ef, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 14f8c45df6dbf42f6982a7b75eac55ef, type: 3}
+  - m_GUID: 17040f9795bb04daf87a09b742703b7f
+    m_Address: 677-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 17040f9795bb04daf87a09b742703b7f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 17040f9795bb04daf87a09b742703b7f, type: 3}
+  - m_GUID: 18df75b46e1d84fa9b3c2f165c4142e8
+    m_Address: 456-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 18df75b46e1d84fa9b3c2f165c4142e8, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 18df75b46e1d84fa9b3c2f165c4142e8, type: 3}
+  - m_GUID: 193da9e05f0bd452aac3b5fa3050894c
+    m_Address: 172-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 193da9e05f0bd452aac3b5fa3050894c, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 193da9e05f0bd452aac3b5fa3050894c, type: 3}
+  - m_GUID: 193ece72aba7b4a668bd0afaecfb4ad7
+    m_Address: 63-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 193ece72aba7b4a668bd0afaecfb4ad7, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 193ece72aba7b4a668bd0afaecfb4ad7, type: 3}
+  - m_GUID: 1a2fae9dc0eb94d5bae27f82d93e0110
+    m_Address: 244-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 1a2fae9dc0eb94d5bae27f82d93e0110, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 1a2fae9dc0eb94d5bae27f82d93e0110, type: 3}
+  - m_GUID: 1b1db247fd4f546e298b5463ae1c08dc
+    m_Address: 450-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 1b1db247fd4f546e298b5463ae1c08dc, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 1b1db247fd4f546e298b5463ae1c08dc, type: 3}
+  - m_GUID: 1b492a363d5cc42a68dab74a6641d313
+    m_Address: 242-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 1b492a363d5cc42a68dab74a6641d313, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 1b492a363d5cc42a68dab74a6641d313, type: 3}
+  - m_GUID: 1c0ad988d507b4f3d80ea0e98f79625e
+    m_Address: 286-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 1c0ad988d507b4f3d80ea0e98f79625e, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 1c0ad988d507b4f3d80ea0e98f79625e, type: 3}
+  - m_GUID: 1d11dc46a7a6847798a0711e1747554c
+    m_Address: 563-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 1d11dc46a7a6847798a0711e1747554c, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 1d11dc46a7a6847798a0711e1747554c, type: 3}
+  - m_GUID: 1f0f1a3a6b74b45aea5f465d3dc828b3
+    m_Address: 102-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 1f0f1a3a6b74b45aea5f465d3dc828b3, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 1f0f1a3a6b74b45aea5f465d3dc828b3, type: 3}
+  - m_GUID: 23d77decee84841dfae8f79d135ddac2
+    m_Address: 545-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 23d77decee84841dfae8f79d135ddac2, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 23d77decee84841dfae8f79d135ddac2, type: 3}
+  - m_GUID: 25efd57e44d8248c798d118d4d8b4caf
+    m_Address: 492-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 25efd57e44d8248c798d118d4d8b4caf, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 25efd57e44d8248c798d118d4d8b4caf, type: 3}
+  - m_GUID: 27f79513d8a6d4f9888e853c50757722
+    m_Address: 338-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 27f79513d8a6d4f9888e853c50757722, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 27f79513d8a6d4f9888e853c50757722, type: 3}
+  - m_GUID: 28f82fa7a337f4b7b9c9a0863a4c24ea
+    m_Address: 224-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 28f82fa7a337f4b7b9c9a0863a4c24ea, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 28f82fa7a337f4b7b9c9a0863a4c24ea, type: 3}
+  - m_GUID: 2b00d90e2054e4e28bfc2e7b59a6a06b
+    m_Address: 132-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 2b00d90e2054e4e28bfc2e7b59a6a06b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 2b00d90e2054e4e28bfc2e7b59a6a06b, type: 3}
+  - m_GUID: 314329cd777e24af08bd0416cfbe0c65
+    m_Address: 204-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 314329cd777e24af08bd0416cfbe0c65, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 314329cd777e24af08bd0416cfbe0c65, type: 3}
+  - m_GUID: 35cbee7b21e7f44a28e1611e08b93518
+    m_Address: 118-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 35cbee7b21e7f44a28e1611e08b93518, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 35cbee7b21e7f44a28e1611e08b93518, type: 3}
+  - m_GUID: 36440488dfd9542929d7cb06872910a1
+    m_Address: 274-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 36440488dfd9542929d7cb06872910a1, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 36440488dfd9542929d7cb06872910a1, type: 3}
+  - m_GUID: 37c37d2e03d5a4131b601e06a7f27ddf
+    m_Address: 110-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 37c37d2e03d5a4131b601e06a7f27ddf, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 37c37d2e03d5a4131b601e06a7f27ddf, type: 3}
+  - m_GUID: 3bd1065e43ccd44529aa0c9d41216bf0
+    m_Address: 279-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 3bd1065e43ccd44529aa0c9d41216bf0, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 3bd1065e43ccd44529aa0c9d41216bf0, type: 3}
+  - m_GUID: 3e8d453ce0013448e8dc7b737e23805b
+    m_Address: 217-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 3e8d453ce0013448e8dc7b737e23805b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 3e8d453ce0013448e8dc7b737e23805b, type: 3}
+  - m_GUID: 3ece71083cdf04db7a94f29a90324428
+    m_Address: 230-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 3ece71083cdf04db7a94f29a90324428, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 3ece71083cdf04db7a94f29a90324428, type: 3}
+  - m_GUID: 3fcf2551f0eba472fbf973c8b2463626
+    m_Address: 169-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 3fcf2551f0eba472fbf973c8b2463626, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 3fcf2551f0eba472fbf973c8b2463626, type: 3}
+  - m_GUID: 41c7939f331b94cafbdfc74bd318d0dc
+    m_Address: 425-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 41c7939f331b94cafbdfc74bd318d0dc, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 41c7939f331b94cafbdfc74bd318d0dc, type: 3}
+  - m_GUID: 45ddbeb4cdef84f3f9d6f6718b96537e
+    m_Address: 325-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 45ddbeb4cdef84f3f9d6f6718b96537e, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 45ddbeb4cdef84f3f9d6f6718b96537e, type: 3}
+  - m_GUID: 469296d16a6b14c2699e13c965872741
+    m_Address: 316-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 469296d16a6b14c2699e13c965872741, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 469296d16a6b14c2699e13c965872741, type: 3}
+  - m_GUID: 47785ce510047405e96bcaacdd75ad66
+    m_Address: 205-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 47785ce510047405e96bcaacdd75ad66, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 47785ce510047405e96bcaacdd75ad66, type: 3}
+  - m_GUID: 4887faa6a61784b618113ffc1bf043e9
+    m_Address: 310-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 4887faa6a61784b618113ffc1bf043e9, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 4887faa6a61784b618113ffc1bf043e9, type: 3}
+  - m_GUID: 4a6cae5ab49784130b682af2173bd0e0
+    m_Address: 350-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 4a6cae5ab49784130b682af2173bd0e0, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 4a6cae5ab49784130b682af2173bd0e0, type: 3}
+  - m_GUID: 4aa45fac782074737ad70180a955aac0
+    m_Address: 681-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 4aa45fac782074737ad70180a955aac0, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 4aa45fac782074737ad70180a955aac0, type: 3}
+  - m_GUID: 4b2bd7dd4c9fe4558a7b62800508d03f
+    m_Address: 151-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 4b2bd7dd4c9fe4558a7b62800508d03f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 4b2bd7dd4c9fe4558a7b62800508d03f, type: 3}
+  - m_GUID: 506a52a3424394d36abea81602753437
+    m_Address: 584-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 506a52a3424394d36abea81602753437, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 506a52a3424394d36abea81602753437, type: 3}
+  - m_GUID: 5131ac55a2ae247f8a34353628b85dc7
+    m_Address: 48-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 5131ac55a2ae247f8a34353628b85dc7, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 5131ac55a2ae247f8a34353628b85dc7, type: 3}
+  - m_GUID: 54876c208879746bb9a15a50b2dc4518
+    m_Address: 87-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 54876c208879746bb9a15a50b2dc4518, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 54876c208879746bb9a15a50b2dc4518, type: 3}
+  - m_GUID: 54a7c0df9992f42f99d86e7c055757fe
+    m_Address: 324-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 54a7c0df9992f42f99d86e7c055757fe, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 54a7c0df9992f42f99d86e7c055757fe, type: 3}
+  - m_GUID: 57b427158199743a9a61771e826a6572
+    m_Address: 178-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 57b427158199743a9a61771e826a6572, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 57b427158199743a9a61771e826a6572, type: 3}
+  - m_GUID: 57baaca36e8664c9f88a5044a843368b
+    m_Address: 27-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 57baaca36e8664c9f88a5044a843368b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 57baaca36e8664c9f88a5044a843368b, type: 3}
+  - m_GUID: 583c826803f524693bde1ec6f6e8d25d
+    m_Address: 94-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 583c826803f524693bde1ec6f6e8d25d, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 583c826803f524693bde1ec6f6e8d25d, type: 3}
+  - m_GUID: 58b6db1a7a44a43e48b9f85f8de16946
+    m_Address: 371-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 58b6db1a7a44a43e48b9f85f8de16946, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 58b6db1a7a44a43e48b9f85f8de16946, type: 3}
+  - m_GUID: 5b683d559a93a4d738be22186eabce04
+    m_Address: 192-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 5b683d559a93a4d738be22186eabce04, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 5b683d559a93a4d738be22186eabce04, type: 3}
+  - m_GUID: 5b7e9e3044442407392b0cf72c477c9e
+    m_Address: 639-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 5b7e9e3044442407392b0cf72c477c9e, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 5b7e9e3044442407392b0cf72c477c9e, type: 3}
+  - m_GUID: 5bcccaa4f372e406caddddea315a8062
+    m_Address: 122-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 5bcccaa4f372e406caddddea315a8062, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 5bcccaa4f372e406caddddea315a8062, type: 3}
+  - m_GUID: 5c6e26f1874b8462b9cf8a328d207ab4
+    m_Address: 331-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 5c6e26f1874b8462b9cf8a328d207ab4, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 5c6e26f1874b8462b9cf8a328d207ab4, type: 3}
+  - m_GUID: 62672f52c991848d4b9ee9f745fafb87
+    m_Address: 470-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 62672f52c991848d4b9ee9f745fafb87, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 62672f52c991848d4b9ee9f745fafb87, type: 3}
+  - m_GUID: 62bbf62e026be44b4b528f6afba72334
+    m_Address: 635-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 62bbf62e026be44b4b528f6afba72334, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 62bbf62e026be44b4b528f6afba72334, type: 3}
+  - m_GUID: 636edebdda65d409781c2c63eb8a3fbe
+    m_Address: 218-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 636edebdda65d409781c2c63eb8a3fbe, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 636edebdda65d409781c2c63eb8a3fbe, type: 3}
+  - m_GUID: 63867f52000fe475abee2ca69348c0dc
+    m_Address: 357-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 63867f52000fe475abee2ca69348c0dc, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 63867f52000fe475abee2ca69348c0dc, type: 3}
+  - m_GUID: 6394babef859d4ca1ba4a2cba10d5bc1
+    m_Address: 184-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 6394babef859d4ca1ba4a2cba10d5bc1, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 6394babef859d4ca1ba4a2cba10d5bc1, type: 3}
+  - m_GUID: 67fe92ffa291f4824a3610c8c92e29b7
+    m_Address: 211-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 67fe92ffa291f4824a3610c8c92e29b7, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 67fe92ffa291f4824a3610c8c92e29b7, type: 3}
+  - m_GUID: 68810d7c4739943329c85c580fb63cd0
+    m_Address: 589-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 68810d7c4739943329c85c580fb63cd0, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 68810d7c4739943329c85c580fb63cd0, type: 3}
+  - m_GUID: 6a194eea1ef9b4c7f9e16b83f42e6645
+    m_Address: 234-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 6a194eea1ef9b4c7f9e16b83f42e6645, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 6a194eea1ef9b4c7f9e16b83f42e6645, type: 3}
+  - m_GUID: 6b51295d593584fbea5f9223e43928f9
+    m_Address: 410-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 6b51295d593584fbea5f9223e43928f9, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 6b51295d593584fbea5f9223e43928f9, type: 3}
+  - m_GUID: 6c3facb95d75c46f1ae4eb60a8ee7ab6
+    m_Address: 243-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 6c3facb95d75c46f1ae4eb60a8ee7ab6, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 6c3facb95d75c46f1ae4eb60a8ee7ab6, type: 3}
+  - m_GUID: 6da7c700585fe495b9b27734fa4027b3
+    m_Address: 282-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 6da7c700585fe495b9b27734fa4027b3, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 6da7c700585fe495b9b27734fa4027b3, type: 3}
+  - m_GUID: 6dd728ab588974648ab73c6d8d980f0b
+    m_Address: 628-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 6dd728ab588974648ab73c6d8d980f0b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 6dd728ab588974648ab73c6d8d980f0b, type: 3}
+  - m_GUID: 6ef920de22cd2450ebd88f087e628f47
+    m_Address: 301-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 6ef920de22cd2450ebd88f087e628f47, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 6ef920de22cd2450ebd88f087e628f47, type: 3}
+  - m_GUID: 6f1bc5b72eb174b23a4abc0b043ca846
+    m_Address: 207-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 6f1bc5b72eb174b23a4abc0b043ca846, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 6f1bc5b72eb174b23a4abc0b043ca846, type: 3}
+  - m_GUID: 6f63ebe2f16b64683a52d46ca610a49d
+    m_Address: 177-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 6f63ebe2f16b64683a52d46ca610a49d, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 6f63ebe2f16b64683a52d46ca610a49d, type: 3}
+  - m_GUID: 7087e1cd77e834f9889fe65928055457
+    m_Address: 8-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 7087e1cd77e834f9889fe65928055457, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 7087e1cd77e834f9889fe65928055457, type: 3}
+  - m_GUID: 716f544acddf94dd3ab2817fbf78d35b
+    m_Address: 521-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 716f544acddf94dd3ab2817fbf78d35b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 716f544acddf94dd3ab2817fbf78d35b, type: 3}
+  - m_GUID: 71b1232ed5a2d4cd0b73711611cac541
+    m_Address: 280-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 71b1232ed5a2d4cd0b73711611cac541, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 71b1232ed5a2d4cd0b73711611cac541, type: 3}
+  - m_GUID: 71f3284e6ef8c4c1fa84c392efdfd681
+    m_Address: 346-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 71f3284e6ef8c4c1fa84c392efdfd681, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 71f3284e6ef8c4c1fa84c392efdfd681, type: 3}
+  - m_GUID: 7aecf724d1dbf46b4ae0cef3905d4970
+    m_Address: Assets/_Project/Scripts/GamedevGuruPool/Test/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7d4f3f7b0757f43e8b6083bba4a46035
+    m_Address: 384-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 7d4f3f7b0757f43e8b6083bba4a46035, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 7d4f3f7b0757f43e8b6083bba4a46035, type: 3}
+  - m_GUID: 7e3a06d3e526b432b8526ca73590e28a
+    m_Address: 533-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 7e3a06d3e526b432b8526ca73590e28a, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 7e3a06d3e526b432b8526ca73590e28a, type: 3}
+  - m_GUID: 7f3b351eb732740d3bf4c58fcd32acb6
+    m_Address: 271-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 7f3b351eb732740d3bf4c58fcd32acb6, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 7f3b351eb732740d3bf4c58fcd32acb6, type: 3}
+  - m_GUID: 7f77c90d6989d4bcab2666fc91653960
+    m_Address: 210-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 7f77c90d6989d4bcab2666fc91653960, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 7f77c90d6989d4bcab2666fc91653960, type: 3}
+  - m_GUID: 804bc5356d80547239ffbb42e5dcfaf3
+    m_Address: 620-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 804bc5356d80547239ffbb42e5dcfaf3, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 804bc5356d80547239ffbb42e5dcfaf3, type: 3}
+  - m_GUID: 814942080547d4f9ca65a4f3f7d30e68
+    m_Address: 332-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 814942080547d4f9ca65a4f3f7d30e68, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 814942080547d4f9ca65a4f3f7d30e68, type: 3}
+  - m_GUID: 8662174b2e73f4b96afe9db9b8c59f89
+    m_Address: 277-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 8662174b2e73f4b96afe9db9b8c59f89, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 8662174b2e73f4b96afe9db9b8c59f89, type: 3}
+  - m_GUID: 866c4e9f9e02a4c31b99c18d2725fd32
+    m_Address: 600-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 866c4e9f9e02a4c31b99c18d2725fd32, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 866c4e9f9e02a4c31b99c18d2725fd32, type: 3}
+  - m_GUID: 86fb14a8172a74b2fa919fbf8c54e70e
+    m_Address: 181-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 86fb14a8172a74b2fa919fbf8c54e70e, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 86fb14a8172a74b2fa919fbf8c54e70e, type: 3}
+  - m_GUID: 8845c67f3b9f24147ace0160f4654afd
+    m_Address: 176-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 8845c67f3b9f24147ace0160f4654afd, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 8845c67f3b9f24147ace0160f4654afd, type: 3}
+  - m_GUID: 8bf7347e92c234e99bf854524b0eeeb2
+    m_Address: 673-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 8bf7347e92c234e99bf854524b0eeeb2, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 8bf7347e92c234e99bf854524b0eeeb2, type: 3}
+  - m_GUID: 8c61957a1977f4e0397c4354ec58662d
+    m_Address: 640-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 8c61957a1977f4e0397c4354ec58662d, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 8c61957a1977f4e0397c4354ec58662d, type: 3}
+  - m_GUID: 8d99c8fc8fc884d2ea9171fed26beada
+    m_Address: 632-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 8d99c8fc8fc884d2ea9171fed26beada, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 8d99c8fc8fc884d2ea9171fed26beada, type: 3}
+  - m_GUID: 8dafa202950804899bc10bb0e87f9551
+    m_Address: 479-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 8dafa202950804899bc10bb0e87f9551, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 8dafa202950804899bc10bb0e87f9551, type: 3}
+  - m_GUID: 8dbf44a9efa734fb299509d9c0a51375
+    m_Address: 272-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 8dbf44a9efa734fb299509d9c0a51375, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 8dbf44a9efa734fb299509d9c0a51375, type: 3}
+  - m_GUID: 914fd2f873b3141518854a76c44556bb
+    m_Address: 383-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 914fd2f873b3141518854a76c44556bb, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 914fd2f873b3141518854a76c44556bb, type: 3}
+  - m_GUID: 9203f0ea8e90848dea477f2a9ffed3ba
+    m_Address: 221-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 9203f0ea8e90848dea477f2a9ffed3ba, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 9203f0ea8e90848dea477f2a9ffed3ba, type: 3}
+  - m_GUID: 92accc1e5eb934ab7bdbf6a2b3dde031
+    m_Address: 137-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 92accc1e5eb934ab7bdbf6a2b3dde031, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 92accc1e5eb934ab7bdbf6a2b3dde031, type: 3}
+  - m_GUID: 93ea221a22f6d43f7932e3ed1eea7765
+    m_Address: 278-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 93ea221a22f6d43f7932e3ed1eea7765, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 93ea221a22f6d43f7932e3ed1eea7765, type: 3}
+  - m_GUID: 97c0236d682b147d79716bc322681403
+    m_Address: 121-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 97c0236d682b147d79716bc322681403, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 97c0236d682b147d79716bc322681403, type: 3}
+  - m_GUID: 996e821575dca4ed3b63241566c41a80
+    m_Address: 625-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 996e821575dca4ed3b63241566c41a80, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 996e821575dca4ed3b63241566c41a80, type: 3}
+  - m_GUID: 9a02f7404f25b43feac1c86bfb73bf06
+    m_Address: 478-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 9a02f7404f25b43feac1c86bfb73bf06, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 9a02f7404f25b43feac1c86bfb73bf06, type: 3}
+  - m_GUID: 9a7714b3c7e2c41a3b7c3600330652af
+    m_Address: 655-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 9a7714b3c7e2c41a3b7c3600330652af, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 9a7714b3c7e2c41a3b7c3600330652af, type: 3}
+  - m_GUID: 9b34c54d10766435a94648f4c7907169
+    m_Address: 618-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 9b34c54d10766435a94648f4c7907169, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 9b34c54d10766435a94648f4c7907169, type: 3}
+  - m_GUID: 9f90b6ff13fdd40148ad4fc76cf38cd7
+    m_Address: 637-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 9f90b6ff13fdd40148ad4fc76cf38cd7, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 9f90b6ff13fdd40148ad4fc76cf38cd7, type: 3}
+  - m_GUID: 9f9fb7f1e188d432593c53a03469de37
+    m_Address: 241-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 9f9fb7f1e188d432593c53a03469de37, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 9f9fb7f1e188d432593c53a03469de37, type: 3}
+  - m_GUID: a03318acbeb834cf2802c0cfddbc1ec4
+    m_Address: 336-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: a03318acbeb834cf2802c0cfddbc1ec4, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: a03318acbeb834cf2802c0cfddbc1ec4, type: 3}
+  - m_GUID: a2df3c0b12a8f4178b41b20179a997b2
+    m_Address: 294-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: a2df3c0b12a8f4178b41b20179a997b2, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: a2df3c0b12a8f4178b41b20179a997b2, type: 3}
+  - m_GUID: a636e223855724d36a65bb02f2c3b6f7
+    m_Address: 684-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: a636e223855724d36a65bb02f2c3b6f7, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: a636e223855724d36a65bb02f2c3b6f7, type: 3}
+  - m_GUID: a6b8b1b55dc444941916457c1fed0f4f
+    m_Address: 380-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: a6b8b1b55dc444941916457c1fed0f4f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: a6b8b1b55dc444941916457c1fed0f4f, type: 3}
+  - m_GUID: a6ddaf5a8ac1d443ca66906250e82231
+    m_Address: 215-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: a6ddaf5a8ac1d443ca66906250e82231, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: a6ddaf5a8ac1d443ca66906250e82231, type: 3}
+  - m_GUID: a81fb1cce2dd74680998318764dd493c
+    m_Address: 161-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: a81fb1cce2dd74680998318764dd493c, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: a81fb1cce2dd74680998318764dd493c, type: 3}
+  - m_GUID: aaf6b93246b104ef08358d21bfca491c
+    m_Address: 6-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: aaf6b93246b104ef08358d21bfca491c, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: aaf6b93246b104ef08358d21bfca491c, type: 3}
+  - m_GUID: ac137aed013fd4b8693ffa700c2fc1bd
+    m_Address: 216-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: ac137aed013fd4b8693ffa700c2fc1bd, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: ac137aed013fd4b8693ffa700c2fc1bd, type: 3}
+  - m_GUID: afdb87b4f7c5c46c893f9053f9e055c8
+    m_Address: 594-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: afdb87b4f7c5c46c893f9053f9e055c8, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: afdb87b4f7c5c46c893f9053f9e055c8, type: 3}
+  - m_GUID: b031cc4a374c94ed59e8c76b5a73d259
+    m_Address: 155-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: b031cc4a374c94ed59e8c76b5a73d259, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: b031cc4a374c94ed59e8c76b5a73d259, type: 3}
+  - m_GUID: b244d83b605934d6c90f99aa097bc90f
+    m_Address: 516-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: b244d83b605934d6c90f99aa097bc90f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: b244d83b605934d6c90f99aa097bc90f, type: 3}
+  - m_GUID: b73b2fde51ad4417e99f0940005a49a5
+    m_Address: 111-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: b73b2fde51ad4417e99f0940005a49a5, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: b73b2fde51ad4417e99f0940005a49a5, type: 3}
+  - m_GUID: b9bf05c589c704a47ad2273b9b7ebe68
+    m_Address: 165-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: b9bf05c589c704a47ad2273b9b7ebe68, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: b9bf05c589c704a47ad2273b9b7ebe68, type: 3}
+  - m_GUID: bc6049102afe748228b82710395f6db1
+    m_Address: 179-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: bc6049102afe748228b82710395f6db1, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: bc6049102afe748228b82710395f6db1, type: 3}
+  - m_GUID: bdd3486b215cc4d0f90c9c32d24e7e64
+    m_Address: 477-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: bdd3486b215cc4d0f90c9c32d24e7e64, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: bdd3486b215cc4d0f90c9c32d24e7e64, type: 3}
+  - m_GUID: bf1f1b333499b41eb8e41e9a392d990f
+    m_Address: 92-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: bf1f1b333499b41eb8e41e9a392d990f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: bf1f1b333499b41eb8e41e9a392d990f, type: 3}
+  - m_GUID: bf2c9a592a7c24c7a8d29a1c87a44c4a
+    m_Address: 329-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: bf2c9a592a7c24c7a8d29a1c87a44c4a, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: bf2c9a592a7c24c7a8d29a1c87a44c4a, type: 3}
+  - m_GUID: bff8d10aad3464b41b5939c36cf240c1
+    m_Address: 222-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: bff8d10aad3464b41b5939c36cf240c1, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: bff8d10aad3464b41b5939c36cf240c1, type: 3}
+  - m_GUID: c0c171cf2838b4f73b3b873af990dcee
+    m_Address: 405-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: c0c171cf2838b4f73b3b873af990dcee, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c0c171cf2838b4f73b3b873af990dcee, type: 3}
+  - m_GUID: c16d3b6384f0446b989619e86d3bd4fc
+    m_Address: 327-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: c16d3b6384f0446b989619e86d3bd4fc, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c16d3b6384f0446b989619e86d3bd4fc, type: 3}
+  - m_GUID: c276a4cb14aee46a188080d982d14c9b
+    m_Address: 231-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: c276a4cb14aee46a188080d982d14c9b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c276a4cb14aee46a188080d982d14c9b, type: 3}
+  - m_GUID: c48264dde1bda44f99abc7e9d0fcd5fc
+    m_Address: 582-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: c48264dde1bda44f99abc7e9d0fcd5fc, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c48264dde1bda44f99abc7e9d0fcd5fc, type: 3}
+  - m_GUID: c4ce97eabff084b70af5c25e58308532
+    m_Address: 351-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: c4ce97eabff084b70af5c25e58308532, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c4ce97eabff084b70af5c25e58308532, type: 3}
+  - m_GUID: c51ebadb5264342a6b62ef156620b24d
+    m_Address: 472-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: c51ebadb5264342a6b62ef156620b24d, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c51ebadb5264342a6b62ef156620b24d, type: 3}
+  - m_GUID: c901f92767eff4246bd305013b774941
+    m_Address: 202-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: c901f92767eff4246bd305013b774941, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c901f92767eff4246bd305013b774941, type: 3}
+  - m_GUID: c971fbbe6ad004ff194152494dbc0ddd
+    m_Address: 334-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: c971fbbe6ad004ff194152494dbc0ddd, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c971fbbe6ad004ff194152494dbc0ddd, type: 3}
+  - m_GUID: c9bf503491d274b00a2e594f787dcc8b
+    m_Address: 683-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: c9bf503491d274b00a2e594f787dcc8b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c9bf503491d274b00a2e594f787dcc8b, type: 3}
+  - m_GUID: c9e5d24f3505e4593b67f0fe0149f2c7
+    m_Address: 281-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: c9e5d24f3505e4593b67f0fe0149f2c7, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: c9e5d24f3505e4593b67f0fe0149f2c7, type: 3}
+  - m_GUID: ca212957375c74956ac6fc4100c242e8
+    m_Address: 348-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: ca212957375c74956ac6fc4100c242e8, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: ca212957375c74956ac6fc4100c242e8, type: 3}
+  - m_GUID: ca648a03931604e9bbdb4f1a79940ba1
+    m_Address: 614-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: ca648a03931604e9bbdb4f1a79940ba1, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: ca648a03931604e9bbdb4f1a79940ba1, type: 3}
+  - m_GUID: cafc03b0c767d440d9aed0af7e8a33ad
+    m_Address: 15-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: cafc03b0c767d440d9aed0af7e8a33ad, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: cafc03b0c767d440d9aed0af7e8a33ad, type: 3}
+  - m_GUID: d022afeffbe0d4b68a4da1899687e37d
+    m_Address: 355-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: d022afeffbe0d4b68a4da1899687e37d, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: d022afeffbe0d4b68a4da1899687e37d, type: 3}
+  - m_GUID: d09026c5bc7a245d5be410b9009a2e26
+    m_Address: 283-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: d09026c5bc7a245d5be410b9009a2e26, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: d09026c5bc7a245d5be410b9009a2e26, type: 3}
+  - m_GUID: d2547efeab5c34acd967e6d8bb10170b
+    m_Address: 466-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: d2547efeab5c34acd967e6d8bb10170b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: d2547efeab5c34acd967e6d8bb10170b, type: 3}
+  - m_GUID: d3a1719efa857458e929eade7e57fc16
+    m_Address: 469-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: d3a1719efa857458e929eade7e57fc16, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: d3a1719efa857458e929eade7e57fc16, type: 3}
+  - m_GUID: d442db60beb174c65a2e1f4e5e2ec484
+    m_Address: 503-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: d442db60beb174c65a2e1f4e5e2ec484, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: d442db60beb174c65a2e1f4e5e2ec484, type: 3}
+  - m_GUID: d90171e36eed640f3911306c17d2691c
+    m_Address: 381-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: d90171e36eed640f3911306c17d2691c, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: d90171e36eed640f3911306c17d2691c, type: 3}
+  - m_GUID: d930b930c291e4d9681ed932d93de170
+    m_Address: 86-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: d930b930c291e4d9681ed932d93de170, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: d930b930c291e4d9681ed932d93de170, type: 3}
+  - m_GUID: d9d6afadea9b844bf8f71f8978bc2939
+    m_Address: 326-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: d9d6afadea9b844bf8f71f8978bc2939, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: d9d6afadea9b844bf8f71f8978bc2939, type: 3}
+  - m_GUID: de3e7cbfee6164c82aed010c1758bcfd
+    m_Address: 335-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: de3e7cbfee6164c82aed010c1758bcfd, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: de3e7cbfee6164c82aed010c1758bcfd, type: 3}
+  - m_GUID: df7fabb4a29154d24b77145f49b864a7
+    m_Address: 482-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: df7fabb4a29154d24b77145f49b864a7, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: df7fabb4a29154d24b77145f49b864a7, type: 3}
+  - m_GUID: e11ab204ad92941788f692de0d4c2c7f
+    m_Address: 555-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: e11ab204ad92941788f692de0d4c2c7f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: e11ab204ad92941788f692de0d4c2c7f, type: 3}
+  - m_GUID: e535fab9c53bd46ac8dd99a3e5cfb02b
+    m_Address: 370-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: e535fab9c53bd46ac8dd99a3e5cfb02b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: e535fab9c53bd46ac8dd99a3e5cfb02b, type: 3}
+  - m_GUID: e78896457dfc549b093dc0b40a2cb164
+    m_Address: 653-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: e78896457dfc549b093dc0b40a2cb164, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: e78896457dfc549b093dc0b40a2cb164, type: 3}
+  - m_GUID: e7e71e78b79fb46fd8ec739c04ea3564
+    m_Address: 154-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: e7e71e78b79fb46fd8ec739c04ea3564, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: e7e71e78b79fb46fd8ec739c04ea3564, type: 3}
+  - m_GUID: e83513c03f7d246b2b2b375fe03e7c62
+    m_Address: 385-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: e83513c03f7d246b2b2b375fe03e7c62, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: e83513c03f7d246b2b2b375fe03e7c62, type: 3}
+  - m_GUID: e8fe0453ef5d941dc808418363dabd55
+    m_Address: 386-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: e8fe0453ef5d941dc808418363dabd55, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: e8fe0453ef5d941dc808418363dabd55, type: 3}
+  - m_GUID: e9450ade30cef4e689707035dbd441a7
+    m_Address: 596-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: e9450ade30cef4e689707035dbd441a7, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: e9450ade30cef4e689707035dbd441a7, type: 3}
+  - m_GUID: eaeaf9cad8cc647ed808c6abffbc8d98
+    m_Address: 96-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: eaeaf9cad8cc647ed808c6abffbc8d98, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: eaeaf9cad8cc647ed808c6abffbc8d98, type: 3}
+  - m_GUID: eb2d4d42c40704ef9bfb6e49544bfe49
+    m_Address: 100-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: eb2d4d42c40704ef9bfb6e49544bfe49, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: eb2d4d42c40704ef9bfb6e49544bfe49, type: 3}
+  - m_GUID: ec0b43dc76f3f402cb73c576e3f992fd
+    m_Address: 330-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: ec0b43dc76f3f402cb73c576e3f992fd, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: ec0b43dc76f3f402cb73c576e3f992fd, type: 3}
+  - m_GUID: ec32ad5d72d504510beb5859360a41ee
+    m_Address: 91-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: ec32ad5d72d504510beb5859360a41ee, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: ec32ad5d72d504510beb5859360a41ee, type: 3}
+  - m_GUID: eee292f9ecf984d599af86a393ef2630
+    m_Address: 630-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: eee292f9ecf984d599af86a393ef2630, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: eee292f9ecf984d599af86a393ef2630, type: 3}
+  - m_GUID: ef66aca3d7b7541ba8dc3e38bfc3f87c
+    m_Address: 362-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: ef66aca3d7b7541ba8dc3e38bfc3f87c, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: ef66aca3d7b7541ba8dc3e38bfc3f87c, type: 3}
+  - m_GUID: efcafcbfee7c84d8dbbeaabdf1729530
+    m_Address: 171-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: efcafcbfee7c84d8dbbeaabdf1729530, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: efcafcbfee7c84d8dbbeaabdf1729530, type: 3}
+  - m_GUID: f20c19d54941f4f54b98d1e8b6fd1b7f
+    m_Address: 514-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: f20c19d54941f4f54b98d1e8b6fd1b7f, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f20c19d54941f4f54b98d1e8b6fd1b7f, type: 3}
+  - m_GUID: f20fa3082297740a8913b87d0a14ce18
+    m_Address: 174-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: f20fa3082297740a8913b87d0a14ce18, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f20fa3082297740a8913b87d0a14ce18, type: 3}
+  - m_GUID: f54162a46e778430fb1c0729d01ffd48
+    m_Address: 300-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: f54162a46e778430fb1c0729d01ffd48, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f54162a46e778430fb1c0729d01ffd48, type: 3}
+  - m_GUID: f61c08160ab094526bc4cddcfe743a49
+    m_Address: 599-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: f61c08160ab094526bc4cddcfe743a49, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f61c08160ab094526bc4cddcfe743a49, type: 3}
+  - m_GUID: f67643f1218ff44128b99fb9edcf9bbc
+    m_Address: 229-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: f67643f1218ff44128b99fb9edcf9bbc, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f67643f1218ff44128b99fb9edcf9bbc, type: 3}
+  - m_GUID: f78bc67b8e8884a2fa10205bdd7e4bce
+    m_Address: 254-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: f78bc67b8e8884a2fa10205bdd7e4bce, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f78bc67b8e8884a2fa10205bdd7e4bce, type: 3}
+  - m_GUID: f7a03c519ddf443efb382b0aa562b3a8
+    m_Address: 89-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: f7a03c519ddf443efb382b0aa562b3a8, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f7a03c519ddf443efb382b0aa562b3a8, type: 3}
+  - m_GUID: f913a161097c54d9aa697258abbf128a
+    m_Address: 299-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: f913a161097c54d9aa697258abbf128a, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f913a161097c54d9aa697258abbf128a, type: 3}
+  - m_GUID: f96f91b3048414a50832ac4ac73a7962
+    m_Address: 93-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: f96f91b3048414a50832ac4ac73a7962, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: f96f91b3048414a50832ac4ac73a7962, type: 3}
+  - m_GUID: fd213c0f1e0bd4df5b8a8894a7e3c746
+    m_Address: 333-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: fd213c0f1e0bd4df5b8a8894a7e3c746, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: fd213c0f1e0bd4df5b8a8894a7e3c746, type: 3}
+  - m_GUID: fecadcafa264a4823b778f5343d57759
+    m_Address: 135-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: fecadcafa264a4823b778f5343d57759, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: fecadcafa264a4823b778f5343d57759, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c4c1ac3009d924572a014ba066d1a0db, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7945a2cd8e4614097b566ffd4147b940, type: 2}
+    - {fileID: 11400000, guid: a1575e599b04f4e119f0743117ca2c9e, type: 2}

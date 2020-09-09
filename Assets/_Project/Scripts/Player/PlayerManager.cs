@@ -62,6 +62,11 @@ public class PlayerManager : Singleton<PlayerManager>
             obj.name = username;
             // parent under PlayerManger
             obj.transform.parent = gameObject.transform;
+
+
+            // add new animation
+
+
             // add to dict
             playerDictionary.Add(username, obj);
 
