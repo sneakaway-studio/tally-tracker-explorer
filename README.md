@@ -11,6 +11,9 @@ To do
   - [x] Convert Feed data to JSON object
   - [x] Create EventManager
   - [ ] Update API with detailed feed data
+    - [ ] Change format of feeds table to use `JSON_OBJECT()`
+    - [ ] Update feeds on website to use `eventData` object from each row
+    - [ ] Update API to use `eventData` object from each row
   - [ ] Build Feed data testing / monitor UI
 - [ ] Timeline
   - [x] Time UI class
