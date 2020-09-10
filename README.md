@@ -5,13 +5,13 @@ To do
 - [x] Setup
   - [x] Create repo
   - [x] Create Unity project (2020.1.2f1)
-- [ ] Feed data setup
+- [ ] Data
   - [x] Update API with basic feed data
   - [x] Get Feed data in Unity
   - [x] Convert Feed data to JSON object
+  - [x] Create EventManager
   - [ ] Update API with detailed feed data
   - [ ] Build Feed data testing / monitor UI
-  - [x] Create EventManager
 - [ ] Timeline
   - [x] Time UI class
     - [ ] Button: Change refresh time
@@ -91,6 +91,8 @@ To do
       - [ ] Each trail is a product marketing category from streams
       - [ ] [Colors](https://github.com/sneakaway-studio/tally-api/blob/master/public/assets/css/sass/custom.scss)
       - [ ] Add/remove monsters from data trail based on streams updates
+- [x] Visuals -> Anaglyph3D
+  - [x] Add / test Anaglyph3D shader
 - [ ] Visuals -> Environment
   - [ ] Particles 👈
     - [ ] Use particle system to create small floating objects to give the visual display depth
