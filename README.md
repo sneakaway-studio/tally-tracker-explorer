@@ -19,6 +19,10 @@ To do
     - [ ] Scrubber: playback speed
   - [ ] Create playback 
     - [ ] Coroutine to play event at specific time
+- [ ] Visuals -> Monsters
+  - [x] Create addressables system for sprite animation slicing workflow
+  - [x] Create MonsterPool
+   - [ ] Create add / subtract from pool methods
 - [ ] Visuals -> Players
   - [ ] Initialize
     - [ ] Use Feed data to build GameObjects and display in "Universe"
