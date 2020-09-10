@@ -63,7 +63,7 @@ To do
           - Sound: ?
           - Animation: ? 
       - [ ] Battle
-        - [] In-progress
+        - [ ] In-progress
           - Player movement: ?
           - Sound: Light battle music (on zoomed in)
           - Animations: Rumble animation appears over player
