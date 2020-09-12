@@ -22,19 +22,38 @@ public class DataManager : Singleton<DataManager>
         EventManager.StopListening("GetNewData", GetNewData);
     }
 
+
+
+
     // host and endpoint for API
     public string host;
     public string endpoint;
+
     // the current data as string
     public static string current;
     // as Dict
-    public static IList<FeedData> feeds;
+    public static IList<FeedData> feeds = new List<FeedData>();
+
+
+    // http://127.0.0.1:5000/api/feed/recent
 
     private void Start()
     {
+        // HOSTS
+
+        // live server 
         host = "https://tallysavestheinternet.com/api/";
+        // dev server
+        host = "http://127.0.0.1:5000/api/";
+
+
+        // ENDPOINTS
+
         //endpoint = "feed/range/1/week"; // a whole week
-        endpoint = "feed/recent"; // 20 recent 
+        endpoint = "feed/recent"; // 20 recent
+
+
+
     }
 
 
@@ -65,24 +84,121 @@ public class DataManager : Singleton<DataManager>
                 Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
 
                 // parse JSON array 
-                JArray feedsArray = JArray.Parse(webRequest.downloadHandler.text);
+                JArray a = JArray.Parse(webRequest.downloadHandler.text);
 
-                feeds = feedsArray.Select(p => new FeedData
+
+
+
+                foreach (JObject item in a)
                 {
-                    username = (string)p["username"],
-                    avatarPath = (string)p["avatarPath"],
-                    item = (string)p["item"],
-                    type = (string)p["type"],
-                    name = (string)p["name"],
-                    level = (int)p["level"],
-                    stat = (string)p["stat"],
-                    captured = (int)p["captured"],
-                    time = (DateTime)p["date"],
+                    // base class properties
+                    string _username = item.GetValue("username").ToString();
+                    string _avatarPath = item.GetValue("avatarPath").ToString();
+                    string _eventType = item.GetValue("eventType").ToString();
+                    string _createdAtStr = item.GetValue("createdAt").ToString();
 
-                }).ToList();
+                    // parse string to ISO 8601 format
+                    DateTime _createdAt = DateTime.Parse(_createdAtStr, null, System.Globalization.DateTimeStyles.RoundtripKind);
+
+                    // parse eventData 
+                    JObject d = JObject.Parse(item.GetValue("eventData").ToString());
+
+                    if (_eventType == "attack")
+                    {
+                        feeds.Add(new AttackData
+                        {
+                            username = _username,
+                            avatarPath = _avatarPath,
+                            eventType = _eventType,
+                            createdAt = _createdAt,
+
+                            name = (string)d["name"],
+                            type = (string)d["level"],
+                            selected = (bool)d["selected"]
+                        });
+                    }
+                    else if (_eventType == "badge")
+                    {
+                        feeds.Add(new BadgeData
+                        {
+                            username = _username,
+                            avatarPath = _avatarPath,
+                            eventType = _eventType,
+                            createdAt = _createdAt,
+
+                            name = (string)d["name"],
+                            level = (int)d["level"]
+                        });
+                    }
+                    else if (_eventType == "consumable")
+                    {
+                        feeds.Add(new ConsumableData
+                        {
+                            username = _username,
+                            avatarPath = _avatarPath,
+                            eventType = _eventType,
+                            createdAt = _createdAt,
+
+                            name = (string)d["name"],
+                            slug = (string)d["slug"],
+                            stat = (string)d["stat"],
+                            type = (string)d["type"],
+                            value = (int)d["value"]
+                        });
+                    }
+                    else if (_eventType == "disguise")
+                    {
+                        feeds.Add(new DisguiseData
+                        {
+                            username = _username,
+                            avatarPath = _avatarPath,
+                            eventType = _eventType,
+                            createdAt = _createdAt,
+
+                            name = (string)d["name"],
+                            type = (string)d["type"]
+                        });
+                    }
+                    else if (_eventType == "monster")
+                    {
+                        feeds.Add(new MonsterData
+                        {
+                            username = _username,
+                            avatarPath = _avatarPath,
+                            eventType = _eventType,
+                            createdAt = _createdAt,
+
+                            mid = (int)d["mid"],
+                            level = (int)d["level"],
+                            captured = (int)d["captured"],
+                        });
+                    }
 
 
-                //Debug.Log(feedsArray[0]);
+
+
+                    //Debug.Log(_eventType);
+                }
+
+
+
+                //feeds = a.Select(p => new FeedData
+                //{
+                //    username = (string)p["username"],
+                //    avatarPath = (string)p["avatarPath"],
+                //    eventType = (string)p["eventType"],
+                //    createdAt = (DateTime)p["createdAt"],
+
+                //    //type = (string)p["type"],
+                //    //name = (string)p["name"],
+                //    //level = (int)p["level"],
+                //    //stat = (string)p["stat"],
+                //    //captured = (int)p["captured"],
+
+                //}).ToList();
+
+
+                ////Debug.Log(a[0]);
                 //Debug.Log(feeds.ToString());
 
 
@@ -91,11 +207,16 @@ public class DataManager : Singleton<DataManager>
 
                 foreach (var feed in feeds)
                 {
+
+
+
                     var line =
-                        feed.time + "\t" +
-                        feed.username + ", " + feed.item + ", " +
-                        feed.type + ", " + feed.name + ", " + feed.level +
-                        ", " + feed.type;
+                        feed.createdAt + "\t" +
+                        feed.username + ", " + feed.eventType + ", " +
+                        //feed.type + ", " + feed.name + ", " + feed.level +
+                        //", " + feed.type
+                        ""
+                        ;
                     current += line + "<br>";
 
                     //Debug.Log(line);
