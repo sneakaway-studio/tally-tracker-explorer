@@ -70,7 +70,7 @@ public class Timeline : MonoBehaviour
         foreach (var feed in DataManager.feeds)
         {
             // current time
-            currentTime = feed.time;
+            currentTime = feed.createdAt;
             // on first run 
             if (previousTime == null)
             {
@@ -87,7 +87,7 @@ public class Timeline : MonoBehaviour
                 diffInSeconds + " (" + diffInSecondsAdj + ") " +
                 " (" + currentTime + ") " +
                //" = (" + previousTime + " - " + currentTime + ") " +
-               feed.username + ", " + feed.item;
+               feed.username + ", " + feed.eventType;
             TmText.text += log + "<br>";
             UpdateScroll();
             //Debug.Log(log);

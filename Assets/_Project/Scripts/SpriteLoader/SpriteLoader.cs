@@ -20,7 +20,7 @@ using System.Linq;
 public class SpriteLoader : MonoBehaviour
 {
     // labels for sprite
-    public string[] lables;
+    public string[] labels;
 
     // prefab to show sprite
     public GameObject prefab;
@@ -38,7 +38,9 @@ public class SpriteLoader : MonoBehaviour
         try
         {
             // get all the matching addressables locations
-            var locations = await Addressables.LoadResourceLocationsAsync(lables, Addressables.MergeMode.UseFirst).Task;
+            var locations = await Addressables.LoadResourceLocationsAsync(labels, Addressables.MergeMode.UseFirst).Task;
+
+            //Debug.Log("locations.Count = " + locations.Count);
 
             // return if no results 
             if (locations == null || locations.Count < 1) return;
@@ -54,11 +56,11 @@ public class SpriteLoader : MonoBehaviour
                 if (sprites.ContainsKey(spriteName)) continue;
 
 
-                Debug.Log("Loading " + (count++) + "/" + locations.Count + " - " + spriteName + " - " + loc.GetType());
+                //Debug.Log("Loading " + (count++) + "/" + locations.Count + " - " + spriteName + " - " + loc.GetType());
 
 
                 // instantiate prefab and position
-                Vector3 spawnPosition = new Vector3(Random.Range(-30, 30), Random.Range(-20, 20), Random.Range(-15, 5));
+                Vector3 spawnPosition = new Vector3(Random.Range(-70, 70), Random.Range(-30, 30), Random.Range(-35, 15));
                 GameObject obj = (GameObject)Instantiate(prefab, spawnPosition, Quaternion.identity);
 
                 // set name, parent, store
