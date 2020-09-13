@@ -107,6 +107,7 @@ To do
     - [ ] Environmental lighting
     - [ ] Changes to lighting depending on time of day
     - [ ] Baking, etc. performance considerations
+    - [ ] Fog examples [1](https://forum.unity.com/threads/how-can-i-control-fog-color-based-on-skybox-color.311706/), [2](https://carlburton.itch.io/islands), [3](https://magazine.renderosity.com/article/5204/taking-a-look-at-unity-fog)
   - [ ] Background
 - [ ] Test in space
   - [ ] 8 cameras
