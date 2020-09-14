@@ -7,6 +7,8 @@ public class FeedData
     public string avatarPath { get; set; }
     public string eventType { get; set; }
     public string eventData { get; set; }
+    public string monsters { get; set; }
+    public string trackers { get; set; }
     public DateTime createdAt { get; set; }
 }
 

@@ -36,6 +36,7 @@ public class DataManager : Singleton<DataManager>
 
 
     // http://127.0.0.1:5000/api/feed/recent
+    // http://127.0.0.1:5000/api/feed/range/plusStream/5/day/
 
     private void Start()
     {
@@ -49,10 +50,10 @@ public class DataManager : Singleton<DataManager>
 
         // ENDPOINTS
 
-        //endpoint = "feed/range/1/week"; // a whole week
+        endpoint = "feed/range/1/week"; // a whole week
         endpoint = "feed/recent"; // 20 recent
 
-
+        endpoint = "feed/range/plusStream/5/day/"; // last 5 days
 
     }
 
@@ -96,6 +97,8 @@ public class DataManager : Singleton<DataManager>
                     string _avatarPath = item.GetValue("avatarPath").ToString();
                     string _eventType = item.GetValue("eventType").ToString();
                     string _createdAtStr = item.GetValue("createdAt").ToString();
+                    string _monsters = item.GetValue("monsters").ToString();
+                    string _trackers = item.GetValue("trackers").ToString();
 
                     // parse string to ISO 8601 format
                     DateTime _createdAt = DateTime.Parse(_createdAtStr, null, System.Globalization.DateTimeStyles.RoundtripKind);
@@ -111,6 +114,8 @@ public class DataManager : Singleton<DataManager>
                             avatarPath = _avatarPath,
                             eventType = _eventType,
                             createdAt = _createdAt,
+                            monsters = _monsters,
+                            trackers = _trackers,
 
                             name = (string)d["name"],
                             type = (string)d["level"],
@@ -125,6 +130,8 @@ public class DataManager : Singleton<DataManager>
                             avatarPath = _avatarPath,
                             eventType = _eventType,
                             createdAt = _createdAt,
+                            monsters = _monsters,
+                            trackers = _trackers,
 
                             name = (string)d["name"],
                             level = (int)d["level"]
@@ -138,6 +145,8 @@ public class DataManager : Singleton<DataManager>
                             avatarPath = _avatarPath,
                             eventType = _eventType,
                             createdAt = _createdAt,
+                            monsters = _monsters,
+                            trackers = _trackers,
 
                             name = (string)d["name"],
                             slug = (string)d["slug"],
@@ -154,6 +163,8 @@ public class DataManager : Singleton<DataManager>
                             avatarPath = _avatarPath,
                             eventType = _eventType,
                             createdAt = _createdAt,
+                            monsters = _monsters,
+                            trackers = _trackers,
 
                             name = (string)d["name"],
                             type = (string)d["type"]
@@ -167,10 +178,43 @@ public class DataManager : Singleton<DataManager>
                             avatarPath = _avatarPath,
                             eventType = _eventType,
                             createdAt = _createdAt,
+                            monsters = _monsters,
+                            trackers = _trackers,
 
                             mid = (int)d["mid"],
                             level = (int)d["level"],
                             captured = (int)d["captured"],
+                        });
+                    }
+                    else if (_eventType == "tracker")
+                    {
+                        feeds.Add(new TrackerData
+                        {
+                            username = _username,
+                            avatarPath = _avatarPath,
+                            eventType = _eventType,
+                            createdAt = _createdAt,
+                            monsters = _monsters,
+                            trackers = _trackers,
+
+                            tracker = (string)d["tracker"],
+                            captured = (int)d["captured"],
+                        });
+                    }
+                    else if (_eventType == "stream")
+                    {
+                        feeds.Add(new StreamData
+                        {
+                            username = _username,
+                            avatarPath = _avatarPath,
+                            eventType = _eventType,
+                            createdAt = _createdAt,
+                            monsters = _monsters,
+                            trackers = _trackers,
+
+                            score = (int)d["score"],
+                            clicks = (int)d["clicks"],
+                            likes = (int)d["likes"],
                         });
                     }
 
@@ -208,15 +252,18 @@ public class DataManager : Singleton<DataManager>
                 foreach (var feed in feeds)
                 {
 
-
-
                     var line =
+
                         feed.createdAt + "\t" +
-                        feed.username + ", " + feed.eventType + ", " +
+                        feed.username + ", " +
+                        feed.eventType + ", " +
+
                         //feed.type + ", " + feed.name + ", " + feed.level +
                         //", " + feed.type
+
                         ""
                         ;
+
                     current += line + "<br>";
 
                     //Debug.Log(line);

@@ -11,11 +11,9 @@ public class Timeline : MonoBehaviour
     public bool playbackActive = false;
     // the feed item we are currently displaying
     public int feedIndex;
-    // current time to display
-    public DateTime currentTime;
     // previous time displayed
     public DateTime previousTime;
-    // difference between currentTime and previousTime
+    // difference between current time (feed.createdAt) and previousTime
     public int diffInSeconds;
     // difference - adjusted for playback
     public float diffInSecondsAdj;
@@ -69,32 +67,40 @@ public class Timeline : MonoBehaviour
 
         foreach (var feed in DataManager.feeds)
         {
-            // current time
-            currentTime = feed.createdAt;
-            // on first run 
+            // on first run only
             if (previousTime == null)
-            {
-                // use current time
-                previousTime = currentTime;
-            }
-            // difference in seconds
-            diffInSeconds = (int)(previousTime - currentTime).TotalSeconds;
-            // difference adjusted
-            diffInSecondsAdj = diffInSeconds * 0.0001f;
+                // use current time as previous time
+                previousTime = feed.createdAt;
+
+
+            // find difference in seconds between createdAt and previousTime 
+            diffInSeconds = (int)(feed.createdAt - previousTime).TotalSeconds;
+
+            // adjust difference (speed it up)
+            diffInSecondsAdj = diffInSeconds * 0.0015f;
 
             // log feed item
-            var log = feedIndex + ". " +
+            var log =
+
+                feedIndex + ". " +
                 diffInSeconds + " (" + diffInSecondsAdj + ") " +
-                " (" + currentTime + ") " +
-               //" = (" + previousTime + " - " + currentTime + ") " +
-               feed.username + ", " + feed.eventType;
+
+                " (" + feed.createdAt + ") " +
+               //" = (" + previousTime + " - " + feed.createdAt + ") " +
+               feed.username + ", " + feed.eventType +
+
+               "";
+
+
             TmText.text += log + "<br>";
+
             UpdateScroll();
+
             //Debug.Log(log);
 
 
             // set previous time for next loop
-            previousTime = currentTime;
+            previousTime = feed.createdAt;
             // display in feed console
 
             // if there are more feed items
