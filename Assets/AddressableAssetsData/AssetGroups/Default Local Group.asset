@@ -80,20 +80,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 0ad8cc71fc0c54b5592bc475b77dbff9, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 0ad8cc71fc0c54b5592bc475b77dbff9, type: 3}
-  - m_GUID: 0b1fc46dc291c41eb9aab5c34fb5ab31
-    m_Address: 405-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 0b1fc46dc291c41eb9aab5c34fb5ab31, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 0b1fc46dc291c41eb9aab5c34fb5ab31, type: 3}
-  - m_GUID: 0b317e162bc0e48ffa6b43856a6058ce
-    m_Address: 234-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 0b317e162bc0e48ffa6b43856a6058ce, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 0b317e162bc0e48ffa6b43856a6058ce, type: 3}
   - m_GUID: 0bbcfc03ef94649c8a1b02e2ca132441
     m_Address: 244-anim-sheet
     m_ReadOnly: 0
@@ -108,13 +94,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 0c3d17dc1b7b649ad9c3b08a2d98787a, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 0c3d17dc1b7b649ad9c3b08a2d98787a, type: 3}
-  - m_GUID: 0d323127a25774c79b86f1b2569900cc
-    m_Address: 533-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 0d323127a25774c79b86f1b2569900cc, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 0d323127a25774c79b86f1b2569900cc, type: 3}
   - m_GUID: 112e2d7a34656415b8c487d45a7b1424
     m_Address: 584-anim-sheet
     m_ReadOnly: 0
@@ -122,13 +101,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 112e2d7a34656415b8c487d45a7b1424, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 112e2d7a34656415b8c487d45a7b1424, type: 3}
-  - m_GUID: 166d997cca4d449538eeacd60064c463
-    m_Address: 27-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 166d997cca4d449538eeacd60064c463, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 166d997cca4d449538eeacd60064c463, type: 3}
   - m_GUID: 16ef966692e724effb9deed882306715
     m_Address: 477-anim-sheet
     m_ReadOnly: 0
@@ -136,13 +108,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 16ef966692e724effb9deed882306715, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 16ef966692e724effb9deed882306715, type: 3}
-  - m_GUID: 186e982c13ce44ea8b5e142ffd42cc05
-    m_Address: 503-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 186e982c13ce44ea8b5e142ffd42cc05, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 186e982c13ce44ea8b5e142ffd42cc05, type: 3}
   - m_GUID: 1a43af67efce44743ab9b78447101b7c
     m_Address: 386-anim-sheet
     m_ReadOnly: 0
@@ -157,13 +122,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 1e4e2f8d6c4044987afb228d38ce4b9e, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 1e4e2f8d6c4044987afb228d38ce4b9e, type: 3}
-  - m_GUID: 20828ef4744fa47a4a0c6ae775352dc4
-    m_Address: 351-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 20828ef4744fa47a4a0c6ae775352dc4, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 20828ef4744fa47a4a0c6ae775352dc4, type: 3}
   - m_GUID: 225ff425c9b5b4951bd99dc2055555d0
     m_Address: 86-anim-sheet
     m_ReadOnly: 0
@@ -192,13 +150,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 25034f384267c49eb865f6fccbe113c4, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 25034f384267c49eb865f6fccbe113c4, type: 3}
-  - m_GUID: 26f6b1b9a3bb544628b3ba2bb9e641bc
-    m_Address: 299-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 26f6b1b9a3bb544628b3ba2bb9e641bc, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 26f6b1b9a3bb544628b3ba2bb9e641bc, type: 3}
   - m_GUID: 274b2371c321147e885f899db943a24d
     m_Address: 563-anim-sheet
     m_ReadOnly: 0
@@ -227,20 +178,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 2a81a93d6f87d4ab6a33b623b66a02c1, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 2a81a93d6f87d4ab6a33b623b66a02c1, type: 3}
-  - m_GUID: 3677dce91188a42d6be5dcfaa50c8ab1
-    m_Address: 93-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 3677dce91188a42d6be5dcfaa50c8ab1, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 3677dce91188a42d6be5dcfaa50c8ab1, type: 3}
-  - m_GUID: 3820e2f4595474d6387d0e3297958792
-    m_Address: 478-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 3820e2f4595474d6387d0e3297958792, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 3820e2f4595474d6387d0e3297958792, type: 3}
   - m_GUID: 3a935d312e3134aebad1b658026add8d
     m_Address: 632-anim-sheet
     m_ReadOnly: 0
@@ -262,13 +199,13 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 3d58e0b4a6ae04e80b919cbed03c46af, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 3d58e0b4a6ae04e80b919cbed03c46af, type: 3}
-  - m_GUID: 3e10e5ec3782d42bfb4714c26bc2e77a
-    m_Address: 516-anim-sheet
+  - m_GUID: 3ffbd6d86eb5e4e779ccaf25d9b66a2b
+    m_Address: 633-anim-sheet
     m_ReadOnly: 0
     m_SerializedLabels:
     - monster
-    m_MainAsset: {fileID: 2800000, guid: 3e10e5ec3782d42bfb4714c26bc2e77a, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 3e10e5ec3782d42bfb4714c26bc2e77a, type: 3}
+    m_MainAsset: {fileID: 2800000, guid: 3ffbd6d86eb5e4e779ccaf25d9b66a2b, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 3ffbd6d86eb5e4e779ccaf25d9b66a2b, type: 3}
   - m_GUID: 436965b7d7f2642a494c6cbb55baedee
     m_Address: 82-anim-sheet
     m_ReadOnly: 0
@@ -297,13 +234,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 4a0c68e5eb8de452d9e3988d3f1c32eb, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 4a0c68e5eb8de452d9e3988d3f1c32eb, type: 3}
-  - m_GUID: 4acd57e722c844060aab0091b6501088
-    m_Address: 286-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 4acd57e722c844060aab0091b6501088, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 4acd57e722c844060aab0091b6501088, type: 3}
   - m_GUID: 4c6bba541e9e04a689c906cdf352c836
     m_Address: 170-anim-sheet
     m_ReadOnly: 0
@@ -346,13 +276,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 513dd7f6de9e44194aafa87ea22542e5, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 513dd7f6de9e44194aafa87ea22542e5, type: 3}
-  - m_GUID: 51f941a0dedd64f4d999f52b7c599644
-    m_Address: 380-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 51f941a0dedd64f4d999f52b7c599644, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 51f941a0dedd64f4d999f52b7c599644, type: 3}
   - m_GUID: 5727cc9e488294a008ad18d032a4fad0
     m_Address: 324-anim-sheet
     m_ReadOnly: 0
@@ -416,6 +339,13 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 60fe71a89c3634bb8a975b8bfeec0e23, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 60fe71a89c3634bb8a975b8bfeec0e23, type: 3}
+  - m_GUID: 611390e62780945ff96d51e8ce740b1d
+    m_Address: 601-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: 611390e62780945ff96d51e8ce740b1d, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 611390e62780945ff96d51e8ce740b1d, type: 3}
   - m_GUID: 63c985565cde54fbaa9d522195649b0e
     m_Address: 48-anim-sheet
     m_ReadOnly: 0
@@ -465,13 +395,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 6a2834b33ecd9462c8a58cd11988257e, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 6a2834b33ecd9462c8a58cd11988257e, type: 3}
-  - m_GUID: 6b422b7f0fb1549a1abcc4e19a4487eb
-    m_Address: 479-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 6b422b7f0fb1549a1abcc4e19a4487eb, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 6b422b7f0fb1549a1abcc4e19a4487eb, type: 3}
   - m_GUID: 6c222f8b9a92045f6be5b9a4121b67e3
     m_Address: 310-anim-sheet
     m_ReadOnly: 0
@@ -493,13 +416,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 6f437dd9250eb401e8abfe9252f04513, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 6f437dd9250eb401e8abfe9252f04513, type: 3}
-  - m_GUID: 711a3a0cec6d641a2865502c250b152a
-    m_Address: 355-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 711a3a0cec6d641a2865502c250b152a, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 711a3a0cec6d641a2865502c250b152a, type: 3}
   - m_GUID: 7356a0a0b20864ae2b8a52d60058296c
     m_Address: 243-anim-sheet
     m_ReadOnly: 0
@@ -556,13 +472,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: 79b9e62f6cf5746b98cac907f02bfb39, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: 79b9e62f6cf5746b98cac907f02bfb39, type: 3}
-  - m_GUID: 7a2ca211c76ce4728a6a2ecc04ef663b
-    m_Address: 639-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: 7a2ca211c76ce4728a6a2ecc04ef663b, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 7a2ca211c76ce4728a6a2ecc04ef663b, type: 3}
   - m_GUID: 7aecf724d1dbf46b4ae0cef3905d4970
     m_Address: Assets/_Project/Scripts/GamedevGuruPool/Test/Cube.prefab
     m_ReadOnly: 0
@@ -730,13 +639,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: a2628da85d89a42db8836c60477c2c3b, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: a2628da85d89a42db8836c60477c2c3b, type: 3}
-  - m_GUID: a2f5d440016224228b55b9cfccce4288
-    m_Address: 280-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: a2f5d440016224228b55b9cfccce4288, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: a2f5d440016224228b55b9cfccce4288, type: 3}
   - m_GUID: a53e70ab2f3a044c798a2b45418a2b5c
     m_Address: 385-anim-sheet
     m_ReadOnly: 0
@@ -933,13 +835,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: d1a4976b863cb4a7d9ed9a0ce7994b5d, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: d1a4976b863cb4a7d9ed9a0ce7994b5d, type: 3}
-  - m_GUID: d21fa81fb16c545d4b2e6c82314e07cd
-    m_Address: 338-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: d21fa81fb16c545d4b2e6c82314e07cd, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: d21fa81fb16c545d4b2e6c82314e07cd, type: 3}
   - m_GUID: d29180e4af1ff4670babe2a09e807f0b
     m_Address: 335-anim-sheet
     m_ReadOnly: 0
@@ -968,13 +863,20 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: d7354e4bcacff4ade9c7bb8bbf80ef0a, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: d7354e4bcacff4ade9c7bb8bbf80ef0a, type: 3}
-  - m_GUID: dcf860c7cd1844fc7a1b659a0e8a341d
-    m_Address: 230-anim-sheet
+  - m_GUID: dd8f6218054f744418d6e9874934c560
+    m_Address: 269-anim-sheet
     m_ReadOnly: 0
     m_SerializedLabels:
     - monster
-    m_MainAsset: {fileID: 2800000, guid: dcf860c7cd1844fc7a1b659a0e8a341d, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: dcf860c7cd1844fc7a1b659a0e8a341d, type: 3}
+    m_MainAsset: {fileID: 2800000, guid: dd8f6218054f744418d6e9874934c560, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: dd8f6218054f744418d6e9874934c560, type: 3}
+  - m_GUID: de95a0287ffa94e38bef5d1f41a1b2a6
+    m_Address: 347-anim-sheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - monster
+    m_MainAsset: {fileID: 2800000, guid: de95a0287ffa94e38bef5d1f41a1b2a6, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: de95a0287ffa94e38bef5d1f41a1b2a6, type: 3}
   - m_GUID: e152829fb5caa40e8adf360863482efb
     m_Address: 599-anim-sheet
     m_ReadOnly: 0
@@ -989,13 +891,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: e15b2a374bd14430f9db1394f5e9c6c6, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: e15b2a374bd14430f9db1394f5e9c6c6, type: 3}
-  - m_GUID: e1c697b49cc2047e2b3575987c2d1cc2
-    m_Address: 192-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: e1c697b49cc2047e2b3575987c2d1cc2, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: e1c697b49cc2047e2b3575987c2d1cc2, type: 3}
   - m_GUID: e401ec5dbc03e453d9d33214f050612c
     m_Address: 360-anim-sheet
     m_ReadOnly: 0
@@ -1003,20 +898,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: e401ec5dbc03e453d9d33214f050612c, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: e401ec5dbc03e453d9d33214f050612c, type: 3}
-  - m_GUID: e5b9a015ff80b47b48215b1d700e348e
-    m_Address: 555-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: e5b9a015ff80b47b48215b1d700e348e, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: e5b9a015ff80b47b48215b1d700e348e, type: 3}
-  - m_GUID: e7e06a54979d544e7bb2d195ded469eb
-    m_Address: 294-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: e7e06a54979d544e7bb2d195ded469eb, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: e7e06a54979d544e7bb2d195ded469eb, type: 3}
   - m_GUID: e80f62c85e6c9443198d7eb35cd00929
     m_Address: 277-anim-sheet
     m_ReadOnly: 0
@@ -1080,13 +961,6 @@ MonoBehaviour:
     - monster
     m_MainAsset: {fileID: 2800000, guid: ef20ed8593d744abbacb6788e3cf3beb, type: 3}
     m_TargetAsset: {fileID: 2800000, guid: ef20ed8593d744abbacb6788e3cf3beb, type: 3}
-  - m_GUID: ef397362032cc4dbbbcdd8afe59ac82e
-    m_Address: 8-anim-sheet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - monster
-    m_MainAsset: {fileID: 2800000, guid: ef397362032cc4dbbbcdd8afe59ac82e, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: ef397362032cc4dbbbcdd8afe59ac82e, type: 3}
   - m_GUID: ef4873f33d67041e286dd057d6676f6c
     m_Address: 655-anim-sheet
     m_ReadOnly: 0

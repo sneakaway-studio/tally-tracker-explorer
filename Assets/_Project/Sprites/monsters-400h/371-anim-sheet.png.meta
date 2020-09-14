@@ -17,15 +17,6 @@ TextureImporter:
   - first:
       213: -2552451813248575137
     second: 371-anim-sheet_4
-  - first:
-      213: -4101731036263714443
-    second: 371-anim-sheet_5
-  - first:
-      213: 5651220894543964577
-    second: 371-anim-sheet_6
-  - first:
-      213: 5627129387196701767
-    second: 371-anim-sheet_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -201,69 +192,6 @@ TextureImporter:
       bones: []
       spriteID: f59540d699ed39cd0800000000000000
       internalID: -2552451813248575137
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 371-anim-sheet_5
-      rect:
-        serializedVersion: 2
-        x: 2500
-        y: 0
-        width: 500
-        height: 400
-      alignment: 7
-      pivot: {x: 0, y: -1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5717e4bba59b317c0800000000000000
-      internalID: -4101731036263714443
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 371-anim-sheet_6
-      rect:
-        serializedVersion: 2
-        x: 3000
-        y: 0
-        width: 500
-        height: 400
-      alignment: 7
-      pivot: {x: 0, y: -1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1a9ee8e467b2d6e40800000000000000
-      internalID: 5651220894543964577
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 371-anim-sheet_7
-      rect:
-        serializedVersion: 2
-        x: 3500
-        y: 0
-        width: 500
-        height: 400
-      alignment: 7
-      pivot: {x: 0, y: -1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74c55052d54971e40800000000000000
-      internalID: 5627129387196701767
       vertices: []
       indices: 
       edges: []

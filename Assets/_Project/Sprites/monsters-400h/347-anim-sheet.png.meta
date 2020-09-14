@@ -1,40 +1,52 @@
 fileFormatVersion: 2
-guid: 186e982c13ce44ea8b5e142ffd42cc05
+guid: de95a0287ffa94e38bef5d1f41a1b2a6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2984700606386052591
-    second: 503-anim-sheet_0
+      213: -3586793175415504813
+    second: 347-anim-sheet_0
   - first:
-      213: 707564222740099524
-    second: 503-anim-sheet_1
+      213: -6944522642473385069
+    second: 347-anim-sheet_1
   - first:
-      213: -4576481526457001157
-    second: 503-anim-sheet_2
+      213: 4873195106679633022
+    second: 347-anim-sheet_2
   - first:
-      213: -9013868196869575021
-    second: 503-anim-sheet_3
+      213: 6446648469798434825
+    second: 347-anim-sheet_3
   - first:
-      213: -8785414603045823557
-    second: 503-anim-sheet_4
+      213: 349710295227958543
+    second: 347-anim-sheet_4
   - first:
-      213: -5285962441514016887
-    second: 503-anim-sheet_5
+      213: 149817059044844026
+    second: 347-anim-sheet_5
   - first:
-      213: -813447346213357561
-    second: 503-anim-sheet_6
+      213: -8276828846534450037
+    second: 347-anim-sheet_6
   - first:
-      213: -6298219398885664258
-    second: 503-anim-sheet_7
+      213: -1554816155782889074
+    second: 347-anim-sheet_7
   - first:
-      213: -4527983882645487467
-    second: 503-anim-sheet_8
+      213: -6986811615363950375
+    second: 347-anim-sheet_8
   - first:
-      213: -2841359754386754713
-    second: 503-anim-sheet_9
+      213: -5633252554749063522
+    second: 347-anim-sheet_9
   - first:
-      213: 4346703946473778678
-    second: 503-anim-sheet_10
+      213: -1486590458039808642
+    second: 347-anim-sheet_10
+  - first:
+      213: -6425893200221916666
+    second: 347-anim-sheet_11
+  - first:
+      213: -5631545942993188898
+    second: 347-anim-sheet_12
+  - first:
+      213: 2627708871454733605
+    second: 347-anim-sheet_13
+  - first:
+      213: -5225238302779464594
+    second: 347-anim-sheet_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -110,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 503-anim-sheet_0
+      name: 347-anim-sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fed988c4369cb6920800000000000000
-      internalID: 2984700606386052591
+      spriteID: 35040905c96293ec0800000000000000
+      internalID: -3586793175415504813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 503-anim-sheet_1
+      name: 347-anim-sheet_1
       rect:
         serializedVersion: 2
         x: 500
@@ -145,14 +157,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c1f23869e5c1d900800000000000000
-      internalID: 707564222740099524
+      spriteID: 39387b8437910af90800000000000000
+      internalID: -6944522642473385069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 503-anim-sheet_2
+      name: 347-anim-sheet_2
       rect:
         serializedVersion: 2
         x: 1000
@@ -166,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3b94668c421d70c0800000000000000
-      internalID: -4576481526457001157
+      spriteID: e74bfc6512111a340800000000000000
+      internalID: 4873195106679633022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 503-anim-sheet_3
+      name: 347-anim-sheet_3
       rect:
         serializedVersion: 2
         x: 1500
@@ -187,14 +199,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 39ee569e1ae48e280800000000000000
-      internalID: -9013868196869575021
+      spriteID: 908b622a0a8177950800000000000000
+      internalID: 6446648469798434825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 503-anim-sheet_4
+      name: 347-anim-sheet_4
       rect:
         serializedVersion: 2
         x: 2000
@@ -208,14 +220,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bbb9ce437ffe31680800000000000000
-      internalID: -8785414603045823557
+      spriteID: f050c5129ab6ad400800000000000000
+      internalID: 349710295227958543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 503-anim-sheet_5
+      name: 347-anim-sheet_5
       rect:
         serializedVersion: 2
         x: 2500
@@ -229,14 +241,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 98f10896a2d74a6b0800000000000000
-      internalID: -5285962441514016887
+      spriteID: af169a942d1441200800000000000000
+      internalID: 149817059044844026
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 503-anim-sheet_6
+      name: 347-anim-sheet_6
       rect:
         serializedVersion: 2
         x: 3000
@@ -250,14 +262,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 708f77dc2fd06b4f0800000000000000
-      internalID: -813447346213357561
+      spriteID: b84ab9f340cc22d80800000000000000
+      internalID: -8276828846534450037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 503-anim-sheet_7
+      name: 347-anim-sheet_7
       rect:
         serializedVersion: 2
         x: 3500
@@ -271,14 +283,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ef912fb73da3898a0800000000000000
-      internalID: -6298219398885664258
+      spriteID: e81c58fa1fe2c6ae0800000000000000
+      internalID: -1554816155782889074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 503-anim-sheet_8
+      name: 347-anim-sheet_8
       rect:
         serializedVersion: 2
         x: 4000
@@ -292,14 +304,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 590c83626ae5921c0800000000000000
-      internalID: -4527983882645487467
+      spriteID: 9d898a18adbd90f90800000000000000
+      internalID: -6986811615363950375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 503-anim-sheet_9
+      name: 347-anim-sheet_9
       rect:
         serializedVersion: 2
         x: 4500
@@ -313,14 +325,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 763bfa88b567198d0800000000000000
-      internalID: -2841359754386754713
+      spriteID: e9ece10d5aaa2d1b0800000000000000
+      internalID: -5633252554749063522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 503-anim-sheet_10
+      name: 347-anim-sheet_10
       rect:
         serializedVersion: 2
         x: 5000
@@ -334,8 +346,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6fdab51a538925c30800000000000000
-      internalID: 4346703946473778678
+      spriteID: e7d4d0ecad19e5be0800000000000000
+      internalID: -1486590458039808642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 347-anim-sheet_11
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 0
+        width: 500
+        height: 400
+      alignment: 7
+      pivot: {x: 0, y: -1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 602bc242e24a2d6a0800000000000000
+      internalID: -6425893200221916666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 347-anim-sheet_12
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 0
+        width: 500
+        height: 400
+      alignment: 7
+      pivot: {x: 0, y: -1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed749935dcab8d1b0800000000000000
+      internalID: -5631545942993188898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 347-anim-sheet_13
+      rect:
+        serializedVersion: 2
+        x: 6500
+        y: 0
+        width: 500
+        height: 400
+      alignment: 7
+      pivot: {x: 0, y: -1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 525b330eb4f777420800000000000000
+      internalID: 2627708871454733605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 347-anim-sheet_14
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 0
+        width: 500
+        height: 400
+      alignment: 7
+      pivot: {x: 0, y: -1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e64a018b2793c77b0800000000000000
+      internalID: -5225238302779464594
       vertices: []
       indices: 
       edges: []
