@@ -10,25 +10,26 @@ To do
   - [x] Get Feed data in Unity
   - [x] Convert Feed data to JSON object
   - [x] Create EventManager
-  - [ ] Update API with detailed feed data
-    - [ ] Change format of feeds table to use `JSON_OBJECT()`
-    - [ ] Update feeds on website to use `eventData` object from each row
-    - [ ] Update API to use `eventData` object from each row
+  - [x] Update API with detailed feed data
+    - [x] Change format of feeds table to use `JSON_OBJECT()`
+    - [x] Update feeds on website to use `eventData` object from each row
+    - [x] Update API to use `eventData` object from each row
   - [ ] Build Feed data testing / monitor UI
 - [ ] Timeline
   - [x] Time UI class
     - [ ] Button: Change refresh time
     - [ ] Button: playback restart
     - [ ] Scrubber: playback speed
-  - [ ] Create playback 
-    - [ ] Coroutine to play event at specific time
+  - [x] Create playback 
+    - [x] Coroutine to play event at specific time
 - [ ] Visuals -> Monsters
   - [x] Create addressables system for sprite animation slicing workflow
   - [x] Create MonsterPool
    - [ ] Create add / subtract from pool methods
 - [ ] Visuals -> Players
   - [ ] Initialize
-    - [ ] Use Feed data to build GameObjects and display in "Universe"
+    - [x] Use Feed data to build GameObjects and display in "Universe"
+    - [ ] Ensure players aren't added twice with new feed data
   - [ ] Player -> Actions 👈 
     - [ ] Create a series of actions (physics controlled from methods) that visualize different event types on playback
       - [ ] Stream
@@ -88,7 +89,7 @@ To do
           - Sound: ?
           - Animation: ?   
   - [ ] User -> Movement 👈 
-    - [ ] Create user (physics controlled) floating movement (Jellyfish?)
+    - [x] Create user (physics controlled) floating movement (Jellyfish?)
   - [ ] User -> Trails 👈 
     - [ ] Create "Nyan Cat" trails (particle system?)
       - [ ] Each trail is a product marketing category from streams
@@ -103,7 +104,8 @@ To do
       - [ ] Detritus in undersea life a.k.a "[marine snow](https://oceanservice.noaa.gov/facts/marinesnow.html)"
       - [ ] [Stars in cosmos](https://penningdownheart.files.wordpress.com/2018/03/stars-3000x2000-purple-cosmos-hd-7172.jpg)
   - [ ] Lighting 👈
-    - [ ] Point lights on GameObjects
+    - [x] Point lights on GameObjects
+    - [ ] Light emitters on user trails
     - [ ] Environmental lighting
     - [ ] Changes to lighting depending on time of day
     - [ ] Baking, etc. performance considerations
@@ -112,3 +114,15 @@ To do
 - [ ] Test in space
   - [ ] 8 cameras
   - [ ] Figure out user control device
+
+
+
+### Notes on the setup of this Unity project
+
+
+
+- [How to get Good Graphics in Unity](https://www.youtube.com/watch?v=owZneI02YOU&ab_channel=Brackeys) (8:13)
+- [REALTIME LIGHTING in Unity](https://www.youtube.com/watch?v=wwm98VdzD8s&ab_channel=Brackeys) (15:47)
+
+
+
