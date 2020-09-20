@@ -23,6 +23,7 @@ public class DataDisplay : MonoBehaviour
     // update text
     public void UpdateDisplay()
     {
+        // handled inside Timeline class
         //TmText.text = DataManager.current;
     }
 

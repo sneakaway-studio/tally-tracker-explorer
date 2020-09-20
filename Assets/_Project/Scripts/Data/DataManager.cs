@@ -45,7 +45,7 @@ public class DataManager : Singleton<DataManager>
         // live server 
         host = "https://tallysavestheinternet.com/api/";
         // dev server
-        host = "http://127.0.0.1:5000/api/";
+        //host = "http://127.0.0.1:5000/api/";
 
 
         // ENDPOINTS
@@ -53,7 +53,7 @@ public class DataManager : Singleton<DataManager>
         endpoint = "feed/range/1/week"; // a whole week
         endpoint = "feed/recent"; // 20 recent
 
-        endpoint = "feed/range/plusStream/5/day/"; // last 5 days
+        endpoint = "feed/range/plusStream/1/day/"; // last 5 days
 
     }
 

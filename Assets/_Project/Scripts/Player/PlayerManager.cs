@@ -44,14 +44,16 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         if (playerDictionary.ContainsKey(username)) return;
 
-
+        // get a position that doesn't contain any other colliders
         Vector3 spawnPosition = GetClearSpawnPosition();
 
+        // get the spawn rotation
         Quaternion spawnRotation = new Quaternion();
-        // random rotation
-        //spawnRotation.eulerAngles = new Vector3(0.0f, Random.Range(0.0f, 360.0f));
+        // random rotation - on local x only
+        spawnRotation.eulerAngles = new Vector3(Random.Range(0.0f, 360.0f), 90f, 0f);
         // no random rotation
-        spawnRotation.eulerAngles = new Vector3(0.0f, 0);
+        //spawnRotation.eulerAngles = new Vector3(0f, 0f, 0f);
+
         if (spawnPosition != Vector3.zero)
         {
             // instantiate prefab @ spawn position
@@ -64,7 +66,7 @@ public class PlayerManager : Singleton<PlayerManager>
             obj.transform.parent = gameObject.transform;
 
 
-            // add new animation
+            // add new animation here?
 
 
             // add to dict
