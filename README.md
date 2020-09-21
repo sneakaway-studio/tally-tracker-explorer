@@ -91,9 +91,10 @@ To do
   - [ ] User -> Movement 👈 
     - [x] Create user (physics controlled) floating movement (Jellyfish?)
   - [ ] User -> Trails 👈 
-    - [ ] Create "Nyan Cat" trails (particle system?)
+    - [ ] Create "Nyan Cat" trails (particle system?) (some examples on [google](https://www.google.com/search?q=unity+trail+renderer&safe=off&rlz=1C5CHFA_enUS903US909&sxsrf=ALeKk038imz2qRqefBNgel1Fi7zgS7CyHw:1600720422081&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjo95GhjPvrAhUFqlkKHQFpAAQQ_AUoAnoECAwQBA&biw=1239&bih=766))
       - [ ] Each trail is a product marketing category from streams
       - [ ] [Colors](https://github.com/sneakaway-studio/tally-api/blob/master/public/assets/css/sass/custom.scss)
+      - [ ] Add/remove trails based on streams updates
       - [ ] Add/remove monsters from data trail based on streams updates
 - [x] Visuals -> Anaglyph3D
   - [x] Add / test Anaglyph3D shader
