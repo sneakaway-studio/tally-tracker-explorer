@@ -6,57 +6,41 @@ public class FloatPhysicsCoroutine : MonoBehaviour
 {
     Collider worldContainerCollider;// boundary
     Rigidbody rb;                   // rb to apply force
-    float forceRange;               // use to generate new force directions
-    public bool applyNewForce;      // should we apply new force on loop?
-    public float newForceTime;      // the time before the current force expires
-    public Vector3 force;           // the force vector (speed + direction) 
-    public Vector3 forceInfluence;  // influence direction of force vector if too close to boundaries
-    public float maxSpeed = 30f;    // max speed of rb
 
-
+    // thrust to give the game object
+    public float thrust = 20f;
+    // current heading
     public Vector3 facingDirection;
+    // extra influence to keep in camera view
+    public Vector3 forceInfluence;
 
-    void Awake()
+
+    private void Awake()
     {
         worldContainerCollider = GameObject.Find("WorldContainer").GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
 
-        // set the multiplier to generate new force
-        forceRange = 20.0f;
-        // start the force loop
-        StartCoroutine(ForceVectorGenerator());
+        // start rotation timer 
+        StartCoroutine(RotateToNewDirection(facingDirection, 0.25f));
     }
 
-    void FixedUpdate()
+
+
+    private void FixedUpdate()
     {
-        if (rb.velocity.magnitude > maxSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-        }
-        if (applyNewForce)
-        {
-            // change facing direction
-            //transform.Rotate(force);
-            facingDirection = RandomDirectionFromCurrent(10.0f);
-            // rotate to new
-            StartCoroutine(RotateToNewDirection(facingDirection, 0.25f));
-
-
-            rb.AddForce(Vector3.forward + force + forceInfluence);
-
-            // add whatever force is stored in the vector
-            //rb.AddForce(force + forceInfluence);
-            // finished 
-            applyNewForce = false;
-        }
+        // keep on keepin' on
+        rb.AddRelativeForce(Vector3.forward * thrust);
     }
 
-    Vector3 RandomDirectionFromCurrent(float distance)
+
+
+    // pick random Vector3 from current direction
+    Vector3 RandomDirectionFromCurrent(Vector3 distance)
     {
         return new Vector3(
-                Random.Range(-distance, distance),
-                Random.Range(-distance, distance * .8f), // slowly sink
-                Random.Range(-distance, distance)
+                Random.Range(-distance.x, distance.x),
+                Random.Range(-distance.y, distance.y),
+                Random.Range(-distance.z, distance.z)
             );
     }
 
@@ -78,22 +62,16 @@ public class FloatPhysicsCoroutine : MonoBehaviour
         while (true)
         {
             // pick new time to wait before generating new force vector 
-            newForceTime = Random.Range(3.0f, 8.0f);
+            float waitTime = Random.Range(3.0f, 8.0f);
 
             // if the GameObject has left the scene then push it back 
             forceInfluence = ForceAwayFromWall(worldContainerCollider.bounds, 3.0f);
 
-            // generate new force vector 
-            force = new Vector3(
-                Random.Range(-forceRange, forceRange),
-                Random.Range(-forceRange, forceRange * .8f), // slowly sink
-                Random.Range(-forceRange, forceRange)
-            );
-
-            applyNewForce = true;
+            // change facing direction
+            facingDirection = RandomDirectionFromCurrent(new Vector3(0f, 0f, 0f) + forceInfluence);
 
             // wait for before next loop
-            yield return new WaitForSeconds(newForceTime);
+            yield return new WaitForSeconds(waitTime);
         }
     }
 
@@ -103,37 +81,36 @@ public class FloatPhysicsCoroutine : MonoBehaviour
         Vector3 newForce = new Vector3(0, 0, 0);
 
         // X
-        if (gameObject.transform.position.x < bounds.min.x)
+        if (transform.position.x < bounds.min.x)
         {
             newForce.x += multiplier;
         }
-        else if (gameObject.transform.position.x > bounds.max.x)
+        else if (transform.position.x > bounds.max.x)
         {
             newForce.x -= multiplier;
         }
 
         // Y
-        if (gameObject.transform.position.y < bounds.min.y)
+        if (transform.position.y < bounds.min.y)
         {
             newForce.y += multiplier;
         }
-        else if (gameObject.transform.position.y > bounds.max.y)
+        else if (transform.position.y > bounds.max.y)
         {
             newForce.y -= multiplier;
         }
 
         // Z
-        if (gameObject.transform.position.z < bounds.min.z)
+        if (transform.position.z < bounds.min.z)
         {
             newForce.z += multiplier;
         }
-        else if (gameObject.transform.position.z > bounds.max.z)
+        else if (transform.position.z > bounds.max.z)
         {
             newForce.z -= multiplier;
         }
         return newForce;
     }
-
 
 
 }

@@ -55,6 +55,9 @@ public class DataManager : Singleton<DataManager>
 
         endpoint = "feed/range/plusStream/1/day/"; // last 5 days
 
+
+        // start everything
+        GetNewData();
     }
 
 

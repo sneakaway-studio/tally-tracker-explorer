@@ -124,7 +124,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880972579810857675}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
@@ -236,13 +236,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf888513164944c5a9dd9de0ecd0bbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrust: 3
   applyNewForce: 0
   newForceTime: 0
+  applyNewDirection: 0
+  newDirectionTime: 0
   force: {x: 0, y: 0, z: 0}
   forceInfluence: {x: 0, y: 0, z: 0}
   maxSpeed: 30
-  testSpeed: {x: 0, y: 0, z: 0}
   facingDirection: {x: 0, y: 0, z: 0}
+  testVector: {x: 0, y: 0, z: 0}
+  testRotationSpeed: 30
 --- !u!1001 &3290878427680992746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -250,9 +254,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2887565040518092645}
     m_Modifications:
+    - target: {fileID: 1006420926045547698, guid: 1edc95efb8d7a4866b149a313687cc5e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4010505626693846101, guid: 1edc95efb8d7a4866b149a313687cc5e, type: 3}
       propertyPath: m_Name
       value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976905702228071122, guid: 1edc95efb8d7a4866b149a313687cc5e, type: 3}
+      propertyPath: m_Intensity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6445481496505008102, guid: 1edc95efb8d7a4866b149a313687cc5e, type: 3}
       propertyPath: m_LocalPosition.x

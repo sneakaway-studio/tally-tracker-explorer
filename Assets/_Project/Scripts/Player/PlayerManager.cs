@@ -8,15 +8,15 @@ public class PlayerManager : Singleton<PlayerManager>
     protected PlayerManager() { }
     public static new PlayerManager Instance;
 
-    // listeners 
-    //void OnEnable()
-    //{
-    //    EventManager.StartListening("DataUpdated", ResetPlayers);
-    //}
-    //void OnDisable()
-    //{
-    //    EventManager.StopListening("DataUpdated", ResetPlayers);
-    //}
+    //listeners
+    void OnEnable()
+    {
+        EventManager.StartListening("DataUpdated", ResetPlayers);
+    }
+    void OnDisable()
+    {
+        EventManager.StopListening("DataUpdated", ResetPlayers);
+    }
 
     public Collider worldContainerCollider;
     public GameObject playerPrefab;
