@@ -58,8 +58,8 @@ To do
           - Animation: ?
       - [ ] Disguise
         - [ ] Awarded
-          - Player movement: ?
-          - Sound: ?
+          - Player movement: Chunk Shake, CSShake
+          - Sound: Spell/magic sound like https://freesound.org/people/suntemple/sounds/241809/
           - Animation: ?
       - [ ] Tracker
         - [ ] Blocked
