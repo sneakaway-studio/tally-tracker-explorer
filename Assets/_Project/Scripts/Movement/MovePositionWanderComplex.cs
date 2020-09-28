@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class MovePositionWanderComplex : PhysicsBase {
 
-    public Vector3 direction; // a new direction vector
+    public Vector3 direction;           // the direction vector
 
-
-    // properties for wandering algorithm
+    // for wandering algorithm
     Collider worldContainerCollider;    // collider to test new positions
     public Vector3 wayPoint;            // new position to head towards
     public float targetThreshold = 1f;  // test distance to target - must be > 0
     public float pointSelectRange = 8f; // range from which to select new wayPoint
+    public float distanceToWaypoint;
 
+    // for rotation
+    public float rotateTimeElapsed = 0;
+    public float rotateDuration = 200;
 
 
     private void Start ()
@@ -33,34 +36,49 @@ public class MovePositionWanderComplex : PhysicsBase {
 
     void FixedUpdate ()
     {
+        // distance from object to waypoint
+        distanceToWaypoint = (transform.position - wayPoint).magnitude;
+
         // when the distance between gameObject and target is small enough
-        if ((transform.position - wayPoint).magnitude < targetThreshold) {
+        if (distanceToWaypoint < targetThreshold) {
+
+            rotateTimeElapsed = 0;
+
             // create a new target wayPoint 
             wayPoint = ReturnNewWanderPoint ();
         }
 
 
-
-        // slowly rotate towards the wayPoint
-        RotateTowardsTargetOverTime (wayPoint, 1f, 3f);
-
-        Debug.Log (wayPoint + " and " + (transform.position - wayPoint).magnitude);
-
-        // get direction from facing direction
-        //direction = transform.TransformDirection (Vector3.forward);
-        direction = (wayPoint - transform.position).normalized;
-
+        // get direction
+        direction = transform.TransformDirection (Vector2.right);
 
         // distance to move each frame = normalized distance vector * speed * time since last frame
         Vector3 step = direction * thrust * Time.deltaTime;
 
         // add step vector to current position
-        //rb.MovePosition (transform.position + step);
+        rb.MovePosition (transform.position + step);
+        //rb.velocity = direction * thrust;
 
 
-        rb.velocity = direction * thrust;
-
+        // rotate towards waypoint
+        RotateTowardsTarget2D ();
     }
+
+    /**
+     *  Turn transform towards a target
+     */
+    void RotateTowardsTarget2D ()
+    {
+        // change look direction immediately 
+        //transform.right = wayPoint - transform.position;
+
+        // change look direction slowly
+        transform.right = Vector3.Lerp (transform.right, (wayPoint - transform.position), rotateTimeElapsed / rotateDuration);
+        rotateTimeElapsed += Time.deltaTime;
+    }
+
+
+
 
 
     /**
@@ -124,27 +142,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     }
 
 
-    /**
-	 *  Turn transform towards a target a little each frame
-	 */
-    void RotateTowardsTargetOverTime (Vector3 target, float minRotateTime, float maxRotateTime)
-    {
-        // Determine which direction to rotate towards
-        Vector3 targetDirection = target - transform.position;
 
-        // The step size is equal to speed times frame time.
-        float rotateStep = Random.Range (minRotateTime, maxRotateTime) * Time.deltaTime;
 
-        // Rotate the forward vector towards the target direction by one step
-        Vector3 newDirection = Vector3.RotateTowards (transform.forward, targetDirection, rotateStep, 0.0f);
-
-        // Draw a ray pointing at our target in
-        Debug.DrawRay (transform.position, newDirection, Color.red);
-
-        //rb.velocity += new Vector2 (newDirection.x, newDirection.y);
-
-        // Calculate a rotation a step closer to the target and applies rotation to this object
-        transform.rotation = Quaternion.LookRotation (newDirection);
-    }
 
 }
