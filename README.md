@@ -70,11 +70,15 @@ To do
         - [ ] In-progress
           - Player movement: "rumble" CSShake little shake
           - Sound: Light battle music (on zoomed in)
-          - Extra effects: Rumble animation appears over player
-        - [ ] Attack
+          - Extra effects: Rumble animation appears over player (dust clouds or too much?)
+        - [ ] Launch Attack
           - Player movement: CSShake hard shake
           - Sound: ?
           - Extra effects: Attack animation GIF
+	- [ ] Receive Hit
+          - Player movement: CSShake hard shake
+          - Sound: ?
+          - Extra effects: Rumble glitch GIF, see "[this pigeon](https://dribbble.com/shots/10793942-Pigeon-animation-logo)"
         - [ ] Win
           - Player movement: does a celebratory flip
           - Sound: ?
