@@ -36,58 +36,58 @@ To do
         - [ ] Click
           - Player movement: velocity and Y position increases, random X direction
           - Sound: ping
-          - Animation: expanding concentric rings similar to "[radar](https://www.provideocoalition.com/wp-content/uploads/Radar.gif)" effect but with better colors
+          - Extra effects: expanding concentric rings similar to "[radar](https://www.provideocoalition.com/wp-content/uploads/Radar.gif)" effect but with better colors
         - [ ] Like
-          - Player movement: ?
+          - Player movement: Pulses bigger then glows, similar to "[light bulb](https://dribbble.com/shots/11115983-Creative-Block)" effect
           - Sound: ?
-          - Animation: ?
+          - Extra effects: hearts particle system like trailer?
       - [ ] Attack
         - [ ] Awarded
           - Player movement: ?
           - Sound: ?
-          - Animation: ?
+          - Extra effects: ?
       - [ ] Badge
         - [ ] Awarded (changes depending level)
           - Player movement: accelerates right along the x-axis or concentric circles emanating from player’s icon
           - Sound: ?
-          - Animation: ?
+          - Extra effects: badge animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miquels icons in leaderboard's feed
       - [ ] Consumable
         - [ ] Found (changes depending type, stat)
           - Player movement: accelerates right along the x-axis or concentric circles emanating from player’s icon
           - Sound: ?
-          - Animation: ?
+          - Extra effects: consumable animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miquels icons in leaderboard's feed
       - [ ] Disguise
         - [ ] Awarded
           - Player movement: Opacity Shake, CSShake
           - Sound: Spell/magic sound like https://freesound.org/people/suntemple/sounds/241809/
-          - Animation: Concentric triangles like player passes through a prism
+          - Extra effects: Concentric triangles like player passes through a prism OR disquise animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miquels icons in leaderboard's feed
       - [ ] Tracker
         - [ ] Blocked
           - Player movement: ?
           - Sound: ?
-          - Animation: ?
+          - Extra effects: tracker animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miquels icons in leaderboard's feed
       - [ ] Battle
         - [ ] In-progress
-          - Player movement: "rumble"
+          - Player movement: "rumble" CSShake little shake
           - Sound: Light battle music (on zoomed in)
-          - Animations: Rumble animation appears over player
+          - Extra effects: Rumble animation appears over player
         - [ ] Attack
-          - Player movement: ?
+          - Player movement: CSShake hard shake
           - Sound: ?
-          - Animation: Attack animation GIF
+          - Extra effects: Attack animation GIF
         - [ ] Win
           - Player movement: does a celebratory flip
           - Sound: ?
-          - Animation: Show win screen from game
+          - Extra effects: Show win screen from game OR tracker animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miquels icons in leaderboard's feed
         - [ ] Lost
-          - Player movement: ?
+          - Player movement: Y-value increases +50 px (down on screen)
           - Sound: ?
-          - Animation: ?
+          - Extra effects: Goes grey or loses opacity
       - [ ] Leaderboard
         - [ ] Position in leaderboard changes
-          - Player movement: ?
+          - Player movement: Higher in leaderboard —> longer tail
           - Sound: ?
-          - Animation: ?   
+          - Extra effects: Long tail inspiration: https://dribbble.com/shots/11776498-Dachshund-Skater 
   - [ ] User -> Movement 👈
     - [x] Create user (physics controlled) floating movement (Jellyfish?)
   - [ ] User -> Trails 👈
