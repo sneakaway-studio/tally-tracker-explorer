@@ -58,9 +58,9 @@ To do
           - Animation: ?
       - [ ] Disguise
         - [ ] Awarded
-          - Player movement: Chunk Shake, CSShake
+          - Player movement: Opacity Shake, CSShake
           - Sound: Spell/magic sound like https://freesound.org/people/suntemple/sounds/241809/
-          - Animation: ?
+          - Animation: Concentric triangles like player passes through a prism
       - [ ] Tracker
         - [ ] Blocked
           - Player movement: ?
