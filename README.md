@@ -20,7 +20,7 @@ To do
     - [ ] Button: Change refresh time
     - [ ] Button: playback restart
     - [ ] Scrubber: playback speed
-  - [x] Create playback 
+  - [x] Create playback
     - [x] Coroutine to play event at specific time
 - [ ] Visuals -> Monsters
   - [x] Create addressables system for sprite animation slicing workflow
@@ -30,10 +30,10 @@ To do
   - [ ] Initialize
     - [x] Use Feed data to build GameObjects and display in "Universe"
     - [ ] Ensure players aren't added twice with new feed data
-  - [ ] Player -> Actions 👈 
+  - [ ] Player -> Actions 👈
     - [ ] Create a series of actions (physics controlled from methods) that visualize different event types on playback
       - [ ] Stream
-        - [ ] Click 
+        - [ ] Click
           - Player movement: velocity and Y position increases, random X direction
           - Sound: ping
           - Animation: expanding concentric rings similar to "[radar](https://www.provideocoalition.com/wp-content/uploads/Radar.gif)" effect but with better colors
@@ -48,12 +48,12 @@ To do
           - Animation: ?
       - [ ] Badge
         - [ ] Awarded (changes depending level)
-          - Player movement: ?
+          - Player movement: accelerates right along the x-axis or concentric circles emanating from player’s icon
           - Sound: ?
           - Animation: ?
       - [ ] Consumable
         - [ ] Found (changes depending type, stat)
-          - Player movement: ?
+          - Player movement: accelerates right along the x-axis or concentric circles emanating from player’s icon
           - Sound: ?
           - Animation: ?
       - [ ] Disguise
@@ -65,32 +65,32 @@ To do
         - [ ] Blocked
           - Player movement: ?
           - Sound: ?
-          - Animation: ? 
+          - Animation: ?
       - [ ] Battle
         - [ ] In-progress
-          - Player movement: ?
+          - Player movement: "rumble"
           - Sound: Light battle music (on zoomed in)
           - Animations: Rumble animation appears over player
         - [ ] Attack
           - Player movement: ?
           - Sound: ?
           - Animation: Attack animation GIF
-        - [ ] Win 
-          - Player movement: ?
+        - [ ] Win
+          - Player movement: does a celebratory flip
           - Sound: ?
           - Animation: Show win screen from game
         - [ ] Lost
           - Player movement: ?
           - Sound: ?
-          - Animation: ? 
+          - Animation: ?
       - [ ] Leaderboard
         - [ ] Position in leaderboard changes
           - Player movement: ?
           - Sound: ?
           - Animation: ?   
-  - [ ] User -> Movement 👈 
+  - [ ] User -> Movement 👈
     - [x] Create user (physics controlled) floating movement (Jellyfish?)
-  - [ ] User -> Trails 👈 
+  - [ ] User -> Trails 👈
     - [ ] Create "Nyan Cat" trails (particle system?) (some examples on [google](https://www.google.com/search?q=unity+trail+renderer&safe=off&rlz=1C5CHFA_enUS903US909&sxsrf=ALeKk038imz2qRqefBNgel1Fi7zgS7CyHw:1600720422081&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjo95GhjPvrAhUFqlkKHQFpAAQQ_AUoAnoECAwQBA&biw=1239&bih=766))
       - [ ] Each trail is a product marketing category from streams
       - [ ] [Colors](https://github.com/sneakaway-studio/tally-api/blob/master/public/assets/css/sass/custom.scss)
@@ -98,13 +98,16 @@ To do
       - [ ] Add/remove monsters from data trail based on streams updates
 - [x] Visuals -> Anaglyph3D
   - [x] Add / test Anaglyph3D shader
-- [ ] Visuals -> Environment
+- [ ] Visuals -> Effects
   - [ ] Particles 👈
     - [ ] Use particle system to create small floating objects to give the visual display depth
       - [ ] Snow similar to the [upside down](https://www.youtube.com/watch?v=LwmnNzY7gdo&ab_channel=AmbientWorlds) floaty bits
       - [ ] Detritus in undersea life a.k.a "[marine snow](https://oceanservice.noaa.gov/facts/marinesnow.html)"
       - [ ] [Stars in cosmos](https://penningdownheart.files.wordpress.com/2018/03/stars-3000x2000-purple-cosmos-hd-7172.jpg)
+- [ ] Visuals -> Lighting
   - [ ] Lighting 👈
+    - [x] Change project to URP (Universal Render Pipeline)
+	- [x] Setup [2D renderer and lights](https://www.youtube.com/watch?v=nkgGyO9VG54&t=53s&ab_channel=Brackeys) 
     - [x] Point lights on GameObjects
     - [ ] Light emitters on user trails
     - [ ] Environmental lighting
@@ -124,6 +127,3 @@ To do
 
 - [How to get Good Graphics in Unity](https://www.youtube.com/watch?v=owZneI02YOU&ab_channel=Brackeys) (8:13)
 - [REALTIME LIGHTING in Unity](https://www.youtube.com/watch?v=wwm98VdzD8s&ab_channel=Brackeys) (15:47)
-
-
-
