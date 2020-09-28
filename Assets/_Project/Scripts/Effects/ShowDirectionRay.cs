@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ShowDirectionRay : MonoBehaviour {
 
-    [ColorUsageAttribute (true, true)]
-    public Color color;
 
     void Update ()
     {
-        // Draw a ray pointing in the forward direction
-        Debug.DrawRay (transform.position, Vector3.forward * 10f, color);
+        // draw rays pointing in the standard directions
+        Debug.DrawRay (transform.position, transform.up * 5f, Color.green);
+        Debug.DrawRay (transform.position, transform.forward * 5f, Color.blue);
+        Debug.DrawRay (transform.position, transform.right * 5f, Color.red);
     }
 
 

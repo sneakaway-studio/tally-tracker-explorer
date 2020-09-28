@@ -15,6 +15,5 @@ public class FaceCamera : MonoBehaviour {
     {
         // turn on the Y axis to face face camera
         transform.rotation = Quaternion.Euler (0, cam.transform.eulerAngles.y, 0);
-
     }
 }
