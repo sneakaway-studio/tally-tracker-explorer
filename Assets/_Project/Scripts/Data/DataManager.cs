@@ -22,7 +22,6 @@ public class DataManager : Singleton<DataManager> {
     }
 
 
-    string symbol = "\u2665".ToString ();
 
 
 
@@ -84,7 +83,7 @@ public class DataManager : Singleton<DataManager> {
 
     public void GetNewData ()
     {
-        Debug.Log (symbol + " DataManager.GetNewData() path = " + host + endpoint);
+        Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() path = " + host + endpoint);
 
         StartCoroutine (GetRequest (host + endpoint));
 

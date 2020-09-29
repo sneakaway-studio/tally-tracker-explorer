@@ -15,8 +15,6 @@ public class EventManager : MonoBehaviour {
     public List<string> eventNames = new List<string> ();
 
 
-    static string symbol = "\u2731".ToString ();
-
 
     // singleton
     private static EventManager eventManager;
@@ -74,7 +72,7 @@ public class EventManager : MonoBehaviour {
 
     public static void TriggerEvent (string eventName)
     {
-        Debug.Log (symbol + " EventManager.TriggerEvent() -> eventName = " + eventName);
+        Debug.Log (DebugManager.GetSymbol ("phone") + " EventManager.TriggerEvent() -> eventName = " + eventName);
 
         UnityEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue (eventName, out thisEvent)) {
