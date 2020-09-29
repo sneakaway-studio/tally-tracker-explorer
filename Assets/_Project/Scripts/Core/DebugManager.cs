@@ -15,7 +15,7 @@ public class DebugManager : Singleton<DebugManager> {
 
     private void Awake ()
     {
-        // add all the symbols
+        // add all the symbols - reference https://www.w3schools.com/charsets/ref_emoji.asp
         symbolDictionary = new Dictionary<string, string> (){
 
             {"arrowRight", "\u2192"},
@@ -41,7 +41,7 @@ public class DebugManager : Singleton<DebugManager> {
     }
 
     /**
-     *  Return a symbol for debugging 
+     *  Return a symbol
      */
     public static string GetSymbol (string name)
     {

@@ -46,15 +46,17 @@ public class DataManager : Singleton<DataManager> {
         recent20,
         rangeOneWeek,
         rangePlusStreamOneDay,
-        rangePlusStreamOneHour
+        rangePlusStreamOneHour,
+        rangePlusStreamFiveMinutes
     }
     public EndpointType chosenEndpoint;
 
     string [] endpoints = {
         "feed/recent",      // 20 recent
         "feed/range/1/week", // 1 week
-        "feed/range/plusStream/1/day/",  // 1 day
-        "feed/range/plusStream/1/hour/" // 1 hour
+        "feed/range/plusStream/1/day",  // 1 day
+        "feed/range/plusStream/1/hour", // 1 hour
+        "feed/range/plusStream/5/minutes" // 5 minutes
     };
 
     // chosen host and endpoint for API
@@ -225,6 +227,7 @@ public class DataManager : Singleton<DataManager> {
 
 
 
+                // OLD METHOD - KEEPING FOR REFERENCEx
                 //feeds = a.Select(p => new FeedData
                 //{
                 //    username = (string)p["username"],
@@ -237,35 +240,39 @@ public class DataManager : Singleton<DataManager> {
                 //    //level = (int)p["level"],
                 //    //stat = (string)p["stat"],
                 //    //captured = (int)p["captured"],
-
                 //}).ToList();
-
-
                 ////Debug.Log(a[0]);
                 //Debug.Log(feeds.ToString());
 
 
-                // reset current
-                current = "";
 
-                foreach (var feed in feeds) {
 
-                    var line =
+                // FOR DEBUGGING - MAY OR MAY NOT HAVE A GARBAGE COLLECTION ISSUE
 
-                        feed.createdAt + "\t" +
-                        feed.username + ", " +
-                        feed.eventType + ", " +
+                //// reset current
+                //current = "";
 
-                        //feed.type + ", " + feed.name + ", " + feed.level +
-                        //", " + feed.type
+                //foreach (var feed in feeds) {
 
-                        ""
-                        ;
+                //    var line =
 
-                    current += line + "<br>";
+                //        feed.createdAt + "\t" +
+                //        feed.username + ", " +
+                //        feed.eventType + ", " +
 
-                    //Debug.Log(line);
-                }
+                //        //feed.type + ", " + feed.name + ", " + feed.level +
+                //        //", " + feed.type
+
+                //        ""
+                //        ;
+
+                //    current += line + "<br>";
+
+                //    //Debug.Log(line);
+                //}
+
+
+
 
                 // trigger event
                 EventManager.TriggerEvent ("DataUpdated");
