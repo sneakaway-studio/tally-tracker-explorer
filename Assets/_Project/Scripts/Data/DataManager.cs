@@ -56,7 +56,7 @@ public class DataManager : Singleton<DataManager> {
         "feed/range/1/week", // 1 week
         "feed/range/plusStream/1/day",  // 1 day
         "feed/range/plusStream/1/hour", // 1 hour
-        "feed/range/plusStream/5/minutes" // 5 minutes
+        "feed/range/plusStream/5/minute" // 5 minutes
     };
 
     // chosen host and endpoint for API
