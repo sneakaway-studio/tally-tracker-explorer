@@ -28,8 +28,7 @@ public class LockTransform : MonoBehaviour {
             holdPosition.y = lockPosition.y;
         if (lockPosition.z != 0) {
             holdPosition.z = lockPosition.z;
-            Debug.Log ("akjshhdkha");
-
+            //Debug.Log ("LockTransform test");
         }
         // keep position on specific axis
         transform.position = holdPosition;

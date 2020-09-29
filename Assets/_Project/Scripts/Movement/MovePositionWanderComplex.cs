@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// this is the 2D version
+
 public class MovePositionWanderComplex : PhysicsBase {
 
     public Vector3 direction;           // the direction vector
