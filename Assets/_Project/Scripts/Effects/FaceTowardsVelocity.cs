@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnTowardsVelocity : MonoBehaviour {
+public class FaceTowardsVelocity : MonoBehaviour {
 
     // get RigidBody2d of parent
     public Rigidbody2D rb2d;
