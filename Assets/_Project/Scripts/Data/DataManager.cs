@@ -25,7 +25,7 @@ public class DataManager : Singleton<DataManager> {
 
 
 
-    // HOSTS
+    // HOST
 
     [Serializable]
     public enum HostType {
@@ -38,8 +38,7 @@ public class DataManager : Singleton<DataManager> {
         "https://tallysavestheinternet.com/api/"
     };
 
-
-    // ENDPOINT / PATH
+    // ENDPOINT
 
     [Serializable]
     public enum EndpointType {
@@ -50,7 +49,6 @@ public class DataManager : Singleton<DataManager> {
         rangePlusStreamFiveMinutes
     }
     public EndpointType chosenEndpoint;
-
     string [] endpoints = {
         "feed/recent",      // 20 recent
         "feed/range/1/week", // 1 week
@@ -65,11 +63,17 @@ public class DataManager : Singleton<DataManager> {
 
 
 
+    // META
+
+    // the number of events
+    public static int dataCount;
     // the current data as string
     public static string current;
-    // as Dict
+    // as list
     public static IList<FeedData> feeds = new List<FeedData> ();
 
+
+    public static Dictionary<string, FeedData> eventDictionary = new Dictionary<string, FeedData> ();
 
 
 
@@ -100,13 +104,13 @@ public class DataManager : Singleton<DataManager> {
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest ();
 
-            string [] pages = uri.Split ('/');
-            int page = pages.Length - 1;
+            //string [] pages = uri.Split ('/');
+            //int page = pages.Length - 1;
 
             if (webRequest.isNetworkError) {
-                Debug.Log (pages [page] + ": Error: " + webRequest.error);
+                Debug.Log ("Error: " + webRequest.error);
             } else {
-                Debug.Log (pages [page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() " + webRequest.downloadHandler.text);
 
                 // parse JSON array 
                 JArray a = JArray.Parse (webRequest.downloadHandler.text);
@@ -127,8 +131,11 @@ public class DataManager : Singleton<DataManager> {
                     // parse eventData 
                     JObject d = JObject.Parse (item.GetValue ("eventData").ToString ());
 
+
+                    FeedData output;
+
                     if (_eventType == "attack") {
-                        feeds.Add (new AttackData {
+                        output = new AttackData {
                             username = _username,
                             avatarPath = _avatarPath,
                             eventType = _eventType,
@@ -139,9 +146,9 @@ public class DataManager : Singleton<DataManager> {
                             name = (string)d ["name"],
                             type = (string)d ["level"],
                             selected = (bool)d ["selected"]
-                        });
+                        };
                     } else if (_eventType == "badge") {
-                        feeds.Add (new BadgeData {
+                        output = new BadgeData {
                             username = _username,
                             avatarPath = _avatarPath,
                             eventType = _eventType,
@@ -151,9 +158,9 @@ public class DataManager : Singleton<DataManager> {
 
                             name = (string)d ["name"],
                             level = (int)d ["level"]
-                        });
+                        };
                     } else if (_eventType == "consumable") {
-                        feeds.Add (new ConsumableData {
+                        output = new ConsumableData {
                             username = _username,
                             avatarPath = _avatarPath,
                             eventType = _eventType,
@@ -166,9 +173,9 @@ public class DataManager : Singleton<DataManager> {
                             stat = (string)d ["stat"],
                             type = (string)d ["type"],
                             value = (int)d ["value"]
-                        });
+                        };
                     } else if (_eventType == "disguise") {
-                        feeds.Add (new DisguiseData {
+                        output = new DisguiseData {
                             username = _username,
                             avatarPath = _avatarPath,
                             eventType = _eventType,
@@ -178,9 +185,9 @@ public class DataManager : Singleton<DataManager> {
 
                             name = (string)d ["name"],
                             type = (string)d ["type"]
-                        });
+                        };
                     } else if (_eventType == "monster") {
-                        feeds.Add (new MonsterData {
+                        output = new MonsterData {
                             username = _username,
                             avatarPath = _avatarPath,
                             eventType = _eventType,
@@ -191,9 +198,9 @@ public class DataManager : Singleton<DataManager> {
                             mid = (int)d ["mid"],
                             level = (int)d ["level"],
                             captured = (int)d ["captured"],
-                        });
+                        };
                     } else if (_eventType == "tracker") {
-                        feeds.Add (new TrackerData {
+                        output = new TrackerData {
                             username = _username,
                             avatarPath = _avatarPath,
                             eventType = _eventType,
@@ -203,9 +210,9 @@ public class DataManager : Singleton<DataManager> {
 
                             tracker = (string)d ["tracker"],
                             captured = (int)d ["captured"],
-                        });
-                    } else if (_eventType == "stream") {
-                        feeds.Add (new StreamData {
+                        };
+                    } else { // if (_eventType == "stream")
+                        output = new StreamData {
                             username = _username,
                             avatarPath = _avatarPath,
                             eventType = _eventType,
@@ -216,14 +223,34 @@ public class DataManager : Singleton<DataManager> {
                             score = (int)d ["score"],
                             clicks = (int)d ["clicks"],
                             likes = (int)d ["likes"],
-                        });
+                        };
                     }
 
+                    feeds.Add (output);
+
+
+                    // SAVE FOR CREATING BUFFER
+                    //// create key
+                    //string key = _createdAtStr + "_" + _username + "_" + _eventType;
+                    //FeedData val;
+                    //if (!eventDictionary.TryGetValue (key, out val)) {
+                    //    eventDictionary.Add (key, output);
+                    //}
 
 
 
                     //Debug.Log(_eventType);
                 }
+
+                // SAVE FOR CREATING BUFFER
+                ///// Acquire keys and sort them.
+                //var list = eventDictionary.Keys.ToList ();
+                //list.Sort ();
+
+                //// Loop through keys.
+                //foreach (var key in list) {
+                //    Debug.Log (key + ": " + eventDictionary [key]);
+                //}
 
 
 
@@ -274,8 +301,13 @@ public class DataManager : Singleton<DataManager> {
 
 
 
+                // update count
+                dataCount = feeds.Count;
+
                 // trigger event
                 EventManager.TriggerEvent ("DataUpdated");
+
+
 
             }
         }
