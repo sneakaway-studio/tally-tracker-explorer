@@ -583,6 +583,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4060703217083337034, guid: ecec1fc7bdc6441a691ca908dfadc8b4, type: 3}
+      propertyPath: rotationSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7489948669748588920, guid: ecec1fc7bdc6441a691ca908dfadc8b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -650,7 +654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1339374948
 Animator:
   serializedVersion: 3

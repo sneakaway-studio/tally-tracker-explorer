@@ -10,18 +10,22 @@ public class MonsterController : MonoBehaviour
     public float minDistance = 0.25f;
     public float leaderDistance = 1.0f;
     public float speed = 1;
-    public float rotationSpeed = 50;
     public GameObject bodyPrefab;
     public GameObject monsterHolder;
+    public float waypointRate = 0.1f;
+    public float waypointMax = 10;
 
+    private bool spawning = false;
     private float dis;
+    private float prevWaypointTime = 0;
+    private List<Vector3> waypoints = new List<Vector3>();
     private Transform curBodyPart;
     private Transform prevBodyPart;
 
     // Start is called before the first frame update
     void Start()
     {
-        bodyParts.Insert(0, leader);
+        Debug.Log("START");
     }
 
     // Update is called once per frame
@@ -33,11 +37,48 @@ public class MonsterController : MonoBehaviour
         {
             AddBodyPart();
         }
+        else
+        {
+            spawning = false;
+        }
+    }
+
+    private void MoveToNextWaypoint()
+    {
+        float curSpeed = speed;
+        curBodyPart = bodyParts[0];
+
+        dis = Vector3.Distance(waypoints[0], curBodyPart.position);
+        if (dis <= leaderDistance)
+        {
+            waypoints.RemoveAt(0);
+            return;
+        }
+
+        Vector3 newPos = waypoints[0];
+        newPos.z = 0;
+
+        float T;
+        T = Time.deltaTime * dis / leaderDistance * curSpeed;
+        if (T > 0.5f)
+            T = 0.5f;
+        curBodyPart.position = Vector3.Slerp(curBodyPart.position, newPos, T);
     }
 
     public void Move()
     {
         float curSpeed = speed;
+
+        if (Time.time > prevWaypointTime + waypointRate && waypoints.Count < waypointMax)
+        {
+            waypoints.Add(leader.position);
+            prevWaypointTime = Time.time;
+        }
+
+        if (bodyParts.Count > 0 && waypoints.Count > 0)
+        {
+            MoveToNextWaypoint();
+        }
 
         for (int i = 1; i < bodyParts.Count; i++)
         {
@@ -54,7 +95,7 @@ public class MonsterController : MonoBehaviour
                 T = Time.deltaTime * dis / leaderDistance * curSpeed;
             else
                 T = Time.deltaTime * dis / minDistance * curSpeed;
-            
+
             if (T > 0.5f)
                 T = 0.5f;
             curBodyPart.position = Vector3.Slerp(curBodyPart.position, newPos, T);
@@ -64,12 +105,17 @@ public class MonsterController : MonoBehaviour
 
     public void AddBodyPart()
     {
-        if (bodyParts.Count - 1 < maxBodyParts) 
+        if (bodyParts.Count < maxBodyParts && !spawning) 
         {
-            GameObject part = Instantiate(bodyPrefab, bodyParts[bodyParts.Count - 1].position, bodyParts[bodyParts.Count - 1].rotation);
+            GameObject part;
+            if (bodyParts.Count == 0)
+                part = Instantiate(bodyPrefab, leader.position, leader.rotation);
+            else
+                part = Instantiate(bodyPrefab, bodyParts[bodyParts.Count - 1].position, bodyParts[bodyParts.Count - 1].rotation);
             Transform newPart = part.transform;
             newPart.SetParent(monsterHolder.transform);
             bodyParts.Add(newPart);
+            spawning = true;
         }
     }
 }
