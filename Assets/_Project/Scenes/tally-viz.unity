@@ -7,7 +7,7 @@ OcclusionCullingSettings:
   m_OcclusionBakeSettings:
     smallestOccluder: 5
     smallestHole: 0.25
-    backfaceThreshold: 100
+    backfaceThreshold: 100 
   m_SceneGUID: 00000000000000000000000000000000
   m_OcclusionCullingData: {fileID: 0}
 --- !u!104 &2
@@ -708,6 +708,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+
 --- !u!1 &1177221776
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,6 +975,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213503735}
   m_CullTransparentMesh: 0
+
 --- !u!1 &1339374947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1051,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -138213673
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 6811564942613734870, guid: 621c8b994f6bd45a08d0129466eba309, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1221,6 +1223,7 @@ Transform:
   m_Father: {fileID: 1339374950}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
 --- !u!1 &1660593871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,6 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62047c420e8314f54a46cfc76f47b04d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+
 --- !u!1001 &1867092989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1688,6 +1692,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
 --- !u!1 &2073581457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,6 +1827,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073581457}
   m_CullTransparentMesh: 0
+
 --- !u!1 &2123156134
 GameObject:
   m_ObjectHideFlags: 0
