@@ -46,7 +46,7 @@ public class DataManager : Singleton<DataManager> {
         rangeOneWeek,
         rangePlusStreamOneDay,
         rangePlusStreamOneHour,
-        rangePlusStreamFiveMinutes
+        rangePlusStreamFiveMinute
     }
     public EndpointType chosenEndpoint;
     string [] endpoints = {
