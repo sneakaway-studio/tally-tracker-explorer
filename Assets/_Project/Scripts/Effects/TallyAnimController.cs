@@ -10,7 +10,8 @@ public class TallyAnimController : MonoBehaviour {
 
     public Animator animator;
     public int currentAnimation;
-
+    public int counter;
+    float r = 0;
 
     void Start ()
     {
@@ -20,6 +21,17 @@ public class TallyAnimController : MonoBehaviour {
 
     void Update ()
     {
+
+        currentAnimation = 0;
+        r = 0;
+        counter++;
+
+        if (counter % 10 == 0) {
+            r = Random.Range (0f, 1f);
+        }
+
+
+        //Debug.Log (counter + ", " + r);
 
 
 
@@ -33,10 +45,12 @@ public class TallyAnimController : MonoBehaviour {
             currentAnimation = 4;
         } else if (Input.GetKey (KeyCode.Alpha5)) {
             currentAnimation = 5;
-        } else {
-            currentAnimation = 0;
         }
 
+        if (currentAnimation > 0 && r > .9f)
+            currentAnimation = (int)Random.Range (1, 5);
+        else
+            currentAnimation = 0;
 
         // set the animation
         animator.SetInteger ("state", currentAnimation);

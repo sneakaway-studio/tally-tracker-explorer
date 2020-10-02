@@ -91,11 +91,21 @@ public class TimelineManager : Singleton<TimelineManager> {
                feed.username + ", " + feed.eventType +
 
                "";
-
-
             feedText.text += log + "<br>";
 
+
+
+            // TEMP
+
+            // pick random player and random event
+            PlayerManager.Instance.PlayRandomEvent ();
+
+            // trigger data updated event
+            //EventManager.TriggerEvent ("DataUpdated");
+
+
             UpdateScroll ();
+
 
             //Debug.Log(log);
 

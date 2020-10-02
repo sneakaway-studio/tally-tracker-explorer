@@ -310,7 +310,7 @@ public class DataManager : Singleton<DataManager> {
                 // update count
                 dataCount = feeds.Count;
 
-                // trigger event
+                // trigger data updated event
                 EventManager.TriggerEvent ("DataUpdated");
 
 

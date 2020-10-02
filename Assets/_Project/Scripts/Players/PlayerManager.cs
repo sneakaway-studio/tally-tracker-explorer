@@ -45,6 +45,9 @@ public class PlayerManager : Singleton<PlayerManager> {
         foreach (var feed in DataManager.feeds) {
             CreateNewPlayer (feed.username);
         }
+
+        // trigger data updated event
+        //EventManager.TriggerEvent ("DataUpdated");
     }
 
     /**
@@ -89,6 +92,30 @@ public class PlayerManager : Singleton<PlayerManager> {
 
         }
     }
+
+
+
+    public void PlayRandomEvent ()
+    {
+
+        //// get random child
+        //Transform [] children = gameObject.GetComponentsInChildren<Transform> ();
+        //GameObject randomObject = children [Random.Range (0, children.Length)].gameObject;
+
+        //// pick random anim
+        //int randomEventIndex = (int)Random.Range (1, 5);
+
+
+
+        ////GameObject PlayerCharacter = randomObject.transform.GetChild (0).gameObject;
+        //TallyAnimController anim = randomObject.GetComponent<TallyAnimController> ();
+        //Debug.Log (randomObject.name + " - " + randomEventIndex);
+        //anim.currentAnimation = randomEventIndex;
+
+    }
+
+
+
 
 
     /**
