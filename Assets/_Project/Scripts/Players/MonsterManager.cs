@@ -5,16 +5,20 @@ using UnityEngine;
 public class MonsterManager : Singleton<MonsterManager> {
     // singleton
     protected MonsterManager () { }
-    public static new MonsterManager Instance;
+    //public static new MonsterManager Instance;
 
 
 
-    public Sprite [] monsterSprites;
+    // temp sprites for assigning monsters
+    public Sprite [] monsters;
 
 
-    public Sprite RandomSprite ()
+
+
+
+    private void Awake ()
     {
-        return monsterSprites [Random.Range (0, (monsterSprites.Length - 1))];
+
     }
 
 

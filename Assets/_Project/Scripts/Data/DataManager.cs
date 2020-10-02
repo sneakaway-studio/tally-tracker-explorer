@@ -45,6 +45,8 @@ public class DataManager : Singleton<DataManager> {
         recent20,
         rangeOneWeek,
         rangePlusStreamOneDay,
+        rangePlusStreamTwelveHour,
+        rangePlusStreamSixHour,
         rangePlusStreamOneHour,
         rangePlusStreamFiveMinute
     }
@@ -53,13 +55,16 @@ public class DataManager : Singleton<DataManager> {
         "feed/recent",      // 20 recent
         "feed/range/1/week", // 1 week
         "feed/range/plusStream/1/day",  // 1 day
+        "feed/range/plusStream/12/hour", // 6 hour
+        "feed/range/plusStream/6/hour", // 6 hour
         "feed/range/plusStream/1/hour", // 1 hour
         "feed/range/plusStream/5/minute" // 5 minutes
     };
 
+    // FINAL PATH
+
     // chosen host and endpoint for API
-    public string host;
-    public string endpoint;
+    public string path;
 
 
 
@@ -79,9 +84,6 @@ public class DataManager : Singleton<DataManager> {
 
     private void Start ()
     {
-        host = hosts [(int)chosenHost];
-        endpoint = endpoints [(int)chosenEndpoint];
-
         // start everything
         GetNewData ();
     }
@@ -89,9 +91,12 @@ public class DataManager : Singleton<DataManager> {
 
     public void GetNewData ()
     {
-        Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() path = " + host + endpoint);
+        // update path
+        path = hosts [(int)chosenHost] + endpoints [(int)chosenEndpoint];
 
-        StartCoroutine (GetRequest (host + endpoint));
+        //Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() path = " + path);
+
+        StartCoroutine (GetRequest (path));
 
         // error test
         // StartCoroutine(GetRequest("https://error.html"));
@@ -110,7 +115,8 @@ public class DataManager : Singleton<DataManager> {
             if (webRequest.isNetworkError) {
                 Debug.Log ("Error: " + webRequest.error);
             } else {
-                Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() " + webRequest.downloadHandler.text);
+                Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() " +
+                        uri + "\n" + webRequest.downloadHandler.text);
 
                 // parse JSON array 
                 JArray a = JArray.Parse (webRequest.downloadHandler.text);
