@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : Singleton<PlayerManager> {
     // singleton
     protected PlayerManager () { }
-    public static new PlayerManager Instance;
+    //public static new PlayerManager Instance;
 
     //listeners
     void OnEnable ()
@@ -25,12 +25,11 @@ public class PlayerManager : Singleton<PlayerManager> {
 
     // temp sprites for assigning avatars
     public Sprite [] avatars;
-    public Transform avatarTransform;
-    public SpriteRenderer avatar;
 
 
     private void Awake ()
     {
+        //Instance = this;
         playerDictionary = new Dictionary<string, GameObject> ();
     }
 
@@ -75,12 +74,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             obj.name = username;
             // parent under PlayerManger
             obj.transform.parent = gameObject.transform;
-            // add avatar
-            avatarTransform = obj.transform.Find ("PlayerCharacter/PlayerObject/FaceCamera/SpriteMask/Avatar");
-            //Debug.Log (avatarTransform.name);
-            avatar = avatarTransform.GetComponent<SpriteRenderer> ();
-            // temp
-            avatar.sprite = avatars [Random.Range (0, avatars.Length - 1)];
+
 
 
 
