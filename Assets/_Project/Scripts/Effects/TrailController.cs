@@ -9,6 +9,12 @@ public class TrailController : MonoBehaviour {
     public int trailIndex;
     public float trailWidth;
     float [] positionsByIndex = { -1f, -0.5f, 0, .5f, 1f };
+    // Maximum position for overall trail edge
+    public float positionMax = 1.5f;
+    // Minimum position for overall trail edge
+    public float positionMin = -1.5f;
+    // Extra amount added to width to hide background
+    public float widthExtra = 0.01f;
     public string trailColor;
     Color color;
 
@@ -36,6 +42,26 @@ public class TrailController : MonoBehaviour {
         trailWidth = siblingCount * .1f;
         // set the position of this trail by its index in the hierarchy
         trailIndex = transform.GetSiblingIndex ();
+
+
+        // range between the positionMax and positionMin
+        float positionRange = positionMax - positionMin;
+
+        // sets positionsByIndex array by number of trails
+        positionsByIndex = new float[siblingCount];
+
+        // calculate range between each trail
+        float trailsRange = positionRange / (siblingCount);
+
+        // place trails so the outer edges are touching positionMin and positionMax
+        for (int i = 0; i < siblingCount; i++)
+        {
+            // starts with positionMin plus an offset that lets the trail edge touch it
+            positionsByIndex[i] = positionMin + (trailsRange * (i + 0.5f)); // the 0.5 places it in the middle of the range, or something
+        }                                                                   // tbh I don't really know, I'm just glad it works
+
+        // set the trail width to the range plus a 'lil extra to cover the background
+        trailWidth = trailsRange + widthExtra;
 
 
         // set offset based on index
