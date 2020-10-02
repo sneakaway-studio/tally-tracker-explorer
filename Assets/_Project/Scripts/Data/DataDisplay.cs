@@ -4,7 +4,12 @@ using UnityEngine;
 using TMPro;
 
 public class DataDisplay : MonoBehaviour {
-    public TMP_Text TmText;
+
+
+
+    public TMP_Text eventCountText;
+    public TMP_Text playerCountText;
+    public TMP_Text eventNumberText;
 
 
 
@@ -22,8 +27,9 @@ public class DataDisplay : MonoBehaviour {
     // update text
     public void UpdateDisplay ()
     {
-        // handled inside Timeline class
-        TmText.text = DataManager.dataCount.ToString ();
+        eventCountText.text = DataManager.dataCount.ToString ();
+        playerCountText.text = PlayerManager.Instance.gameObject.transform.childCount.ToString ();
+        eventNumberText.text = TimelineManager.Instance.feedIndex.ToString ();
     }
 
 

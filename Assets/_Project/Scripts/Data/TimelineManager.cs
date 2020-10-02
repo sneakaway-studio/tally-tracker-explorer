@@ -5,8 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Timeline : MonoBehaviour
-{
+public class TimelineManager : Singleton<TimelineManager> {
+    // singleton
+    protected TimelineManager () { }
+    //public static new PlayerManager Instance;
+
     // whether the playback is currently active 
     public bool playbackActive = false;
     // the feed item we are currently displaying
@@ -20,53 +23,51 @@ public class Timeline : MonoBehaviour
 
 
     // UI
-    public TMP_Text TmText;
+    public TMP_Text feedText;
     public ScrollRect scrollRect;
 
 
 
-    public Slider speedSlider;
-    public float speedMin = 0;
-    public float speedMax = 100;
+    //public Slider speedSlider;
+    //public float speedMin = 0;
+    //public float speedMax = 100;
 
 
 
-    void Start()
+    void Start ()
     {
-        speedSlider.minValue = speedMin;
-        speedSlider.maxValue = speedMax;
-        speedSlider.value = speedMax / 2;
+        //speedSlider.minValue = speedMin;
+        //speedSlider.maxValue = speedMax;
+        //speedSlider.value = speedMax / 2;
     }
 
 
     // empty playback queue and restart
-    public void StartPlayBack()
+    public void StartPlayBack ()
     {
         // if currently playing
-        if (playbackActive)
-        {
+        if (playbackActive) {
             // then stop before starting
-            StopCoroutine("Play");
+            StopCoroutine ("Play");
         }
         // start
-        StartCoroutine("Play");
+        StartCoroutine ("Play");
         playbackActive = true;
     }
-    public void StopPlayBack()
+    public void StopPlayBack ()
     {
         // only if active
         if (playbackActive) return;
-        StopCoroutine("Play");
+        StopCoroutine ("Play");
         playbackActive = false;
     }
 
     // play all the events
-    IEnumerator Play()
+    IEnumerator Play ()
     {
         feedIndex = 0;
 
-        foreach (var feed in DataManager.feeds)
-        {
+        foreach (var feed in DataManager.feeds) {
             // on first run only
             if (previousTime == null)
                 // use current time as previous time
@@ -92,9 +93,9 @@ public class Timeline : MonoBehaviour
                "";
 
 
-            TmText.text += log + "<br>";
+            feedText.text += log + "<br>";
 
-            UpdateScroll();
+            UpdateScroll ();
 
             //Debug.Log(log);
 
@@ -104,13 +105,10 @@ public class Timeline : MonoBehaviour
             // display in feed console
 
             // if there are more feed items
-            if (++feedIndex < DataManager.feeds.Count)
-            {
+            if (++feedIndex < DataManager.feeds.Count) {
                 // wait for difference befor next loop
-                yield return new WaitForSeconds(diffInSecondsAdj);
-            }
-            else
-            {
+                yield return new WaitForSeconds (diffInSecondsAdj);
+            } else {
                 // reset
             }
 
@@ -119,9 +117,9 @@ public class Timeline : MonoBehaviour
     }
 
 
-    public void UpdateScroll()
+    public void UpdateScroll ()
     {
-        Canvas.ForceUpdateCanvases();
+        Canvas.ForceUpdateCanvases ();
         scrollRect.verticalNormalizedPosition = 0f;
     }
 
