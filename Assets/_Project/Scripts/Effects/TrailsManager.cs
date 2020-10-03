@@ -14,14 +14,30 @@ public class TrailsManager : MonoBehaviour {
     {
         trailDict = new Dictionary<string, GameObject> ();
 
-        // TEMP ADD RANDOM COUNT
+        StartCoroutine (AddTestTrails (1f));
+
+    }
+
+
+
+    /**
+     *  Adds random number of test trails
+     */
+    IEnumerator AddTestTrails (float wait)
+    {
+        yield return new WaitForSeconds (wait);
+
+        // random num
         numberTrails = (int)Random.Range (minTrailCount, maxTrailCount);
+        // add trail
         for (int i = 0; i < numberTrails; i++) {
             AddTrail (i, false);
         }
         // update after a second
         StartCoroutine (UpdateTrails (1f));
+
     }
+
 
 
     /**
@@ -29,7 +45,7 @@ public class TrailsManager : MonoBehaviour {
      */
     void AddTrail (int index, bool updateAll)
     {
-        // add player to scene
+        // add trail to scene
         GameObject obj = (GameObject)Instantiate (trailPrefab);
         // create name for trail obj
         string name = "trail-" + (index + 1).ToString ();

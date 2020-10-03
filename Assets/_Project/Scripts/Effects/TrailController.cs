@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TrailController : MonoBehaviour {
 
+    public GameObject avatar;
     public TrailRenderer trailRenderer;
     public int siblingCount;
     public int trailIndex;
@@ -28,6 +29,7 @@ public class TrailController : MonoBehaviour {
     {
         // get renderer
         trailRenderer = GetComponent<TrailRenderer> ();
+        trailRenderer.enabled = false;
     }
 
 
@@ -72,6 +74,8 @@ public class TrailController : MonoBehaviour {
         // set the trail width to the range plus a 'lil extra to cover the background
         trailWidth = trailsRange + widthExtra;
 
+        // how long trail lasts, a.k.a. its length
+        trailRenderer.time = siblingCount;
 
         // set offset based on index
         transform.localPosition = new Vector3 (0, positionsByIndex [trailIndex], 0);
@@ -84,6 +88,9 @@ public class TrailController : MonoBehaviour {
         trailRenderer.numCornerVertices = 10;
         trailRenderer.numCapVertices = 5;
 
+        //trailRenderer.sortingOrder = avatar.GetComponent<SpriteRenderer> ().sortingOrder;
+
+        trailRenderer.enabled = true;
     }
 
 
