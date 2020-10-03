@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrailController : MonoBehaviour {
 
-    public TrailRenderer trail;
+    public TrailRenderer trailRenderer;
     public int siblingCount;
     public int trailIndex;
     public float trailWidth;
@@ -23,17 +23,27 @@ public class TrailController : MonoBehaviour {
     };
 
 
+
     private void Awake ()
     {
         // get renderer
-        trail = GetComponent<TrailRenderer> ();
+        trailRenderer = GetComponent<TrailRenderer> ();
+    }
+
+
+
+
+    public void Init ()
+    {
+        //Debug.Log ("Init() called on TrailController");
+
 
         // get random color string 
         trailColor = colors [(int)Random.Range (0, colors.Length - 1)];
         // if hex parses
         if (ColorUtility.TryParseHtmlString ("#" + trailColor + "FF", out color)) {
             // change material color
-            trail.material.color = color;
+            trailRenderer.material.color = color;
         }
 
         // number of siblings (other trails)
@@ -48,16 +58,15 @@ public class TrailController : MonoBehaviour {
         float positionRange = positionMax - positionMin;
 
         // sets positionsByIndex array by number of trails
-        positionsByIndex = new float[siblingCount];
+        positionsByIndex = new float [siblingCount];
 
         // calculate range between each trail
         float trailsRange = positionRange / (siblingCount);
 
         // place trails so the outer edges are touching positionMin and positionMax
-        for (int i = 0; i < siblingCount; i++)
-        {
+        for (int i = 0; i < siblingCount; i++) {
             // starts with positionMin plus an offset that lets the trail edge touch it
-            positionsByIndex[i] = positionMin + (trailsRange * (i + 0.5f)); // the 0.5 places it in the middle of the range, or something
+            positionsByIndex [i] = positionMin + (trailsRange * (i + 0.5f)); // the 0.5 places it in the middle of the range, or something
         }                                                                   // tbh I don't really know, I'm just glad it works
 
         // set the trail width to the range plus a 'lil extra to cover the background
@@ -68,12 +77,12 @@ public class TrailController : MonoBehaviour {
         transform.localPosition = new Vector3 (0, positionsByIndex [trailIndex], 0);
 
         // set w & h
-        trail.startWidth = trailWidth; // 5 = 0.45f
-        trail.endWidth = trailWidth;
+        trailRenderer.startWidth = trailWidth; // 5 = 0.45f
+        trailRenderer.endWidth = trailWidth;
 
         // set vertices
-        trail.numCornerVertices = 10;
-        trail.numCapVertices = 5;
+        trailRenderer.numCornerVertices = 10;
+        trailRenderer.numCapVertices = 5;
 
     }
 
