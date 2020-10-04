@@ -88,7 +88,7 @@ public class TimelineManager : Singleton<TimelineManager> {
             timeDiff = (int)(feed.createdAt - previousTime).TotalSeconds;
 
             // adjust difference (speed it up)
-            timeDiffScaled = timeDiff * timeDiffScalar;
+            timeDiffScaled = Mathf.Clamp (timeDiff * timeDiffScalar, minTimeDiff, maxTimeDiff);
 
             // log feed item
             var eventString =
