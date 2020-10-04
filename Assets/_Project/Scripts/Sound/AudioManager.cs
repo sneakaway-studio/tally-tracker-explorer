@@ -35,7 +35,10 @@ public class AudioManager : MonoBehaviour {
 
     private void Start ()
     {
+        // start music
         Play ("music");
+        // can also play with...
+        //AudioManager.Instance.Play("music");
     }
 
     public void Play (string sound)
@@ -55,6 +58,5 @@ public class AudioManager : MonoBehaviour {
         s.source.PlayOneShot (s.source.clip);
     }
 
-    //AudioManager.Instance.Play("music");
 
 }

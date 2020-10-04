@@ -21,7 +21,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     // bounds, prefab, dict for instantiating players
     public Collider worldContainerCollider;
     public GameObject playerPrefab;
-    public Dictionary<string, GameObject> playerDictionary;
+    public Dictionary<string, GameObject> playerDict;
 
     // temp sprites for assigning avatars
     public Sprite [] avatars;
@@ -30,7 +30,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     private void Awake ()
     {
         //Instance = this;
-        playerDictionary = new Dictionary<string, GameObject> ();
+        playerDict = new Dictionary<string, GameObject> ();
     }
 
     /**
@@ -39,7 +39,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     public void ResetPlayers ()
     {
         // clear the dictionary 
-        playerDictionary.Clear ();
+        playerDict.Clear ();
 
         // loop through the feed and add players
         foreach (var feed in DataManager.feeds) {
@@ -56,7 +56,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     public void CreateNewPlayer (string username)
     {
         // make sure the player doesn't already exist
-        if (playerDictionary.ContainsKey (username)) return;
+        if (playerDict.ContainsKey (username)) return;
 
         // get a position that doesn't contain any other colliders
         Vector3 spawnPosition = GetClearSpawnPosition ();
@@ -88,7 +88,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 
 
             // add to dict
-            playerDictionary.Add (username, obj);
+            playerDict.Add (username, obj);
 
         }
     }
@@ -116,6 +116,27 @@ public class PlayerManager : Singleton<PlayerManager> {
 
         AudioManager.Instance.Play (feed.eventType);
 
+
+        Debug.Log (DebugManager.GetSymbol ("smilingFace") + " PlayerManager.PlayEvent() feed = " + feed.username.ToString ());
+
+
+        // get player obj
+        GameObject player;
+        GameObject playerCharacter;
+        TallyAnimController playerCharacterAnim;
+        playerDict.TryGetValue (feed.username, out player);
+        if (!player) return;
+
+        // get the first child
+        playerCharacter = player.transform.GetChild (0).gameObject;
+
+        Debug.Log (DebugManager.GetSymbol ("smilingFace") + " PlayerManager.PlayEvent() feed = " + playerCharacter.name);
+
+        // get the animation controller
+        playerCharacterAnim = playerCharacter.GetComponent<TallyAnimController> ();
+
+        // play the animation
+        playerCharacterAnim.animEvent = feed.eventType;
 
 
         //// get random child
