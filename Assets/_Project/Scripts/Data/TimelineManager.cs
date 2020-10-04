@@ -10,19 +10,19 @@ public class TimelineManager : Singleton<TimelineManager> {
     protected TimelineManager () { }
     //public static new PlayerManager Instance;
 
-    // whether the playback is currently active 
-    public bool playbackActive = false;
-    // the feed item we are currently displaying
-    public int feedIndex;
-    // previous time displayed
-    public DateTime previousTime;
-    // difference between current time (feed.createdAt) and previousTime
-    public int diffInSeconds;
-    // difference - adjusted for playback
-    public float diffInSecondsAdj;
+
+    // PLAYBACK
+
+    public bool playbackActive = false; // if the playback is currently active 
+    public int feedIndex;               // index of current feed item we are currently displaying
+
+    public DateTime previousTime;       // previous time displayed
+    public int diffInSeconds;           // difference between current time (feed.createdAt) and previousTime
+    public float diffInSecondsAdj;      // difference - adjusted for playback
 
 
     // UI
+
     public TMP_Text feedText;
     public ScrollRect scrollRect;
 
@@ -81,7 +81,7 @@ public class TimelineManager : Singleton<TimelineManager> {
             diffInSecondsAdj = diffInSeconds * 0.0015f;
 
             // log feed item
-            var log =
+            var eventString =
 
                 feedIndex + ". " +
                 diffInSeconds + " (" + diffInSecondsAdj + ") " +
@@ -91,7 +91,8 @@ public class TimelineManager : Singleton<TimelineManager> {
                feed.username + ", " + feed.eventType +
 
                "";
-            feedText.text += log + "<br>";
+
+            feedText.text += eventString + "<br>";
 
 
 
@@ -107,7 +108,7 @@ public class TimelineManager : Singleton<TimelineManager> {
             UpdateScroll ();
 
 
-            //Debug.Log(log);
+            //Debug.Log(eventString);
 
 
             // set previous time for next loop

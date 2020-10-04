@@ -98,6 +98,9 @@ public class PlayerManager : Singleton<PlayerManager> {
     public void PlayRandomEvent ()
     {
 
+        SoundManager.Instance.RandomSoundEffectIndex ();
+
+
         //// get random child
         //Transform [] children = gameObject.GetComponentsInChildren<Transform> ();
         //GameObject randomObject = children [Random.Range (0, children.Length)].gameObject;
