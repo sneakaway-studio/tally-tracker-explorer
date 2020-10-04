@@ -26,6 +26,8 @@ public class DebugManager : Singleton<DebugManager> {
             {"triangleUp", "\u25B2"},
             {"triangleRight", "\u25BA"},
 
+
+            {"sound", "\u266B"},
             {"heart", "\u2665"},
             {"diamond", "\u2666"},
 

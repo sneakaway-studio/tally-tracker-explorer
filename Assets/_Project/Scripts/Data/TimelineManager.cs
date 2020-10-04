@@ -17,8 +17,12 @@ public class TimelineManager : Singleton<TimelineManager> {
     public int feedIndex;               // index of current feed item we are currently displaying
 
     public DateTime previousTime;       // previous time displayed
-    public int diffInSeconds;           // difference between current time (feed.createdAt) and previousTime
-    public float diffInSecondsAdj;      // difference - adjusted for playback
+    public int timeDiff;                // difference between current time (feed.createdAt) and previousTime
+    public float timeDiffScaled;        // difference - adjusted for playback
+
+
+    [Range (0f, 1f)]
+    public float timeDiffScalar = 0.01f;  // timeDiff * scalar = how much faster time is replayed 
 
 
     // UI
@@ -75,16 +79,16 @@ public class TimelineManager : Singleton<TimelineManager> {
 
 
             // find difference in seconds between createdAt and previousTime 
-            diffInSeconds = (int)(feed.createdAt - previousTime).TotalSeconds;
+            timeDiff = (int)(feed.createdAt - previousTime).TotalSeconds;
 
             // adjust difference (speed it up)
-            diffInSecondsAdj = diffInSeconds * 0.0015f;
+            timeDiffScaled = timeDiff * timeDiffScalar;
 
             // log feed item
             var eventString =
 
                 feedIndex + ". " +
-                diffInSeconds + " (" + diffInSecondsAdj + ") " +
+                timeDiff + " (" + timeDiffScaled + ") " +
 
                 " (" + feed.createdAt + ") " +
                //" = (" + previousTime + " - " + feed.createdAt + ") " +
@@ -99,7 +103,7 @@ public class TimelineManager : Singleton<TimelineManager> {
             // TEMP
 
             // pick random player and random event
-            PlayerManager.Instance.PlayRandomEvent ();
+            PlayerManager.Instance.PlayEvent (feed);
 
             // trigger data updated event
             //EventManager.TriggerEvent ("DataUpdated");
@@ -108,7 +112,7 @@ public class TimelineManager : Singleton<TimelineManager> {
             UpdateScroll ();
 
 
-            //Debug.Log(eventString);
+            Debug.Log (eventString);
 
 
             // set previous time for next loop
@@ -118,7 +122,7 @@ public class TimelineManager : Singleton<TimelineManager> {
             // if there are more feed items
             if (++feedIndex < DataManager.feeds.Count) {
                 // wait for difference befor next loop
-                yield return new WaitForSeconds (diffInSecondsAdj);
+                yield return new WaitForSeconds (timeDiffScaled);
             } else {
                 // reset
             }

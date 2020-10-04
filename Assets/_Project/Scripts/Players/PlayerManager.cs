@@ -95,10 +95,27 @@ public class PlayerManager : Singleton<PlayerManager> {
 
 
 
-    public void PlayRandomEvent ()
+    public void PlayEvent (FeedData feed)
     {
 
-        SoundManager.Instance.RandomSoundEffectIndex ();
+        //SoundManager.Instance.RandomSoundEffectIndex ();
+
+
+
+        //float r = Random.Range (0f, 1f);
+        //if (r < .25f)
+        //    AudioManager.Instance.Play ("Attack");
+        //else if (r < .5f)
+        //    AudioManager.Instance.Play ("Badge");
+        //else if (r < .75f)
+        //    AudioManager.Instance.Play ("Consumable");
+        //else if (r < 1f)
+        //    AudioManager.Instance.Play ("Click");
+
+
+
+        AudioManager.Instance.Play (feed.eventType);
+
 
 
         //// get random child

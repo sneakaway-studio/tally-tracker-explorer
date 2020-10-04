@@ -47,7 +47,7 @@ public class SoundManager : Singleton<SoundManager> {
     public void Play (AudioClip clip)
     {
         EffectsSource.clip = clip;
-        EffectsSource.Play ();
+        EffectsSource.PlayOneShot (clip);
     }
 
     // Play a single clip through the music source.
@@ -65,7 +65,7 @@ public class SoundManager : Singleton<SoundManager> {
 
         EffectsSource.pitch = randomPitch;
         EffectsSource.clip = clips [randomIndex];
-        EffectsSource.Play ();
+        EffectsSource.PlayOneShot (EffectsSource.clip);
     }
 
 }
