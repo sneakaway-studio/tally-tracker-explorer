@@ -49,7 +49,9 @@ public class DebugManager : Singleton<DebugManager> {
     {
         string symbol;
         symbolDictionary.TryGetValue (name, out symbol);
-        return symbol.ToString ();
+        if (symbol != null)
+            return symbol.ToString ();
+        return "";
     }
 
 

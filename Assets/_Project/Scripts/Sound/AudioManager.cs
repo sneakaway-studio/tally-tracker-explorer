@@ -29,6 +29,13 @@ public class AudioManager : MonoBehaviour {
             // default to main mixergroup if not set
             s.source.outputAudioMixerGroup = s.mixerGroup ? s.mixerGroup : mixerGroup;
         }
+
+
+    }
+
+    private void Start ()
+    {
+        Play ("music");
     }
 
     public void Play (string sound)
@@ -46,5 +53,7 @@ public class AudioManager : MonoBehaviour {
 
         s.source.PlayOneShot (s.source.clip);
     }
+
+    //AudioManager.Instance.Play("music");
 
 }

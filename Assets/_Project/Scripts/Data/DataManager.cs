@@ -47,6 +47,7 @@ public class DataManager : Singleton<DataManager> {
         rangePlusStreamOneDay,
         rangePlusStream12Hour,
         rangePlusStream6Hour,
+        rangePlusStream3Hour,
         rangePlusStream1Hour,
         rangePlusStreamFiveMinute
     }
@@ -57,6 +58,7 @@ public class DataManager : Singleton<DataManager> {
         "feed/range/plusStream/1/day",  // 1 day
         "feed/range/plusStream/12/hour", // 6 hour
         "feed/range/plusStream/6/hour", // 6 hour
+        "feed/range/plusStream/3/hour", // 1 hour
         "feed/range/plusStream/1/hour", // 1 hour
         "feed/range/plusStream/5/minute" // 5 minutes
     };
@@ -73,7 +75,7 @@ public class DataManager : Singleton<DataManager> {
     // the number of events
     public static int dataCount;
     // the current data as string
-    public static string current;
+    public static string currentEventStr;
     // as list
     public static IList<FeedData> feeds = new List<FeedData> ();
 
@@ -282,8 +284,8 @@ public class DataManager : Singleton<DataManager> {
 
                 // FOR DEBUGGING - MAY OR MAY NOT HAVE A GARBAGE COLLECTION ISSUE
 
-                //// reset current
-                //current = "";
+                //// reset currentEventStr
+                //currentEventStr = "";
 
                 //foreach (var feed in feeds) {
 
@@ -299,7 +301,7 @@ public class DataManager : Singleton<DataManager> {
                 //        ""
                 //        ;
 
-                //    current += line + "<br>";
+                //    currentEventStr += line + "<br>";
 
                 //    //Debug.Log(line);
                 //}

@@ -1588,7 +1588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chosenHost: 1
-  chosenEndpoint: 5
+  chosenEndpoint: 6
   path: 
 --- !u!114 &481131869
 MonoBehaviour:
@@ -1861,7 +1861,9 @@ MonoBehaviour:
   feedIndex: 0
   timeDiff: 0
   timeDiffScaled: 0
-  timeDiffScalar: 0.1
+  timeDiffScalar: 0.29
+  minTimeDiff: 1
+  maxTimeDiff: 10
   feedText: {fileID: 1617634874}
   scrollRect: {fileID: 890586782}
 --- !u!4 &586953496 stripped

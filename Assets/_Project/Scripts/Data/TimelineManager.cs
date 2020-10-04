@@ -25,6 +25,12 @@ public class TimelineManager : Singleton<TimelineManager> {
     public float timeDiffScalar = 0.01f;  // timeDiff * scalar = how much faster time is replayed 
 
 
+    // min and max allowed between events
+    public float minTimeDiff = 1;
+    public float maxTimeDiff = 10;
+
+
+
     // UI
 
     public TMP_Text feedText;
