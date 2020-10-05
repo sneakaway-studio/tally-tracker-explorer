@@ -1,7 +1,17 @@
 # tally-ncsu-viz
 
 
-To do
+
+## Notes
+
+- Unity 2020.1, URP
+- _Releases folder contains builds
+
+
+
+## To do
+
+
 - [x] Setup
   - [x] Create repo
   - [x] Create Unity project (2020.1.2f1)
