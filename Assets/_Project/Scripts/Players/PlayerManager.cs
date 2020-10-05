@@ -49,7 +49,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 
         // loop through the feed and add players
         foreach (var feed in DataManager.feeds) {
-            CreateNewPlayer (feed.username);
+            CreateNewPlayer (feed.username, feed.avatarPath);
         }
 
         // trigger data updated event
@@ -59,7 +59,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     /**
      *  Create a new player
      */
-    public void CreateNewPlayer (string username)
+    public void CreateNewPlayer (string username, string avatarPath)
     {
         // make sure the player doesn't already exist
         if (playerDict.ContainsKey (username)) return;
@@ -79,7 +79,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             // instantiate prefab @ spawn position
             GameObject obj = (GameObject)Instantiate (playerPrefab, spawnPosition, spawnRotation);
             // call Init() on Player
-            obj.GetComponent<Player> ().Init (username);
+            obj.GetComponent<Player> ().Init (username, avatarPath);
             // set name in Unity Editor
             obj.name = username;
             // parent under PlayerManger
@@ -165,7 +165,5 @@ public class PlayerManager : Singleton<PlayerManager> {
             0 //Random.Range (bounds.min.z, bounds.max.z)
         );
     }
-
-
 
 }

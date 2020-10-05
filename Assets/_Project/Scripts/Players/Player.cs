@@ -7,11 +7,13 @@ public class Player : MonoBehaviour
 
 
     public string username;
+    public string avatarPath;
 
 
-    public void Init(string username)
+    public void Init(string username, string avatarPath)
     {
         this.username = username;
+        this.avatarPath = avatarPath;
     }
 
 
