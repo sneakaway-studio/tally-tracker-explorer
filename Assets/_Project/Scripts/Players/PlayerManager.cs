@@ -74,6 +74,7 @@ public class PlayerManager : Singleton<PlayerManager> {
         // no random rotation
         spawnRotation.eulerAngles = new Vector3 (0f, 0f, 0f);
 
+        // if clear spawn position
         if (spawnPosition != Vector3.zero) {
             // instantiate prefab @ spawn position
             GameObject obj = (GameObject)Instantiate (playerPrefab, spawnPosition, spawnRotation);
@@ -83,19 +84,8 @@ public class PlayerManager : Singleton<PlayerManager> {
             obj.name = username;
             // parent under PlayerManger
             obj.transform.parent = gameObject.transform;
-
-
-
-
-
-            // add new animation here?
-
-
-
-
-            // add to dict
+            // finaly, add to dict
             playerDict.Add (username, obj);
-
         }
     }
 
