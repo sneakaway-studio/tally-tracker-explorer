@@ -11,7 +11,7 @@ public class TallyAnimController : MonoBehaviour {
     public Animator animator;
     public int currentAnimation = 0;
     public int counter;
-    float r = 0;
+    //float r = 0;
 
     public string animEvent;
 

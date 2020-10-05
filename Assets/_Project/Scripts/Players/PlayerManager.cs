@@ -23,6 +23,11 @@ public class PlayerManager : Singleton<PlayerManager> {
     public GameObject playerPrefab;
     public Dictionary<string, GameObject> playerDict;
 
+    // player currently showing an event
+    GameObject currentPlayer;
+    // player animation controller
+    TallyAnimController playerCharacterAnim;
+
     // temp sprites for assigning avatars
     public Sprite [] avatars;
 
@@ -32,6 +37,7 @@ public class PlayerManager : Singleton<PlayerManager> {
         //Instance = this;
         playerDict = new Dictionary<string, GameObject> ();
     }
+
 
     /**
      *  Remove all players from stage, reset dict
@@ -97,61 +103,33 @@ public class PlayerManager : Singleton<PlayerManager> {
 
     public void PlayEvent (FeedData feed)
     {
+        //Debug.Log (DebugManager.GetSymbol ("smilingFace") + " PlayerManager.PlayEvent() [1] feed = " + feed.username.ToString ());
 
-        //SoundManager.Instance.RandomSoundEffectIndex ();
-
-
-
-        //float r = Random.Range (0f, 1f);
-        //if (r < .25f)
-        //    AudioManager.Instance.Play ("Attack");
-        //else if (r < .5f)
-        //    AudioManager.Instance.Play ("Badge");
-        //else if (r < .75f)
-        //    AudioManager.Instance.Play ("Consumable");
-        //else if (r < 1f)
-        //    AudioManager.Instance.Play ("Click");
-
-
-
+        // play matching sound
         AudioManager.Instance.Play (feed.eventType);
 
+        // get the player from the dict
+        playerDict.TryGetValue (feed.username, out currentPlayer);
+        if (!currentPlayer) return;
 
-        Debug.Log (DebugManager.GetSymbol ("smilingFace") + " PlayerManager.PlayEvent() feed = " + feed.username.ToString ());
+
+        // MARKED FOR DELETION
+        //// get player obj
+        //GameObject playerCharacter;
+        //TallyAnimController playerCharacterAnim;
+        //// get the first child
+        //playerCharacter = currentPlayer.transform.GetChild (0).gameObject;
+        //Debug.Log (DebugManager.GetSymbol ("smilingFace") + " PlayerManager.PlayEvent() [2] - " + playerCharacter.name);
+        //// get the animation controller
+        //playerCharacterAnim = playerCharacter.GetComponent<TallyAnimController> ();
 
 
-        // get player obj
-        GameObject player;
-        GameObject playerCharacter;
-        TallyAnimController playerCharacterAnim;
-        playerDict.TryGetValue (feed.username, out player);
-        if (!player) return;
-
-        // get the first child
-        playerCharacter = player.transform.GetChild (0).gameObject;
-
-        Debug.Log (DebugManager.GetSymbol ("smilingFace") + " PlayerManager.PlayEvent() feed = " + playerCharacter.name);
 
         // get the animation controller
-        playerCharacterAnim = playerCharacter.GetComponent<TallyAnimController> ();
+        playerCharacterAnim = currentPlayer.GetComponentInChildren<TallyAnimController> ();
 
         // play the animation
         playerCharacterAnim.animEvent = feed.eventType;
-
-
-        //// get random child
-        //Transform [] children = gameObject.GetComponentsInChildren<Transform> ();
-        //GameObject randomObject = children [Random.Range (0, children.Length)].gameObject;
-
-        //// pick random anim
-        //int randomEventIndex = (int)Random.Range (1, 5);
-
-
-
-        ////GameObject PlayerCharacter = randomObject.transform.GetChild (0).gameObject;
-        //TallyAnimController anim = randomObject.GetComponent<TallyAnimController> ();
-        //Debug.Log (randomObject.name + " - " + randomEventIndex);
-        //anim.currentAnimation = randomEventIndex;
 
     }
 
