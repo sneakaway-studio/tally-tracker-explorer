@@ -100,10 +100,10 @@
 - [x] Movement
 	- [x] Create player (physics controlled) floating movement (Jellyfish?)
 - [ ] Actions (controlled from code) that visualize different event types on playback
-	- [ ] 👆 Stream - Click
-		- Player movement: velocity and Y position increases, random X direction
+	- [x] 👆 Stream - Click ✅
+		- Player movement: `Pop_Shake_md.anim`
 		- Sound: [Click.ogg](Assets/_Project/Sounds/Effects/Click.ogg)
-		- Extra effects: expanding concentric rings similar to "[radar](https://www.provideocoalition.com/wp-content/uploads/Radar.gif)" effect but with better colors
+		- Extra effects: expanding concentric rings similar to "[radar](https://www.provideocoalition.com/wp-content/uploads/Radar.gif)" effect but with better colors, maybe toned down color
 	- [ ] 👍 Stream - Like
 		- Player movement: Pulses bigger then glows, similar to "[light bulb](https://dribbble.com/shots/11115983-Creative-Block)" effect
 		- Sound: [Like.ogg](Assets/_Project/Sounds/Effects/Like.ogg)
@@ -132,14 +132,6 @@
 		- Player movement: "rumble" CSShake little shake
 		- Sound: [Battle-In-Progress.ogg](Assets/_Project/Sounds/Effects/Battle-In-Progress.ogg) **OR** Light battle music (on zoomed in)
 		- Extra effects: Rumble animation appears over player (dust clouds or too much?)
-	- [ ] 💥 Battle - Launch Attack
-		- Player movement: CSShake hard shake
-		- Sound: ?
-		- Extra effects: Attack animation GIF
-	- [ ] 💥 Battle - Receive Hit
-		- Player movement: CSShake hard shake
-		- Sound: ?
-		- Extra effects: Rumble glitch GIF, see "[this pigeon](https://dribbble.com/shots/10793942-Pigeon-animation-logo)"
 	- [ ] 💥 Battle - Win
 		- Player movement: does a celebratory flip
 		- Sound: [Battle-Win.ogg](Assets/_Project/Sounds/Effects/Battle-Win.ogg)
@@ -153,6 +145,10 @@
 		- Sound: [Leaderboard.ogg](Assets/_Project/Sounds/Effects/Leaderboard.ogg)
 		- Extra effects: Long tail inspiration: https://dribbble.com/shots/11776498-Dachshund-Skater
 
+
+Other ideas on movement:
+- CSShake hard shake
+- Rumble glitch GIF, see "[this pigeon](https://dribbble.com/shots/10793942-Pigeon-animation-logo)"
 
 
 
