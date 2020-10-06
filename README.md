@@ -39,20 +39,37 @@
 	- [x] Timeline class
 	- [x] Create playback
 	- [x] Coroutine to play event at specific time
-- [ ] Playback History and Buffer automation
-	- [ ] Create code that
-		- [ ] Automatically gets, or handles a lack of, new events
-		- [ ] Can consume data from the live API or local `JSON` files without changing anything
-	- [ ] Potentially do it like:
-		- [ ] Use two C# collections (either a List or Dictionary) named `buffer` and a `history` that can be sorted by a date string.
-		- [ ] As the events are visualized, the event object is moved from the `buffer` to the `history`.
-		- [ ] If no (or not enough) new events are found on the next API call, then a "rewind" can happen where a chunk of events from history are placed back in the buffer and the "playhead" can restart at the end of the buffer (until the next check).
+
+
+
+
+### Playback History and Buffer automation
+
+- [ ] Create code that
+	- [ ] Automatically gets, or handles a lack of, new events
+	- [ ] Can consume data from the live API or local `JSON` files without changing anything
+- [ ] Potentially do it like:
+	- [ ] Use two C# collections (either a List or Dictionary) named `buffer` and a `history` that can be sorted by a date string.
+	- [ ] As the events are visualized, the event object is moved from the `buffer` to the `history`.
+	- [ ] If no (or not enough) new events are found on the next API call, then a "rewind" can happen where a chunk of events from history are placed back in the buffer and the "playhead" can restart at the end of the buffer (until the next check).
+
+
+### Timeline visualization
+
+- [ ] Build timeline Visualization that shows `history` and `buffer` 👈
+	- [ ] "Playhead" that moves horizontally with the current event
+	- [ ] `History` and `buffer` are both visualized, with dots showing number in each collection, on either side
+	- [ ] Playhead moves right as new events happen, increasing the `history` and decreasing the size of the `buffer`
+	- [ ] As `buffer` is filled back up `history` is deleted and playhead resets to left.
+	- [ ] Use [Colors](https://github.com/sneakaway-studio/tally-api/blob/master/public/assets/css/sass/custom.scss) from the website palette in the interface
+
+
 
 
 
 ### Interaction
 
-- [ ] Add methods so viewer with a controller (keyboard, joystick, etc.) in the Visualization Studio **OR** someone using this with an iPad can:
+- [ ] Add methods so viewer with a controller (keyboard, joystick, etc.) in the Visualization Studio **OR** someone using this with an iPad can: 👈
 	- [ ] Use horiz/vert axis (controller) or pinch/zoom (tablet) to select different players
 	- [ ] Click / press button / touch to zoom camera into and follow player
 	- [ ] While zoomed-in, display additional data on that player (from feed, username, etc.)
@@ -65,12 +82,8 @@
 - [ ] Build Feed data testing / monitor UI
 	- [ ] Dropdown to switch between live / local
 	- [x] Button: playback restart
-- [ ] Build timeline Visualization that shows `history` and `buffer`
-	- [ ] "Playhead" that moves horizontally with the current event
-	- [ ] `History` and `buffer` are both visualized, with dots showing number in each collection, on either side
-	- [ ] Playhead moves right as new events happen, increasing the `history` and decreasing the size of the `buffer`
-	- [ ] As `buffer` is filled back up `history` is deleted and playhead resets to left.
-	- [ ] Use [Colors](https://github.com/sneakaway-studio/tally-api/blob/master/public/assets/css/sass/custom.scss) from the website palette in the interface
+
+
 
 
 ### Monsters
@@ -176,12 +189,12 @@
 - [ ] Add texture to background
 
 
-## To do - Delivery
+## Delivery
 
 - [ ] NCSU Visualization Studio
 	- [ ] Implement 8 camera system
 	- [ ] Figure out player control device
-- [ ] Mobile app
+- [ ] Mobile app?
 
 
 
