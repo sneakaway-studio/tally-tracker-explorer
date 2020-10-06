@@ -10,11 +10,11 @@ public class PlayerManager : Singleton<PlayerManager> {
     //listeners
     void OnEnable ()
     {
-        EventManager.StartListening ("DataUpdated", ResetPlayers);
+        EventManager.StartListening ("DataDownloaded", ResetPlayers);
     }
     void OnDisable ()
     {
-        EventManager.StopListening ("DataUpdated", ResetPlayers);
+        EventManager.StopListening ("DataDownloaded", ResetPlayers);
     }
 
 
@@ -25,6 +25,8 @@ public class PlayerManager : Singleton<PlayerManager> {
 
     // player currently showing an event
     GameObject currentPlayer;
+    // number of players
+    public int playerCount;
     // player animation controller
     TallyAnimController playerCharacterAnim;
 
@@ -52,8 +54,12 @@ public class PlayerManager : Singleton<PlayerManager> {
             CreateNewPlayer (feed.username);
         }
 
+        // update player count
+        playerCount = playerDict.Count;
+
+
         // trigger data updated event
-        //EventManager.TriggerEvent ("DataUpdated");
+        EventManager.TriggerEvent ("PlayersUpdated");
     }
 
     /**
