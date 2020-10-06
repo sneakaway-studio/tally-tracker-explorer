@@ -15,6 +15,25 @@ public class DebugManager : Singleton<DebugManager> {
 
     private void Awake ()
     {
+
+        AddSymbols ();
+
+
+        // turn off logging outside of the editor
+#if UNITY_EDITOR
+        Debug.unityLogger.logEnabled = true;
+#else
+        Debug.unityLogger.logEnabled = false;
+#endif
+
+
+    }
+
+    /**
+     *  Add symbols for debugging
+     */
+    void AddSymbols ()
+    {
         // add all the symbols - reference https://www.w3schools.com/charsets/ref_emoji.asp
         symbolDictionary = new Dictionary<string, string> (){
 

@@ -112,7 +112,7 @@ public class TimelineManager : Singleton<TimelineManager> {
             PlayerManager.Instance.PlayEvent (feed);
 
             // trigger data updated event
-            //EventManager.TriggerEvent ("DataUpdated");
+            EventManager.TriggerEvent ("TimelineUpdated");
 
 
             UpdateScroll ();

@@ -16,20 +16,26 @@ public class DataDisplay : MonoBehaviour {
     // listeners
     void OnEnable ()
     {
+        EventManager.StartListening ("DataDownloaded", UpdateDisplay);
         EventManager.StartListening ("DataUpdated", UpdateDisplay);
+        EventManager.StartListening ("PlayersUpdated", UpdateDisplay);
+        EventManager.StartListening ("TimelineUpdated", UpdateDisplay);
     }
     void OnDisable ()
     {
+        EventManager.StopListening ("DataDownloaded", UpdateDisplay);
         EventManager.StopListening ("DataUpdated", UpdateDisplay);
+        EventManager.StopListening ("PlayersUpdated", UpdateDisplay);
+        EventManager.StopListening ("TimelineUpdated", UpdateDisplay);
     }
 
 
     // update text
     public void UpdateDisplay ()
     {
-        eventCountText.text = DataManager.dataCount.ToString ();
-        playerCountText.text = PlayerManager.Instance.gameObject.transform.childCount.ToString ();
-        eventNumberText.text = TimelineManager.Instance.feedIndex.ToString ();
+        eventCountText.text = DataManager.dataCount.ToString () + " events";
+        playerCountText.text = PlayerManager.Instance.playerCount.ToString () + " players";
+        eventNumberText.text = TimelineManager.Instance.feedIndex.ToString () + " / " + DataManager.dataCount.ToString ();
     }
 
 

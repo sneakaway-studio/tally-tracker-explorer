@@ -11,6 +11,8 @@ public class DataManager : Singleton<DataManager> {
     protected DataManager () { }
     public static new DataManager Instance;
 
+
+
     // listeners 
     void OnEnable ()
     {
@@ -313,7 +315,7 @@ public class DataManager : Singleton<DataManager> {
                 dataCount = feeds.Count;
 
                 // trigger data updated event
-                EventManager.TriggerEvent ("DataUpdated");
+                EventManager.TriggerEvent ("DataDownloaded");
 
 
 
