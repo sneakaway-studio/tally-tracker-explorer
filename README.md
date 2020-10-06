@@ -48,10 +48,10 @@
 - [ ] Create code that
 	- [ ] Automatically gets, or handles a lack of, new events
 	- [ ] Can consume data from the live API or local `JSON` files without changing anything
-- [ ] Potentially do it like:
-	- [ ] Use two C# collections (either a List or Dictionary) named `buffer` and a `history` that can be sorted by a date string.
-	- [ ] As the events are visualized, the event object is moved from the `buffer` to the `history`.
-	- [ ] If no (or not enough) new events are found on the next API call, then a "rewind" can happen where a chunk of events from history are placed back in the buffer and the "playhead" can restart at the end of the buffer (until the next check).
+	- [ ] Potentially do it like:
+		- [ ] Use two C# collections (either a List or Dictionary) named `buffer` and a `history` that can be sorted by a date string.
+		- [ ] As the events are visualized, the event object is moved from the `buffer` to the `history`.
+		- [ ] If no (or not enough) new events are found on the next API call, then a "rewind" can happen where a chunk of events from history are placed back in the buffer and the "playhead" can restart at the end of the buffer (until the next check).
 
 
 ### Timeline visualization
@@ -100,58 +100,57 @@
 - [x] Movement
 	- [x] Create player (physics controlled) floating movement (Jellyfish?)
 - [ ] Actions (controlled from code) that visualize different event types on playback
-	- [ ] Stream - Click
+	- [ ] 👆 Stream - Click
 		- Player movement: velocity and Y position increases, random X direction
-		- Sound: ping
+		- Sound: [Click.ogg](Assets/_Project/Sounds/Effects/Click.ogg)
 		- Extra effects: expanding concentric rings similar to "[radar](https://www.provideocoalition.com/wp-content/uploads/Radar.gif)" effect but with better colors
-	- [ ] Stream - Like
+	- [ ] 👍 Stream - Like
 		- Player movement: Pulses bigger then glows, similar to "[light bulb](https://dribbble.com/shots/11115983-Creative-Block)" effect
-		- Sound: ?
+		- Sound: [Like.ogg](Assets/_Project/Sounds/Effects/Like.ogg)
 		- Extra effects: hearts particle system like trailer?
-	- [ ] Attack - awarded
+	- [ ] 🧨 Attack - awarded
 		- Player movement: ?
-		- Sound: ?
+		- Sound: [Attack.ogg](Assets/_Project/Sounds/Effects/Attack.ogg)
 		- Extra effects: ?
-	- [ ] Badge - awarded (changes depending level)
+	- [ ] 🏆 Badge - awarded (changes depending level)
 		- Player movement: accelerates right along the x-axis or concentric circles emanating from player’s icon
-		- Sound: ?
+		- Sound: [Badge.ogg](Assets/_Project/Sounds/Effects/Badge.ogg)
 		- Extra effects: badge animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miguel's icons in leaderboard's feed
-	- [ ] Consumable - found (changes depending type, stat)
+	- [ ] 🍪 Consumable - found (changes depending type, stat)
 		- Player movement: accelerates right along the x-axis or concentric circles emanating from player’s icon
-		- Sound: ?
+		- Sound: [Consumable.ogg](Assets/_Project/Sounds/Effects/Consumable.ogg)
 		- Extra effects: consumable animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miguel's icons in leaderboard's feed
-	- [ ] Disguise - awarded
+	- [ ] 😎 Disguise - awarded
 		- Player movement: Opacity Shake, CSShake
-		- Sound: Spell/magic sound like https://freesound.org/people/suntemple/sounds/241809/
+		- Sound: [Disguise.ogg](Assets/_Project/Sounds/Effects/Disguise.ogg) **OR** Spell/magic sound like https://freesound.org/people/suntemple/sounds/241809/
 		- Extra effects: Concentric triangles like player passes through a prism OR disquise animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miguel's icons in leaderboard's feed
-	- [ ] Tracker - blocked
+	- [ ] 🕷️ Tracker - blocked
 		- Player movement: ?
-		- Sound: ?
+		- Sound: [Tracker.ogg](Assets/_Project/Sounds/Effects/Tracker.ogg)
 		- Extra effects: tracker animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miguel's icons in leaderboard's feed
-	- [ ] Battle
-		- [ ] In-progress
-			- Player movement: "rumble" CSShake little shake
-			- Sound: Light battle music (on zoomed in)
-			- Extra effects: Rumble animation appears over player (dust clouds or too much?)
-		- [ ] Launch Attack
-			- Player movement: CSShake hard shake
-			- Sound: ?
-			- Extra effects: Attack animation GIF
-		- [ ] Receive Hit
-			- Player movement: CSShake hard shake
-			- Sound: ?
-			- Extra effects: Rumble glitch GIF, see "[this pigeon](https://dribbble.com/shots/10793942-Pigeon-animation-logo)"
-		- [ ] Win
-			- Player movement: does a celebratory flip
-			- Sound: ?
-			- Extra effects: Show win screen from game OR tracker animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miguel's icons in leaderboard's feed
-		- [ ] Lost
-			- Player movement: Y-value increases +50 px (down on screen)
-			- Sound: ?
-			- Extra effects: Goes grey or loses opacity
-	- [ ] Leaderboard position changes
-		- Player movement: Higher in leaderboard —> longer tail
+	- [ ] 💥 Battle - In-progress
+		- Player movement: "rumble" CSShake little shake
+		- Sound: [Battle-In-Progress.ogg](Assets/_Project/Sounds/Effects/Battle-In-Progress.ogg) **OR** Light battle music (on zoomed in)
+		- Extra effects: Rumble animation appears over player (dust clouds or too much?)
+	- [ ] 💥 Battle - Launch Attack
+		- Player movement: CSShake hard shake
 		- Sound: ?
+		- Extra effects: Attack animation GIF
+	- [ ] 💥 Battle - Receive Hit
+		- Player movement: CSShake hard shake
+		- Sound: ?
+		- Extra effects: Rumble glitch GIF, see "[this pigeon](https://dribbble.com/shots/10793942-Pigeon-animation-logo)"
+	- [ ] 💥 Battle - Win
+		- Player movement: does a celebratory flip
+		- Sound: [Battle-Win.ogg](Assets/_Project/Sounds/Effects/Battle-Win.ogg)
+		- Extra effects: Show win screen from game OR tracker animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miguel's icons in leaderboard's feed
+	- [ ] 💥 Battle - Lost
+		- Player movement: Y-value increases +50 px (down on screen)
+		- Sound: [Battle-Lost.ogg](Assets/_Project/Sounds/Effects/Battle-Lost.ogg)
+		- Extra effects: Goes grey or loses opacity
+	- [ ] 🔢 Leaderboard position changes
+		- Player movement: Higher in leaderboard —> longer tail
+		- Sound: [Leaderboard.ogg](Assets/_Project/Sounds/Effects/Leaderboard.ogg)
 		- Extra effects: Long tail inspiration: https://dribbble.com/shots/11776498-Dachshund-Skater
 
 
