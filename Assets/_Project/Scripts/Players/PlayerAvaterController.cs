@@ -15,10 +15,12 @@ public class PlayerAvaterController : MonoBehaviour {
     {
         spriteRenderer = GetComponent<SpriteRenderer> ();
 
-        // temp - choose random avatar
-        // spriteRenderer.sprite = PlayerManager.Instance.avatars [Random.Range (0, PlayerManager.Instance.avatars.Length - 1)];
-
-        StartCoroutine(DownloadImage("https://tallysavestheinternet.com/" + player.avatarPath));
+        // if the file is a .gif
+        if (player.avatarPath.Contains (".gif"))
+            // choose random avatar
+            spriteRenderer.sprite = PlayerManager.Instance.avatars [Random.Range (0, PlayerManager.Instance.avatars.Length - 1)];
+        else
+            StartCoroutine (DownloadImage ("https://tallysavestheinternet.com/" + player.avatarPath));
 
         // set random sorting order
         spriteRenderer.sortingOrder = Random.Range (100, 10000);
@@ -30,16 +32,15 @@ public class PlayerAvaterController : MonoBehaviour {
 
     }
 
-    IEnumerator DownloadImage(string MediaUrl)
+    IEnumerator DownloadImage (string MediaUrl)
     {
-        UnityWebRequest request = UnityWebRequestTexture.GetTexture(MediaUrl);
-        yield return request.SendWebRequest();
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture (MediaUrl);
+        yield return request.SendWebRequest ();
         if (request.isNetworkError || request.isHttpError)
-            Debug.Log(request.error + " " + MediaUrl);
-        else
-        {
+            Debug.Log (request.error + " " + MediaUrl);
+        else {
             Texture2D onlineAvatar = ((DownloadHandlerTexture)request.downloadHandler).texture;
-            spriteRenderer.sprite = Sprite.Create(onlineAvatar, new Rect(0, 0, onlineAvatar.width, onlineAvatar.height), new Vector2(0.5f, 0.5f));
+            spriteRenderer.sprite = Sprite.Create (onlineAvatar, new Rect (0, 0, onlineAvatar.width, onlineAvatar.height), new Vector2 (0.5f, 0.5f));
         }
     }
 
