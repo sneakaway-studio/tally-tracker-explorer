@@ -47,6 +47,9 @@ TagManager:
   - name: SnowBack
     uniqueID: 617896803
     locked: 0
+  - name: Foreground
+    uniqueID: 3344454959
+    locked: 0
   - name: Players
     uniqueID: 4156753623
     locked: 0
