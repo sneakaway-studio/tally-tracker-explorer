@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrailController : MonoBehaviour {
+public class Trail : MonoBehaviour {
 
     public GameObject avatar;
     public TrailRenderer trailRenderer;
     public int siblingCount;
     public int trailIndex;
+
+    // SIZE & POSITION
+
     public float trailWidth;
     float [] positionsByIndex = { -1f, -0.5f, 0, .5f, 1f };
     // Maximum position for overall trail edge
@@ -16,6 +19,12 @@ public class TrailController : MonoBehaviour {
     public float positionMin = -1.5f;
     // Extra amount added to width to hide background
     public float widthExtra = 0.01f;
+    // length scale
+    public float lengthScale = 0.9f;
+
+
+    // COLOR
+
     public string trailColor;
     Color color;
 
@@ -75,7 +84,7 @@ public class TrailController : MonoBehaviour {
         trailWidth = trailsRange + widthExtra;
 
         // how long trail lasts, a.k.a. its length
-        trailRenderer.time = siblingCount;
+        trailRenderer.time = siblingCount * lengthScale;
 
         // set offset based on index
         transform.localPosition = new Vector3 (0, positionsByIndex [trailIndex], 0);

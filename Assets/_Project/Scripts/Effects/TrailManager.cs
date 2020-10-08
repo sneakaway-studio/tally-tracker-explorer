@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrailsManager : MonoBehaviour {
+public class TrailManager : MonoBehaviour {
 
     public int minTrailCount = 3;
     public int maxTrailCount = 10;
@@ -75,7 +75,7 @@ public class TrailsManager : MonoBehaviour {
         yield return new WaitForSeconds (wait);
 
         foreach (string t in trailDict.Keys) {
-            trailDict [t].GetComponent<TrailController> ().Init ();
+            trailDict [t].GetComponent<Trail> ().Init ();
         }
 
     }
