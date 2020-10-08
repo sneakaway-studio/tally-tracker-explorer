@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    // META
 
     public string username;
     public string avatarPath;
+
+
+    // OBJECT REFERENCES
+
+    public GameObject playerCharacterObj;       // player character obj
+    public GameObject effectsObj;               // effect obj - for attaching animations
+    public AnimController animControllerScript; // animation controller script
 
 
     private void Awake ()
@@ -16,7 +24,7 @@ public class Player : MonoBehaviour {
 
     public void Init (string username, string avatarPath)
     {
-        Debug.Log ("Player.Init() username = " + username);
+        //Debug.Log ("Player.Init() username = " + username);
 
         this.username = username;
         this.avatarPath = avatarPath;

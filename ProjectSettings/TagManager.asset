@@ -59,6 +59,9 @@ TagManager:
   - name: SnowFront
     uniqueID: 2719805821
     locked: 0
+  - name: Effects
+    uniqueID: 3914373229
+    locked: 0
   - name: UI
     uniqueID: 785290751
     locked: 0

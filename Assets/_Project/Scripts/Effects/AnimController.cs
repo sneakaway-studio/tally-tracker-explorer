@@ -6,7 +6,7 @@ using UnityEngine;
  *	Play animations attached to this object's Animator
  */
 
-public class TallyAnimController : MonoBehaviour {
+public class AnimController : MonoBehaviour {
 
     public Animator animator;
     public int currentAnimation = 0;    // the animation to play
