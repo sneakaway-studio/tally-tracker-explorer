@@ -196,7 +196,16 @@ Other ideas on movement:
 
 ### Notes on the setup of this Unity project
 
-
-
 - [How to get Good Graphics in Unity](https://www.youtube.com/watch?v=owZneI02YOU&ab_channel=Brackeys) (8:13)
 - [REALTIME LIGHTING in Unity](https://www.youtube.com/watch?v=wwm98VdzD8s&ab_channel=Brackeys) (15:47)
+
+
+
+## Documentation / Instructions
+
+### Testing
+
+- You can change the type of data to see either all data (mainly streams, but also game data) or feed (only game objects, which is more diverse). Select DataManager and change “Chosen endpoint” to “Range plus stream 1 hour” or “Recent 20” (this is the more diverse game objects).
+
+
+
