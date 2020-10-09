@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chosenHost: 1
-  chosenEndpoint: 6
+  chosenEndpoint: 0
   path: 
 --- !u!114 &481131869
 MonoBehaviour:
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 489705913}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9784512
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2462,9 +2462,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldContainerCollider: {fileID: 215753798}
   playerPrefab: {fileID: 9008334923571228613, guid: ecec1fc7bdc6441a691ca908dfadc8b4, type: 3}
-  currentPlayerObj: {fileID: 0}
-  currentPlayerScript: {fileID: 0}
-  playerCount: 0
   avatars:
   - {fileID: 21300000, guid: 8d9c45a6d65954fa9af3d58238d60180, type: 3}
   - {fileID: 21300000, guid: 1e813c34370bf4de8a1fb132038443c4, type: 3}
@@ -2482,9 +2479,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1a0cc98517c1c41d5a819fdb063e4bcc, type: 3}
   - {fileID: 21300000, guid: 70f96b99f6876446bbb957877383d0b8, type: 3}
   - {fileID: 21300000, guid: e4572dc84b36f448c83e75a66e1fb2b1, type: 3}
+  currentPlayerObj: {fileID: 0}
+  currentPlayerScript: {fileID: 0}
+  playerCount: 0
   attackSpriteAnim: {fileID: 7167580533093022045, guid: 428693ccec54b425e90574f5bc568b9e, type: 3}
   battleSpriteAnimFront: {fileID: 7167580533093022045, guid: b3da786dd6edc4bcf82cc83ed7c0b4db, type: 3}
   battleSpriteAnimBack: {fileID: 7167580533093022045, guid: aa2c349942b0c4a87ad4915e702781fa, type: 3}
+  rippleAnim: {fileID: 6463355425608986283, guid: 4194b89b03d18e34caa1e4d834813938, type: 3}
+  triangleTrailsAnim: {fileID: 6463355425608986283, guid: 3ceb13dbe4461294790660b6d503ff13, type: 3}
 --- !u!1 &945187312
 GameObject:
   m_ObjectHideFlags: 0
@@ -4040,7 +4042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100.00002}
+  m_AnchoredPosition: {x: 0, y: -99.99954}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617634874
