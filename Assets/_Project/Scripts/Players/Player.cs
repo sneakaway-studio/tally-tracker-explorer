@@ -8,12 +8,14 @@ public class Player : MonoBehaviour {
 
     public string username;
     public string avatarPath;
+    public bool effectIsPlaying;
 
 
-    // OBJECT REFERENCES
+    // OBJECT & SCRIPT REFERENCES
 
-    public GameObject playerCharacterObj;       // player character obj
-    public GameObject effectsObj;               // effect obj - for attaching animations
+    public GameObject playerCharacter;          // player character obj
+    public GameObject playerObject;             // effect obj - for attaching animations
+    public GameObject effects;                  // effect obj - for attaching animations
     public AnimController animControllerScript; // animation controller script
 
 

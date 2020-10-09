@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,11 +18,21 @@ public class PlayerManager : Singleton<PlayerManager> {
         EventManager.StopListening ("DataDownloaded", ResetPlayers);
     }
 
+    [Space (10)]
+    [Header ("Object References")]
 
     // bounds, prefab, dict for instantiating players
     public Collider worldContainerCollider;
     public GameObject playerPrefab;
     public Dictionary<string, GameObject> playerDict;
+
+    // temp sprites for assigning avatars
+    public Sprite [] avatars;
+
+
+
+    [Space (10)]
+    [Header ("Current Player Event")]
 
     // player currently showing an event
     public GameObject currentPlayerObj;
@@ -30,13 +41,17 @@ public class PlayerManager : Singleton<PlayerManager> {
     // number of players
     public int playerCount;
 
-    // temp sprites for assigning avatars
-    public Sprite [] avatars;
+
+
+    [Space (10)]
+    [Header ("Animations")]
 
     // animations to play
     public GameObject attackSpriteAnim;
     public GameObject battleSpriteAnimFront;
     public GameObject battleSpriteAnimBack;
+    public GameObject rippleAnim;
+    public GameObject triangleTrailsAnim;
 
 
 
@@ -126,22 +141,49 @@ public class PlayerManager : Singleton<PlayerManager> {
 
 
         // EFFECTS
+        // AttachDetachAnimation prefab, randomPosition, scale, destroyDelay, playOnceAndDestroy
 
-        if (feed.eventType == "attack") {
-            AttachDetachAnimation (attackSpriteAnim, true, 2.3f, -1, true);
-        } else if (feed.eventType == "stream") {
-            AttachDetachAnimation (battleSpriteAnimFront, false, 2.3f, 2f, false);
-            AttachDetachAnimation (attackSpriteAnim, true, 2.3f, -1, true);
-            AttachDetachAnimation (battleSpriteAnimBack, false, 2.3f, 2.25f, false);
+
+        // BATTLES ARE MORE COMPLEXT
+        if (feed.eventType == "monster") {
+            StartCoroutine (PlayBattle (feed));
+        } else {
+
+
+            // ATTACK 
+            if (feed.eventType == "attack") {
+                AttachDetachAnimation (attackSpriteAnim, true, 2.3f, -1, true);
+            }
+            // BADGE 
+            else if (feed.eventType == "badge") {
+                // PLACEHOLDER
+                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f, false);
+            }
+            // CONSUMABLE 
+            else if (feed.eventType == "consumable") {
+                // PLACEHOLDER
+                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f, false);
+            }
+            // DISGUISE 
+            else if (feed.eventType == "disguise") {
+                // PLACEHOLDER
+                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f, false);
+            }
+            // STREAM (CLICK or LIKE)
+            else if (feed.eventType == "stream") {
+                AttachDetachAnimation (rippleAnim, false, 1f, 2.5f, false);
+            }
+
+            // play matching sound
+            AudioManager.Instance.Play (feed.eventType);
+
         }
 
-        // play the timeline animation
+        // test
+        //StartCoroutine (PlayBattle (feed));
+
+        // play the timeline animation (loops, swirls, pops, etc.)
         currentPlayerScript.animControllerScript.animEvent = feed.eventType;
-
-        // play matching sound
-        AudioManager.Instance.Play (feed.eventType);
-
-
     }
 
 
@@ -194,22 +236,37 @@ public class PlayerManager : Singleton<PlayerManager> {
     /**
      *  Attach and detach a game object with an animation
      */
+
+
+
     void AttachDetachAnimation (GameObject prefab, bool randomPosition, float scale, float destroyDelay = -1, bool playOnceAndDestroy = true)
     {
-        //Debug.Log ("AttachDetachAnimation() prefab.name = " + prefab.name);
+        Debug.Log ("AttachDetachAnimation() prefab.name = " + prefab.name);
 
         // ATTACH
 
         // instantiate prefab 
         GameObject obj = (GameObject)Instantiate (prefab);
+
+        obj.SetActive (false);
+
         // parent under the player obj
-        obj.transform.parent = currentPlayerScript.effectsObj.transform;
-        obj.transform.localPosition = Vector3.zero;
+        obj.transform.parent = currentPlayerScript.effects.transform;
+
         // set slightly random position 
         if (randomPosition)
             obj.transform.localPosition = new Vector3 (Random.Range (-2, 2), Random.Range (-2, 2), 0);
+        else
+            // default position
+            obj.transform.localPosition = Vector3.zero;
+
         // set scale
         obj.transform.localScale = Vector3.one * scale;
+
+        obj.SetActive (true);
+
+        // set state
+        currentPlayerScript.effectIsPlaying = true;
 
 
         // DETACH
@@ -218,9 +275,51 @@ public class PlayerManager : Singleton<PlayerManager> {
         if (playOnceAndDestroy)
             // let the animation component destroy the gameobject
             obj.GetComponent<FrameAnimation> ().playOnceAndDestroy = true;
-        else if (destroyDelay > 0)
+        else if (destroyDelay > 0) {
             // destroy after n seconds
             Destroy (obj, destroyDelay);
+            StartCoroutine (ResetEffectPlayingState (destroyDelay));
+        }
+
+
+    }
+
+
+    IEnumerator ResetEffectPlayingState (float wait)
+    {
+        // after a moment
+        yield return new WaitForSeconds (wait);
+        // reset state
+        currentPlayerScript.effectIsPlaying = false;
+    }
+
+
+
+    IEnumerator PlayBattle (FeedData feed)
+    {
+        Debug.Log ("PlayBattle() feed = " + feed.ToString ());
+
+
+        // start battle
+
+        AttachDetachAnimation (battleSpriteAnimFront, false, 2.3f, 2f, false);
+        AttachDetachAnimation (attackSpriteAnim, true, 2.3f, -1, true);
+        AttachDetachAnimation (battleSpriteAnimBack, false, 2.3f, 2.25f, false);
+
+        yield return new WaitForSeconds (1f);
+
+        // play another attack
+
+        AttachDetachAnimation (attackSpriteAnim, true, 2.3f, -1, true);
+
+        yield return new WaitForSeconds (1f);
+
+        // remove battle
+
+
+        //AttachDetachAnimation (battleSpriteAnimBack, false, 2.3f, 2.25f, false);
+
+        AudioManager.Instance.Play ("battle-won");
     }
 
 
