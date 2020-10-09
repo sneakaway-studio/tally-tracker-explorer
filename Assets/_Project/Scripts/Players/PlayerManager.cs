@@ -118,14 +118,14 @@ public class PlayerManager : Singleton<PlayerManager> {
 
 
     /**
-     *  Play an event for a player
+     *  Play a player event 
      */
     public void PlayEvent (FeedData feed)
     {
         //Debug.Log (DebugManager.GetSymbol ("smilingFace") + " PlayerManager.PlayEvent() [1] feed = " + feed.username.ToString ());
 
 
-        // GET PLAYER OBJ REFERENCE
+        // PLAYER OBJECT REFERENCES
 
         // get the player from the dict
         playerDict.TryGetValue (feed.username, out currentPlayerObj);
@@ -135,44 +135,38 @@ public class PlayerManager : Singleton<PlayerManager> {
         currentPlayerScript = currentPlayerObj.GetComponent<Player> ();
 
 
-        // MARKED FOR DELETION - ALL OBJECTS CAN NOW BE ACCESSED THROUGH currentPlayerScript
-        // get the animation controller - fairly fast since this is on next child
-        //currentPlayerScript.animControllerScript = currentPlayerObj.GetComponentInChildren<AnimController> ();
-
-
         // EFFECTS
-        // AttachDetachAnimation prefab, randomPosition, scale, destroyDelay, playOnceAndDestroy
 
-
-        // BATTLES ARE MORE COMPLEXT
+        // BATTLES ARE MORE COMPLEX
         if (feed.eventType == "monster") {
             StartCoroutine (PlayBattle (feed));
         } else {
 
 
+            // STREAM (CLICK or LIKE)
+            if (feed.eventType == "stream") {
+                AttachDetachAnimation (rippleAnim, false, 1f, 2.5f);
+            }
             // ATTACK 
-            if (feed.eventType == "attack") {
-                AttachDetachAnimation (attackSpriteAnim, true, 2.3f, -1, true);
+            else if (feed.eventType == "attack") {
+                AttachDetachAnimation (attackSpriteAnim, true, 2.3f, -1);
             }
             // BADGE 
             else if (feed.eventType == "badge") {
                 // PLACEHOLDER
-                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f, false);
+                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f);
             }
             // CONSUMABLE 
             else if (feed.eventType == "consumable") {
                 // PLACEHOLDER
-                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f, false);
+                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f);
             }
             // DISGUISE 
             else if (feed.eventType == "disguise") {
                 // PLACEHOLDER
-                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f, false);
+                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f);
             }
-            // STREAM (CLICK or LIKE)
-            else if (feed.eventType == "stream") {
-                AttachDetachAnimation (rippleAnim, false, 1f, 2.5f, false);
-            }
+
 
             // play matching sound
             AudioManager.Instance.Play (feed.eventType);
@@ -232,38 +226,55 @@ public class PlayerManager : Singleton<PlayerManager> {
 
 
 
-
-    /**
-     *  Attach and detach a game object with an animation
-     */
-
-
-
-    void AttachDetachAnimation (GameObject prefab, bool randomPosition, float scale, float destroyDelay = -1, bool playOnceAndDestroy = true)
+    /// <summary>Attach and detach a game object with an animation</summary>
+    /// <returns>null</returns>
+    /// <param name="prefab">Prefab to instantiate</param>
+    /// <param name="randomPosition">Whether or not position will be randomly offset</param>
+    /// <param name="scaleMultiplier">Scale multiplier</param>
+    /// <param name="destroyDelay">Destroy delay</param>
+    void AttachDetachAnimation (GameObject prefab, bool randomPosition, float scaleMultiplier, float destroyDelay = -1f)
     {
         Debug.Log ("AttachDetachAnimation() prefab.name = " + prefab.name);
 
-        // ATTACH
 
-        // instantiate prefab 
-        GameObject obj = (GameObject)Instantiate (prefab);
+        // ATTACH GAME OBJECT WITH ANIM
 
-        obj.SetActive (false);
+        //// default position
+        //Vector3 instPos = Vector3.zero;
 
+        //// or, set slightly random position 
+        //if (randomPosition) instPos = new Vector3 (Random.Range (-2, 2), Random.Range (-2, 2), 0);
+
+
+
+
+
+
+
+        // instantiate prefab, parent under the Player obj transform, position is local space
+        GameObject obj = (GameObject)Instantiate (prefab, currentPlayerScript.effects.transform, false);
+
+
+        // MARKED FOR DELETION
+
+        // disable so particle effect doesn't start yet
+        //obj.SetActive (false);
         // parent under the player obj
-        obj.transform.parent = currentPlayerScript.effects.transform;
+        //obj.transform.parent = currentPlayerScript.effects.transform;
+
+
 
         // set slightly random position 
-        if (randomPosition)
-            obj.transform.localPosition = new Vector3 (Random.Range (-2, 2), Random.Range (-2, 2), 0);
-        else
-            // default position
-            obj.transform.localPosition = Vector3.zero;
+        if (randomPosition) obj.transform.localPosition = new Vector3 (Random.Range (-2, 2), Random.Range (-2, 2), 0);
+        // or a default position
+        else obj.transform.localPosition = Vector3.zero;
+
 
         // set scale
-        obj.transform.localScale = Vector3.one * scale;
+        obj.transform.localScale = Vector3.one * scaleMultiplier;
 
-        obj.SetActive (true);
+        // now that position is set turn it back on
+        //obj.SetActive (true);
 
         // set state
         currentPlayerScript.effectIsPlaying = true;
@@ -271,11 +282,13 @@ public class PlayerManager : Singleton<PlayerManager> {
 
         // DETACH
 
-        // destroy after one play?
-        if (playOnceAndDestroy)
-            // let the animation component destroy the gameobject
+        // should the animation destroy itself?
+        if (destroyDelay < -0.1f) {
+            // let the animation component destroy the gameobject after the last frame
             obj.GetComponent<FrameAnimation> ().playOnceAndDestroy = true;
-        else if (destroyDelay > 0) {
+        }
+        // should this function destroy the gameobject with the animation after n seconds?
+        else if (destroyDelay > 0.1f) {
             // destroy after n seconds
             Destroy (obj, destroyDelay);
             StartCoroutine (ResetEffectPlayingState (destroyDelay));
@@ -302,22 +315,20 @@ public class PlayerManager : Singleton<PlayerManager> {
 
         // start battle
 
-        AttachDetachAnimation (battleSpriteAnimFront, false, 2.3f, 2f, false);
-        AttachDetachAnimation (attackSpriteAnim, true, 2.3f, -1, true);
-        AttachDetachAnimation (battleSpriteAnimBack, false, 2.3f, 2.25f, false);
+        AttachDetachAnimation (battleSpriteAnimFront, false, 2.5f, 2f);
+        AttachDetachAnimation (attackSpriteAnim, true, 2.5f, -1);
+        AttachDetachAnimation (battleSpriteAnimBack, false, 2.5f, 2.1f);
 
         yield return new WaitForSeconds (1f);
 
         // play another attack
 
-        AttachDetachAnimation (attackSpriteAnim, true, 2.3f, -1, true);
+        AttachDetachAnimation (attackSpriteAnim, true, 2.5f, -1);
 
         yield return new WaitForSeconds (1f);
 
         // remove battle
 
-
-        //AttachDetachAnimation (battleSpriteAnimBack, false, 2.3f, 2.25f, false);
 
         AudioManager.Instance.Play ("battle-won");
     }
