@@ -9,8 +9,8 @@ using UnityEngine;
 public class AnimController : MonoBehaviour {
 
     public Animator animator;
-    public int currentAnimation = 0;    // the animation to play
-    public string animEvent;            //
+    public int animIndex = 0;    // the animation to play
+    public string animName;            //
 
 
 
@@ -22,45 +22,31 @@ public class AnimController : MonoBehaviour {
 
     void Update ()
     {
+        // set animIndex based on animName - string set from TimelineManager - or key
 
-        // set currentAnimation based on animEvent - string set from TimelineManager or key
-
-        // Swirl_r_sm
-        if (animEvent == "attack" || Input.GetKey (KeyCode.Alpha1)) {
-            currentAnimation = 1;
-        }
-        // Swirl_r_md
-        else if (animEvent == "badge" || Input.GetKey (KeyCode.Alpha2)) {
-            currentAnimation = 2;
-        }
-        // Pop_Shake_md
-        else if (animEvent == "stream" || Input.GetKey (KeyCode.Alpha3)) {
-            currentAnimation = 3;
-        }
-        // Pop_Shake_sm
-        else if (animEvent == "leaderboard" || Input.GetKey (KeyCode.Alpha4)) {
-            currentAnimation = 4;
-        }
-        // Pop_sm
-        else if (animEvent == "consumable" || Input.GetKey (KeyCode.Alpha5)) {
-            currentAnimation = 5;
-        }
-        // Rotate_md
-        else if (animEvent == "tracker" || Input.GetKey (KeyCode.Alpha6)) {
-            currentAnimation = 6;
-        }
-        // Rotate_Pop_sm
-        else if (animEvent == "disguise" || Input.GetKey (KeyCode.Alpha7)) {
-            currentAnimation = 7;
+        if (animName == "Swirl_r_sm" || Input.GetKey (KeyCode.Alpha1)) {
+            animIndex = 1;
+        } else if (animName == "Swirl_r_md" || Input.GetKey (KeyCode.Alpha2)) {
+            animIndex = 2;
+        } else if (animName == "Pop_Shake_md" || Input.GetKey (KeyCode.Alpha3)) {
+            animIndex = 3;
+        } else if (animName == "Pop_Shake_sm" || Input.GetKey (KeyCode.Alpha4)) {
+            animIndex = 4;
+        } else if (animName == "Pop_sm" || Input.GetKey (KeyCode.Alpha5)) {
+            animIndex = 5;
+        } else if (animName == "Rotate_md" || Input.GetKey (KeyCode.Alpha6)) {
+            animIndex = 6;
+        } else if (animName == "Rotate_Pop_sm" || Input.GetKey (KeyCode.Alpha7)) {
+            animIndex = 7;
         }
 
         // play the animation
-        animator.SetInteger ("state", currentAnimation);
+        animator.SetInteger ("state", animIndex);
 
         // then reset vars
-        if (currentAnimation >= 0) {
-            animEvent = "";
-            currentAnimation = 0;
+        if (animIndex >= 0) {
+            animName = "";
+            animIndex = 0;
         }
     }
 
