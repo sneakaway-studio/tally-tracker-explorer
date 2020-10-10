@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour {
     public string username;
     public string avatarPath;
     public bool effectIsPlaying;
+    public DateTime lastActive;
 
 
     // OBJECT & SCRIPT REFERENCES
@@ -24,12 +26,13 @@ public class Player : MonoBehaviour {
         StartCoroutine (StartChecks ());
     }
 
-    public void Init (string username, string avatarPath)
+    public void Init (string _username, string _avatarPath)
     {
-        //Debug.Log ("Player.Init() username = " + username);
+        //Debug.Log ("Player.Init() _username = " + _username);
 
-        this.username = username;
-        this.avatarPath = avatarPath;
+        username = _username;
+        avatarPath = _avatarPath;
+        lastActive = DateTime.Now;
     }
 
     /**
