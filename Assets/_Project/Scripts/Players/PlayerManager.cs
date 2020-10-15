@@ -52,6 +52,12 @@ public class PlayerManager : Singleton<PlayerManager> {
     public GameObject battleSpriteAnimBack;
     public GameObject rippleAnim;
     public GameObject triangleTrailsAnim;
+    public GameObject attackAnim;
+    public GameObject badgeAnim;
+    public GameObject consumableAnim;
+    public GameObject disguiseAnim;
+    public GameObject trackerAnim;
+    public GameObject leaderboardAnim;
 
 
 
@@ -166,54 +172,49 @@ public class PlayerManager : Singleton<PlayerManager> {
 
             // STREAM (CLICK or LIKE)
             if (feed.eventType == "stream") {
-                AttachDetachAnimation (rippleAnim, false, 1f, 2.5f);
+                AttachDetachAnimation (rippleAnim, false, 1f, 3.5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Pop_Shake_md";
             }
 
             // ATTACK 
             else if (feed.eventType == "attack") {
-                AttachDetachAnimation (attackSpriteAnim, true, 2.3f, -1);
+                AttachDetachAnimation (attackAnim, false, 1f, 3f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Swirl_r_sm";
             }
 
             // BADGE 
             else if (feed.eventType == "badge") {
-                // PLACEHOLDER
-                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f);
+                AttachDetachAnimation (badgeAnim, false, 1f, 3.5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Swirl_r_md";
             }
 
             // CONSUMABLE 
             else if (feed.eventType == "consumable") {
-                // PLACEHOLDER
-                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f);
+                AttachDetachAnimation (consumableAnim, false, 1f, 2.5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Pop_sm";
             }
 
             // DISGUISE 
             else if (feed.eventType == "disguise") {
-                // PLACEHOLDER
-                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f);
+                AttachDetachAnimation (disguiseAnim, false, 1f, 4f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Rotate_Pop_sm";
             }
 
             // TRACKER 
             else if (feed.eventType == "tracker") {
-                // PLACEHOLDER
-                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f);
+                AttachDetachAnimation (trackerAnim, false, 1f, 5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Rotate_md";
             }
 
             // LEADERBOARD - not currently storing / sending with API
             else if (feed.eventType == "leaderboard") {
-                // PLACEHOLDER
-                AttachDetachAnimation (triangleTrailsAnim, false, 1f, 2.5f);
+                AttachDetachAnimation (leaderboardAnim, false, 1f, 3f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Pop_Shake_sm";
             }
