@@ -1,3 +1,155 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e39814b5bb065fd247636600df8142d86dfd6a7af897fd6d3e649fe1b2a6f25f
-size 5024
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4525203472324575544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4525203472324575547}
+  - component: {fileID: 4525203472324575546}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4525203472324575547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525203472324575544}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4525203472324575546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525203472324575544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8db77844ad1843c8be4e69ea41be4d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 24300002, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+  sounds:
+  - name: music
+    clip: {fileID: 8300000, guid: 30dcf73ca27564630ac634f4c1f7517c, type: 3}
+    volume: 0.48
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.1
+    loop: 1
+    mixerGroup: {fileID: -4200076129652781651, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
+  - name: attack
+    clip: {fileID: 8300000, guid: 2e5198b342e9f4bbd95ea5f09a324887, type: 3}
+    volume: 0.4
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.1
+    loop: 0
+    mixerGroup: {fileID: -5695708705811190125, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
+  - name: badge
+    clip: {fileID: 8300000, guid: f074eb9a572564ae0bc5deaea2e1dbc0, type: 3}
+    volume: 0.4
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.1
+    loop: 0
+    mixerGroup: {fileID: 6962130813605118434, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
+  - name: stream
+    clip: {fileID: 8300000, guid: e2486d7459bcd402f8d7349f9c2bf780, type: 3}
+    volume: 0.4
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 8187814880377375571, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
+  - name: consumable
+    clip: {fileID: 8300000, guid: eb43da0772f154f49a14170522c6c61e, type: 3}
+    volume: 0.4
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.1
+    loop: 0
+    mixerGroup: {fileID: 2529076650129297788, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
+  - name: disguise
+    clip: {fileID: 8300000, guid: 0c808093f57f1484fb0650dc3d91ecd1, type: 3}
+    volume: 0.4
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.1
+    loop: 0
+    mixerGroup: {fileID: -6989095628799083019, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
+  - name: battle-in-progress
+    clip: {fileID: 8300000, guid: da5798bc53a5f4134bccb32bd14d82c4, type: 3}
+    volume: 0.4
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.1
+    loop: 0
+    mixerGroup: {fileID: -2742647976355322318, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
+  - name: battle-won
+    clip: {fileID: 8300000, guid: bb29c49d9b1db4201a66582e996a1b69, type: 3}
+    volume: 0.4
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.1
+    loop: 0
+    mixerGroup: {fileID: -2545794918289666734, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
+  - name: battle-lost
+    clip: {fileID: 8300000, guid: 71d062631888c44869f45a885aa64573, type: 3}
+    volume: 0.4
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.1
+    loop: 0
+    mixerGroup: {fileID: -4014782903101200297, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
+  - name: leaderboard
+    clip: {fileID: 8300000, guid: 9f9313378e9174cf7b311195561016dc, type: 3}
+    volume: 0.4
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.1
+    loop: 0
+    mixerGroup: {fileID: -1381339214060930010, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
+  - name: tracker
+    clip: {fileID: 8300000, guid: 51bf739f41c924dd0b93cbe3de795380, type: 3}
+    volume: 0.4
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.1
+    loop: 0
+    mixerGroup: {fileID: -7598688487510627827, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
+  - name: monster
+    clip: {fileID: 8300000, guid: bb29c49d9b1db4201a66582e996a1b69, type: 3}
+    volume: 0.4
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.1
+    loop: 0
+    mixerGroup: {fileID: -2545794918289666734, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
+    source: {fileID: 0}
