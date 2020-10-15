@@ -110,14 +110,15 @@ public class DataManager : Singleton<DataManager> {
     public static IEnumerator GetRequest (string uri)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get (uri)) {
+
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest ();
 
             //string [] pages = uri.Split ('/');
             //int page = pages.Length - 1;
 
-            if (webRequest.isNetworkError) {
-                Debug.Log ("Error: " + webRequest.error);
+            if (webRequest.isNetworkError || webRequest.isHttpError) {
+                Debug.Log (DebugManager.GetSymbol ("asterisk") + " Error: " + webRequest.error);
             } else {
                 Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() " +
                         uri + "\n" + webRequest.downloadHandler.text);

@@ -1668,6 +1668,7 @@ GameObject:
   - component: {fileID: 481131867}
   - component: {fileID: 481131868}
   - component: {fileID: 481131869}
+  - component: {fileID: 481131870}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -1719,6 +1720,20 @@ MonoBehaviour:
   eventCountText: {fileID: 2073581459}
   playerCountText: {fileID: 140658078}
   eventNumberText: {fileID: 1315012613}
+--- !u!114 &481131870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481131866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521923641a68f46a1bd04e8613dd29c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gradientsByMidFile: {fileID: 4900000, guid: f4a676a691655430d953af115d057ffe, type: 3}
+  monstersByMidFile: {fileID: 4900000, guid: a7352c8bcc0a14491abce1b3efc6f528, type: 3}
 --- !u!1 &489705912
 GameObject:
   m_ObjectHideFlags: 0
@@ -2307,7 +2322,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 489705913}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.50000036
+  m_Size: 0.49999985
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4614,7 +4629,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -96.25155}
+  m_AnchoredPosition: {x: 0, y: -54.103317}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617634874

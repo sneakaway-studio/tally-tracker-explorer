@@ -67,6 +67,8 @@ public class PlayerManager : Singleton<PlayerManager> {
      */
     public void ResetPlayers ()
     {
+        // remove any players first?
+
         // clear the dictionary 
         playerDict.Clear ();
 
@@ -78,10 +80,25 @@ public class PlayerManager : Singleton<PlayerManager> {
         // update player count
         playerCount = playerDict.Count;
 
+        // trigger data updated event
+        EventManager.TriggerEvent ("PlayersUpdated");
+    }
+
+    /**
+    *  Remove players who haven't been active in a while
+    */
+    public void ClearNonActivePlayers ()
+    {
+
 
         // trigger data updated event
         EventManager.TriggerEvent ("PlayersUpdated");
     }
+
+
+
+
+
 
     /**
      *  Create a new player
