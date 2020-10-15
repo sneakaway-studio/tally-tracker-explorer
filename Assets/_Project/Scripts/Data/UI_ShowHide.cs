@@ -8,18 +8,25 @@ public class UI_ShowHide : MonoBehaviour {
     public GameObject controlParent;
     public GameObject feedParent;
     public GameObject timelineParent;
+    TallyInputSystem inputs;
 
+
+    private void Start()
+    {
+        inputs = new TallyInputSystem();
+        inputs.Enable();
+    }
 
 
     void Update ()
     {
-        if (Input.GetKeyDown ("escape") || Input.GetKeyDown (KeyCode.Q)) {
+        if (inputs.UI.Quit.triggered) {
             Application.Quit ();
-        } else if (Input.GetKeyDown (KeyCode.C)) {
+        } else if (inputs.UI.ControlToggle.triggered) {
             ShowHide (controlParent);
-        } else if (Input.GetKeyDown (KeyCode.F)) {
+        } else if (inputs.UI.FeedToggle.triggered) {
             ShowHide (feedParent);
-        } else if (Input.GetKeyDown (KeyCode.T)) {
+        } else if (inputs.UI.TimelineToggle.triggered) {
             ShowHide (timelineParent);
         }
 

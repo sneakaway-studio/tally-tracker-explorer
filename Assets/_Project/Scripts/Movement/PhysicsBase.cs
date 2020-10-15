@@ -10,9 +10,12 @@ public class PhysicsBase : MonoBehaviour {
     public double maxVelocity = 10f;    // maximum velocity
 
     public Vector3 playerInput;         // input from player arrow keys
+    TallyInputSystem inputs;
 
     void Awake ()
     {
+        inputs = new TallyInputSystem();
+        inputs.Enable();
         rb = GetComponent<Rigidbody2D> ();
     }
 
@@ -21,7 +24,8 @@ public class PhysicsBase : MonoBehaviour {
     {
         // create new Vector3 from input between -1 and 1 for x and z axis
         // update is the best place to capture Input data 
-        playerInput = new Vector3 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"), 0);
+        playerInput = new Vector3 (inputs.Player.HorizontalMovement.ReadValue<float>(), inputs.Player.VerticalMovement.ReadValue<float>(), 0);
+        
         // normalize input (make sure vector's total length never exceeds 1)
         playerInput = Vector3.ClampMagnitude (playerInput, 1f);
     }

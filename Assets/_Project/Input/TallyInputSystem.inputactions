@@ -1,0 +1,307 @@
+{
+    "name": "TallyInputSystem",
+    "maps": [
+        {
+            "name": "Debug",
+            "id": "74bbc17b-b05a-4e6d-937d-6df58efa5eca",
+            "actions": [
+                {
+                    "name": "MonsterAdd",
+                    "type": "Button",
+                    "id": "2e1c8681-c476-4d7d-9444-8b8c71d0c6f1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Anim1",
+                    "type": "Button",
+                    "id": "54c0976a-8bd1-4f8c-b843-1f15414067be",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Anim2",
+                    "type": "Button",
+                    "id": "1020b600-ff88-4efb-88b4-ee04164d300f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Anim3",
+                    "type": "Button",
+                    "id": "06a5984b-d932-42f7-9c90-136d6870f777",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Anim4",
+                    "type": "Button",
+                    "id": "65689a2e-ac10-4982-ac15-d3c1f32ab0ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Anim5",
+                    "type": "Button",
+                    "id": "587161f6-22ad-4a00-8285-f6335bb964d6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Anim6",
+                    "type": "Button",
+                    "id": "11913c34-79d6-4be6-a198-172086cc3004",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Anim7",
+                    "type": "Button",
+                    "id": "7c90a263-6be6-4162-8d2f-75efd73514bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4753bdcc-96a4-4280-bc71-a79cf710715e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MonsterAdd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "371bd49e-889f-4624-9c72-421db4e274ea",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Anim1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2dd5d10-b207-45c9-95de-30e8b314fbad",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Anim2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "070d6892-b87f-426e-9c1b-32e1b1c0afda",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Anim3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9cdad74e-dbc9-41ee-8acf-4fbb673cd827",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Anim4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05780e6c-0aa1-4cda-9cf0-3c71b2406843",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Anim5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40ac839d-1a0c-467d-a3e7-a41b637f77f8",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Anim6",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24a79d89-aec1-4396-a14c-049d698c43d5",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Anim7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "d195a62a-457b-460b-9179-b65765f7f1ec",
+            "actions": [
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "bea56675-7e11-4bf5-9b26-ea711d24529d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ControlToggle",
+                    "type": "Button",
+                    "id": "97c27117-c28d-4a7b-8968-f8bbf3005bf5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "FeedToggle",
+                    "type": "Button",
+                    "id": "dafd4647-22fc-4801-ac2b-553fb7fbd333",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TimelineToggle",
+                    "type": "Button",
+                    "id": "8d1b0fed-6d87-49f9-b7dd-4816b629fbf8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "003f3976-2c5a-497c-b2f4-949de26d595f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "766cb40e-8027-4b36-93ff-b0b0252da797",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d3a3b936-5deb-4ff1-abd3-b6243c407d78",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ControlToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c168153-1109-4ebb-92b3-f862a5156ba8",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FeedToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "409334c9-50f5-4f38-af66-6bf58ea44d42",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TimelineToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player",
+            "id": "b93fa1bf-987d-4c15-8011-9df621ee8965",
+            "actions": [
+                {
+                    "name": "HorizontalMovement",
+                    "type": "Value",
+                    "id": "bd53890f-9e3c-4b28-81cd-8baef2a0a6f2",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "VerticalMovement",
+                    "type": "Value",
+                    "id": "4322f29c-e188-4777-9f5a-2a775b7564b7",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "38da5860-c3a4-4452-b7a5-dc625a0c750c",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HorizontalMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0eedeee7-12a6-43cc-8b26-b98282ae10c7",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VerticalMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
