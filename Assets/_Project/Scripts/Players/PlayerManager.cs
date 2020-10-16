@@ -26,6 +26,9 @@ public class PlayerManager : Singleton<PlayerManager> {
     public GameObject playerPrefab;
     public Dictionary<string, GameObject> playerDict;
 
+    // Main scene camera
+    public Camera mainCamera;
+
     // temp sprites for assigning avatars
     public Sprite [] avatars;
 
@@ -59,12 +62,43 @@ public class PlayerManager : Singleton<PlayerManager> {
     public GameObject trackerAnim;
     public GameObject leaderboardAnim;
 
+    public GameObject selectionParticles;
+    private GameObject currentSelectionParticle;
 
+    private bool cameraZoomed = false;
+    private GameObject cameraTarget;
+    private List<string> players = new List<string>();
+    private int playersCurrentIndex = 0;
+    TallyInputSystem inputs;
 
     private void Awake ()
     {
         //Instance = this;
         playerDict = new Dictionary<string, GameObject> ();
+
+        inputs = new TallyInputSystem();
+        inputs.Player.SelectLeft.performed += ctx => CameraSelectLeft();
+        inputs.Player.SelectRight.performed += ctx => CameraSelectRight();
+        inputs.Player.ZoomIn.performed += ctx => cameraZoomed = true;
+        inputs.Player.ZoomOut.performed += ctx => cameraZoomed = false;
+        inputs.Player.Enable();
+    }
+
+    private void Update()
+    {
+        if (!cameraZoomed)
+        {
+            mainCamera.transform.position = new Vector3(0, 1, -10);
+            mainCamera.orthographicSize = 25;
+            if (currentSelectionParticle != null) currentSelectionParticle.SetActive(true);
+        }
+        else
+        {
+            mainCamera.transform.position = new Vector3(cameraTarget.transform.position.x, cameraTarget.transform.position.y, -10);
+            mainCamera.orthographicSize = 10;
+            if (currentSelectionParticle != null) currentSelectionParticle.SetActive(false);
+        }
+        
     }
 
 
@@ -136,6 +170,11 @@ public class PlayerManager : Singleton<PlayerManager> {
             obj.transform.parent = gameObject.transform;
             // finaly, add to dict
             playerDict.Add (username, obj);
+
+            players.Add(username);
+            playerDict.TryGetValue(players[playersCurrentIndex], out GameObject tempPlayer);
+            cameraTarget = tempPlayer.GetComponent<Player>().playerCharacter;
+            if (currentSelectionParticle == null) currentSelectionParticle = (GameObject)Instantiate(selectionParticles, tempPlayer.GetComponent<Player>().effects.transform, false);
         }
     }
 
@@ -321,6 +360,33 @@ public class PlayerManager : Singleton<PlayerManager> {
         }
 
 
+    }
+
+
+    void CameraSelectLeft()
+    {
+        if (playersCurrentIndex == 0)
+            playersCurrentIndex = players.Count - 1;
+        else
+            playersCurrentIndex--;
+
+        Destroy(currentSelectionParticle);
+        playerDict.TryGetValue(players[playersCurrentIndex], out GameObject tempPlayer);
+        currentSelectionParticle = (GameObject)Instantiate(selectionParticles, tempPlayer.GetComponent<Player>().effects.transform, false);
+        cameraTarget = tempPlayer.GetComponent<Player>().playerCharacter;
+    }
+
+    void CameraSelectRight()
+    {
+        if (playersCurrentIndex == players.Count - 1)
+            playersCurrentIndex = 0;
+        else
+            playersCurrentIndex++;
+
+        Destroy(currentSelectionParticle);
+        playerDict.TryGetValue(players[playersCurrentIndex], out GameObject tempPlayer);
+        currentSelectionParticle = (GameObject)Instantiate(selectionParticles, tempPlayer.GetComponent<Player>().effects.transform, false);
+        cameraTarget = tempPlayer.GetComponent<Player>().playerCharacter;
     }
 
 

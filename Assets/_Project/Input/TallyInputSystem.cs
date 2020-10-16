@@ -288,6 +288,38 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SelectLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""642eb606-4a97-4d33-b73b-45620453c96d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SelectRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""96718a59-70f6-4072-8c60-62f078ce7280"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ZoomIn"",
+                    ""type"": ""Button"",
+                    ""id"": ""674cc3c2-ee52-4af9-8da6-f4ffe4b0a7ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ZoomOut"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d09888a-b4c6-4dfa-8230-8ed03b2b451f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -310,6 +342,50 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""91bc4016-3b05-4f64-991d-f468db222b53"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8243ac7f-1b18-40ac-ad62-7c65a80554c0"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ffa8e996-cbf6-4c29-8047-ab5ea597c2fc"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomIn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53133cea-56df-4dfd-bead-1725b0d50780"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomOut"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -338,6 +414,10 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_HorizontalMovement = m_Player.FindAction("HorizontalMovement", throwIfNotFound: true);
         m_Player_VerticalMovement = m_Player.FindAction("VerticalMovement", throwIfNotFound: true);
+        m_Player_SelectLeft = m_Player.FindAction("SelectLeft", throwIfNotFound: true);
+        m_Player_SelectRight = m_Player.FindAction("SelectRight", throwIfNotFound: true);
+        m_Player_ZoomIn = m_Player.FindAction("ZoomIn", throwIfNotFound: true);
+        m_Player_ZoomOut = m_Player.FindAction("ZoomOut", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -535,12 +615,20 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_HorizontalMovement;
     private readonly InputAction m_Player_VerticalMovement;
+    private readonly InputAction m_Player_SelectLeft;
+    private readonly InputAction m_Player_SelectRight;
+    private readonly InputAction m_Player_ZoomIn;
+    private readonly InputAction m_Player_ZoomOut;
     public struct PlayerActions
     {
         private @TallyInputSystem m_Wrapper;
         public PlayerActions(@TallyInputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @HorizontalMovement => m_Wrapper.m_Player_HorizontalMovement;
         public InputAction @VerticalMovement => m_Wrapper.m_Player_VerticalMovement;
+        public InputAction @SelectLeft => m_Wrapper.m_Player_SelectLeft;
+        public InputAction @SelectRight => m_Wrapper.m_Player_SelectRight;
+        public InputAction @ZoomIn => m_Wrapper.m_Player_ZoomIn;
+        public InputAction @ZoomOut => m_Wrapper.m_Player_ZoomOut;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -556,6 +644,18 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
                 @VerticalMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnVerticalMovement;
                 @VerticalMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnVerticalMovement;
                 @VerticalMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnVerticalMovement;
+                @SelectLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectLeft;
+                @SelectLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectLeft;
+                @SelectLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectLeft;
+                @SelectRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectRight;
+                @SelectRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectRight;
+                @SelectRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectRight;
+                @ZoomIn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoomIn;
+                @ZoomIn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoomIn;
+                @ZoomIn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoomIn;
+                @ZoomOut.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoomOut;
+                @ZoomOut.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoomOut;
+                @ZoomOut.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoomOut;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -566,6 +666,18 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
                 @VerticalMovement.started += instance.OnVerticalMovement;
                 @VerticalMovement.performed += instance.OnVerticalMovement;
                 @VerticalMovement.canceled += instance.OnVerticalMovement;
+                @SelectLeft.started += instance.OnSelectLeft;
+                @SelectLeft.performed += instance.OnSelectLeft;
+                @SelectLeft.canceled += instance.OnSelectLeft;
+                @SelectRight.started += instance.OnSelectRight;
+                @SelectRight.performed += instance.OnSelectRight;
+                @SelectRight.canceled += instance.OnSelectRight;
+                @ZoomIn.started += instance.OnZoomIn;
+                @ZoomIn.performed += instance.OnZoomIn;
+                @ZoomIn.canceled += instance.OnZoomIn;
+                @ZoomOut.started += instance.OnZoomOut;
+                @ZoomOut.performed += instance.OnZoomOut;
+                @ZoomOut.canceled += instance.OnZoomOut;
             }
         }
     }
@@ -592,5 +704,9 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
     {
         void OnHorizontalMovement(InputAction.CallbackContext context);
         void OnVerticalMovement(InputAction.CallbackContext context);
+        void OnSelectLeft(InputAction.CallbackContext context);
+        void OnSelectRight(InputAction.CallbackContext context);
+        void OnZoomIn(InputAction.CallbackContext context);
+        void OnZoomOut(InputAction.CallbackContext context);
     }
 }
