@@ -22,7 +22,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     [Header ("Object References")]
 
     // bounds, prefab, dict for instantiating players
-    public Collider worldContainerCollider;
+    public BoxCollider worldContainerCollider;
     public GameObject playerPrefab;
     public Dictionary<string, GameObject> playerDict;
 
@@ -244,6 +244,7 @@ public class PlayerManager : Singleton<PlayerManager> {
         float startTime = Time.realtimeSinceStartup;
         bool positionClear = false;
         int layerMask = (1 << 8); // only Layer 8 "Players"
+        Debug.Log ("PlayerManager.GetClearSpawnPosition() bounds = " + worldContainerCollider.bounds.ToString ());
         while (positionClear == false) {
             // get random position
             Vector3 spawnPositionRaw = RandomPointInBounds (worldContainerCollider.bounds);

@@ -10,7 +10,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     public Vector3 direction;           // the direction vector
 
     // for wandering algorithm
-    Collider worldContainerCollider;    // collider to test new positions
+    public BoxCollider worldContainerCollider;    // collider to test new positions
     public Vector3 wayPoint;            // new position to head towards
     public float targetThreshold = 1f;  // test distance to target - must be > 0
     public float pointSelectRange = 8f; // range from which to select new wayPoint
@@ -24,7 +24,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     private void Start ()
     {
         // get container collider
-        worldContainerCollider = GameObject.Find ("WorldContainer").GetComponent<Collider> ();
+        worldContainerCollider = GameObject.Find ("WorldContainer").GetComponent<BoxCollider> ();
 
         // first wander point
         wayPoint = ReturnNewWanderPoint ();
@@ -118,7 +118,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     /**
      *  Return true if point is inside worldcontainer collider
      */
-    public static bool IsPointWithinCollider (Collider collider, Vector3 point)
+    public static bool IsPointWithinCollider (BoxCollider collider, Vector3 point)
     {
         return (collider.ClosestPoint (point) - point).sqrMagnitude < Mathf.Epsilon * Mathf.Epsilon;
     }
