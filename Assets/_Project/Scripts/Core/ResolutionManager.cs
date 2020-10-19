@@ -168,7 +168,7 @@ public class ResolutionManager : MonoBehaviour {
             "playerResolution (px): " + playerResolution.ToString () + "\n" +
             //"gameViewResolution (px): " + gameViewResolution.ToString () +
             "playerViewSize (units): " + playerViewSize.ToString () + "\n" +
-            "playerAspectRatio: " + playerAspectRatio.ToString () + "\n" +
+            "playerAspectRatio: " + playerAspectRatio.ToString () + ":1 \n" +
             "playerFullScreen: " + playerFullScreen.ToString () + "\n" +
             "deviceResolution: " + deviceResolution.ToString ();
         resolutionReportText.text = report;

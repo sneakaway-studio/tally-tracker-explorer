@@ -13,6 +13,8 @@ public class ResolutionUpdateScaleX : ResolutionUpdateBase {
     [SerializeField]
     Vector3 originalScale;
 
+    [Range (-10, 10)]
+    public float scalar = 1;
 
     protected override void Awake ()
     {
@@ -30,7 +32,11 @@ public class ResolutionUpdateScaleX : ResolutionUpdateBase {
         //base.UpdateResolution ();
 
         // update the horizontal width 
-        transform.localScale = new Vector3 (originalScale.x * resolutionManager.playerAspectRatio, originalScale.y, originalScale.z);
+        transform.localScale = new Vector3 (
+            originalScale.x * resolutionManager.playerAspectRatio * scalar,
+            originalScale.y,
+            originalScale.z
+        );
 
     }
 }
