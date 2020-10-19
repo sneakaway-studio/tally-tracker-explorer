@@ -13,7 +13,7 @@ public class ResolutionUpdateBase : MonoBehaviour {
 
     protected ResolutionManager resolutionManager;
 
-    // listeners call method in inherited classes
+    // these listeners call the method below, which are overridden with specific behaviors in inherited classes
     void OnEnable ()
     {
         EventManager.StartListening ("ResolutionUpdated", UpdateResolution);

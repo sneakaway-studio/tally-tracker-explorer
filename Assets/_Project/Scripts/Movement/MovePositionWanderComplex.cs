@@ -118,7 +118,7 @@ public class MovePositionWanderComplex : PhysicsBase {
 
             if (++safety > 10) {
                 Debug.Log ("MovePositionWanderComplex.ReturnNewWanderPoint() - Safety first!");
-                break;
+                return Vector3.zero;
             }
         }
         return target;

@@ -27,7 +27,7 @@ public class ResolutionUpdateScaleX : ResolutionUpdateBase {
 
     protected override void UpdateResolution ()
     {
-        base.UpdateResolution ();
+        //base.UpdateResolution ();
 
         // update the horizontal width 
         transform.localScale = new Vector3 (originalScale.x * resolutionManager.playerAspectRatio, originalScale.y, originalScale.z);

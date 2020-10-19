@@ -7,8 +7,8 @@ public class DebugManager : Singleton<DebugManager> {
     protected DebugManager () { }
     public static new DebugManager Instance;
 
-
-
+    [SerializeField]
+    public static bool status = true;
 
     // dictionary of symbols
     private static Dictionary<string, string> symbolDictionary;
