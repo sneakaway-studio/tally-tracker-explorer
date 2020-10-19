@@ -9,6 +9,9 @@ using UnityEngine;
 
 public class ResolutionUpdateMarkers : ResolutionUpdateBase {
 
+    [Tooltip ("Show markers")]
+    public bool showMarkers;
+
     [Tooltip ("Array (grid) of resolution anchors")]
     public Vector2 [] ninePointGrid;
 
@@ -16,10 +19,17 @@ public class ResolutionUpdateMarkers : ResolutionUpdateBase {
     public GameObject [] resolutionMarkers;
 
 
-
     protected override void Awake ()
     {
         base.Awake ();
+
+        // hide markers
+        if (!showMarkers) {
+            for (int i = 0; i < resolutionMarkers.Length; i++) {
+                resolutionMarkers [i].GetComponent<SpriteRenderer> ().enabled = false;
+            }
+            return;
+        }
 
         // set original scale (after everything is computer) based on startup aspect ratio
         UpdateResolution ();
@@ -29,36 +39,24 @@ public class ResolutionUpdateMarkers : ResolutionUpdateBase {
     {
         base.UpdateResolution ();
 
-        // update the horizontal width 
-        //transform.localScale = new Vector3 (originalScale.x * resolutionManager.playerAspectRatio, originalScale.y, originalScale.z);
+        if (!showMarkers) return;
 
-
-
-        // update object positions
-        UpdateGameObjectPositions ();
-
+        // update marker positions
+        UpdateMarkerPositions ();
     }
 
 
 
-
-
-
-
-
-
-    void UpdateGameObjectPositions ()
+    void UpdateMarkerPositions ()
     {
+        //Debug.Log ("UpdateGameObjectPositions()");
+
         // display the nine point grid
         ninePointGrid = GetPlanePointGrid (resolutionManager.worldContainerCollider.bounds);
         for (int i = 0; i < ninePointGrid.Length; i++) {
             resolutionMarkers [i].transform.localPosition = new Vector3 (ninePointGrid [i].x, ninePointGrid [i].y, resolutionMarkers [0].transform.localPosition.z);
         }
 
-
-
-
-        Debug.Log ("UpdateGameObjectPositions()");
     }
 
 
@@ -123,15 +121,14 @@ public class ResolutionUpdateMarkers : ResolutionUpdateBase {
     }
 
 
-    //public void UpdateBoundsDisplay ()
-    //{
-    //    Bounds bounds = worldContainer.bounds;
-    //    Debug.DrawLine (new Vector3 (bounds.min.x, bounds.min.y, bounds.min.z), new Vector3 (bounds.max.x, bounds.min.y, bounds.min.z), Color.red);
-    //    Debug.DrawLine (new Vector3 (bounds.max.x, bounds.min.y, bounds.min.z), new Vector3 (bounds.max.x, bounds.max.y, bounds.min.z), Color.red);
-    //    Debug.DrawLine (new Vector3 (bounds.max.x, bounds.max.y, bounds.min.z), new Vector3 (bounds.min.x, bounds.max.y, bounds.min.z), Color.red);
-    //    Debug.DrawLine (new Vector3 (bounds.min.x, bounds.max.y, bounds.min.z), new Vector3 (bounds.min.x, bounds.min.y, bounds.min.z), Color.red);
-    //    Debug.DrawLine (bounds.min, bounds.max, Color.red);
-    //}
+    void UpdateBoundsDisplay (Bounds b)
+    {
+        Debug.DrawLine (new Vector3 (b.min.x, b.min.y, b.min.z), new Vector3 (b.max.x, b.min.y, b.min.z), Color.red);
+        Debug.DrawLine (new Vector3 (b.max.x, b.min.y, b.min.z), new Vector3 (b.max.x, b.max.y, b.min.z), Color.red);
+        Debug.DrawLine (new Vector3 (b.max.x, b.max.y, b.min.z), new Vector3 (b.min.x, b.max.y, b.min.z), Color.red);
+        Debug.DrawLine (new Vector3 (b.min.x, b.max.y, b.min.z), new Vector3 (b.min.x, b.min.y, b.min.z), Color.red);
+        Debug.DrawLine (b.min, b.max, Color.red);
+    }
 
 
 
