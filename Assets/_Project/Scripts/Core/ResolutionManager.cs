@@ -124,11 +124,11 @@ public class ResolutionManager : MonoBehaviour {
 
 
         // if application is playing 
-        if (Application.IsPlaying (gameObject)) {
+        //if (Application.IsPlaying (gameObject)) {
 
-            // trigger data updated event
-            EventManager.TriggerEvent ("ResolutionUpdated");
-        }
+        // trigger data updated event
+        EventManager.TriggerEvent ("ResolutionUpdated");
+        //}
     }
 
 

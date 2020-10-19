@@ -7,6 +7,7 @@ using UnityEngine;
  *  Update components based on parameters from the ResolutionManager
  */
 
+[ExecuteAlways]
 public class ResolutionUpdateMarkers : ResolutionUpdateBase {
 
     [Tooltip ("Show markers")]
@@ -22,8 +23,6 @@ public class ResolutionUpdateMarkers : ResolutionUpdateBase {
     protected override void Awake ()
     {
         base.Awake ();
-
-
 
         // set original scale (after everything is computer) based on startup aspect ratio
         UpdateResolution ();
@@ -43,11 +42,15 @@ public class ResolutionUpdateMarkers : ResolutionUpdateBase {
     {
         //Debug.Log ("UpdateMarkerPositions()");
 
-        // hide markers
-        if (showMarkers != DebugManager.status) {
-            showMarkers = DebugManager.status;
-            for (int i = 0; i < resolutionMarkers.Length; i++) {
-                resolutionMarkers [i].GetComponent<SpriteRenderer> ().enabled = showMarkers;
+
+        // if application is playing 
+        if (Application.IsPlaying (gameObject)) {
+            // show // hide markers
+            if (showMarkers != DebugManager.status) {
+                showMarkers = DebugManager.status;
+                for (int i = 0; i < resolutionMarkers.Length; i++) {
+                    resolutionMarkers [i].GetComponent<SpriteRenderer> ().enabled = showMarkers;
+                }
             }
         }
 
