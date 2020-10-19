@@ -72,7 +72,7 @@ public class EventManager : MonoBehaviour {
 
     public static void TriggerEvent (string eventName)
     {
-        Debug.Log (DebugManager.GetSymbol ("phone") + " EventManager.TriggerEvent() -> eventName = " + eventName);
+        Debug.Log (DebugManager.GetSymbol ("blackstar") + " EventManager.TriggerEvent() -> eventName = " + eventName);
 
         UnityEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue (eventName, out thisEvent)) {

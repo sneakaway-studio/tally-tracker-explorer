@@ -37,21 +37,27 @@ public class DebugManager : Singleton<DebugManager> {
         // add all the symbols - reference https://www.w3schools.com/charsets/ref_emoji.asp
         symbolDictionary = new Dictionary<string, string> (){
 
-            {"arrowRight", "\u2192"},
-            {"arrowRefresh", "\u21BB"},
+            {"asterism", "\u2042"}, // ⁂
+
+            {"arrowE", "\u2192"}, // →
+            {"arrowNE", "\u2197"}, // ↗
+            {"arrowRefresh", "\u21BB"}, // ↻
 
             {"circle", "\u25CF"},
             {"square", "\u25FC"},
             {"triangleUp", "\u25B2"},
             {"triangleRight", "\u25BA"},
 
+            {"cloud", "\u2601"}, // ☁
+            {"blackstar", "\u2605"}, // ★
 
-            {"sound", "\u266B"},
+            {"sound", "\u266B"}, // ♫
             {"heart", "\u2665"},
             {"diamond", "\u2666"},
 
-            {"phone", "\u260E"},
-            {"flag", "\u2691"},
+            {"phone", "\u260E"}, // ☎
+            {"flag", "\u2691"}, // ⚑
+            {"gear", "\u2699"}, // ⚙
             {"smilingFace", "\u263B"},
 
             {"star", "\u272D"},

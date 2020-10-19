@@ -244,7 +244,7 @@ public class PlayerManager : Singleton<PlayerManager> {
         float startTime = Time.realtimeSinceStartup;
         bool positionClear = false;
         int layerMask = (1 << 8); // only Layer 8 "Players"
-        Debug.Log ("PlayerManager.GetClearSpawnPosition() bounds = " + worldContainerCollider.bounds.ToString ());
+        //Debug.Log ("PlayerManager.GetClearSpawnPosition() bounds = " + worldContainerCollider.bounds.ToString ());
         while (positionClear == false) {
             // get random position
             Vector3 spawnPositionRaw = RandomPointInBounds (worldContainerCollider.bounds);

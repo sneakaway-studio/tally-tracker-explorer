@@ -8,6 +8,17 @@
 
 
 
+### NCSU Library screens
+
+space | resolution | aspect ratio
+--- | --- | ---
+Immersion Theater | 6816 x 2240 | 3.04:1
+Game Lab | 4800 x 1080 | 4.44:1
+Visualization Studio | 27053 x 2160 (estimate) | 12.52:1
+
+
+
+
 ## To do items
 
 
@@ -206,6 +217,3 @@ Other ideas on movement:
 ### Testing
 
 - You can change the type of data to see either all data (mainly streams, but also game data) or feed (only game objects, which is more diverse). Select DataManager and change “Chosen endpoint” to “Range plus stream 1 hour” or “Recent 20” (this is the more diverse game objects).
-
-
-
