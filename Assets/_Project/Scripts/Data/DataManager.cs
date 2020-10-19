@@ -121,7 +121,8 @@ public class DataManager : Singleton<DataManager> {
                 Debug.Log (DebugManager.GetSymbol ("asterisk") + " Error: " + webRequest.error);
             } else {
                 Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() " +
-                        uri + "\n" + webRequest.downloadHandler.text);
+                        //uri + "\n" + webRequest.downloadHandler.text +
+                        "");
 
                 // parse JSON array 
                 JArray a = JArray.Parse (webRequest.downloadHandler.text);

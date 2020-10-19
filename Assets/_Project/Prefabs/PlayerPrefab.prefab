@@ -570,7 +570,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   worldContainerCollider: {fileID: 0}
   wayPoint: {x: 0, y: 0, z: 0}
-  targetThreshold: 1
+  targetThreshold: 1.25
   pointSelectRange: 30
   distanceToWaypoint: 0
   rotateTimeElapsed: 0

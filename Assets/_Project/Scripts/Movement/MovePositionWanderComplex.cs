@@ -98,7 +98,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     Vector3 ReturnNewWanderPoint ()
     {
         bool pointWithin = false;       // is the point within the collider?
-        Vector3 target = Vector3.zero;  // the new point
+        Vector3 target = Vector3.zero;  // the new point, which defaults to center
         int safety = 0;
 
         // update the selection range depending on the size of the resolution
