@@ -10,8 +10,7 @@ using TMPro;
  *  Manage game "resolution" - runs in play mode AND editor
  */
 
-
-//[ExecuteAlways]
+[ExecuteAlways]
 public class ResolutionManager : MonoBehaviour {
 
 
@@ -32,9 +31,6 @@ public class ResolutionManager : MonoBehaviour {
 
 
 
-
-
-
     [Space (10)]
     [Header ("UNITY PLAYER")]
     // states of the Unity 'player' or 'game view' window
@@ -44,9 +40,9 @@ public class ResolutionManager : MonoBehaviour {
     // - unfortunately named using "Screen" https://docs.unity3d.com/ScriptReference/Screen-height.html
     public Vector2 playerResolution;
 
-    [Tooltip ("Resolution of the game view")]
-    // - set in Unity, stored in Application Support (Mac) (may be same as above)
-    public Vector2 gameViewResolution;
+    //[Tooltip ("Resolution of the game view")]
+    //// - set in Unity, stored in Application Support (Mac) (seems to always be same as above)
+    //public Vector2 gameViewResolution;
 
     [Tooltip ("The size of the player view (we will set) in unity units")]
     // depends on camera size
@@ -58,7 +54,6 @@ public class ResolutionManager : MonoBehaviour {
 
     [Tooltip ("Whether or not player is in fullscreen mode")]
     public bool playerFullScreen;
-
 
 
 
@@ -80,122 +75,63 @@ public class ResolutionManager : MonoBehaviour {
 
 
 
-    // OBJECTS TO UPDATE WHEN ABOVE PARAMETERS CHANGE
+    // OBJECTS - UPDATE IF PARAMETERS CHANGE
 
     [Space (10)]
-    [Header ("OBJECTS REFERENCES")]
-
-
+    [Header ("OBJECT REFERENCES")]
 
     [Tooltip ("Collider that defines the volume of the visible game world")]
     public BoxCollider worldContainerCollider;
-
     public TMP_Text resolutionReportText;
 
 
 
 
 
-    //[SerializeField]
-    //private int framesSinceSizeUpdated = 0;
-
-    //bool updateWorld = true;
-
-
     private void Awake ()
     {
-
         // for some reason using the collider on this object caused the editor to crash every time
         worldContainerCollider = GetComponent<BoxCollider> ();
-        // this is the other one
-        //worldContainerCollider = GameObject.Find ("WorldContainer").GetComponent<BoxCollider> ();
 
-        UpdateResolutionParams ();
+        StartCoroutine (SendResolutionUpdatedEvent ());
     }
+
 
     private void Update ()
     {
+
+        // and if player resolution has changed
+        if (playerResolution.x != Screen.width || playerResolution.y != Screen.height) {
+            //Debug.Log ("ResolutionManager.Update() - resolution has changed to " + playerResolution.ToString ());
+
+            StartCoroutine (SendResolutionUpdatedEvent ());
+        }
+    }
+
+    IEnumerator SendResolutionUpdatedEvent ()
+    {
+        Debug.Log ("ResolutionManager.SendResolutionUpdatedEvent() - resolution has changed to " + playerResolution.ToString ());
+
+        // update the parameters
+        UpdateResolutionParams ();
+
+        // update collider
+        UpdateColliderSize ();
+
+        UpdateReport ();
+
+        yield return new WaitForSeconds (.2f);
+
+
         // if application is playing 
         if (Application.IsPlaying (gameObject)) {
-            // and if player resolution has changed
-            if (playerResolution.x != Screen.width || playerResolution.y != Screen.height) {
-                // update the parameters
-                UpdateResolutionParams ();
-                // update collider
-                UpdateColliderSize ();
 
-
-                // trigger data updated event
-                EventManager.TriggerEvent ("ResolutionUpdated");
-
-            }
+            // trigger data updated event
+            EventManager.TriggerEvent ("ResolutionUpdated");
         }
-
-
-
-
-        //if (Application.IsPlaying (gameObject)) {
-
-
-
-        //    // if player resolution has changed
-        //    if (playerResolution.x != Screen.width || playerResolution.y != Screen.height) {
-        //        // update the parameters
-        //        UpdateResolutionParams ();
-        //        //// reset counter
-        //        //framesSinceSizeUpdated++;
-
-        //        updateWorld = true;
-        //    }
-
-
-
-
-
-        //    //if (framesSinceSizeUpdated > 0) framesSinceSizeUpdated++;
-
-        //    //// wait a second after a resolution update
-        //    //if (framesSinceSizeUpdated > 10) {
-        //    //    updateWorld = true;
-        //    //}
-
-
-        //}
-
-
-
-
-
-
-        //if (updateWorld) {
-        //    UpdateReport ();
-        //    UpdateColliderSize ();
-
-
-        //    // reset counter
-        //    framesSinceSizeUpdated = 0;
-        //}
-
-
-        //// reset
-        //updateWorld = false;
     }
 
 
-    void UpdateColliderSize ()
-    {
-        // make sure there isn't a negative number
-        if (playerViewSize.x > 0 && playerViewSize.y > 0) {
-            worldContainerCollider.size = new Vector3 (playerViewSize.x, playerViewSize.y, worldContainerCollider.size.z);
-
-
-            // debugging
-            Debug.Log ("ResolutionManager.UpdateColliderSize() playerViewSize = " + playerViewSize.ToString ());
-            Debug.Log ("ResolutionManager.UpdateColliderSize() worldContainerCollider.size = " + worldContainerCollider.size.ToString ());
-            Debug.Log ("ResolutionManager.UpdateColliderSize() worldContainerCollider.bounds = " + worldContainerCollider.bounds.ToString ());
-        }
-
-    }
 
     /**
      *  Update all the resolution parameters
@@ -204,13 +140,14 @@ public class ResolutionManager : MonoBehaviour {
     {
         //Debug.Log ("ResolutionManager.UpdateResolutionParams()");
 
+
         // CAMERA / CANVAS
         cameraSize = Camera.main.orthographicSize;
         canvasResolution = new Vector2 (canvasRect.sizeDelta.x, canvasRect.sizeDelta.y);
 
         // PLAYER PARAMS
         playerResolution = new Vector2 (Screen.width, Screen.height);
-        gameViewResolution = GetMainGameViewSize ();
+        //gameViewResolution = GetMainGameViewSize ();
         playerViewSize = GetPlayerViewSize ();
         playerAspectRatio = playerResolution.x / playerResolution.y;
         playerFullScreen = Screen.fullScreen;
@@ -221,10 +158,44 @@ public class ResolutionManager : MonoBehaviour {
     }
 
     /**
+     *  Update the text in the UI
+     */
+    void UpdateReport ()
+    {
+        // update text in control panel
+        string report =
+            //"canvasResolution (px): " + canvasResolution.ToString () + "\n" + 
+            "playerResolution (px): " + playerResolution.ToString () + "\n" +
+            //"gameViewResolution (px): " + gameViewResolution.ToString () +
+            "playerViewSize (units): " + playerViewSize.ToString () + "\n" +
+            "playerAspectRatio: " + playerAspectRatio.ToString () + "\n" +
+            "playerFullScreen: " + playerFullScreen.ToString () + "\n" +
+            "deviceResolution: " + deviceResolution.ToString ();
+        resolutionReportText.text = report;
+    }
+
+    void UpdateColliderSize ()
+    {
+        //Debug.Log ("ResolutionManager.UpdateColliderSize() [1]");
+
+        if (playerViewSize.x > 0 && playerViewSize.y > 0) {
+            // set new size, making sure there isn't a negative number
+            worldContainerCollider.size = new Vector3 (playerViewSize.x, playerViewSize.y, worldContainerCollider.size.z);
+
+            //Debug.Log ("ResolutionManager.UpdateColliderSize() [2]");
+        }
+        //Debug.Log ("ResolutionManager.UpdateColliderSize() playerViewSize = " + playerViewSize.ToString ());
+        //Debug.Log ("ResolutionManager.UpdateColliderSize() worldContainerCollider.size = " + worldContainerCollider.size.ToString ());
+        //Debug.Log ("ResolutionManager.UpdateColliderSize() worldContainerCollider.bounds = " + worldContainerCollider.bounds.ToString ());
+    }
+
+    /**
      *  Return the player viewing volume size (in Unity units)
      */
     public static Vector3 GetPlayerViewSize ()
     {
+        //Debug.Log ("ResolutionManager.GetPlayerViewSize()");
+
         // The orthographicSize is half of the vertical viewing volume size
         float height = Camera.main.orthographicSize * 2;
         // The horizontal size of the viewing volume depends on the aspect ratio so...
@@ -237,7 +208,7 @@ public class ResolutionManager : MonoBehaviour {
     /**
      *  Return the editor Game View window size - works in editor
      */
-    public static Vector2 GetMainGameViewSize ()
+    static Vector2 GetMainGameViewSize ()
     {
         System.Type T = System.Type.GetType ("UnityEditor.GameView,UnityEditor");
         System.Reflection.MethodInfo GetSizeOfMainGameView = T.GetMethod ("GetSizeOfMainGameView", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
@@ -246,22 +217,8 @@ public class ResolutionManager : MonoBehaviour {
     }
 
 
-    /**
-     *  Update the text in the UI
-     */
-    void UpdateReport ()
-    {
-        // update text in control panel
-        string report =
-            "playerResolution: " + playerResolution.ToString () +
-            "\n" + "gameViewResolution: " + gameViewResolution.ToString () +
-            "\n" + "playerViewSize: " + playerViewSize.ToString () +
-            "\n" + "playerAspectRatio: " + playerAspectRatio.ToString () +
-            "\n" + "playerFullScreen: " + playerFullScreen.ToString () +
-            "\n" + "deviceResolution: " + deviceResolution.ToString () +
-            "\n" + "deviceResolution: " + deviceResolution.ToString ();
-        resolutionReportText.text = report;
-    }
+
+
 
 
 

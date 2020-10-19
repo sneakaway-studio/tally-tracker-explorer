@@ -2850,15 +2850,15 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1954837383}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 785290751
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!224 &832129571
 RectTransform:
@@ -3138,7 +3138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95c91a2017a74006a149ca36d72913c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldContainerCollider: {fileID: 1875683448}
+  worldContainerCollider: {fileID: 1940025518}
   playerPrefab: {fileID: 9008334923571228613, guid: ecec1fc7bdc6441a691ca908dfadc8b4, type: 3}
   avatars:
   - {fileID: 21300000, guid: 8d9c45a6d65954fa9af3d58238d60180, type: 3}
@@ -6703,7 +6703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1875683448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6870,7 +6870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a577a21393644c3caf651a33418fd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalScale: {x: 0, y: 0, z: 0}
+  showMarkers: 0
   ninePointGrid: []
   resolutionMarkers:
   - {fileID: 1355786328}
@@ -6896,11 +6896,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSize: 25
   canvasRect: {fileID: 832129571}
-  canvasResolution: {x: 1871.7667, y: 1107.8304}
-  playerResolution: {x: 762, y: 451}
-  gameViewResolution: {x: 762, y: 451}
-  playerViewSize: {x: 84.478935, y: 50, z: 0}
-  playerAspectRatio: 1.6895788
+  canvasResolution: {x: 1080, y: 1080}
+  playerResolution: {x: 1920, y: 1080}
+  playerViewSize: {x: 88.888885, y: 50, z: 0}
+  playerAspectRatio: 1.7777778
   playerFullScreen: 0
   deviceResolution: {x: 2880, y: 1800}
   deviceAspectRatio: 1.6
@@ -6917,7 +6916,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 84.478935, y: 50, z: 5}
+  m_Size: {x: 91.954025, y: 50, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1940025519
 Transform:

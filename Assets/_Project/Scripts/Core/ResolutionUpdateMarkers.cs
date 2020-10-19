@@ -23,13 +23,7 @@ public class ResolutionUpdateMarkers : ResolutionUpdateBase {
     {
         base.Awake ();
 
-        // hide markers
-        if (!showMarkers) {
-            for (int i = 0; i < resolutionMarkers.Length; i++) {
-                resolutionMarkers [i].GetComponent<SpriteRenderer> ().enabled = false;
-            }
-            return;
-        }
+
 
         // set original scale (after everything is computer) based on startup aspect ratio
         UpdateResolution ();
@@ -37,9 +31,7 @@ public class ResolutionUpdateMarkers : ResolutionUpdateBase {
 
     protected override void UpdateResolution ()
     {
-        base.UpdateResolution ();
-
-        if (!showMarkers) return;
+        //base.UpdateResolution ();
 
         // update marker positions
         UpdateMarkerPositions ();
@@ -49,7 +41,15 @@ public class ResolutionUpdateMarkers : ResolutionUpdateBase {
 
     void UpdateMarkerPositions ()
     {
-        //Debug.Log ("UpdateGameObjectPositions()");
+        //Debug.Log ("UpdateMarkerPositions()");
+
+        // hide markers
+        if (showMarkers != DebugManager.status) {
+            showMarkers = DebugManager.status;
+            for (int i = 0; i < resolutionMarkers.Length; i++) {
+                resolutionMarkers [i].GetComponent<SpriteRenderer> ().enabled = showMarkers;
+            }
+        }
 
         // display the nine point grid
         ninePointGrid = GetPlanePointGrid (resolutionManager.worldContainerCollider.bounds);
