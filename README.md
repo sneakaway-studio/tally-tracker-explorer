@@ -186,10 +186,29 @@ Other ideas on movement:
 
 ## Delivery
 
-- [ ] NCSU Visualization Studio
-	- [ ] Implement 8 camera system
-	- [ ] Figure out player control device
-- [ ] Mobile app?
+- [ ] Performance 
+	- [ ] CPU overhead?
+	- [ ] Draw Calls?
+	- [ ] Garbage Collection?
+	- [ ] What else?
+- [ ] Figure out player control device
+- [ ] Platforms / Devices / Resolutions
+
+
+device | OS | resolution | aspect ratio | notes
+--- | --- | --- | --- | ---
+Desktop | Mac | 1920x1080 | 16:9 | ---
+Desktop | Windows | 1920x1080 | 16:9 | ---
+Immersion Theater | Windows? | 6816 x 2240 | 3.04:1 | ---
+Game Lab | Windows? | 4800 x 1080 | 4.44:1 | ---
+Visualization Studio | Windows? | 27053 x 2160 | 12.52:1 | * estimated
+iPad | iOS | 1536 x 2048 | 1.33 | iPad 3&4, Air 1&2, Mini 2&3
+
+
+
+
+
+
 
 
 
