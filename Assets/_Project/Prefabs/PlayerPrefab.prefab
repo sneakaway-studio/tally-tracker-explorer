@@ -41,8 +41,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5857d59f30e67413b8c66f0dccda2268, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   minTrailCount: 3
   maxTrailCount: 10
   numberTrails: 0
@@ -88,8 +88,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.62
@@ -242,8 +242,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e79362c813dba453bba98578e09e4b37, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
   spriteMask: {fileID: 0}
   player: {fileID: 8446701999604096132}
@@ -289,8 +289,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d3e68a93f6ad4c14920a9af8e67a91e, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   slowly: 0
   stepScalar: 0.01
 --- !u!1 &5499439286453270563
@@ -336,8 +336,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceac2c9530fe14e5c9d63be9670c3a78, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6547881792046947419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,8 +348,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dde93b438cf64735ac642734928cf45, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   lockPosition: {x: 0, y: 0, z: 1}
   lockScale: {x: 1, y: 1, z: 1}
 --- !u!1 &5916665147843492862
@@ -396,8 +396,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceac2c9530fe14e5c9d63be9670c3a78, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6919818339638521354
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,8 +491,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d3e68a93f6ad4c14920a9af8e67a91e, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   slowly: 1
   stepScalar: 0.01
 --- !u!1 &8180638221493354709
@@ -562,14 +562,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d239289cf957b44628b18af2b20a7df0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   thrust: 6.46
   maxVelocity: 10
   playerInput: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
+  worldContainerCollider: {fileID: 0}
   wayPoint: {x: 0, y: 0, z: 0}
-  targetThreshold: 1
+  targetThreshold: 1.25
   pointSelectRange: 30
   distanceToWaypoint: 0
   rotateTimeElapsed: 0
@@ -584,8 +585,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d6428a1b32fb64dbf670085bac1b3c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   leader: {fileID: 7059805733063876825}
   monsters: []
   maxMonsters: 10
@@ -606,11 +607,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3e6e6b9e3b154cb5a17fc9e6fcdf5a4, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   animator: {fileID: 0}
   animIndex: 0
-  animName:
+  animName: 
 --- !u!95 &6126172086549796474
 Animator:
   serializedVersion: 3
@@ -626,7 +627,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage:
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -672,8 +673,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceac2c9530fe14e5c9d63be9670c3a78, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9008334923571228613
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,10 +718,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d39aa0689ee5849aba97eda0f21d44f9, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  username:
-  avatarPath:
+  m_Name: 
+  m_EditorClassIdentifier: 
+  username: 
+  avatarPath: 
   effectIsPlaying: 0
   playerCharacter: {fileID: 8180638221493354709}
   playerObject: {fileID: 5916665147843492862}

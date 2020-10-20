@@ -22,7 +22,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     [Header ("Object References")]
 
     // bounds, prefab, dict for instantiating players
-    public Collider worldContainerCollider;
+    public BoxCollider worldContainerCollider;
     public GameObject playerPrefab;
     public Dictionary<string, GameObject> playerDict;
 
@@ -240,10 +240,11 @@ public class PlayerManager : Singleton<PlayerManager> {
      */
     Vector3 GetClearSpawnPosition ()
     {
-        Vector3 spawnPosition = new Vector3 ();
-        float startTime = Time.realtimeSinceStartup;
+        Vector3 spawnPosition = Vector3.zero;
+        int safety = 0;
         bool positionClear = false;
         int layerMask = (1 << 8); // only Layer 8 "Players"
+        //Debug.Log ("PlayerManager.GetClearSpawnPosition() bounds = " + worldContainerCollider.bounds.ToString ());
         while (positionClear == false) {
             // get random position
             Vector3 spawnPositionRaw = RandomPointInBounds (worldContainerCollider.bounds);
@@ -253,12 +254,13 @@ public class PlayerManager : Singleton<PlayerManager> {
             Collider [] hitColliders = Physics.OverlapSphere (spawnPosition, 0.75f, layerMask);
             // if collider isn't touching another player collider then set true to stop loop
             if (hitColliders.Length <= 0) positionClear = true;
-            // else continue until time has run out
-            if (Time.realtimeSinceStartup - startTime > 0.5f) {
-                Debug.Log ("Time out placing GameObject!");
-                return Vector3.zero;
+            // safety
+            if (++safety > 10) {
+                Debug.Log ("PlayerManager.GetClearSpawnPosition() - Safety first!");
+                return spawnPosition;
             }
         }
+        //Debug.Log ("PlayerManager.GetClearSpawnPosition() spawnPosition = " + spawnPosition.ToString ());
         return spawnPosition;
     }
 
@@ -285,7 +287,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     /// <param name="destroyDelay">Destroy delay</param>
     void AttachDetachAnimation (GameObject prefab, bool randomPosition, float scaleMultiplier, float destroyDelay = -1f)
     {
-        Debug.Log ("AttachDetachAnimation() prefab.name = " + prefab.name);
+        //Debug.Log ("AttachDetachAnimation() prefab.name = " + prefab.name);
 
 
         // ATTACH THE GAME OBJECT WITH ANIMATION
@@ -336,7 +338,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 
     IEnumerator PlayBattleEffects (FeedData feed)
     {
-        Debug.Log ("PlayBattle() feed = " + feed.ToString ());
+        //Debug.Log ("PlayBattle() feed = " + feed.ToString ());
 
 
         // start battle

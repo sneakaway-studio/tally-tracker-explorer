@@ -10,7 +10,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     public Vector3 direction;           // the direction vector
 
     // for wandering algorithm
-    Collider worldContainerCollider;    // collider to test new positions
+    public BoxCollider worldContainerCollider;    // collider to test new positions
     public Vector3 wayPoint;            // new position to head towards
     public float targetThreshold = 1f;  // test distance to target - must be > 0
     public float pointSelectRange = 8f; // range from which to select new wayPoint
@@ -24,7 +24,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     private void Start ()
     {
         // get container collider
-        worldContainerCollider = GameObject.Find ("WorldContainer").GetComponent<Collider> ();
+        worldContainerCollider = GameObject.Find ("ResolutionManager").GetComponent<BoxCollider> ();
 
         // first wander point
         wayPoint = ReturnNewWanderPoint ();
@@ -98,7 +98,11 @@ public class MovePositionWanderComplex : PhysicsBase {
     Vector3 ReturnNewWanderPoint ()
     {
         bool pointWithin = false;       // is the point within the collider?
-        Vector3 target = Vector3.zero;  // the new point
+        Vector3 target = Vector3.zero;  // the new point, which defaults to center
+        int safety = 0;
+
+        // update the selection range depending on the size of the resolution
+        pointSelectRange = worldContainerCollider.size.x * .1f;
 
         // loop until new point is within defined area
         while (!pointWithin) {
@@ -108,9 +112,14 @@ public class MovePositionWanderComplex : PhysicsBase {
                 Random.Range (transform.position.y - pointSelectRange, transform.position.y + pointSelectRange),
                 transform.position.z
             );
-            //Debug.Log("🙌 target is within collider = " + IsPointWithinCollider(worldContainerCollider, target));
+            //Debug.Log ("MovePositionWanderComplex.ReturnNewWanderPoint() - 🙌 target is within collider = " + IsPointWithinCollider (worldContainerCollider, target));
             // if found to be within safe area then return
             pointWithin = IsPointWithinCollider (worldContainerCollider, target);
+
+            if (++safety > 10) {
+                Debug.Log ("MovePositionWanderComplex.ReturnNewWanderPoint() - Safety first!");
+                return Vector3.zero;
+            }
         }
         return target;
     }
@@ -118,7 +127,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     /**
      *  Return true if point is inside worldcontainer collider
      */
-    public static bool IsPointWithinCollider (Collider collider, Vector3 point)
+    public static bool IsPointWithinCollider (BoxCollider collider, Vector3 point)
     {
         return (collider.ClosestPoint (point) - point).sqrMagnitude < Mathf.Epsilon * Mathf.Epsilon;
     }

@@ -111,23 +111,23 @@
 	- [ ] 🧨 Attack - awarded
 		- Player movement: ?
 		- Sound: [Attack.ogg](Assets/_Project/Sounds/Effects/Attack.ogg)
-		- Extra effects: make particle effect with icon
+		- Extra effects: ?
 	- [ ] 🏆 Badge - awarded (changes depending level)
 		- Player movement: accelerates right along the x-axis or concentric circles emanating from player’s icon
 		- Sound: [Badge.ogg](Assets/_Project/Sounds/Effects/Badge.ogg)
-		- Extra effects: make particle effect with icon
-	- [x] 🍪 Consumable - found (changes depending type, stat)
+		- Extra effects: badge animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miguel's icons in leaderboard's feed
+	- [ ] 🍪 Consumable - found (changes depending type, stat)
 		- Player movement: accelerates right along the x-axis or concentric circles emanating from player’s icon
 		- Sound: [Consumable.ogg](Assets/_Project/Sounds/Effects/Consumable.ogg)
-		- Extra effects: make particle effect with icon
+		- Extra effects: consumable animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miguel's icons in leaderboard's feed
 	- [ ] 😎 Disguise - awarded
 		- Player movement: Opacity Shake, CSShake
 		- Sound: [Disguise.ogg](Assets/_Project/Sounds/Effects/Disguise.ogg) **OR** Spell/magic sound like https://freesound.org/people/suntemple/sounds/241809/
-		- Extra effects: make particle effect with icon
+		- Extra effects: Concentric triangles like player passes through a prism OR disquise animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miguel's icons in leaderboard's feed
 	- [ ] 🕷️ Tracker - blocked
 		- Player movement: ?
 		- Sound: [Tracker.ogg](Assets/_Project/Sounds/Effects/Tracker.ogg)
-		- Extra effects: make particle effect with icon
+		- Extra effects: tracker animation, drawn like "[this icon](https://dribbble.com/shots/5499453-Elevate)", use Miguel's icons in leaderboard's feed
 	- [ ] 💥 Battle - In-progress
 		- Player movement: "rumble" CSShake little shake
 		- Sound: [Battle-In-Progress.ogg](Assets/_Project/Sounds/Effects/Battle-In-Progress.ogg) **OR** Light battle music (on zoomed in)
@@ -143,7 +143,7 @@
 	- [ ] 🔢 Leaderboard position changes
 		- Player movement: Higher in leaderboard —> longer tail
 		- Sound: [Leaderboard.ogg](Assets/_Project/Sounds/Effects/Leaderboard.ogg)
-		- Extra effects: ?
+		- Extra effects: Long tail inspiration: https://dribbble.com/shots/11776498-Dachshund-Skater
 
 
 Other ideas on movement:
@@ -225,6 +225,3 @@ iPad | iOS | 1536 x 2048 | 1.33 | iPad 3&4, Air 1&2, Mini 2&3
 ### Testing
 
 - You can change the type of data to see either all data (mainly streams, but also game data) or feed (only game objects, which is more diverse). Select DataManager and change “Chosen endpoint” to “Range plus stream 1 hour” or “Recent 20” (this is the more diverse game objects).
-
-
-

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 // EventManager class from
 // https://learn.unity.com/tutorial/create-a-simple-messaging-system-with-events
 
+[ExecuteAlways]
 public class EventManager : MonoBehaviour {
     // hold references to events
     private Dictionary<string, UnityEvent> eventDictionary;
@@ -72,7 +73,11 @@ public class EventManager : MonoBehaviour {
 
     public static void TriggerEvent (string eventName)
     {
-        Debug.Log (DebugManager.GetSymbol ("phone") + " EventManager.TriggerEvent() -> eventName = " + eventName);
+
+        // if application is playing 
+        if (Application.IsPlaying (instance)) {
+            Debug.Log (DebugManager.GetSymbol ("blackstar") + " EventManager.TriggerEvent() -> eventName = " + eventName);
+        }
 
         UnityEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue (eventName, out thisEvent)) {
