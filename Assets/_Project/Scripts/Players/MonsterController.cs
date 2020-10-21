@@ -22,11 +22,13 @@ public class MonsterController : MonoBehaviour {
     private List<Vector3> waypoints = new List<Vector3> (); // List of waypoints created by the leader
     private Transform currMonster;      // Current monster being moved
     private Transform prevMonster;      // Previous monster in the chain
-
+    TallyInputSystem inputs;
 
     // Start is called before the first frame update
     void Start ()
     {
+        inputs = new TallyInputSystem();
+        inputs.Enable();
         //Debug.Log("START");
     }
 
@@ -37,7 +39,7 @@ public class MonsterController : MonoBehaviour {
         Move ();
 
         // DEBUG: Add monsters with spacebar
-        if (Input.GetKey (KeyCode.Space)) {
+        if (inputs.Debug.MonsterAdd.triggered) {
             AddMonster ();
         } else {
             spawning = false;

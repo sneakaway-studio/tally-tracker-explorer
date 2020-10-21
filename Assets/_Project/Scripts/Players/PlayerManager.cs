@@ -25,6 +25,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     public BoxCollider worldContainerCollider;
     public GameObject playerPrefab;
     public Dictionary<string, GameObject> playerDict;
+    public CameraManager cameraManager;
 
     // temp sprites for assigning avatars
     public Sprite [] avatars;
@@ -58,7 +59,8 @@ public class PlayerManager : Singleton<PlayerManager> {
     public GameObject disguiseAnim;
     public GameObject trackerAnim;
     public GameObject leaderboardAnim;
-
+    public GameObject selectionParticle;
+    
 
 
     private void Awake ()
@@ -136,6 +138,9 @@ public class PlayerManager : Singleton<PlayerManager> {
             obj.transform.parent = gameObject.transform;
             // finaly, add to dict
             playerDict.Add (username, obj);
+
+            // Allow the player to be selected by the camera
+            cameraManager.AddPlayer(username);
         }
     }
 
