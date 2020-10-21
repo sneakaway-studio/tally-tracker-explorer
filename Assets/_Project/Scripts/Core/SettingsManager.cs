@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.Audio;
 using TMPro;
 
+/**
+ *  Updates resolution, fullscreen, and volume
+ *  - Brackey's to the rescue https://www.youtube.com/watch?v=YOaYQrN1oYQ
+ */
 public class SettingsManager : MonoBehaviour {
 
 
