@@ -1258,7 +1258,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.16862746, g: 0.07450981, b: 0.40392157, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.16862746, g: 0.07450981, b: 0.40392157, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5390,6 +5390,7 @@ GameObject:
   - component: {fileID: 1068509654}
   - component: {fileID: 1068509653}
   - component: {fileID: 1068509652}
+  - component: {fileID: 1068509655}
   m_Layer: 5
   m_Name: FrameRateText
   m_TagString: Untagged
@@ -5510,9 +5511,21 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 515.5712, y: -100.195}
+  m_AnchoredPosition: {x: 515.5712, y: -100.19501}
   m_SizeDelta: {x: 550.80005, y: -220.39}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1068509655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068509651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c3143e1e37f4fcf8c1450255935b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1097998169
 GameObject:
   m_ObjectHideFlags: 0
@@ -7977,7 +7990,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ff5a9b35b654ec9be5bc2acb3c8d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameRate: {fileID: 1068509652}
   audioMixer: {fileID: 24100000, guid: 478d3e4e8c94a4f88b37f0d79625c080, type: 2}
   resolutionDropdown: {fileID: 215986631}
 --- !u!1 &1686614104
@@ -8713,7 +8725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSize: 25
   canvasRect: {fileID: 832129571}
-  canvasResolution: {x: 1920.0001, y: 1080}
+  canvasResolution: {x: 1080, y: 1080}
   playerResolution: {x: 1920, y: 1080}
   playerViewSize: {x: 88.888885, y: 50, z: 0}
   playerAspectRatio: 1.7777778
@@ -9509,7 +9521,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.16862746, g: 0.07450981, b: 0.40392157, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -9559,7 +9571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.16862746, g: 0.07450981, b: 0.40392157, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
