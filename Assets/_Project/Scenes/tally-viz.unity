@@ -354,7 +354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51982269}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.444443, y: 0, z: 0}
+  m_LocalPosition: {x: -125, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940025519}
@@ -612,7 +612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72876158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.444443, y: 0, z: 0}
+  m_LocalPosition: {x: 125, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940025519}
@@ -4185,7 +4185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldContainerCollider: {fileID: 1940025518}
   playerPrefab: {fileID: 9008334923571228613, guid: ecec1fc7bdc6441a691ca908dfadc8b4, type: 3}
-  cameraManager: {fileID: 0}
+  cameraManager: {fileID: 136303413}
   avatars:
   - {fileID: 21300000, guid: 8d9c45a6d65954fa9af3d58238d60180, type: 3}
   - {fileID: 21300000, guid: 1e813c34370bf4de8a1fb132038443c4, type: 3}
@@ -4217,7 +4217,7 @@ MonoBehaviour:
   disguiseAnim: {fileID: 6463355425608986283, guid: c792dc753f3d2c143885c1905a07e1db, type: 3}
   trackerAnim: {fileID: 6463355425608986283, guid: 98c0ba7e763ded045becf6a337e4130c, type: 3}
   leaderboardAnim: {fileID: 6463355425608986283, guid: 2a3f882886e87814cab15ccf15b072f2, type: 3}
-  selectionParticle: {fileID: 0}
+  selectionParticle: {fileID: 6463355425608986283, guid: 32507b468bb0226439c500ee18f0c5b8, type: 3}
 --- !u!1 &945187312
 GameObject:
   m_ObjectHideFlags: 0
@@ -5017,8 +5017,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "playerResolution (px): (1920.0, 1080.0)\nplayerViewSize (units): (88.9,
-    50.0, 0.0)\nplayerAspectRatio: 1.78:1 \nplayerFullScreen: False\ndeviceResolution:
+  m_text: "playerResolution (px): (5000.0, 1000.0)\nplayerViewSize (units): (250.0,
+    50.0, 0.0)\nplayerAspectRatio: 5:1 \nplayerFullScreen: False\ndeviceResolution:
     (2880.0, 1800.0)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6191,7 +6191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244714986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.444443, y: 25, z: 0}
+  m_LocalPosition: {x: 125, y: 25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2009773082}
@@ -6700,7 +6700,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355786328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.444443, y: 25, z: 0}
+  m_LocalPosition: {x: -125, y: 25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1278232663}
@@ -7029,7 +7029,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525331689}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.444443, y: -25, z: 0}
+  m_LocalPosition: {x: 125, y: -25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940025519}
@@ -8743,15 +8743,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showMarkers: 1
   ninePointGrid:
-  - {x: -44.444443, y: 25}
+  - {x: -125, y: 25}
   - {x: 0, y: 25}
-  - {x: 44.444443, y: 25}
-  - {x: -44.444443, y: 0}
+  - {x: 125, y: 25}
+  - {x: -125, y: 0}
   - {x: 0, y: 0}
-  - {x: 44.444443, y: 0}
-  - {x: -44.444443, y: -25}
+  - {x: 125, y: 0}
+  - {x: -125, y: -25}
   - {x: 0, y: -25}
-  - {x: 44.444443, y: -25}
+  - {x: 125, y: -25}
   resolutionMarkers:
   - {fileID: 1355786328}
   - {fileID: 542316861}
@@ -8776,10 +8776,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSize: 25
   canvasRect: {fileID: 832129571}
-  canvasResolution: {x: 1920.0001, y: 1080}
-  playerResolution: {x: 1920, y: 1080}
-  playerViewSize: {x: 88.888885, y: 50, z: 0}
-  playerAspectRatio: 1.7777778
+  canvasResolution: {x: 3219.938, y: 643.9876}
+  playerResolution: {x: 5000, y: 1000}
+  playerViewSize: {x: 250, y: 50, z: 0}
+  playerAspectRatio: 5
   playerFullScreen: 0
   deviceResolution: {x: 2880, y: 1800}
   deviceAspectRatio: 1.6
@@ -8796,7 +8796,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 88.888885, y: 50, z: 5}
+  m_Size: {x: 250, y: 50, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1940025519
 Transform:
@@ -9195,7 +9195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013964978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.444443, y: -25, z: 0}
+  m_LocalPosition: {x: -125, y: -25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940025519}
@@ -9760,17 +9760,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
-  m_ActionsAsset: {fileID: -944628639613478452, guid: 0809b5252bbab1a40b438bc6c436a47c, type: 3}
-  m_PointAction: {fileID: 0}
-  m_MoveAction: {fileID: 0}
-  m_SubmitAction: {fileID: 0}
-  m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 0}
-  m_MiddleClickAction: {fileID: 0}
-  m_RightClickAction: {fileID: 0}
-  m_ScrollWheelAction: {fileID: 0}
-  m_TrackedDevicePositionAction: {fileID: 0}
-  m_TrackedDeviceOrientationAction: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
 --- !u!114 &2140831429
