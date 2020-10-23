@@ -121,6 +121,16 @@ public class CameraManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Gets the camera target
+    /// </summary>
+    /// <returns> GameObject being targeted by camera </returns>
+    public GameObject getCameraTarget()
+    {
+        return cameraTarget;
+    }
+
+
+    /// <summary>
     /// Gives exponential graph
     /// </summary>
     /// <param name="t"> Passed time </param>

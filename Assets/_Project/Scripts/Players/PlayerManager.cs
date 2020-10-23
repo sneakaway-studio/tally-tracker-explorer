@@ -138,6 +138,8 @@ public class PlayerManager : Singleton<PlayerManager> {
             obj.transform.parent = gameObject.transform;
             // finaly, add to dict
             playerDict.Add (username, obj);
+            // sets a reference to the cameraManager
+            obj.GetComponent<Player>().cameraManager = cameraManager;
 
             // Allow the player to be selected by the camera
             cameraManager.AddPlayer(username);

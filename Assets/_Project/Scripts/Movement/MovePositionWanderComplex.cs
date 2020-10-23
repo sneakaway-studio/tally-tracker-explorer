@@ -20,6 +20,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     public float rotateTimeElapsed = 0;
     public float rotateDuration = 200;
 
+    private CameraManager cameraManager;
 
     private void Start ()
     {
@@ -28,6 +29,8 @@ public class MovePositionWanderComplex : PhysicsBase {
 
         // first wander point
         wayPoint = ReturnNewWanderPoint ();
+
+        cameraManager = GetComponentInParent<Player>().cameraManager;
     }
 
     protected override void Update ()
@@ -51,9 +54,17 @@ public class MovePositionWanderComplex : PhysicsBase {
             wayPoint = ReturnNewWanderPoint ();
         }
 
-
-        // get direction
-        direction = transform.TransformDirection (Vector2.right);
+        // if player input is happening and the current object is targeted
+        if (playerInput.magnitude != 0 && cameraManager.getCameraTarget().Equals(gameObject))
+        {
+            // get player input
+            direction = playerInput;
+        }
+        else
+        {
+            // get direction
+            direction = transform.TransformDirection(Vector2.right);
+        }
 
         // distance to move each frame = normalized distance vector * speed * time since last frame
         Vector3 step = direction * thrust * Time.deltaTime;
@@ -94,10 +105,6 @@ public class MovePositionWanderComplex : PhysicsBase {
         rotateTimeElapsed += Time.deltaTime;
     }
 
-
-
-
-
     /**
 	 *	Show ray between two points 
 	 */
@@ -107,8 +114,8 @@ public class MovePositionWanderComplex : PhysicsBase {
     }
 
     /**
-      *  Return a new target wander point within bounds of collider
-      */
+     *  Return a new target wander point within bounds of collider
+     */
     Vector3 ReturnNewWanderPoint ()
     {
         bool pointWithin = false;       // is the point within the collider?

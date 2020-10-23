@@ -21,6 +21,9 @@ public class Player : MonoBehaviour {
     public AnimController animControllerScript; // animation controller script
 
 
+    // Camera manager
+    public CameraManager cameraManager;
+
     private void Awake ()
     {
         StartCoroutine (StartChecks ());
