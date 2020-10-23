@@ -110,8 +110,11 @@ public class ResolutionManager : MonoBehaviour {
 
     IEnumerator SendResolutionUpdatedEvent ()
     {
-        Debug.Log ("ResolutionManager.SendResolutionUpdatedEvent() - resolution has changed to " + playerResolution.ToString ());
-
+        //Debug.Log ("ResolutionManager.SendResolutionUpdatedEvent() - resolution has changed to " + playerResolution.ToString ());
+        // if application is playing 
+        if (Application.IsPlaying (gameObject)) {
+            DebugManager.Instance.UpdateDisplay ("ResolutionManager.SendResolutionUpdatedEvent() - resolution has changed to " + playerResolution.ToString ());
+        }
         // update the parameters
         UpdateResolutionParams ();
 

@@ -98,7 +98,7 @@ public class DataManager : Singleton<DataManager> {
         // update path
         path = hosts [(int)chosenHost] + endpoints [(int)chosenEndpoint];
 
-        //Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() path = " + path);
+        DebugManager.Instance.UpdateDisplay (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() path = " + path);
 
         StartCoroutine (GetRequest (path));
 
@@ -120,9 +120,8 @@ public class DataManager : Singleton<DataManager> {
             if (webRequest.isNetworkError || webRequest.isHttpError) {
                 Debug.Log (DebugManager.GetSymbol ("asterisk") + " Error: " + webRequest.error);
             } else {
-                Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() " +
-                        //uri + "\n" + webRequest.downloadHandler.text +
-                        "");
+                //Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() " + uri + "\n" + webRequest.downloadHandler.text);
+                DebugManager.Instance.UpdateDisplay ("DataManager.GetNewData() uri = " + uri);
 
                 // parse JSON array 
                 JArray a = JArray.Parse (webRequest.downloadHandler.text);

@@ -8,7 +8,7 @@ using TMPro;
 public class TimelineManager : Singleton<TimelineManager> {
     // singleton
     protected TimelineManager () { }
-    //public static new PlayerManager Instance;
+    //public static new TimelineManager Instance;
 
 
     // PLAYBACK
@@ -93,7 +93,7 @@ public class TimelineManager : Singleton<TimelineManager> {
             // log feed item
             var eventString =
 
-                feedIndex + ". " +
+
                 timeDiff + " (" + timeDiffScaled + ") " +
 
                 " (" + feed.createdAt + ") " +
@@ -118,7 +118,7 @@ public class TimelineManager : Singleton<TimelineManager> {
             UpdateScroll ();
 
 
-            Debug.Log (eventString);
+            DebugManager.Instance.UpdateDisplay ("Timeline.PlayEvent() " + eventString);
 
 
             // set previous time for next loop
