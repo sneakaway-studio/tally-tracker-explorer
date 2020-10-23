@@ -85,7 +85,7 @@ public class MovePositionWanderComplex : PhysicsBase {
         // If new rotation would flip player in y rotation, prevent this
         if (safetyX <= 0.1f && safetyY == 0)
         {
-            temp = new Vector3(-0.9f, 0.1f, 0);
+            temp = new Vector3(temp.x, 0.1f, 0);
         }
 
         // Set right vector
