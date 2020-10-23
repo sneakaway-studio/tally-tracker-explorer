@@ -76,7 +76,21 @@ public class MovePositionWanderComplex : PhysicsBase {
         //transform.right = wayPoint - transform.position;
 
         // change look direction slowly
-        transform.right = Vector3.Lerp (transform.right, (wayPoint - transform.position), rotateTimeElapsed / rotateDuration);
+        Vector3 temp = Vector3.Lerp(transform.right, (wayPoint - transform.position), rotateTimeElapsed / rotateDuration);
+
+        // Values used to check for bad flipping
+        float safetyX = Mathf.Abs(-1f - Mathf.Round(temp.x * 100.0f) / 100.0f);
+        float safetyY = Mathf.Round(temp.y * 100.0f) / 100.0f;
+
+        // If new rotation would flip player in y rotation, prevent this
+        if (safetyX <= 0.1f && safetyY == 0)
+        {
+            temp = new Vector3(-0.9f, 0.1f, 0);
+        }
+
+        // Set right vector
+        transform.right = temp;
+
         rotateTimeElapsed += Time.deltaTime;
     }
 
