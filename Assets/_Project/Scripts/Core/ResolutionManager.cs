@@ -102,7 +102,7 @@ public class ResolutionManager : MonoBehaviour {
 
         // and if player resolution has changed
         if (playerResolution.x != Screen.width || playerResolution.y != Screen.height) {
-            //Debug.Log ("ResolutionManager.Update() - resolution has changed to " + playerResolution.ToString ());
+            //Debug.Log ("ResolutionManager.Update() change " + playerResolution.ToString ());
 
             StartCoroutine (SendResolutionUpdatedEvent ());
         }
@@ -113,7 +113,7 @@ public class ResolutionManager : MonoBehaviour {
         //Debug.Log ("ResolutionManager.SendResolutionUpdatedEvent() - resolution has changed to " + playerResolution.ToString ());
         // if application is playing 
         if (Application.IsPlaying (gameObject)) {
-            DebugManager.Instance.UpdateDisplay ("ResolutionManager.SendResolutionUpdatedEvent() - resolution has changed to " + playerResolution.ToString ());
+            DebugManager.Instance.UpdateDisplay ("ResolutionManager.SendResolutionUpdatedEvent() change " + playerResolution.ToString ());
         }
         // update the parameters
         UpdateResolutionParams ();

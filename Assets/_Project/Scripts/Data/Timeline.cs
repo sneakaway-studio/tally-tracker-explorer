@@ -46,6 +46,7 @@ public class Timeline : Singleton<Timeline> {
 
     public TMP_Text bufferText;
     public ScrollRect bufferScrollRect;
+    public TMP_Text bufferTitleText;
 
 
 
@@ -65,6 +66,7 @@ public class Timeline : Singleton<Timeline> {
 
     public TMP_Text historyText;
     public ScrollRect historyScrollRect;
+    public TMP_Text historyTitleText;
 
 
 
@@ -74,11 +76,11 @@ public class Timeline : Singleton<Timeline> {
     [Space (10)]
     [Header ("TIME")]
 
-    public bool playbackActive = false; // if the playback is currently active 
+    public bool loopActive = false; // if the loop is currently active 
 
     public DateTime previousTime;       // previous time displayed
     public int timeDiff;                // difference between current time (feed.createdAt) and previousTime
-    public float timeDiffScaled;        // difference - adjusted for playback
+    public float timeDiffScaled;        // difference - adjusted for loop
 
     [Tooltip ("How much faster time is replayed (timeDiff * scalar)")]
     [Range (0f, 1f)]
@@ -95,11 +97,11 @@ public class Timeline : Singleton<Timeline> {
     // listeners
     void OnEnable ()
     {
-        EventManager.StartListening ("DataDownloaded", StartPlayBack);
+        EventManager.StartListening ("DataDownloaded", StartLoop);
     }
     void OnDisable ()
     {
-        EventManager.StopListening ("DataDownloaded", StartPlayBack);
+        EventManager.StopListening ("DataDownloaded", StartLoop);
     }
 
 
@@ -110,16 +112,20 @@ public class Timeline : Singleton<Timeline> {
         StartCoroutine (CheckBuffer ());
     }
 
+
+    /////////////////////////////////////////////////////////////
+    //////////////////////// BUFFER /////////////////////////////
+    /////////////////////////////////////////////////////////////
+
+
     /**
-     *  Check the buffer for the correct amount, make changes
+     *  Check the buffer, add data
      */
     IEnumerator CheckBuffer ()
     {
         while (true) {
 
             //Debug.Log ("Timeline.CheckBuffer()");
-
-            yield return new WaitForSeconds (bufferCheckFrequency);
 
             // update count
             UpdateCounts ();
@@ -132,7 +138,7 @@ public class Timeline : Singleton<Timeline> {
                 continue;
             }
             // is the bufferCount < min OR the bufferCount empty?
-            else if (bufferCount < bufferCountMin || bufferCount < 1) {
+            else if (bufferCount <= bufferCountMin || bufferCount < 1) {
                 // attempt to get new data from server
 
                 // or if no data then copy from history
@@ -151,38 +157,45 @@ public class Timeline : Singleton<Timeline> {
                 UpdateDisplay ();
             }
 
+            yield return new WaitForSeconds (bufferCheckFrequency);
         }
     }
 
 
 
-    // empty playback queue and restart
-    public void StartPlayBack ()
+    /////////////////////////////////////////////////////////////
+    //////////////////////// LOOP ///////////////////////////////
+    /////////////////////////////////////////////////////////////
+
+
+
+    // empty loop queue and restart
+    public void StartLoop ()
     {
         // stop if currently playing
-        if (playbackActive) StopCoroutine ("PlaybackLoop");
+        if (loopActive) StopCoroutine ("Loop");
         // start
-        StartCoroutine ("PlaybackLoop");
-        playbackActive = true;
+        StartCoroutine ("Loop");
+        loopActive = true;
     }
-    public void StopPlayBack ()
+    public void StopLoop ()
     {
         // only if active
-        if (playbackActive) return;
-        StopCoroutine ("PlaybackLoop");
-        playbackActive = false;
+        if (loopActive) return;
+        StopCoroutine ("Loop");
+        loopActive = false;
         // reset previous time
-        //previousTime = null;
+        previousTime = DateTime.MinValue;
     }
 
     // play an event from buffer and move to history
-    IEnumerator PlaybackLoop ()
+    IEnumerator Loop ()
     {
         UpdateCounts ();
 
         while (true) {
 
-            //Debug.Log ("Timeline.PlaybackLoop()");
+            //Debug.Log ("Timeline.Loop()");
 
             // if buffer has items
             if (bufferCount > 0) {
@@ -192,7 +205,7 @@ public class Timeline : Singleton<Timeline> {
 
 
                 // HANDLE TIME
-
+                //Debug.Log ("previousTime = " + previousTime);
                 // on first run only, use current time as previous time
                 if (previousTime == null) previousTime = feed.createdAt;
 
@@ -232,21 +245,22 @@ public class Timeline : Singleton<Timeline> {
                 }
 
 
-
-
                 // log feed item
                 var eventString = timeDiff + " (" + timeDiffScaled + ") " +
                     " (" + feed.createdAt + ") " +
                     //" = (" + previousTime + " - " + feed.createdAt + ") " +
                     feed.username + ", " + feed.eventType + "";
 
-                DebugManager.Instance.UpdateDisplay ("Timeline.PlaybackLoop() " + eventString);
+                DebugManager.Instance.UpdateDisplay ("Timeline.Loop() " + eventString);
 
 
-
-                // change wait time based on time difference to next event
-                yield return new WaitForSeconds (timeDiffScaled);
+            } else {
+                // safety
+                timeDiffScaled = 1;
             }
+
+            // time difference to next event (or safety)
+            yield return new WaitForSeconds (timeDiffScaled);
         }
     }
 
@@ -287,6 +301,9 @@ public class Timeline : Singleton<Timeline> {
 
         UpdateCounts ();
         UpdateScroll ();
+
+        bufferTitleText.text = "Buffer [ " + bufferCount + " ] ";
+        historyTitleText.text = "History [ " + historyCount + " ] ";
 
         // trigger timeline updated event
         EventManager.TriggerEvent ("TimelineUpdated");
