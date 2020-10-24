@@ -238,6 +238,8 @@ public class DataManager : Singleton<DataManager> {
                     }
 
                     feeds.Add (output);
+                    // Timeline.Instance.buffer.Add (_createdAt, output);
+                    Timeline.Instance.buffer.Add (output);
 
 
                     // SAVE FOR CREATING BUFFER

@@ -60,7 +60,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     public GameObject trackerAnim;
     public GameObject leaderboardAnim;
     public GameObject selectionParticle;
-    
+
 
 
     private void Awake ()
@@ -80,8 +80,11 @@ public class PlayerManager : Singleton<PlayerManager> {
         // clear the dictionary 
         playerDict.Clear ();
 
-        // loop through the feed and add players
-        foreach (var feed in DataManager.feeds) {
+        // loop through the buffer and add players
+        foreach (var feed in Timeline.Instance.buffer) {
+            CreateNewPlayer (feed.username, feed.avatarPath);
+        }
+        foreach (var feed in Timeline.Instance.history) {
             CreateNewPlayer (feed.username, feed.avatarPath);
         }
 
@@ -140,7 +143,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             playerDict.Add (username, obj);
 
             // Allow the player to be selected by the camera
-            cameraManager.AddPlayer(username);
+            cameraManager.AddPlayer (username);
         }
     }
 
