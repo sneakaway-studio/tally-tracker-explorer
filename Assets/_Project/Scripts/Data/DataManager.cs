@@ -89,7 +89,7 @@ public class DataManager : Singleton<DataManager> {
     private void Start ()
     {
         // start everything
-        GetNewData ();
+        //GetNewData ();
     }
 
 
@@ -98,7 +98,8 @@ public class DataManager : Singleton<DataManager> {
         // update path
         path = hosts [(int)chosenHost] + endpoints [(int)chosenEndpoint];
 
-        DebugManager.Instance.UpdateDisplay (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() path = " + path);
+        //Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() path = " + path);
+        DebugManager.Instance.UpdateDisplay ("DataManager.GetNewData() path = " + path);
 
         StartCoroutine (GetRequest (path));
 

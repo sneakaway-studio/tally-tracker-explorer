@@ -11,11 +11,11 @@ public class PlayerManager : Singleton<PlayerManager> {
     //listeners
     void OnEnable ()
     {
-        EventManager.StartListening ("DataDownloaded", ResetPlayers);
+        EventManager.StartListening ("ResetPlayers", ResetPlayers);
     }
     void OnDisable ()
     {
-        EventManager.StopListening ("DataDownloaded", ResetPlayers);
+        EventManager.StopListening ("ResetPlayers", ResetPlayers);
     }
 
     [Space (10)]

@@ -59,7 +59,7 @@ public class DebugManager : Singleton<DebugManager> {
     public void ClearDisplay ()
     {
         debugText.text = "";
-        UpdateScroll ();
+        //UpdateScroll ();
     }
     void UpdateScroll ()
     {

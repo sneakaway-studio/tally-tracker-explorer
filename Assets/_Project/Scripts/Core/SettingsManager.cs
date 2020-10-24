@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
 
@@ -10,12 +11,26 @@ using TMPro;
  */
 public class SettingsManager : MonoBehaviour {
 
+    public Toggle fullscreenToggle;
+    public Toggle autostartToggle;
+
+    public bool isFullscreen;
+    public bool autostart;
 
     public AudioMixer audioMixer;
 
     public TMP_Dropdown resolutionDropdown;
 
     Resolution [] resolutions;
+
+
+    private void Awake ()
+    {
+        // update the values in the UI that are set in the inspector
+        fullscreenToggle.isOn = isFullscreen;
+        autostartToggle.isOn = autostart;
+    }
+
 
     private void Start ()
     {
@@ -52,9 +67,15 @@ public class SettingsManager : MonoBehaviour {
         audioMixer.SetFloat ("volume", volume);
     }
 
-    public void SetFullscreen (bool isFullscreen)
+    public void SetFullscreen (bool state)
     {
-        Screen.fullScreen = isFullscreen;
+        Screen.fullScreen = state;
+        isFullscreen = state;
+    }
+
+    public void SetAutostart (bool state)
+    {
+        autostart = state;
     }
 
 }

@@ -22,25 +22,24 @@ public class Timeline : Singleton<Timeline> {
 
 
 
-
     // BUFFER
 
     [Space (10)]
     [Header ("BUFFER")]
 
-    [SerializeField]
     public List<FeedData> buffer = new List<FeedData> ();
 
     [Tooltip ("Current number of feed events in buffer")]
     public int bufferCount;
 
+    [Tooltip ("Max items allowed in buffer")]
     [Range (1, 20)]
     public int bufferCountMin;
+    [Tooltip ("Min items allowed in buffer")]
     [Range (10, 100)]
     public int bufferCountMax;
 
-
-    [Tooltip ("How often the buffer is filled")]
+    [Tooltip ("How often the buffer is checked (in seconds)")]
     public int bufferCheckFrequency = 2;
 
 
@@ -51,6 +50,12 @@ public class Timeline : Singleton<Timeline> {
 
 
 
+    [Tooltip ("Time since a data request made active")]
+    public int dataRequestProgress;
+
+    [Tooltip ("Is the timeline is currently active?")]
+    public bool active = false;
+
 
 
     // HISTORY 
@@ -58,7 +63,6 @@ public class Timeline : Singleton<Timeline> {
     [Space (10)]
     [Header ("HISTORY")]
 
-    [SerializeField]
     public List<FeedData> history = new List<FeedData> ();
 
     [Tooltip ("Current number of feed events in history")]
@@ -76,11 +80,15 @@ public class Timeline : Singleton<Timeline> {
     [Space (10)]
     [Header ("TIME")]
 
-    public bool loopActive = false; // if the loop is currently active 
+    [Tooltip ("DateTime of previously displayed event")]
+    [SerializeField]
+    DateTime previousTime;
 
-    public DateTime previousTime;       // previous time displayed
-    public int timeDiff;                // difference between current time (feed.createdAt) and previousTime
-    public float timeDiffScaled;        // difference - adjusted for loop
+    [Tooltip ("Difference (seconds) between current time (feed.createdAt) and previousTime")]
+    public int timeDiff;
+
+    [Tooltip ("Difference (seconds) adjusted for loop")]
+    public float timeDiffScaled;
 
     [Tooltip ("How much faster time is replayed (timeDiff * scalar)")]
     [Range (0f, 1f)]
@@ -92,25 +100,52 @@ public class Timeline : Singleton<Timeline> {
     public float maxTimeDiff = 10;
 
 
+    public SettingsManager settingsManager;
+
 
 
     // listeners
     void OnEnable ()
     {
-        EventManager.StartListening ("DataDownloaded", StartLoop);
+        EventManager.StartListening ("StartTimeline", StartTimeline);
     }
     void OnDisable ()
     {
-        EventManager.StopListening ("DataDownloaded", StartLoop);
+        EventManager.StopListening ("StartTimeline", StartTimeline);
     }
-
-
-
 
     private void Awake ()
     {
-        StartCoroutine (CheckBuffer ());
+        //
     }
+
+    // empty loop queue and restart
+    public void StartTimeline ()
+    {
+        // stop and restart if currently playing
+        if (active)
+            StopTimeline ();
+        // start
+        StartCoroutine ("CheckBuffer");
+        StartCoroutine ("Loop");
+        active = true;
+    }
+    public void StopTimeline ()
+    {
+        // if active
+        if (!active) return;
+        // stop coroutines
+        StopCoroutine ("CheckBuffer");
+        StopCoroutine ("Loop");
+        // set false
+        active = false;
+        // reset previous time
+        previousTime = DateTime.MinValue;
+    }
+
+
+
+
 
 
     /////////////////////////////////////////////////////////////
@@ -139,12 +174,19 @@ public class Timeline : Singleton<Timeline> {
             }
             // is the bufferCount < min OR the bufferCount empty?
             else if (bufferCount <= bufferCountMin || bufferCount < 1) {
-                // attempt to get new data from server
 
-                // or if no data then copy from history
-
-                // fill it up with history
-                MoveListRange (bufferCountMax, history, buffer);
+                // if we haven't started a new data request already
+                if (dataRequestProgress < 1) {
+                    // attempt to get new data from server
+                    EventManager.TriggerEvent ("GetNewData");
+                    // start tracking time since request
+                    dataRequestProgress++;
+                }
+                // maybe a problem with server
+                else if (++dataRequestProgress > 10) {
+                    // or if no data then copy from history
+                    MoveListRange (bufferCountMax, history, buffer);
+                }
             }
 
             UpdateCounts ();
@@ -154,7 +196,11 @@ public class Timeline : Singleton<Timeline> {
                 // after update, sort ascending
                 buffer.Sort ((x, y) => x.createdAt.CompareTo (y.createdAt));
                 // display
-                UpdateDisplay ();
+                UpdateTimelineDisplay ();
+                // if we have data in the buffer or history but no players then add them
+                if (PlayerManager.Instance.playerCount < 1) {
+                    EventManager.TriggerEvent ("ResetPlayers");
+                }
             }
 
             yield return new WaitForSeconds (bufferCheckFrequency);
@@ -168,27 +214,9 @@ public class Timeline : Singleton<Timeline> {
     /////////////////////////////////////////////////////////////
 
 
-
-    // empty loop queue and restart
-    public void StartLoop ()
-    {
-        // stop if currently playing
-        if (loopActive) StopCoroutine ("Loop");
-        // start
-        StartCoroutine ("Loop");
-        loopActive = true;
-    }
-    public void StopLoop ()
-    {
-        // only if active
-        if (loopActive) return;
-        StopCoroutine ("Loop");
-        loopActive = false;
-        // reset previous time
-        previousTime = DateTime.MinValue;
-    }
-
-    // play an event from buffer and move to history
+    /**
+     *  Play events from buffer and move to history
+     */
     IEnumerator Loop ()
     {
         UpdateCounts ();
@@ -241,7 +269,7 @@ public class Timeline : Singleton<Timeline> {
                     // after update, sort ascending
                     history.Sort ((x, y) => x.createdAt.CompareTo (y.createdAt));
                     // display
-                    UpdateDisplay ();
+                    UpdateTimelineDisplay ();
                 }
 
 
@@ -274,7 +302,7 @@ public class Timeline : Singleton<Timeline> {
     /**
      *  Update display for both
      */
-    void UpdateDisplay ()
+    void UpdateTimelineDisplay ()
     {
         string bufferString = "";
         string historyString = "";
