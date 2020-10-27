@@ -48,11 +48,14 @@
 
 - [ ] Create code that
 	- [x] Automatically gets, or handles a lack of, new events
-	- [ ] Can consume data from the live API or local `JSON` files without changing anything
+	- [ ] Can consume data from the live API or local `JSON` files by changing dropdown option
 	- [x] Potentially do it like:
 		- [x] Use two C# collections (either a List or Dictionary) named `buffer` and a `history` that can be sorted by a date string.
 		- [x] As the events are visualized, the event object is moved from the `buffer` to the `history`.
 		- [x] If no (or not enough) new events are found on the next API call, then a "rewind" can happen where a chunk of events from history are placed back in the buffer and the "playhead" can restart at the end of the buffer (until the next check).
+	- [ ] Prune players depending on max player allowed var
+	- [ ] Merge new data / old data
+
 
 
 ### Timeline visualization
@@ -91,10 +94,11 @@
 	- [ ] Zoom out? @jdietrick preference? 
 
 
-### Testing
+### UI Controls / Testing / Debugging
 
-- [ ] Build Feed data testing / monitor UI
-	- [ ] Dropdown to switch between live / local
+- [x] Build Feed data testing / monitor UI
+	- [x] Dropdown to switch between live / local
+	- [x] Dropdown to switch resolutions
 	- [x] Button: playback restart
 
 
@@ -191,7 +195,7 @@ Other ideas on movement:
 - [x] Setup [2D renderer and lights](https://www.youtube.com/watch?v=nkgGyO9VG54&t=53s&ab_channel=Brackeys)
 - [x] Point lights on GameObjects
 - [ ] Light emitters on player trails
-- [ ] Environmental lighting
+- [x] Environmental lighting
 - [ ] Changes to lighting depending on time of day
 - [ ] Add Fog
 	- [ ] Examples [1](https://forum.unity.com/threads/how-can-i-control-fog-color-based-on-skybox-color.311706/), [2](https://carlburton.itch.io/islands), [3](https://magazine.renderosity.com/article/5204/taking-a-look-at-unity-fog)
