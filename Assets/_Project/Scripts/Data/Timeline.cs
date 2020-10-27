@@ -208,8 +208,6 @@ public class Timeline : Singleton<Timeline> {
             SetTimelineStatus (TimelineStatus.start);
             // start loop
             StartBufferLoop ();
-            // disable button until active
-            SetStartBtn (" --- ", false);
         }
         UpdateCounts ();
         UpdateTimelineLogs ();
@@ -311,9 +309,6 @@ public class Timeline : Singleton<Timeline> {
 
 
 
-
-
-
             // INIT
 
             if (status == TimelineStatus.init) {
@@ -326,6 +321,9 @@ public class Timeline : Singleton<Timeline> {
             if (status == TimelineStatus.start) {
                 // reset progress
                 waitingForDataProgress = 0;
+
+                // disable button until data arrives
+                SetStartBtn (" ... ", false);
 
                 // set to waiting
                 SetTimelineStatus (TimelineStatus.waitingForData);
@@ -371,7 +369,7 @@ public class Timeline : Singleton<Timeline> {
                 // after new data, sort ascending
                 buffer.Sort ((x, y) => x.createdAt.CompareTo (y.createdAt));
 
-                // remove duplicates here?
+                // remove duplicate users here?
 
                 // start history loop again
                 StartHistoryLoop ();
