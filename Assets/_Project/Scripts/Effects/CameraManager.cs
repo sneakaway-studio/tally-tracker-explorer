@@ -14,9 +14,8 @@ public class CameraManager : MonoBehaviour
     public float zoomOutLevel = 25f;
     public float zoomInLevel = 10f;
 
-    // Duration times for movement
-    public float transitionDuration = 1f;
-    public float zoomDuration = 1f;
+    // Speed for movement
+    public float speed = 15f;
 
     // Movement locks
     private bool cameraMoving = false;
@@ -28,6 +27,8 @@ public class CameraManager : MonoBehaviour
     private List<string> players = new List<string>();
     private int playersCurrentIndex = 0;
     private GameObject currentSelectionParticle;
+
+    public PlayerDetailsUI playerDetails;
 
     TallyInputSystem inputs;
 
@@ -122,12 +123,69 @@ public class CameraManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Gets the camera target
+    /// </summary>
+    /// <returns> GameObject being targeted by camera </returns>
+    public GameObject getCameraTarget()
+    {
+        return cameraTarget;
+    }
+
+
+    /// <summary>
+    /// Gives exponential graph
+    /// </summary>
+    /// <param name="t"> Passed time </param>
+    /// <returns> Exponential graph at time t </returns>
+    float EaseIn(float t)
+    {
+        return t * t;
+    }
+
+    /// <summary>
+    /// Flips the graph upside down
+    /// </summary>
+    /// <param name="x"> Passed time </param>
+    /// <returns> Upside down graph at time t </returns>
+    float Flip(float x)
+    {
+        return 1 - x;
+    }
+
+    /// <summary>
+    /// Flips the exponential graph upside down for easing out
+    /// </summary>
+    /// <param name="t"> Passed time </param>
+    /// <returns> Flipped exponential graph at time t </returns>
+    float EaseOut(float t)
+    {
+        return Flip(EaseIn(Flip(t)));
+    }
+
+    /// <summary>
+    /// Gives graph that eases in and out
+    /// </summary>
+    /// <param name="t"> Passed time </param>
+    /// <returns> Eased in/out graph at time t </returns>
+    float EaseInOut(float t)
+    {
+        return Mathf.Lerp(EaseIn(t), EaseOut(t), t);
+
+        //return Mathf.Pow(Mathf.Sin((Mathf.PI * t) / 2), 2);
+    }
+
+
+
+    /// <summary>
     /// Moves the camera to the cameraTarget
     /// </summary>
     IEnumerator Transition()
     {
+        playerDetails.gameObject.SetActive(false);
+
         float t = 0.0f;
         Vector3 startingPos = mainCamera.transform.position;
+        float longestD = Vector2.Distance(mainCamera.transform.position, cameraTarget.transform.position) / speed;
 
         // If the camera is not moving or zooming
         if (!cameraMoving && !cameraZooming)
@@ -136,13 +194,35 @@ public class CameraManager : MonoBehaviour
             cameraMoving = true;
             while (t < 1.0f)
             {
-                t += Time.deltaTime * (Time.timeScale / transitionDuration);
+                t += Time.deltaTime * (Time.timeScale / longestD);
 
-                mainCamera.transform.position = Vector3.Lerp(startingPos, new Vector3(cameraTarget.transform.position.x, cameraTarget.transform.position.y, -10), t);
+                mainCamera.transform.position = Vector3.Lerp(startingPos, new Vector3(cameraTarget.transform.position.x, cameraTarget.transform.position.y, -10), EaseInOut(t));
                 yield return 0;
             }
             cameraMoving = false;
+            playerDetails.gameObject.SetActive(true);
+            playerDetails.setUI(cameraTarget.GetComponentInParent<Player>().username, "1", "1", "1", "1", "1", "1", "1");
         }
+
+        /// ARCHIVED TRANSITION IN CASE YOU NEED IT LATER
+        /// FEEL FREE TO DELETE AT ANY POINT
+        //float longestD = Vector2.Distance(mainCamera.transform.position, cameraTarget.transform.position);
+        //float d = Vector2.Distance(mainCamera.transform.position, cameraTarget.transform.position);
+
+        //// If the camera is not moving or zooming
+        //if (!cameraMoving && !cameraZooming)
+        //{
+        //    // Gradually move the camera towards cameraTarget
+        //    cameraMoving = true;
+        //    while (d > 0.5f || !cameraZoomed)
+        //    {
+        //        Vector3 diff = new Vector3(cameraTarget.transform.position.x - mainCamera.transform.position.x, cameraTarget.transform.position.y - mainCamera.transform.position.y, 0);
+        //        mainCamera.transform.position += diff.normalized * speed * Time.deltaTime;
+        //        d = Vector2.Distance(mainCamera.transform.position, cameraTarget.transform.position);
+        //        yield return 0;
+        //    }
+        //    cameraMoving = false;
+        //}
     }
 
     /// <summary>
@@ -153,6 +233,7 @@ public class CameraManager : MonoBehaviour
     {
         float t = 0.0f;
         Vector3 startingPos = mainCamera.transform.position;
+        float longestD = Vector2.Distance(mainCamera.transform.position, targetPosition) / speed;
 
         // If the camera is not moving or zooming
         if (!cameraMoving && !cameraZooming)
@@ -161,13 +242,13 @@ public class CameraManager : MonoBehaviour
             cameraMoving = true;
             while (t < 1.0f)
             {
-                t += Time.deltaTime * (Time.timeScale / transitionDuration);
+                t += Time.deltaTime * (Time.timeScale / longestD);
 
-
-                mainCamera.transform.position = Vector3.Lerp(startingPos, targetPosition, t);
+                mainCamera.transform.position = Vector3.Lerp(startingPos, new Vector3(targetPosition.x, targetPosition.y, -10), EaseInOut(t));
                 yield return 0;
             }
             cameraMoving = false;
+            playerDetails.setUI(cameraTarget.GetComponentInParent<Player>().username, "1", "1", "1", "1", "1", "1", "1");
         }
     }
 
@@ -178,6 +259,7 @@ public class CameraManager : MonoBehaviour
     {
         float t = 0.0f;
         float startingZoom = mainCamera.orthographicSize;
+        float longestD = Vector2.Distance(mainCamera.transform.position, cameraTarget.transform.position) / speed;
 
         // If the camera is not moving, zooming, or currently zoomed in
         if (!cameraMoving && !cameraZooming && !cameraZoomed)
@@ -189,13 +271,15 @@ public class CameraManager : MonoBehaviour
             cameraZooming = true;
             while (t < 1.0f)
             {
-                t += Time.deltaTime * (Time.timeScale / zoomDuration);
+                t += Time.deltaTime * (Time.timeScale / longestD);
 
                 mainCamera.orthographicSize = Mathf.Lerp(startingZoom, zoomInLevel, t);
                 yield return 0;
             }
             cameraZooming = false;
             cameraZoomed = true;
+            playerDetails.gameObject.SetActive(true);
+            playerDetails.setUI(cameraTarget.GetComponentInParent<Player>().username, "1", "1", "1", "1", "1", "1", "1");
         }
     }
 
@@ -206,6 +290,9 @@ public class CameraManager : MonoBehaviour
     {
         float t = 0.0f;
         float startingZoom = mainCamera.orthographicSize;
+        float longestD = Vector2.Distance(mainCamera.transform.position, new Vector3(0, 1, -10)) / speed;
+
+        playerDetails.gameObject.SetActive(false);
 
         // If the camera is not moving, zooming, or currently zoomed in
         if (!cameraMoving && !cameraZooming && cameraZoomed)
@@ -218,7 +305,7 @@ public class CameraManager : MonoBehaviour
             cameraZoomed = false;
             while (t < 1.0f)
             {
-                t += Time.deltaTime * (Time.timeScale / zoomDuration);
+                t += Time.deltaTime * (Time.timeScale / longestD);
 
                 mainCamera.orthographicSize = Mathf.Lerp(startingZoom, zoomOutLevel, t);
                 yield return 0;
@@ -226,4 +313,5 @@ public class CameraManager : MonoBehaviour
             cameraZooming = false;
         }
     }
+
 }
