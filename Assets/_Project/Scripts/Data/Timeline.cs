@@ -200,7 +200,7 @@ public class Timeline : Singleton<Timeline> {
             // set status
             SetTimelineStatus (TimelineStatus.inactive);
             // update btn text and make interactable
-            SetStartBtn ("start", true);
+            SetStartBtn ("Start", true);
         }
         // if not active
         else {
@@ -375,7 +375,7 @@ public class Timeline : Singleton<Timeline> {
                 StartHistoryLoop ();
 
                 // update btn text and make interactable
-                SetStartBtn ("stop", true);
+                SetStartBtn ("Stop", true);
 
                 // set status
                 SetTimelineStatus (TimelineStatus.active);
@@ -575,7 +575,7 @@ public class Timeline : Singleton<Timeline> {
         historyTitleText.text = "History [ " + historyCount + " ] ";
 
         // trigger timeline updated event
-        //EventManager.TriggerEvent ("TimelineUpdated");
+        EventManager.TriggerEvent ("TimelineUpdated");
     }
 
     /**

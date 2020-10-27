@@ -11,7 +11,7 @@ public class FPSCounter : MonoBehaviour {
     private int m_FpsAccumulator = 0;
     private float m_FpsNextPeriod = 0;
     private int m_CurrentFps;
-    const string display = "{0} FPS";
+    const string display = "FPS: {0}";
     private TMP_Text m_Text;
 
 

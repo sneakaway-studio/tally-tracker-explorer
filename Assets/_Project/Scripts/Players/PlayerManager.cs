@@ -12,14 +12,26 @@ public class PlayerManager : Singleton<PlayerManager> {
     void OnEnable ()
     {
         EventManager.StartListening ("ResetPlayers", ResetPlayers);
+        EventManager.StartListening ("ClearNonActivePlayers", ClearNonActivePlayers);
     }
     void OnDisable ()
     {
         EventManager.StopListening ("ResetPlayers", ResetPlayers);
+        EventManager.StopListening ("ClearNonActivePlayers", ClearNonActivePlayers);
     }
 
+
     [Space (10)]
-    [Header ("Object References")]
+    [Header ("DETAILS")]
+
+    // number of players
+    public int playerCount;
+
+
+
+
+    [Space (10)]
+    [Header ("OBJECTS")]
 
     // bounds, prefab, dict for instantiating players
     public BoxCollider worldContainerCollider;
@@ -33,19 +45,18 @@ public class PlayerManager : Singleton<PlayerManager> {
 
 
     [Space (10)]
-    [Header ("Current Player Event")]
+    [Header ("CURRENT PLAYER")]
 
     // player currently showing an event
     public GameObject currentPlayerObj;
     public Player currentPlayerScript;
 
-    // number of players
-    public int playerCount;
+
 
 
 
     [Space (10)]
-    [Header ("Animations")]
+    [Header ("ANIMATIONS")]
 
     // animations to play
     public GameObject attackSpriteAnim;
@@ -142,7 +153,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             // finaly, add to dict
             playerDict.Add (username, obj);
             // sets a reference to the cameraManager
-            obj.GetComponent<Player>().cameraManager = cameraManager;
+            obj.GetComponent<Player> ().cameraManager = cameraManager;
 
             // Allow the player to be selected by the camera
             cameraManager.AddPlayer (username);
