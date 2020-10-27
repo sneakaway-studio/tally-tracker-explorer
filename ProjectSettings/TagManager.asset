@@ -44,6 +44,9 @@ TagManager:
   - name: Background
     uniqueID: 3605591837
     locked: 0
+  - name: LandscapeBackground
+    uniqueID: 390569183
+    locked: 0
   - name: SnowBack
     uniqueID: 617896803
     locked: 0
@@ -61,6 +64,9 @@ TagManager:
     locked: 0
   - name: Effects
     uniqueID: 3914373229
+    locked: 0
+  - name: LandscapeForeground
+    uniqueID: 764283659
     locked: 0
   - name: UI
     uniqueID: 785290751

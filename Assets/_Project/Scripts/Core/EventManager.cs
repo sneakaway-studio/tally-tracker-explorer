@@ -73,10 +73,10 @@ public class EventManager : MonoBehaviour {
 
     public static void TriggerEvent (string eventName)
     {
-
         // if application is playing 
         if (Application.IsPlaying (instance)) {
-            Debug.Log (DebugManager.GetSymbol ("blackstar") + " EventManager.TriggerEvent() -> eventName = " + eventName);
+            //Debug.Log (DebugManager.GetSymbol ("blackstar") + " EventManager.TriggerEvent() -> eventName = " + eventName);
+            DebugManager.Instance.UpdateDisplay ("EventManager.TriggerEvent() " + eventName);
         }
 
         UnityEvent thisEvent = null;

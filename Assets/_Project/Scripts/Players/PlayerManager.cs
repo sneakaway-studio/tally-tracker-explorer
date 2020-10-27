@@ -11,11 +11,11 @@ public class PlayerManager : Singleton<PlayerManager> {
     //listeners
     void OnEnable ()
     {
-        EventManager.StartListening ("DataDownloaded", ResetPlayers);
+        EventManager.StartListening ("ResetPlayers", ResetPlayers);
     }
     void OnDisable ()
     {
-        EventManager.StopListening ("DataDownloaded", ResetPlayers);
+        EventManager.StopListening ("ResetPlayers", ResetPlayers);
     }
 
     [Space (10)]
@@ -60,7 +60,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     public GameObject trackerAnim;
     public GameObject leaderboardAnim;
     public GameObject selectionParticle;
-    
+
 
 
     private void Awake ()
@@ -80,8 +80,11 @@ public class PlayerManager : Singleton<PlayerManager> {
         // clear the dictionary 
         playerDict.Clear ();
 
-        // loop through the feed and add players
-        foreach (var feed in DataManager.feeds) {
+        // loop through the buffer and add players
+        foreach (var feed in Timeline.Instance.buffer) {
+            CreateNewPlayer (feed.username, feed.avatarPath);
+        }
+        foreach (var feed in Timeline.Instance.history) {
             CreateNewPlayer (feed.username, feed.avatarPath);
         }
 
@@ -142,7 +145,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             obj.GetComponent<Player>().cameraManager = cameraManager;
 
             // Allow the player to be selected by the camera
-            cameraManager.AddPlayer(username);
+            cameraManager.AddPlayer (username);
         }
     }
 

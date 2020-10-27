@@ -1,21 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
 
 /**
- *  Updates resolution, fullscreen, and volume
+ *  SettingsManager
+ *  - Controls settings only - resolution, fullscreen, and volume
+ *  - See ProjectManager for starting program, getting data, etc.
  *  - Brackey's to the rescue https://www.youtube.com/watch?v=YOaYQrN1oYQ
  */
 public class SettingsManager : MonoBehaviour {
 
+    public Toggle fullscreenToggle;
+
+    public bool isFullscreen;
 
     public AudioMixer audioMixer;
 
     public TMP_Dropdown resolutionDropdown;
 
     Resolution [] resolutions;
+
+
+    private void Awake ()
+    {
+        // update the values in the UI that are set in the inspector
+        fullscreenToggle.isOn = isFullscreen;
+    }
+
 
     private void Start ()
     {
@@ -52,9 +66,12 @@ public class SettingsManager : MonoBehaviour {
         audioMixer.SetFloat ("volume", volume);
     }
 
-    public void SetFullscreen (bool isFullscreen)
+    public void SetFullscreen (bool state)
     {
-        Screen.fullScreen = isFullscreen;
+        Screen.fullScreen = state;
+        isFullscreen = state;
     }
+
+
 
 }

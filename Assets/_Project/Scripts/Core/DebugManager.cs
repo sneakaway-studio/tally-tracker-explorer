@@ -1,11 +1,28 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class DebugManager : Singleton<DebugManager> {
     // singleton
     protected DebugManager () { }
-    public static new DebugManager Instance;
+    //public static new DebugManager Instance;
+
+
+
+
+    // DISPLAY EVENT LOG
+
+    [Space (10)]
+    [Header ("DEBUG LOG")]
+
+    public TMP_Text debugText;
+    public ScrollRect debugScrollRect;
+
+
+
 
     [SerializeField]
     public static bool status = true;
@@ -13,11 +30,13 @@ public class DebugManager : Singleton<DebugManager> {
     // dictionary of symbols
     private static Dictionary<string, string> symbolDictionary;
 
+
+
     private void Awake ()
     {
-
         AddSymbols ();
-
+        // clear display
+        ClearDisplay ();
 
         // turn off logging outside of the editor
 #if UNITY_EDITOR
@@ -28,6 +47,26 @@ public class DebugManager : Singleton<DebugManager> {
 
 
     }
+
+
+    public void UpdateDisplay (string str)
+    {
+        //Debug.Log (str);
+        if (str != "") str = str + "<br>";
+        debugText.text += str;
+        UpdateScroll ();
+    }
+    public void ClearDisplay ()
+    {
+        debugText.text = "";
+        //UpdateScroll ();
+    }
+    void UpdateScroll ()
+    {
+        Canvas.ForceUpdateCanvases ();
+        debugScrollRect.verticalNormalizedPosition = 0f;
+    }
+
 
     /**
      *  Add symbols for debugging
