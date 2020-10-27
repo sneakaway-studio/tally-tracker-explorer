@@ -727,3 +727,4 @@ MonoBehaviour:
   playerObject: {fileID: 5916665147843492862}
   effects: {fileID: 3814961216833141047}
   animControllerScript: {fileID: 5138628123425424795}
+  cameraManager: {fileID: 0}

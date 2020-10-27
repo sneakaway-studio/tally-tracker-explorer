@@ -28,6 +28,8 @@ public class CameraManager : MonoBehaviour
     private int playersCurrentIndex = 0;
     private GameObject currentSelectionParticle;
 
+    public PlayerDetailsUI playerDetails;
+
     TallyInputSystem inputs;
 
     private void Awake()
@@ -179,6 +181,8 @@ public class CameraManager : MonoBehaviour
     /// </summary>
     IEnumerator Transition()
     {
+        playerDetails.gameObject.SetActive(false);
+
         float t = 0.0f;
         Vector3 startingPos = mainCamera.transform.position;
         float longestD = Vector2.Distance(mainCamera.transform.position, cameraTarget.transform.position) / speed;
@@ -196,6 +200,8 @@ public class CameraManager : MonoBehaviour
                 yield return 0;
             }
             cameraMoving = false;
+            playerDetails.gameObject.SetActive(true);
+            playerDetails.setUI(cameraTarget.GetComponentInParent<Player>().username, "1", "1", "1", "1", "1", "1", "1");
         }
 
         /// ARCHIVED TRANSITION IN CASE YOU NEED IT LATER
@@ -242,6 +248,7 @@ public class CameraManager : MonoBehaviour
                 yield return 0;
             }
             cameraMoving = false;
+            playerDetails.setUI(cameraTarget.GetComponentInParent<Player>().username, "1", "1", "1", "1", "1", "1", "1");
         }
     }
 
@@ -271,6 +278,8 @@ public class CameraManager : MonoBehaviour
             }
             cameraZooming = false;
             cameraZoomed = true;
+            playerDetails.gameObject.SetActive(true);
+            playerDetails.setUI(cameraTarget.GetComponentInParent<Player>().username, "1", "1", "1", "1", "1", "1", "1");
         }
     }
 
@@ -282,6 +291,8 @@ public class CameraManager : MonoBehaviour
         float t = 0.0f;
         float startingZoom = mainCamera.orthographicSize;
         float longestD = Vector2.Distance(mainCamera.transform.position, new Vector3(0, 1, -10)) / speed;
+
+        playerDetails.gameObject.SetActive(false);
 
         // If the camera is not moving, zooming, or currently zoomed in
         if (!cameraMoving && !cameraZooming && cameraZoomed)
