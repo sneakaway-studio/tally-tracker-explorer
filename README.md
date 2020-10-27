@@ -4,7 +4,8 @@
 
 ## Notes
 
-- Unity 2020.1, URP
+- Unity 2020.1.2f
+- Universal Render Pipeline (URP)
 
 
 
@@ -82,7 +83,12 @@
 	- [ ] Shift to different player
 		- [x] Desktop - Arrow key (keyboard) and horiz/vert axis (controller)
 		- [ ] Mobile - Swipe
-	- [ ] Either after a period of no activity automatically, or with player click / press button to, zoom back out  
+
+### Exhibition mode
+
+- [ ] After a period of no activity automatically
+	- [ ] Zoom in? 
+	- [ ] Zoom out? @jdietrick preference? 
 
 
 ### Testing
