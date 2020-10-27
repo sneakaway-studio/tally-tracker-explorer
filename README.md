@@ -100,12 +100,6 @@
 
 
 
-### Monsters
-
-- [x] Sprite animation slicing
-- [x] Add monster sprites to follow players 👈
-
-
 ### Players
 
 - [ ] Data
@@ -167,6 +161,11 @@ Other ideas on movement:
 
 
 
+### Monsters
+
+- [x] Sprite animation slicing
+- [x] Add monster sprites to follow players 👈
+
 
 ### Effects
 
@@ -194,7 +193,6 @@ Other ideas on movement:
 - [ ] Light emitters on player trails
 - [ ] Environmental lighting
 - [ ] Changes to lighting depending on time of day
-- [ ] Baking, etc. performance considerations
 - [ ] Add Fog
 	- [ ] Examples [1](https://forum.unity.com/threads/how-can-i-control-fog-color-based-on-skybox-color.311706/), [2](https://carlburton.itch.io/islands), [3](https://magazine.renderosity.com/article/5204/taking-a-look-at-unity-fog)
 - [ ] Add texture to background
@@ -206,6 +204,7 @@ Other ideas on movement:
 	- [ ] CPU overhead?
 	- [ ] Draw Calls?
 	- [ ] Garbage Collection?
+	- [ ] Bake lighting?
 	- [ ] What else?
 - [ ] Figure out player control device
 - [ ] Platforms / Devices / Resolutions
