@@ -6,16 +6,16 @@ using UnityEngine.Audio;
 using TMPro;
 
 /**
- *  Updates resolution, fullscreen, and volume
+ *  SettingsManager
+ *  - Controls settings only - resolution, fullscreen, and volume
+ *  - See ProjectManager for starting program, getting data, etc.
  *  - Brackey's to the rescue https://www.youtube.com/watch?v=YOaYQrN1oYQ
  */
 public class SettingsManager : MonoBehaviour {
 
     public Toggle fullscreenToggle;
-    public Toggle autostartToggle;
 
     public bool isFullscreen;
-    public bool autostart;
 
     public AudioMixer audioMixer;
 
@@ -28,7 +28,6 @@ public class SettingsManager : MonoBehaviour {
     {
         // update the values in the UI that are set in the inspector
         fullscreenToggle.isOn = isFullscreen;
-        autostartToggle.isOn = autostart;
     }
 
 
@@ -73,9 +72,6 @@ public class SettingsManager : MonoBehaviour {
         isFullscreen = state;
     }
 
-    public void SetAutostart (bool state)
-    {
-        autostart = state;
-    }
+
 
 }

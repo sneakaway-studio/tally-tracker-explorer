@@ -1,16 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 using System;
 using UnityEngine.UI;
 using TMPro;
 
-
-
 /**
- *  Timeline base class
+ *  Timeline class
  *   - new data from server or filesystem is placed in the buffer
  *   - on play, each event is taken from the buffer, visualized, then placed in the history
  *   - if buffer gets low then we attempt to fill it either with new data or by repeating events in history
@@ -22,12 +18,47 @@ public class Timeline : Singleton<Timeline> {
 
 
 
+    // MAIN / CONTROLS
+
+    [Space (10)]
+    [Header ("MAIN")]
+
+
+    public TMP_Dropdown dataSourceDropdown;
+    //public TMP_Dropdown timelineStatusDropdown;
+    public TMP_Text timelineStatusText;
+    public Button startButton;
+    public TMP_Text startButtonText;
+
+    [Serializable]
+    public enum TimelineStatus {
+        init,           // start everything
+        start,          // start everything, already know we have stopped
+        stop,           // stop everything
+        active,         // display / logic only - everything is running, loops managing their own data
+        inactive,       // display / logic only - everything is off
+        waitingForData, // display / logic only - holding pattern, waiting for data
+        newDataReceived,// display / logic only - called after data received or updated
+        bufferEmpty,    // display / logic only - reached end of buffer
+        moveHistory,    // display / logic only - moving history to buffer
+    }
+    [Tooltip ("Timeline status")]
+    public TimelineStatus status;
+
+    [Tooltip ("Time since a data request made active")]
+    public int waitingForDataProgress;
+
+
+
+
     // BUFFER
 
     [Space (10)]
     [Header ("BUFFER")]
 
     public List<FeedData> buffer = new List<FeedData> ();
+
+    Coroutine bufferCoroutine;
 
     [Tooltip ("Current number of feed events in buffer")]
     public int bufferCount;
@@ -36,7 +67,7 @@ public class Timeline : Singleton<Timeline> {
     [Range (1, 20)]
     public int bufferCountMin;
     [Tooltip ("Min items allowed in buffer")]
-    [Range (10, 100)]
+    [Range (10, 10000)]
     public int bufferCountMax;
 
     [Tooltip ("How often the buffer is checked (in seconds)")]
@@ -50,18 +81,13 @@ public class Timeline : Singleton<Timeline> {
 
 
 
-    [Tooltip ("Time since a data request made active")]
-    public int dataRequestProgress;
-
-    [Tooltip ("Is the timeline is currently active?")]
-    public bool active = false;
-
-
 
     // HISTORY 
 
     [Space (10)]
     [Header ("HISTORY")]
+
+    Coroutine historyCoroutine;
 
     public List<FeedData> history = new List<FeedData> ();
 
@@ -87,7 +113,7 @@ public class Timeline : Singleton<Timeline> {
     [Tooltip ("Difference (seconds) between current time (feed.createdAt) and previousTime")]
     public int timeDiff;
 
-    [Tooltip ("Difference (seconds) adjusted for loop")]
+    [Tooltip ("Difference (seconds) adjusted")]
     public float timeDiffScaled;
 
     [Tooltip ("How much faster time is replayed (timeDiff * scalar)")]
@@ -100,47 +126,164 @@ public class Timeline : Singleton<Timeline> {
     public float maxTimeDiff = 10;
 
 
-    public SettingsManager settingsManager;
 
-
-
-    // listeners
-    void OnEnable ()
-    {
-        EventManager.StartListening ("StartTimeline", StartTimeline);
-    }
-    void OnDisable ()
-    {
-        EventManager.StopListening ("StartTimeline", StartTimeline);
-    }
 
     private void Awake ()
     {
-        //
+        //// populate options in the status dropdown 
+        //Dropdown_PopulateStatus ();
     }
 
-    // empty loop queue and restart
-    public void StartTimeline ()
+    private void Start ()
     {
-        // stop and restart if currently playing
-        if (active)
-            StopTimeline ();
-        // start
-        StartCoroutine ("CheckBuffer");
-        StartCoroutine ("Loop");
-        active = true;
+        StartBufferLoop ();
     }
-    public void StopTimeline ()
+
+
+
+    /////////////////////////////////////////////////////////////
+    /////////////////////////// UI //////////////////////////////
+    /////////////////////////////////////////////////////////////
+
+    //// populate dropdown options
+    //void Dropdown_PopulateStatus ()
+    //{
+    //    // clear the options in the dropdown
+    //    timelineStatusDropdown.ClearOptions ();
+    //    // save the enum options as a string[]
+    //    string [] enumOptions = Enum.GetNames (typeof (TimelineStatus));
+    //    // create a new list for the available options
+    //    List<string> options = new List<string> (enumOptions);
+    //    // add options to list
+    //    timelineStatusDropdown.AddOptions (options);
+    //}
+    ///**
+    // *  Called from UI to update the game status
+    // */
+    //public void Dropdown_Listener (int _status)
+    //{
+    //    // call in-game logic, cast as Enum
+    //    SetTimelineStatus ((TimelineStatus)_status, true);
+    //}
+
+
+
+    /**
+     *  Called from game to update the status 
+     */
+    public void SetTimelineStatus (TimelineStatus _status, bool fromUI = false)
     {
-        // if active
-        if (!active) return;
-        // stop coroutines
-        StopCoroutine ("CheckBuffer");
-        StopCoroutine ("Loop");
-        // set false
-        active = false;
+        Debug.Log ("Timeline.SetTimelineStatus() status = " + status + ", _status = " + _status);
+
+        // update status var
+        status = _status;
+
+        // if the call (note, original status) came from within the game then show in UI
+        if (!fromUI) timelineStatusText.text = _status.ToString ();
+
+        // run immediately
+        //TimelineControl ();
+    }
+
+
+    /**
+     *  Called from the UI button to start / stop
+     */
+    public void StartBtn ()
+    {
+        // if currently active
+        if (status == TimelineStatus.active) {
+            SetStartBtn (" --- ", false);
+            // stop everything
+            StopBufferLoop ();
+            StopHistoryLoop ();
+            // set status
+            SetTimelineStatus (TimelineStatus.inactive);
+            // update btn text and make interactable
+            SetStartBtn ("start", true);
+        }
+        // if not active
+        else {
+            // set status
+            SetTimelineStatus (TimelineStatus.start);
+            // start loop
+            StartBufferLoop ();
+            // disable button until active
+            SetStartBtn (" --- ", false);
+        }
+        UpdateCounts ();
+        UpdateTimelineLogs ();
+    }
+
+    void SetStartBtn (string txt, bool interact)
+    {
+        startButtonText.text = txt;
+        startButton.interactable = interact;
+    }
+
+
+
+
+    /////////////////////////////////////////////////////////////
+    //////////////////////// CONTROLS ///////////////////////////
+    /////////////////////////////////////////////////////////////
+
+
+    /**
+     *  (stops and then) starts the buffer loop
+     */
+    public void StartBufferLoop ()
+    {
+        Debug.Log ("Timeline.StartBufferLoop()");
+
+        // if coroutine running
+        if (bufferCoroutine != null) StopCoroutine (bufferCoroutine);
+        // start buffer, attempt to get new data
+        bufferCoroutine = StartCoroutine (BufferLoop ());
+    }
+    /**
+     *  Stop fetching new data
+     */
+    public void StopBufferLoop ()
+    {
+        Debug.Log ("Timeline.StopBufferLoop()");
+
+        // if coroutine running
+        if (bufferCoroutine != null) StopCoroutine (bufferCoroutine);
+
+        // clear and reset capacity
+        buffer.Clear ();
+        buffer.TrimExcess ();
+    }
+
+    /**
+     *  (stops and then) starts the history loop
+     */
+    public void StartHistoryLoop ()
+    {
+        Debug.Log ("Timeline.StartHistoryLoop()");
+
+        // if coroutine running
+        if (historyCoroutine != null) StopCoroutine (historyCoroutine);
+        // start buffer, attempt to get new data
+        historyCoroutine = StartCoroutine (HistoryLoop ());
+    }
+    /**
+     *  Stop displaying events
+     */
+    public void StopHistoryLoop ()
+    {
+        Debug.Log ("Timeline.StopHistoryLoop()");
+
+        // if coroutine running
+        if (historyCoroutine != null) StopCoroutine (historyCoroutine);
+
         // reset previous time
         previousTime = DateTime.MinValue;
+
+        // clear and reset capacity
+        history.Clear ();
+        history.TrimExcess ();
     }
 
 
@@ -149,54 +292,150 @@ public class Timeline : Singleton<Timeline> {
 
 
     /////////////////////////////////////////////////////////////
-    //////////////////////// BUFFER /////////////////////////////
+    ///////////////////// BUFFER LOOP ///////////////////////////
     /////////////////////////////////////////////////////////////
 
 
     /**
      *  Check the buffer, add data
      */
-    IEnumerator CheckBuffer ()
+    IEnumerator BufferLoop ()
     {
         while (true) {
-
-            //Debug.Log ("Timeline.CheckBuffer()");
 
             // update count
             UpdateCounts ();
 
-            DebugManager.Instance.UpdateDisplay ("Timeline.CheckBuffer() count = " + bufferCount.ToString ());
+            //Debug.Log ("Timeline.BufferLoop()");
+            DebugManager.Instance.UpdateDisplay ("Timeline.BufferLoop() status = " + status + ", count = " + bufferCount.ToString ());
 
-            // is the bufferCount > max?
-            if (bufferCount > bufferCountMax) {
-                // skip this time
-                continue;
-            }
-            // is the bufferCount < min OR the bufferCount empty?
-            else if (bufferCount <= bufferCountMin || bufferCount < 1) {
 
-                // if we haven't started a new data request already
-                if (dataRequestProgress < 1) {
-                    // attempt to get new data from server
-                    EventManager.TriggerEvent ("GetNewData");
-                    // start tracking time since request
-                    dataRequestProgress++;
-                }
-                // maybe a problem with server
-                else if (++dataRequestProgress > 10) {
-                    // or if no data then copy from history
-                    MoveListRange (bufferCountMax, history, buffer);
+
+
+
+
+            // INIT
+
+            if (status == TimelineStatus.init) {
+                // set to start
+                SetTimelineStatus (TimelineStatus.start);
+            }
+
+            // START
+
+            if (status == TimelineStatus.start) {
+                // reset progress
+                waitingForDataProgress = 0;
+
+                // set to waiting
+                SetTimelineStatus (TimelineStatus.waitingForData);
+
+                // attempt to get new data from server,
+                EventManager.TriggerEvent ("GetNewData");
+            }
+
+           // STOP
+
+           else if (status == TimelineStatus.stop) {
+
+                // clear buffer
+                buffer.Clear ();
+                buffer.TrimExcess ();
+
+                // set to waiting
+                SetTimelineStatus (TimelineStatus.inactive);
+            }
+
+           // WAITING FOR DATA
+
+           else if (status == TimelineStatus.waitingForData) {
+
+                // time since request
+                waitingForDataProgress++;
+
+                // buffer WAS waiting, now has data
+                if (bufferCount > 0) {
+
+                    // set status
+                    SetTimelineStatus (TimelineStatus.newDataReceived);
+
+                } else if (waitingForDataProgress > 20) {
+                    // handle lack of data here
                 }
             }
+
+           // NEW DATA RECEIVED
+
+           else if (status == TimelineStatus.newDataReceived) {
+
+                // after new data, sort ascending
+                buffer.Sort ((x, y) => x.createdAt.CompareTo (y.createdAt));
+
+                // remove duplicates here?
+
+                // start history loop again
+                StartHistoryLoop ();
+
+                // update btn text and make interactable
+                SetStartBtn ("stop", true);
+
+                // set status
+                SetTimelineStatus (TimelineStatus.active);
+            }
+
+
+           // ACTIVE
+
+           else if (status == TimelineStatus.active) {
+
+                // if all of buffer has been moved to history
+                if (bufferCount <= bufferCountMin) {
+
+                    // set to handle end of buffer
+                    SetTimelineStatus (TimelineStatus.bufferEmpty);
+
+                }
+                // is the bufferCount > max?
+                else if (bufferCount > bufferCountMax) {
+                    // need to handle this eventually
+                    // maybe...
+                }
+            }
+
+           // BUFFER EMPTY
+
+           else if (status == TimelineStatus.bufferEmpty) {
+
+                // local
+                if (dataSourceDropdown.value == 0) {
+                    // set to handle end of buffer
+                    SetTimelineStatus (TimelineStatus.moveHistory);
+                }
+                // live
+                else if (dataSourceDropdown.value == 1) {
+                    // get new data
+                }
+
+            }
+
+            // MOVE HISTORY (TO BUFFER)
+
+            else if (status == TimelineStatus.moveHistory) {
+
+                // move history back to buffer (assuming we are doing this with one big file)
+                MoveListRange (bufferCountMax, history, buffer);
+                // set to handle end of buffer
+                SetTimelineStatus (TimelineStatus.active);
+
+            }
+
 
             UpdateCounts ();
 
-            // after 
+            // after checking condition
             if (bufferCount > 0) {
-                // after update, sort ascending
-                buffer.Sort ((x, y) => x.createdAt.CompareTo (y.createdAt));
                 // display
-                UpdateTimelineDisplay ();
+                UpdateTimelineLogs ();
                 // if we have data in the buffer or history but no players then add them
                 if (PlayerManager.Instance.playerCount < 1) {
                     EventManager.TriggerEvent ("ResetPlayers");
@@ -210,20 +449,22 @@ public class Timeline : Singleton<Timeline> {
 
 
     /////////////////////////////////////////////////////////////
-    //////////////////////// LOOP ///////////////////////////////
+    /////////////////// HISTORY LOOP ////////////////////////////
     /////////////////////////////////////////////////////////////
 
 
     /**
      *  Play events from buffer and move to history
      */
-    IEnumerator Loop ()
+    IEnumerator HistoryLoop ()
     {
-        UpdateCounts ();
-
         while (true) {
 
-            //Debug.Log ("Timeline.Loop()");
+            // update count
+            UpdateCounts ();
+
+            //Debug.Log ("Timeline.HistoryLoop()");
+            //DebugManager.Instance.UpdateDisplay ("Timeline.HistoryLoop() count = " + historyCount.ToString ());
 
             // if buffer has items
             if (bufferCount > 0) {
@@ -269,7 +510,7 @@ public class Timeline : Singleton<Timeline> {
                     // after update, sort ascending
                     history.Sort ((x, y) => x.createdAt.CompareTo (y.createdAt));
                     // display
-                    UpdateTimelineDisplay ();
+                    UpdateTimelineLogs ();
                 }
 
 
@@ -279,7 +520,7 @@ public class Timeline : Singleton<Timeline> {
                     //" = (" + previousTime + " - " + feed.createdAt + ") " +
                     feed.username + ", " + feed.eventType + "";
 
-                DebugManager.Instance.UpdateDisplay ("Timeline.Loop() " + eventString);
+                DebugManager.Instance.UpdateDisplay ("Timeline.HistoryLoop() " + eventString);
 
 
             } else {
@@ -300,17 +541,19 @@ public class Timeline : Singleton<Timeline> {
 
 
     /**
-     *  Update display for both
+     *  Update display for both history and buffer
      */
-    void UpdateTimelineDisplay ()
+    void UpdateTimelineLogs ()
     {
+        //Debug.Log ("Timeline.UpdateTimelineLogs()");
+
         string bufferString = "";
         string historyString = "";
-        int safety = 0;
 
+        int safety = 0;
         foreach (var feed in buffer) {
             bufferString += feed.eventType + ". " + feed.createdAt + " - " + feed.username + "<br>";
-            if (++safety > 100) {
+            if (++safety > bufferCountMax) {
                 Debug.Log ("Safety first!");
                 break;
             }
@@ -318,7 +561,7 @@ public class Timeline : Singleton<Timeline> {
         safety = 0;
         foreach (var feed in history) {
             historyString += feed.eventType + ". " + feed.createdAt + " - " + feed.username + "<br>";
-            if (++safety > 100) {
+            if (++safety > bufferCountMax) {
                 Debug.Log ("Safety first!");
                 break;
             }
@@ -334,7 +577,7 @@ public class Timeline : Singleton<Timeline> {
         historyTitleText.text = "History [ " + historyCount + " ] ";
 
         // trigger timeline updated event
-        EventManager.TriggerEvent ("TimelineUpdated");
+        //EventManager.TriggerEvent ("TimelineUpdated");
     }
 
     /**
