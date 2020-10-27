@@ -46,12 +46,12 @@
 ### Playback History and Buffer automation
 
 - [ ] Create code that
-	- [ ] Automatically gets, or handles a lack of, new events
+	- [x] Automatically gets, or handles a lack of, new events
 	- [ ] Can consume data from the live API or local `JSON` files without changing anything
-	- [ ] Potentially do it like:
-		- [ ] Use two C# collections (either a List or Dictionary) named `buffer` and a `history` that can be sorted by a date string.
-		- [ ] As the events are visualized, the event object is moved from the `buffer` to the `history`.
-		- [ ] If no (or not enough) new events are found on the next API call, then a "rewind" can happen where a chunk of events from history are placed back in the buffer and the "playhead" can restart at the end of the buffer (until the next check).
+	- [x] Potentially do it like:
+		- [x] Use two C# collections (either a List or Dictionary) named `buffer` and a `history` that can be sorted by a date string.
+		- [x] As the events are visualized, the event object is moved from the `buffer` to the `history`.
+		- [x] If no (or not enough) new events are found on the next API call, then a "rewind" can happen where a chunk of events from history are placed back in the buffer and the "playhead" can restart at the end of the buffer (until the next check).
 
 
 ### Timeline visualization
@@ -70,10 +70,18 @@
 ### Interaction
 
 - [ ] Add methods so viewer with a controller (keyboard, joystick, etc.) in the Visualization Studio **OR** someone using this with an iPad can: 👈
-	- [ ] Use horiz/vert axis (controller) or pinch/zoom (tablet) to select different players
-	- [ ] Click / press button / touch to zoom camera into and follow player
+	- [ ] Select players
+		- [x] Desktop - Use horiz/vert axis (controller)
+		- [ ] Mobile - Pinch/zoom
+	- [ ] Zoom camera into and follow player
+		- [x] Desktop - Click
+		- [ ] Mobile - Touch
 	- [ ] While zoomed-in, display additional data on that player (from feed, username, etc.)
-	- [ ] Use horiz/vert axis (controller) or swipe (tablet) to shift to different player
+		- [x] Basic code
+		- [ ] Finish design @omundy
+	- [ ] Shift to different player
+		- [x] Desktop - Arrow key (keyboard) and horiz/vert axis (controller)
+		- [ ] Mobile - Swipe
 	- [ ] Either after a period of no activity automatically, or with player click / press button to, zoom back out  
 
 
@@ -94,9 +102,10 @@
 
 ### Players
 
-- [ ] Initialize
+- [ ] Data
 	- [x] Use Feed data to build GameObjects and display in "Universe"
 	- [ ] Ensure players aren't added twice with new feed data
+	- [ ] Get player data to populate zoomed-in UI display	
 - [x] Movement
 	- [x] Create player (physics controlled) floating movement (Jellyfish?)
 - [ ] Actions (controlled from code) that visualize different event types on playback
@@ -155,8 +164,9 @@ Other ideas on movement:
 
 ### Effects
 
-- [x] PlayerTrails 👈
+- [ ] PlayerTrails 👈
 	- [x] Create "Nyan Cat" trails (particle system?) (some examples on [google](https://www.google.com/search?q=unity+trail+renderer&safe=off&rlz=1C5CHFA_enUS903US909&sxsrf=ALeKk038imz2qRqefBNgel1Fi7zgS7CyHw:1600720422081&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjo95GhjPvrAhUFqlkKHQFpAAQQ_AUoAnoECAwQBA&biw=1239&bih=766))
+	- [ ] Code new monster following ([circular](https://www.dropbox.com/s/6413o51d0aj057j/20201014-unity-new-particles.mp4?dl=0)) animation
 	- [ ] Connect each trail to a product marketing category from streams using colors from the monster gradients
 	- [ ] Add/remove trails based on streams updates
 	- [ ] Add/remove monsters from data trail based on streams updates
