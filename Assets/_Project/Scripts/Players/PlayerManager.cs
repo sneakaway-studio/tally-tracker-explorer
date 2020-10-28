@@ -26,8 +26,9 @@ public class PlayerManager : Singleton<PlayerManager> {
 
     // number of players
     public int playerCount;
-
-
+    // min/max allowed at one time
+    public int minPlayersAllowed;
+    public int maxPlayersAllowed;
 
 
     [Space (10)]

@@ -48,7 +48,7 @@ public class Timeline : Singleton<Timeline> {
     [Tooltip ("Time since a data request made active")]
     public int waitingForDataProgress;
 
-
+    public int totalEvents;
 
 
     // BUFFER
@@ -371,6 +371,13 @@ public class Timeline : Singleton<Timeline> {
 
                 // remove duplicate users here?
 
+
+                // if we have data in the buffer or history but no players then add them
+                if (PlayerManager.Instance.playerCount < 1) {
+                    EventManager.TriggerEvent ("ResetPlayers");
+                }
+
+
                 // start history loop again
                 StartHistoryLoop ();
 
@@ -434,10 +441,6 @@ public class Timeline : Singleton<Timeline> {
             if (bufferCount > 0) {
                 // display
                 UpdateTimelineLogs ();
-                // if we have data in the buffer or history but no players then add them
-                if (PlayerManager.Instance.playerCount < 1) {
-                    EventManager.TriggerEvent ("ResetPlayers");
-                }
             }
 
             yield return new WaitForSeconds (bufferCheckFrequency);
@@ -568,7 +571,6 @@ public class Timeline : Singleton<Timeline> {
         bufferText.text = bufferString;
         historyText.text = historyString;
 
-        UpdateCounts ();
         UpdateScroll ();
 
         bufferTitleText.text = "Buffer [ " + bufferCount + " ] ";
@@ -585,6 +587,7 @@ public class Timeline : Singleton<Timeline> {
     {
         bufferCount = buffer.Count;
         historyCount = history.Count;
+        totalEvents = buffer.Count + history.Count;
     }
 
     public void UpdateScroll ()
