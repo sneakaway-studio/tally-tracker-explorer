@@ -11,13 +11,15 @@ public class PlayerManager : Singleton<PlayerManager> {
     //listeners
     void OnEnable ()
     {
-        EventManager.StartListening ("ResetPlayers", ResetPlayers);
-        EventManager.StartListening ("ClearNonActivePlayers", ClearNonActivePlayers);
+        EventManager.StartListening ("AddAllPlayers", AddAllPlayers);
+        EventManager.StartListening ("RemoveAllPlayers", RemoveAllPlayers);
+        EventManager.StartListening ("CheckUpdatePlayers", CheckUpdatePlayers);
     }
     void OnDisable ()
     {
-        EventManager.StopListening ("ResetPlayers", ResetPlayers);
-        EventManager.StopListening ("ClearNonActivePlayers", ClearNonActivePlayers);
+        EventManager.StopListening ("AddAllPlayers", AddAllPlayers);
+        EventManager.StopListening ("RemoveAllPlayers", RemoveAllPlayers);
+        EventManager.StopListening ("CheckUpdatePlayers", CheckUpdatePlayers);
     }
 
 
@@ -38,6 +40,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     public BoxCollider worldContainerCollider;
     public GameObject playerPrefab;
     public Dictionary<string, GameObject> playerDict;
+    public Dictionary<string, GameObject> playersToRemoveDict;
     public CameraManager cameraManager;
 
     // temp sprites for assigning avatars
@@ -51,6 +54,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     // player currently showing an event
     public GameObject currentPlayerObj;
     public Player currentPlayerScript;
+    public string currentEventType;
 
 
 
@@ -82,24 +86,92 @@ public class PlayerManager : Singleton<PlayerManager> {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
     /**
-     *  Remove all players from stage, reset dict
+     *  Add all players to screen and dict - called at start or after data reset
+     *  - called when Timeline.status == TimelineStatus.newDataReceived
      */
-    public void ResetPlayers ()
+    void AddAllPlayers ()
     {
-        // remove any players first?
+        Debug.Log ("PlayerManager.AddAllPlayers()");
 
-        // clear the dictionary 
-        playerDict.Clear ();
-
-        // loop through the buffer and add players
+        // loop through the buffer and add players to scene and dict
         foreach (var feed in Timeline.Instance.buffer) {
+            // max hasn't been reached
+            if (playerDict.Count > maxPlayersAllowed) break;
+            // check if player exists and add if not 
             CreateNewPlayer (feed.username, feed.avatarPath);
         }
         foreach (var feed in Timeline.Instance.history) {
+            // max hasn't been reached
+            if (playerDict.Count > maxPlayersAllowed) break;
+            // check if player exists and add if not 
             CreateNewPlayer (feed.username, feed.avatarPath);
         }
 
+        UpdateCounts ();
+
+    }
+
+
+    /**
+     *  Remove all players from screen and dict
+     *  - called from Timeline.OnStartBtnClick() to stop timeline / reset data
+     */
+    void RemoveAllPlayers ()
+    {
+        Debug.Log ("PlayerManager.RemoveAllPlayers()");
+
+        // for each in playerDict, remove from scene
+        foreach (KeyValuePair<string, GameObject> kvp in playerDict) {
+            Destroy (kvp.Value);
+        }
+
+        // clear the dictionary 
+        playerDict.Clear ();
+        // update the count
+        UpdateCounts ();
+    }
+
+
+    /**
+     *  - called when Timeline.status == TimelineStatus.newDataReceived
+     */
+    void CheckUpdatePlayers ()
+    {
+        Debug.Log ("PlayerManager.CheckUpdatePlayers()");
+
+        //      - make a copy of the current player dict -> playersToRemoveDict
+        //      - for each event/player in current buffer and history
+        //          - if player found in playerDict
+        //              - remove from playersToRemoveDict
+        //          - else
+        //              - add to playerDict / scene
+        //          - add ALL players until max per resolution
+        //      - if players still left in playersToRemoveDict
+        //          - remove those players from scene and clear dict
+        //      - update counts
+
+
+
+        UpdateCounts ();
+    }
+
+
+
+
+    void UpdateCounts ()
+    {
         // update player count
         playerCount = playerDict.Count;
 
@@ -107,16 +179,8 @@ public class PlayerManager : Singleton<PlayerManager> {
         EventManager.TriggerEvent ("PlayersUpdated");
     }
 
-    /**
-    *  Remove players who haven't been active in a while
-    */
-    public void ClearNonActivePlayers ()
-    {
 
 
-        // trigger data updated event
-        EventManager.TriggerEvent ("PlayersUpdated");
-    }
 
 
 
@@ -126,10 +190,10 @@ public class PlayerManager : Singleton<PlayerManager> {
     /**
      *  Create a new player
      */
-    public void CreateNewPlayer (string username, string avatarPath)
+    public bool CreateNewPlayer (string username, string avatarPath)
     {
         // make sure the player doesn't already exist
-        if (playerDict.ContainsKey (username)) return;
+        if (playerDict.ContainsKey (username)) return false;
 
         // get a position that doesn't contain any other colliders
         Vector3 spawnPosition = GetClearSpawnPosition ();
@@ -159,6 +223,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             // Allow the player to be selected by the camera
             cameraManager.AddPlayer (username);
         }
+        return true;
     }
 
 
@@ -180,6 +245,12 @@ public class PlayerManager : Singleton<PlayerManager> {
 
         // reference to script (contains all the other references we need)
         currentPlayerScript = currentPlayerObj.GetComponent<Player> ();
+
+        // show event in public var
+        currentEventType = feed.eventType;
+
+
+
 
 
         // EFFECTS

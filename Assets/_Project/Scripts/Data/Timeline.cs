@@ -173,7 +173,7 @@ public class Timeline : Singleton<Timeline> {
      */
     public void SetTimelineStatus (TimelineStatus _status, bool fromUI = false)
     {
-        Debug.Log ("Timeline.SetTimelineStatus() status = " + status + ", _status = " + _status);
+        //Debug.Log ("Timeline.SetTimelineStatus() status = " + status + ", _status = " + _status);
 
         // update status var
         status = _status;
@@ -186,18 +186,23 @@ public class Timeline : Singleton<Timeline> {
     /**
      *  Called from the UI button to start / stop
      */
-    public void StartBtn ()
+    public void OnStartBtnClick ()
     {
         // if currently active
         if (status == TimelineStatus.active) {
-            SetStartBtn (" --- ", false);
+            SetStartBtnText (" --- ", false);
             // stop everything
             StopBufferLoop ();
             StopHistoryLoop ();
             // set status
             SetTimelineStatus (TimelineStatus.inactive);
             // update btn text and make interactable
-            SetStartBtn ("Start", true);
+            SetStartBtnText ("Start", true);
+            // if there are players active
+            if (PlayerManager.Instance.playerCount > 0) {
+                // then add them
+                EventManager.TriggerEvent ("RemoveAllPlayers");
+            }
         }
         // if not active
         else {
@@ -210,7 +215,7 @@ public class Timeline : Singleton<Timeline> {
         UpdateTimelineLogs ();
     }
 
-    void SetStartBtn (string txt, bool interact)
+    void SetStartBtnText (string txt, bool interact)
     {
         startButtonText.text = txt;
         startButton.interactable = interact;
@@ -320,7 +325,7 @@ public class Timeline : Singleton<Timeline> {
                 waitingForDataProgress = 0;
 
                 // disable button until data arrives
-                SetStartBtn (" ... ", false);
+                SetStartBtnText (" ... ", false);
 
                 // set to waiting
                 SetTimelineStatus (TimelineStatus.waitingForData);
@@ -366,12 +371,14 @@ public class Timeline : Singleton<Timeline> {
                 // after new data, sort ascending
                 buffer.Sort ((x, y) => x.createdAt.CompareTo (y.createdAt));
 
-                // remove duplicate users here?
 
-
-                // if we have data in the buffer or history but no players then add them
+                // if we have data in the buffer or history but no players 
                 if (PlayerManager.Instance.playerCount < 1) {
-                    EventManager.TriggerEvent ("ResetPlayers");
+                    // then add them
+                    EventManager.TriggerEvent ("AddAllPlayers");
+                } else {
+                    // otherwise update them
+                    EventManager.TriggerEvent ("CheckUpdatePlayers");
                 }
 
 
@@ -379,7 +386,7 @@ public class Timeline : Singleton<Timeline> {
                 StartHistoryLoop ();
 
                 // update btn text and make interactable
-                SetStartBtn ("Stop", true);
+                SetStartBtnText ("Stop", true);
 
                 // set status
                 SetTimelineStatus (TimelineStatus.active);
