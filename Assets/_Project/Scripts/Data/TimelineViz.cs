@@ -27,7 +27,7 @@ public class TimelineViz : MonoBehaviour {
     {
 
         // if there are events and historyCount has been updated
-        if (timeline.totalEvents > 0 && lastHistoryCount != timeline.historyCount) {
+        if (timeline.totalEventCount > 0 && lastHistoryCount != timeline.historyCount) {
 
             //Debug.Log ("hi " + timeline.historyCount / (float)timeline.totalEvents);
 
@@ -37,7 +37,7 @@ public class TimelineViz : MonoBehaviour {
             } else {
 
                 // get new normalized position
-                newPosNormalized = new Vector2 (timeline.historyCount / (float)timeline.totalEvents, historyRectTransform.anchorMax.y);
+                newPosNormalized = new Vector2 (timeline.historyCount / (float)timeline.totalEventCount, historyRectTransform.anchorMax.y);
 
                 // start coroutine to lerp from current to new
                 StartCoroutine (LerpPosition (historyRectTransform, newPosNormalized, 1f));

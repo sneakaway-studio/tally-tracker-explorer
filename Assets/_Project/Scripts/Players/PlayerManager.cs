@@ -28,6 +28,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 
     // number of players
     public int playerCount;
+    public int playerToRemoveCount;
     // min/max allowed at one time
     public int minPlayersAllowed;
     public int maxPlayersAllowed;
@@ -83,6 +84,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     {
         //Instance = this;
         playerDict = new Dictionary<string, GameObject> ();
+        playersToRemoveDict = new Dictionary<string, GameObject> ();
     }
 
 
@@ -151,19 +153,56 @@ public class PlayerManager : Singleton<PlayerManager> {
     {
         Debug.Log ("PlayerManager.CheckUpdatePlayers()");
 
-        //      - make a copy of the current player dict -> playersToRemoveDict
-        //      - for each event/player in current buffer and history
-        //          - if player found in playerDict
-        //              - remove from playersToRemoveDict
-        //          - else
-        //              - add to playerDict / scene
-        //          - add ALL players until max per resolution
-        //      - if players still left in playersToRemoveDict
-        //          - remove those players from scene and clear dict
-        //      - update counts
+        // make a copy of the current player dict
+        playersToRemoveDict = new Dictionary<string, GameObject> (playerDict);
+
+        GameObject player;
+
+        // loop through the buffer
+        foreach (var feed in Timeline.Instance.buffer) {
+            // if player still in playerDict
+            playerDict.TryGetValue (feed.username, out player);
+            if (player != null) {
+                // remove from playersToRemoveDict
+                playersToRemoveDict.Remove (feed.username);
+            } else {
+                // max hasn't been reached
+                if (playerDict.Count > maxPlayersAllowed) break;
+                // check if player exists and add
+                CreateNewPlayer (feed.username, feed.avatarPath);
+            }
+        }
+        foreach (var feed in Timeline.Instance.history) {
+            // if player still in playerDict
+            playerDict.TryGetValue (feed.username, out player);
+            if (player != null) {
+                // remove from playersToRemoveDict
+                playersToRemoveDict.Remove (feed.username);
+            } else {
+                // max hasn't been reached
+                if (playerDict.Count > maxPlayersAllowed) break;
+                // check if player exists and add
+                CreateNewPlayer (feed.username, feed.avatarPath);
+            }
+        }
 
 
 
+
+        // if players still left in playersToRemoveDict
+        if (playersToRemoveDict.Count > 0) {
+            // remove those players from scene and clear dict
+            // for each in playerDict, remove from scene
+            foreach (KeyValuePair<string, GameObject> kvp in playersToRemoveDict) {
+                Destroy (kvp.Value);
+            }
+            // clear the playersToRemoveDict dictionary 
+            playersToRemoveDict.Clear ();
+        }
+
+
+
+        // update counts
         UpdateCounts ();
     }
 
@@ -174,7 +213,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     {
         // update player count
         playerCount = playerDict.Count;
-
+        playerToRemoveCount = playersToRemoveDict.Count;
         // trigger data updated event
         EventManager.TriggerEvent ("PlayersUpdated");
     }
