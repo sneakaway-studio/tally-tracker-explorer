@@ -38,6 +38,7 @@ public class CameraManager : MonoBehaviour
         inputs = new TallyInputSystem();
         inputs.Player.SelectLeft.performed += ctx => SelectLeft();
         inputs.Player.SelectRight.performed += ctx => SelectRight();
+        inputs.Player.Tap.performed += ctx => CalculateTap(ctx.ReadValue<Vector2>());
         inputs.Player.ZoomIn.started += ctx => StartCoroutine(ZoomIn());
         inputs.Player.ZoomOut.started += ctx => StartCoroutine(ZoomOut());
         inputs.Player.Enable();
@@ -101,6 +102,20 @@ public class CameraManager : MonoBehaviour
             // Transition camera if zoomed in
             if (cameraZoomed)
                 StartCoroutine(Transition());
+        }
+    }
+
+    public void CalculateTap(Vector2 position)
+    {
+        Debug.Log(position);
+
+        if (position.x < (Screen.width / 2 - Screen.width / 6))
+        {
+            SelectLeft();
+        }
+        else if (position.x > (Screen.width / 2 + Screen.width / 6))
+        {
+            SelectRight();
         }
     }
 
