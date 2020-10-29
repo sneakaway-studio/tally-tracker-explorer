@@ -26,30 +26,26 @@ public class TimelineViz : MonoBehaviour {
     private void Update ()
     {
 
-        // if there are events and we have recently increased historyCount
+        // if there are events and historyCount has been updated
         if (timeline.totalEvents > 0 && lastHistoryCount != timeline.historyCount) {
 
             //Debug.Log ("hi " + timeline.historyCount / (float)timeline.totalEvents);
 
-            // get new normalized position
-            newPosNormalized = new Vector2 (timeline.historyCount / (float)timeline.totalEvents, historyRectTransform.anchorMax.y);
+            if (timeline.historyCount <= 0) {
+                // snap to new position
+                historyRectTransform.anchorMax = new Vector2 (0, historyRectTransform.anchorMax.y);
+            } else {
 
-            //if (timeline.historyCount == 0) {
-            //    // snap to new position
-            //    historyRectTransform.anchorMax = new Vector2 (0, historyRectTransform.anchorMax.y);
-            //} else {
-            // start coroutine to lerp from current to new
-            StartCoroutine (LerpPosition (historyRectTransform, newPosNormalized, 1f));
-            //}
+                // get new normalized position
+                newPosNormalized = new Vector2 (timeline.historyCount / (float)timeline.totalEvents, historyRectTransform.anchorMax.y);
+
+                // start coroutine to lerp from current to new
+                StartCoroutine (LerpPosition (historyRectTransform, newPosNormalized, 1f));
+
+            }
 
             // store this history count
             lastHistoryCount = timeline.historyCount;
-
-            //// if the buffer is going to be reset soon
-            //if (lastHistoryCount >= timeline.totalEvents) {
-            //    // reset
-            //    lastHistoryCount = 0;
-            //}
         }
 
     }

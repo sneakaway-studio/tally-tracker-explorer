@@ -210,7 +210,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             else if (feed.eventType == "badge") {
                 AttachDetachAnimation (badgeAnim, false, 1f, 3.5f);
                 // play the timeline animation
-                currentPlayerScript.animControllerScript.animName = "Swirl_r_md";
+                currentPlayerScript.animControllerScript.animName = "Swirl_r_sm";
             }
 
             // CONSUMABLE 
