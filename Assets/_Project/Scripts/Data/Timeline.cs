@@ -27,6 +27,7 @@ public class Timeline : Singleton<Timeline> {
     public TMP_Dropdown dataSourceDropdown;
     //public TMP_Dropdown timelineStatusDropdown;
     public TMP_Text timelineStatusText;
+    public TMP_Text timelineVizDateTimeText;
     public Button startButton;
     public TMP_Text startButtonText;
 
@@ -500,6 +501,8 @@ public class Timeline : Singleton<Timeline> {
                 // let PlayerManager find player and visualize event
                 PlayerManager.Instance.PlayEvent (feed);
 
+                // show date in TimelineViz
+                timelineVizDateTimeText.text = feed.createdAt.ToString ();
 
                 // MANAGE EVENT
 
