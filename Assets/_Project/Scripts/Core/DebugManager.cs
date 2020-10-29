@@ -63,7 +63,8 @@ public class DebugManager : Singleton<DebugManager> {
     }
     void UpdateScroll ()
     {
-        Canvas.ForceUpdateCanvases ();
+        // make the canvases update their positions - causes big performance spikes and is not needed for debugging
+        //Canvas.ForceUpdateCanvases ();
         debugScrollRect.verticalNormalizedPosition = 0f;
     }
 

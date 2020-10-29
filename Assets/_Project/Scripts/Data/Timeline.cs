@@ -180,9 +180,6 @@ public class Timeline : Singleton<Timeline> {
 
         // if the call (note, original status) came from within the game then show in UI
         if (!fromUI) timelineStatusText.text = _status.ToString ();
-
-        // run immediately
-        //TimelineControl ();
     }
 
 
@@ -525,8 +522,8 @@ public class Timeline : Singleton<Timeline> {
 
 
             } else {
-                // safety
-                timeDiffScaled = 1;
+                // for safety and a pause between data sets
+                timeDiffScaled = 5;
             }
 
             // time difference to next event (or safety)
@@ -592,7 +589,8 @@ public class Timeline : Singleton<Timeline> {
 
     public void UpdateScroll ()
     {
-        Canvas.ForceUpdateCanvases ();
+        // make the canvases update their positions - causes big performance spikes and is not needed for debugging
+        //Canvas.ForceUpdateCanvases ();
         bufferScrollRect.verticalNormalizedPosition = 0f;
         historyScrollRect.verticalNormalizedPosition = 0f;
     }
