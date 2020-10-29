@@ -204,11 +204,12 @@ Other ideas on movement:
 
 ## Delivery
 
-- [ ] Performance 
+- [ ] Performance - [See this reference sheet which covers specifics on all of the below](https://github.com/omundy/dig250-game-art-dev/blob/master/reference-sheets/Unity-Performance.md)
 	- [ ] CPU overhead?
 	- [ ] Draw Calls?
 	- [ ] Garbage Collection?
 	- [ ] Bake lighting?
+	- [ ] UI / Canvas
 	- [ ] What else?
 - [ ] Figure out player control device
 - [ ] Platforms / Devices / Resolutions
