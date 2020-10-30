@@ -29,7 +29,9 @@ public class CameraManager : MonoBehaviour {
 
     public PlayerDetailsUI playerDetails;
 
-    // Create InputSystem reference (see Joseph's description here0
+    // Create InputSystem reference
+    // - there is a TouchSimulation script in /Tests/ to test touch on desktop
+    // - see Joseph's description here
     // https://docs.google.com/document/d/1qyFnlRPpv7GGFHZ9GD5y0trwahJRtd5nhBnmDnVd_UY/edit
     TallyInputSystem inputs;
 
