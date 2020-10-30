@@ -22,6 +22,8 @@ public class MovePositionWanderComplex : PhysicsBase {
 
     private CameraManager cameraManager;
 
+    public bool receivingInput;
+
     private void Start ()
     {
         // get container collider
@@ -30,7 +32,7 @@ public class MovePositionWanderComplex : PhysicsBase {
         // first wander point
         wayPoint = ReturnNewWanderPoint ();
 
-        cameraManager = GetComponentInParent<Player>().cameraManager;
+        cameraManager = GetComponentInParent<Player> ().cameraManager;
     }
 
     protected override void Update ()
@@ -55,15 +57,16 @@ public class MovePositionWanderComplex : PhysicsBase {
         }
 
         // if player input is happening and the current object is targeted
-        if (playerInput.magnitude != 0 && cameraManager.getCameraTarget().Equals(gameObject))
-        {
+        if (playerInput.magnitude != 0 && cameraManager.getCameraTarget ().Equals (gameObject)) {
             // get player input
             direction = playerInput;
-        }
-        else
-        {
+            // is someone pressing buttons
+            receivingInput = true;
+        } else {
             // get direction
-            direction = transform.TransformDirection(Vector2.right);
+            direction = transform.TransformDirection (Vector2.right);
+            // is someone pressing buttons
+            receivingInput = false;
         }
 
         // distance to move each frame = normalized distance vector * speed * time since last frame
@@ -73,13 +76,33 @@ public class MovePositionWanderComplex : PhysicsBase {
         rb.MovePosition (transform.position + step);
         //rb.velocity = direction * thrust;
 
+        // is someone pressing buttons
+        if (receivingInput == true) {
+            // rotate to that direction
+            //RotateTorwardsDirection2D ();
 
-        // rotate towards waypoint
-        RotateTowardsTarget2D ();
+            // placeholder
+            RotateTowardsTarget2D ();
+        } else {
+            // rotate towards waypoint
+            RotateTowardsTarget2D ();
+        }
+
+
     }
 
     /**
-     *  Turn transform towards a target
+     *  Turn transform towards a direction vector over time
+     */
+    void RotateTorwardsDirection2D ()
+    {
+        //Debug.Log ("RotateTorwardsDirection2D()");
+
+        // TO DO
+    }
+
+    /**
+     *  Turn transform towards a target slowly over time
      */
     void RotateTowardsTarget2D ()
     {
@@ -87,16 +110,15 @@ public class MovePositionWanderComplex : PhysicsBase {
         //transform.right = wayPoint - transform.position;
 
         // change look direction slowly
-        Vector3 temp = Vector3.Lerp(transform.right, (wayPoint - transform.position), rotateTimeElapsed / rotateDuration);
+        Vector3 temp = Vector3.Lerp (transform.right, (wayPoint - transform.position), rotateTimeElapsed / rotateDuration);
 
         // Values used to check for bad flipping
-        float safetyX = Mathf.Abs(-1f - Mathf.Round(temp.x * 100.0f) / 100.0f);
-        float safetyY = Mathf.Round(temp.y * 100.0f) / 100.0f;
+        float safetyX = Mathf.Abs (-1f - Mathf.Round (temp.x * 100.0f) / 100.0f);
+        float safetyY = Mathf.Round (temp.y * 100.0f) / 100.0f;
 
         // If new rotation would flip player in y rotation, prevent this
-        if (safetyX <= 0.1f && safetyY == 0)
-        {
-            temp = new Vector3(temp.x, 0.1f, 0);
+        if (safetyX <= 0.1f && safetyY == 0) {
+            temp = new Vector3 (temp.x, 0.1f, 0);
         }
 
         // Set right vector
