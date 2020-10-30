@@ -71,9 +71,9 @@
 
 
 
-### Interaction ✅
+### Interaction 
 
-- [x] Add methods so viewer with a controller (keyboard, joystick, etc.) in the Visualization Studio **OR** someone using this with an iPad can: 👈
+- [x] Add methods so viewer with a controller (keyboard, joystick, etc.) in the Visualization Studio **OR** someone using this with an iPad can: ✅
 	- [x] Select players
 		- [x] Desktop - Use horiz/vert axis (controller)
 		- [x] Mobile - Pinch/zoom
