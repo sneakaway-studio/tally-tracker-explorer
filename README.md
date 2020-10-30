@@ -60,38 +60,39 @@
 
 ### Timeline visualization
 
-- [ ] Build timeline Visualization that shows `history` and `buffer` 👈
-	- [ ] "Playhead" that moves horizontally with the current event
-	- [ ] `History` and `buffer` are both visualized, with dots showing number in each collection, on either side
-	- [ ] Playhead moves right as new events happen, increasing the `history` and decreasing the size of the `buffer`
-	- [ ] As `buffer` is filled back up `history` is deleted and playhead resets to left.
-	- [ ] Use [Colors](https://github.com/sneakaway-studio/tally-api/blob/master/public/assets/css/sass/custom.scss) from the website palette in the interface
+- [x] Build timeline Visualization that shows `history` and `buffer` 
+	- [x] "Playhead" that moves horizontally with the current event
+	- [x] `History` and `buffer` are both visualized, with dots showing number in each collection, on either side
+	- [x] Playhead moves right as new events happen, increasing the `history` and decreasing the size of the `buffer`
+	- [x] As `buffer` is filled back up `history` is deleted and playhead resets to left.
+	- [x] Use [Colors](https://github.com/sneakaway-studio/tally-api/blob/master/public/assets/css/sass/custom.scss) from the website palette in the interface
 
 
 
 
 
-### Interaction
+### Interaction ✅
 
-- [ ] Add methods so viewer with a controller (keyboard, joystick, etc.) in the Visualization Studio **OR** someone using this with an iPad can: 👈
-	- [ ] Select players
+- [x] Add methods so viewer with a controller (keyboard, joystick, etc.) in the Visualization Studio **OR** someone using this with an iPad can: 👈
+	- [x] Select players
 		- [x] Desktop - Use horiz/vert axis (controller)
-		- [ ] Mobile - Pinch/zoom
-	- [ ] Zoom camera into and follow player
+		- [x] Mobile - Pinch/zoom
+	- [x] Zoom camera into and follow player
 		- [x] Desktop - Click
-		- [ ] Mobile - Touch
-	- [ ] While zoomed-in, display additional data on that player (from feed, username, etc.)
+		- [x] Mobile - Touch
+	- [x] While zoomed-in, display additional data on that player (from feed, username, etc.)
 		- [x] Basic code
-		- [ ] Finish design @omundy
-	- [ ] Shift to different player
+		- [x] Finish design @omundy
+	- [x] Shift to different player
 		- [x] Desktop - Arrow key (keyboard) and horiz/vert axis (controller)
-		- [ ] Mobile - Swipe
+		- [x] Mobile - Swipe
 
 ### Exhibition mode
 
-- [ ] After a period of no activity automatically
+- [ ] After a period of no activity automatically 👈 @jdietrick what is preference on these? 
+	- [ ] Switch players? 
 	- [ ] Zoom in? 
-	- [ ] Zoom out? @jdietrick preference? 
+	- [ ] Zoom out? 
 
 
 ### UI Controls / Testing / Debugging
@@ -108,12 +109,14 @@
 
 - [ ] Data
 	- [x] Use Feed data to build GameObjects and display in "Universe"
-	- [ ] Ensure players aren't added twice with new feed data
-	- [ ] Get player data to populate zoomed-in UI display	
+	- [x] Ensure players aren't added twice with new feed data
+	- [x] Add player stats to API	
+	- [ ] Get player stats json data from server 👈
+	- [ ] Populate zoomed-in UI display 👈
 - [x] Movement
 	- [x] Create player (physics controlled) floating movement (Jellyfish?)
-- [ ] Actions (controlled from code) that visualize different event types on playback
-	- [x] 👆 Stream - Click ✅
+- [ ] Actions (controlled from code) that visualize different event types on playback @jdietrick let's go through one last time and check these off
+	- [x] 👆 Stream - Click 
 		- Player movement: `Pop_Shake_md.anim`
 		- Sound: [Click.ogg](Assets/_Project/Sounds/Effects/Click.ogg)
 		- Extra effects: expanding concentric rings similar to "[radar](https://www.provideocoalition.com/wp-content/uploads/Radar.gif)" effect but with better colors, maybe toned down color
@@ -165,23 +168,23 @@ Other ideas on movement:
 
 
 
-### Monsters
 
-- [x] Sprite animation slicing
-- [x] Add monster sprites to follow players 👈
 
 
 ### Effects
 
-- [ ] PlayerTrails 👈
+- [ ] PlayerTrails 
 	- [x] Create "Nyan Cat" trails (particle system?) (some examples on [google](https://www.google.com/search?q=unity+trail+renderer&safe=off&rlz=1C5CHFA_enUS903US909&sxsrf=ALeKk038imz2qRqefBNgel1Fi7zgS7CyHw:1600720422081&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjo95GhjPvrAhUFqlkKHQFpAAQQ_AUoAnoECAwQBA&biw=1239&bih=766))
-	- [ ] Code new monster following ([circular](https://www.dropbox.com/s/6413o51d0aj057j/20201014-unity-new-particles.mp4?dl=0)) animation
-	- [ ] Connect each trail to a product marketing category from streams using colors from the monster gradients
-	- [ ] Add/remove trails based on streams updates
-	- [ ] Add/remove monsters from data trail based on streams updates
+	- [x] Monster Sprite animation slicing
+	- [x] Add monster sprites to follow players ✅
+	- [x] Create animation for circular monsters @jdietrick ✅
+	- [x] Code new monster following ([circular](https://www.dropbox.com/s/6413o51d0aj057j/20201014-unity-new-particles.mp4?dl=0)) animation ✅
+	- [ ] Connect each trail to a product marketing category from streams using colors from the monster gradients 👈
+	- [ ] Add/remove trails based on streams updates 👈
+	- [ ] Add/remove monsters from data trail based on streams updates 👈
 - [x] Anaglyph3D
 	- [x] Add / test Anaglyph3D shader
-- [x] Marine Snow / Floating stars 👈
+- [x] Marine Snow / Floating stars ✅
 	- [x] Use particle system to create small floating objects to give the visual display depth, for example:
 		- [x] Snow similar to the [upside down](https://www.youtube.com/watch?v=LwmnNzY7gdo&ab_channel=AmbientWorlds) floaty bits
 		- [x] Detritus in undersea life a.k.a "[marine snow](https://oceanservice.noaa.gov/facts/marinesnow.html)"
@@ -194,17 +197,17 @@ Other ideas on movement:
 - [x] Change project to URP (Universal Render Pipeline)
 - [x] Setup [2D renderer and lights](https://www.youtube.com/watch?v=nkgGyO9VG54&t=53s&ab_channel=Brackeys)
 - [x] Point lights on GameObjects
-- [ ] Light emitters on player trails
+- [ ] Light emitters on player trails @jdietrick should we keep?
 - [x] Environmental lighting
-- [ ] Changes to lighting depending on time of day
-- [ ] Add Fog
+- [ ] Changes to lighting depending on time of day @jdietrick we need a visualization of this
+- [ ] Add Fog @jdietrick should we do this?
 	- [ ] Examples [1](https://forum.unity.com/threads/how-can-i-control-fog-color-based-on-skybox-color.311706/), [2](https://carlburton.itch.io/islands), [3](https://magazine.renderosity.com/article/5204/taking-a-look-at-unity-fog)
 - [ ] Add texture to background
 
 
 ## Delivery
 
-- [ ] Performance - [See this reference sheet which covers specifics on all of the below](https://github.com/omundy/dig250-game-art-dev/blob/master/reference-sheets/Unity-Performance.md)
+- [ ] Performance - [See this reference sheet which covers specifics on all of the below](https://github.com/omundy/dig250-game-art-dev/blob/master/reference-sheets/Unity-Performance.md) 👈
 	- [ ] CPU overhead?
 	- [ ] Draw Calls?
 	- [ ] Garbage Collection?
@@ -212,7 +215,7 @@ Other ideas on movement:
 	- [ ] UI / Canvas
 	- [ ] What else?
 - [ ] Figure out player control device
-- [ ] Platforms / Devices / Resolutions
+- [ ] Testing: Platforms / Devices / Resolutions
 
 
 device | OS | resolution | aspect ratio | notes
