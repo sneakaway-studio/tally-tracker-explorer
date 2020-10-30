@@ -37,6 +37,7 @@ public class Timeline : Singleton<Timeline> {
         stop,           // stop everything
         active,         // display / logic only - everything is running, loops managing their own data
         inactive,       // display / logic only - everything is off
+        getRemoteData,  // display / logic only - get new data from server
         waitingForData, // display / logic only - holding pattern, waiting for data
         newDataReceived,// display / logic only - called after data received or updated
         bufferEmpty,    // display / logic only - reached end of buffer
@@ -440,6 +441,8 @@ public class Timeline : Singleton<Timeline> {
                 else if (dataSource == DataSource.live) {
                     // attempt to get new data
 
+                    // set to wait
+                    SetTimelineStatus (TimelineStatus.waitingForData);
                 }
 
             }
@@ -452,7 +455,6 @@ public class Timeline : Singleton<Timeline> {
                 MoveListRange (bufferCountMax, history, buffer);
                 // set to handle end of buffer
                 SetTimelineStatus (TimelineStatus.active);
-
             }
 
             // update counts
