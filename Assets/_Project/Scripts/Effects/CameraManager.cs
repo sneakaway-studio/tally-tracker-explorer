@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
-{
+public class CameraManager : MonoBehaviour {
     // Main camera in scene
     public Camera mainCamera;
 
@@ -24,43 +23,43 @@ public class CameraManager : MonoBehaviour
 
     // Player selection info
     private GameObject cameraTarget;
-    private List<string> players = new List<string>();
+    private List<string> players = new List<string> ();
     private int playersCurrentIndex = 0;
     private GameObject currentSelectionParticle;
 
     public PlayerDetailsUI playerDetails;
 
+    // Create InputSystem reference (see Joseph's description here0
+    // https://docs.google.com/document/d/1qyFnlRPpv7GGFHZ9GD5y0trwahJRtd5nhBnmDnVd_UY/edit
     TallyInputSystem inputs;
 
-    private void Awake()
+    private void Awake ()
     {
-        // Assign actions to inputs
-        inputs = new TallyInputSystem();
-        inputs.Player.SelectLeft.performed += ctx => SelectLeft();
-        inputs.Player.SelectRight.performed += ctx => SelectRight();
-        inputs.Player.Tap.performed += ctx => CalculateTap(ctx.ReadValue<Vector2>());
-        inputs.Player.ZoomIn.started += ctx => StartCoroutine(ZoomIn());
-        inputs.Player.ZoomOut.started += ctx => StartCoroutine(ZoomOut());
-        inputs.Player.Enable();
+        // Assign functionality to inputs (as delgates / Actions) using ctx “CallbackContext”
+        inputs = new TallyInputSystem ();
+        inputs.Player.SelectLeft.performed += ctx => SelectLeft ();
+        inputs.Player.SelectRight.performed += ctx => SelectRight ();
+        inputs.Player.Tap.performed += ctx => CalculateTap (ctx.ReadValue<Vector2> ());
+        inputs.Player.ZoomIn.started += ctx => StartCoroutine (ZoomIn ());
+        inputs.Player.ZoomOut.started += ctx => StartCoroutine (ZoomOut ());
+        inputs.Player.Enable ();
     }
 
-    private void Update()
+    private void Update ()
     {
         // Stick camera to target after zooming in
-        if (!cameraMoving && !cameraZooming && cameraZoomed)
-        {
-            mainCamera.transform.position = new Vector3(cameraTarget.transform.position.x, cameraTarget.transform.position.y, -10);
+        if (!cameraMoving && !cameraZooming && cameraZoomed) {
+            mainCamera.transform.position = new Vector3 (cameraTarget.transform.position.x, cameraTarget.transform.position.y, -10);
         }
     }
 
     /// <summary>
     /// Selects the previous player in the list of players
     /// </summary>
-    void SelectLeft()
+    void SelectLeft ()
     {
         // If the camera is not moving
-        if (!cameraMoving)
-        {
+        if (!cameraMoving) {
             // Change the player index
             if (playersCurrentIndex == 0)
                 playersCurrentIndex = players.Count - 1;
@@ -68,25 +67,24 @@ public class CameraManager : MonoBehaviour
                 playersCurrentIndex--;
 
             // Switch cameraTarget and change particles
-            Destroy(currentSelectionParticle);
-            playerManager.playerDict.TryGetValue(players[playersCurrentIndex], out GameObject tempPlayer);
-            currentSelectionParticle = (GameObject)Instantiate(playerManager.selectionParticle, tempPlayer.GetComponent<Player>().effects.transform, false);
-            cameraTarget = tempPlayer.GetComponent<Player>().playerCharacter;
+            Destroy (currentSelectionParticle);
+            playerManager.playerDict.TryGetValue (players [playersCurrentIndex], out GameObject tempPlayer);
+            currentSelectionParticle = (GameObject)Instantiate (playerManager.selectionParticle, tempPlayer.GetComponent<Player> ().effects.transform, false);
+            cameraTarget = tempPlayer.GetComponent<Player> ().playerCharacter;
 
             // Transition camera if zoomed in
             if (cameraZoomed)
-                StartCoroutine(Transition());
+                StartCoroutine (Transition ());
         }
     }
 
     /// <summary>
     /// Selects the next player in the list of players
     /// </summary>
-    void SelectRight()
+    void SelectRight ()
     {
         // If the camera is not moving
-        if (!cameraMoving)
-        {
+        if (!cameraMoving) {
             // Change the player index
             if (playersCurrentIndex == players.Count - 1)
                 playersCurrentIndex = 0;
@@ -94,28 +92,25 @@ public class CameraManager : MonoBehaviour
                 playersCurrentIndex++;
 
             // Switch cameraTarget and change particles
-            Destroy(currentSelectionParticle);
-            playerManager.playerDict.TryGetValue(players[playersCurrentIndex], out GameObject tempPlayer);
-            currentSelectionParticle = (GameObject)Instantiate(playerManager.selectionParticle, tempPlayer.GetComponent<Player>().effects.transform, false);
-            cameraTarget = tempPlayer.GetComponent<Player>().playerCharacter;
+            Destroy (currentSelectionParticle);
+            playerManager.playerDict.TryGetValue (players [playersCurrentIndex], out GameObject tempPlayer);
+            currentSelectionParticle = (GameObject)Instantiate (playerManager.selectionParticle, tempPlayer.GetComponent<Player> ().effects.transform, false);
+            cameraTarget = tempPlayer.GetComponent<Player> ().playerCharacter;
 
             // Transition camera if zoomed in
             if (cameraZoomed)
-                StartCoroutine(Transition());
+                StartCoroutine (Transition ());
         }
     }
 
-    public void CalculateTap(Vector2 position)
+    public void CalculateTap (Vector2 position)
     {
-        Debug.Log(position);
+        Debug.Log (position);
 
-        if (position.x < (Screen.width / 2 - Screen.width / 6))
-        {
-            SelectLeft();
-        }
-        else if (position.x > (Screen.width / 2 + Screen.width / 6))
-        {
-            SelectRight();
+        if (position.x < (Screen.width / 2 - Screen.width / 6)) {
+            SelectLeft ();
+        } else if (position.x > (Screen.width / 2 + Screen.width / 6)) {
+            SelectRight ();
         }
     }
 
@@ -123,17 +118,16 @@ public class CameraManager : MonoBehaviour
     /// Adds a player to the list of players
     /// </summary>
     /// <param name="username"> Name of player </param>
-    public void AddPlayer(string username)
+    public void AddPlayer (string username)
     {
         // Adds username to player list
-        players.Add(username);
+        players.Add (username);
 
         // Makes new player the target if one is not selected
-        if (currentSelectionParticle == null)
-        {
-            playerManager.playerDict.TryGetValue(players[playersCurrentIndex], out GameObject tempPlayer);
-            cameraTarget = tempPlayer.GetComponent<Player>().playerCharacter;
-            currentSelectionParticle = (GameObject)Instantiate(playerManager.selectionParticle, tempPlayer.GetComponent<Player>().effects.transform, false);
+        if (currentSelectionParticle == null) {
+            playerManager.playerDict.TryGetValue (players [playersCurrentIndex], out GameObject tempPlayer);
+            cameraTarget = tempPlayer.GetComponent<Player> ().playerCharacter;
+            currentSelectionParticle = (GameObject)Instantiate (playerManager.selectionParticle, tempPlayer.GetComponent<Player> ().effects.transform, false);
         }
     }
 
@@ -141,7 +135,7 @@ public class CameraManager : MonoBehaviour
     /// Gets the camera target
     /// </summary>
     /// <returns> GameObject being targeted by camera </returns>
-    public GameObject getCameraTarget()
+    public GameObject getCameraTarget ()
     {
         return cameraTarget;
     }
@@ -152,7 +146,7 @@ public class CameraManager : MonoBehaviour
     /// </summary>
     /// <param name="t"> Passed time </param>
     /// <returns> Exponential graph at time t </returns>
-    float EaseIn(float t)
+    float EaseIn (float t)
     {
         return t * t;
     }
@@ -162,7 +156,7 @@ public class CameraManager : MonoBehaviour
     /// </summary>
     /// <param name="x"> Passed time </param>
     /// <returns> Upside down graph at time t </returns>
-    float Flip(float x)
+    float Flip (float x)
     {
         return 1 - x;
     }
@@ -172,9 +166,9 @@ public class CameraManager : MonoBehaviour
     /// </summary>
     /// <param name="t"> Passed time </param>
     /// <returns> Flipped exponential graph at time t </returns>
-    float EaseOut(float t)
+    float EaseOut (float t)
     {
-        return Flip(EaseIn(Flip(t)));
+        return Flip (EaseIn (Flip (t)));
     }
 
     /// <summary>
@@ -182,9 +176,9 @@ public class CameraManager : MonoBehaviour
     /// </summary>
     /// <param name="t"> Passed time </param>
     /// <returns> Eased in/out graph at time t </returns>
-    float EaseInOut(float t)
+    float EaseInOut (float t)
     {
-        return Mathf.Lerp(EaseIn(t), EaseOut(t), t);
+        return Mathf.Lerp (EaseIn (t), EaseOut (t), t);
 
         //return Mathf.Pow(Mathf.Sin((Mathf.PI * t) / 2), 2);
     }
@@ -194,29 +188,27 @@ public class CameraManager : MonoBehaviour
     /// <summary>
     /// Moves the camera to the cameraTarget
     /// </summary>
-    IEnumerator Transition()
+    IEnumerator Transition ()
     {
-        playerDetails.gameObject.SetActive(false);
+        playerDetails.gameObject.SetActive (false);
 
         float t = 0.0f;
         Vector3 startingPos = mainCamera.transform.position;
-        float longestD = Vector2.Distance(mainCamera.transform.position, cameraTarget.transform.position) / speed;
+        float longestD = Vector2.Distance (mainCamera.transform.position, cameraTarget.transform.position) / speed;
 
         // If the camera is not moving or zooming
-        if (!cameraMoving && !cameraZooming)
-        {
+        if (!cameraMoving && !cameraZooming) {
             // Gradually move the camera towards cameraTarget
             cameraMoving = true;
-            while (t < 1.0f)
-            {
+            while (t < 1.0f) {
                 t += Time.deltaTime * (Time.timeScale / longestD);
 
-                mainCamera.transform.position = Vector3.Lerp(startingPos, new Vector3(cameraTarget.transform.position.x, cameraTarget.transform.position.y, -10), EaseInOut(t));
+                mainCamera.transform.position = Vector3.Lerp (startingPos, new Vector3 (cameraTarget.transform.position.x, cameraTarget.transform.position.y, -10), EaseInOut (t));
                 yield return 0;
             }
             cameraMoving = false;
-            playerDetails.gameObject.SetActive(true);
-            playerDetails.setUI(cameraTarget.GetComponentInParent<Player>().username, "1", "1", "1", "1", "1", "1", "1");
+            playerDetails.gameObject.SetActive (true);
+            playerDetails.setUI (cameraTarget.GetComponentInParent<Player> ().username, "1", "1", "1", "1", "1", "1", "1");
         }
 
         /// ARCHIVED TRANSITION IN CASE YOU NEED IT LATER
@@ -244,85 +236,79 @@ public class CameraManager : MonoBehaviour
     /// Moves the camera to the targetPosition
     /// </summary>
     /// <param name="targetPosition"> Vector3 location to move the camera to </param>
-    IEnumerator Transition(Vector3 targetPosition)
+    IEnumerator Transition (Vector3 targetPosition)
     {
         float t = 0.0f;
         Vector3 startingPos = mainCamera.transform.position;
-        float longestD = Vector2.Distance(mainCamera.transform.position, targetPosition) / speed;
+        float longestD = Vector2.Distance (mainCamera.transform.position, targetPosition) / speed;
 
         // If the camera is not moving or zooming
-        if (!cameraMoving && !cameraZooming)
-        {
+        if (!cameraMoving && !cameraZooming) {
             // Gradually move the camera towards cameraTarget
             cameraMoving = true;
-            while (t < 1.0f)
-            {
+            while (t < 1.0f) {
                 t += Time.deltaTime * (Time.timeScale / longestD);
 
-                mainCamera.transform.position = Vector3.Lerp(startingPos, new Vector3(targetPosition.x, targetPosition.y, -10), EaseInOut(t));
+                mainCamera.transform.position = Vector3.Lerp (startingPos, new Vector3 (targetPosition.x, targetPosition.y, -10), EaseInOut (t));
                 yield return 0;
             }
             cameraMoving = false;
-            playerDetails.setUI(cameraTarget.GetComponentInParent<Player>().username, "1", "1", "1", "1", "1", "1", "1");
+            playerDetails.setUI (cameraTarget.GetComponentInParent<Player> ().username, "1", "1", "1", "1", "1", "1", "1");
         }
     }
 
     /// <summary>
     /// Zooms the camera in to zoomInLevel gradually
     /// </summary>
-    IEnumerator ZoomIn()
+    IEnumerator ZoomIn ()
     {
         float t = 0.0f;
         float startingZoom = mainCamera.orthographicSize;
-        float longestD = Vector2.Distance(mainCamera.transform.position, cameraTarget.transform.position) / speed;
+        float longestD = Vector2.Distance (mainCamera.transform.position, cameraTarget.transform.position) / speed;
 
         // If the camera is not moving, zooming, or currently zoomed in
-        if (!cameraMoving && !cameraZooming && !cameraZoomed)
-        {
+        if (!cameraMoving && !cameraZooming && !cameraZoomed) {
             // Move the camera towards the cameraTarget
-            StartCoroutine(Transition());
-            
+            StartCoroutine (Transition ());
+
             // Gradually reduce the size of the camera
             cameraZooming = true;
-            while (t < 1.0f)
-            {
+            while (t < 1.0f) {
                 t += Time.deltaTime * (Time.timeScale / longestD);
 
-                mainCamera.orthographicSize = Mathf.Lerp(startingZoom, zoomInLevel, t);
+                mainCamera.orthographicSize = Mathf.Lerp (startingZoom, zoomInLevel, t);
                 yield return 0;
             }
             cameraZooming = false;
             cameraZoomed = true;
-            playerDetails.gameObject.SetActive(true);
-            playerDetails.setUI(cameraTarget.GetComponentInParent<Player>().username, "1", "1", "1", "1", "1", "1", "1");
+            playerDetails.gameObject.SetActive (true);
+            playerDetails.setUI (cameraTarget.GetComponentInParent<Player> ().username, "1", "1", "1", "1", "1", "1", "1");
         }
     }
 
     /// <summary>
     /// Zooms the camera out to zoomOutLevel gradually
     /// </summary>
-    IEnumerator ZoomOut()
+    IEnumerator ZoomOut ()
     {
         float t = 0.0f;
         float startingZoom = mainCamera.orthographicSize;
-        float longestD = Vector2.Distance(mainCamera.transform.position, new Vector3(0, 1, -10)) / speed;
+        float longestD = Vector2.Distance (mainCamera.transform.position, new Vector3 (0, 1, -10)) / speed;
 
-        playerDetails.gameObject.SetActive(false);
+        playerDetails.gameObject.SetActive (false);
 
         // If the camera is not moving, zooming, or currently zoomed in
-        if (!cameraMoving && !cameraZooming && cameraZoomed)
-        {
+        if (!cameraMoving && !cameraZooming && cameraZoomed) {
             // Move the camera towards the center
-            StartCoroutine(Transition(new Vector3(0, 1, -10)));
+            StartCoroutine (Transition (new Vector3 (0, 1, -10)));
 
             // Gradually increase the size of the camera
             cameraZooming = true;
             cameraZoomed = false;
-            while (t < 1.0f)
-            {
+            while (t < 1.0f) {
                 t += Time.deltaTime * (Time.timeScale / longestD);
 
-                mainCamera.orthographicSize = Mathf.Lerp(startingZoom, zoomOutLevel, t);
+                mainCamera.orthographicSize = Mathf.Lerp (startingZoom, zoomOutLevel, t);
                 yield return 0;
             }
             cameraZooming = false;
