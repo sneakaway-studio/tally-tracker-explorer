@@ -89,10 +89,8 @@
 
 ### Exhibition mode
 
-- [ ] After a period of no activity automatically 👈 @jdietrick what is preference on these? 
-	- [ ] Switch players? 
-	- [ ] Zoom in? 
-	- [ ] Zoom out? 
+- [x] After a period of no activity automatically
+	- [x] Do nothing :-)
 
 
 ### UI Controls / Testing / Debugging
@@ -197,7 +195,7 @@ Other ideas on movement:
 - [x] Change project to URP (Universal Render Pipeline)
 - [x] Setup [2D renderer and lights](https://www.youtube.com/watch?v=nkgGyO9VG54&t=53s&ab_channel=Brackeys)
 - [x] Point lights on GameObjects
-- [ ] Light emitters on player trails @jdietrick should we keep?
+- [x] Light emitters on player trails
 - [x] Environmental lighting @jdietrick are we happy?
 - [ ] Changes to lighting depending on time of day @jdietrick we need a visualization of this
 - [ ] Add Fog @jdietrick should we do this?
