@@ -3638,7 +3638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -90.36311}
+  m_AnchoredPosition: {x: 0, y: -86.33898}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &411791380
@@ -4265,9 +4265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06783d402d76b44c4a244694cb9e2c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventCountText: {fileID: 2073581459}
+  bufferCountText: {fileID: 0}
+  historyCountText: {fileID: 0}
   playerCountText: {fileID: 140658078}
-  eventNumberText: {fileID: 1315012613}
 --- !u!114 &481131870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4683,10 +4683,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataSourceDropdown: {fileID: 2041318562}
   timelineStatusText: {fileID: 747215173}
+  timelineVizDateTimeText: {fileID: 0}
   startButton: {fileID: 412456651}
   startButtonText: {fileID: 316101632}
   status: 0
   waitingForDataProgress: 0
+  totalEventCount: 0
+  dataSource: 0
   buffer: []
   bufferCount: 0
   bufferCountMin: 1
@@ -5892,7 +5895,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 489705913}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.50000024
+  m_Size: 0.49999997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6092,7 +6095,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 771459716}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.50000024
+  m_Size: 0.49999997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6794,6 +6797,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95c91a2017a74006a149ca36d72913c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCount: 0
+  playerToRemoveCount: 0
+  minPlayersAllowed: 0
+  maxPlayersAllowed: 0
   worldContainerCollider: {fileID: 1940025518}
   playerPrefab: {fileID: 9008334923571228613, guid: ecec1fc7bdc6441a691ca908dfadc8b4, type: 3}
   cameraManager: {fileID: 136303413}
@@ -6816,7 +6823,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e4572dc84b36f448c83e75a66e1fb2b1, type: 3}
   currentPlayerObj: {fileID: 0}
   currentPlayerScript: {fileID: 0}
-  playerCount: 0
+  currentEventType: 
   attackSpriteAnim: {fileID: 7167580533093022045, guid: 428693ccec54b425e90574f5bc568b9e, type: 3}
   battleSpriteAnimFront: {fileID: 7167580533093022045, guid: b3da786dd6edc4bcf82cc83ed7c0b4db, type: 3}
   battleSpriteAnimBack: {fileID: 7167580533093022045, guid: aa2c349942b0c4a87ad4915e702781fa, type: 3}
@@ -12109,7 +12116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -90.36311}
+  m_AnchoredPosition: {x: 0, y: -86.33898}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617634874
@@ -12959,7 +12966,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -90.36311}
+  m_AnchoredPosition: {x: 0, y: -86.33895}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1674065261
@@ -13268,7 +13275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc01036cda3e4905a23bfbfeaac6baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timelineStatusDropdown: {fileID: 2041318562}
 --- !u!114 &1682990921
 MonoBehaviour:
   m_ObjectHideFlags: 0

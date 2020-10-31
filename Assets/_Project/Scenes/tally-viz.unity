@@ -4147,7 +4147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100.00004}
+  m_AnchoredPosition: {x: 0, y: -80.08913}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &411791380
@@ -6299,7 +6299,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 489705913}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.49999997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6499,7 +6499,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 771459716}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.49999997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8215,8 +8215,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "playerResolution (px): (2048.0, 2732.0)\nplayerViewSize (units): (37.5,
-    50.0, 0.0)\nplayerAspectRatio: 0.75:1 \nplayerFullScreen: False\ndeviceResolution:
+  m_text: "playerResolution (px): (1920.0, 1080.0)\nplayerViewSize (units): (88.9,
+    50.0, 0.0)\nplayerAspectRatio: 1.78:1 \nplayerFullScreen: False\ndeviceResolution:
     (2880.0, 1800.0)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9680,6 +9680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46359c0d5bbcd345ac9994be22fe47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPanel: {fileID: 0}
   nameText: {fileID: 1090897840}
   clicksText: {fileID: 76474154}
   hoursText: {fileID: 221385659}
@@ -9688,6 +9689,7 @@ MonoBehaviour:
   monstersText: {fileID: 1069902945}
   blockedText: {fileID: 17129041}
   trackersText: {fileID: 435840972}
+  panels: []
 --- !u!114 &1262260819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11421,7 +11423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100.00004}
+  m_AnchoredPosition: {x: 0, y: -80.08913}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617634874
@@ -11986,7 +11988,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100.00008}
+  m_AnchoredPosition: {x: 0, y: -100.00005}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1674065261
@@ -13334,8 +13336,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 603601861}
   m_HandleRect: {fileID: 603601860}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9963031
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13707,10 +13709,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSize: 25
   canvasRect: {fileID: 832129571}
-  canvasResolution: {x: 1246.7722, y: 1663.1747}
-  playerResolution: {x: 2048, y: 2732}
-  playerViewSize: {x: 37.481697, y: 50, z: 0}
-  playerAspectRatio: 0.74963397
+  canvasResolution: {x: 1920.0001, y: 1080}
+  playerResolution: {x: 1920, y: 1080}
+  playerViewSize: {x: 88.888885, y: 50, z: 0}
+  playerAspectRatio: 1.7777778
   playerFullScreen: 0
   deviceResolution: {x: 2880, y: 1800}
   deviceAspectRatio: 1.6
@@ -13727,7 +13729,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 37.481697, y: 50, z: 5}
+  m_Size: {x: 88.888885, y: 50, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1940025519
 Transform:
