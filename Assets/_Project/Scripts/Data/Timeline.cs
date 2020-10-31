@@ -18,17 +18,26 @@ public class Timeline : Singleton<Timeline> {
 
 
 
-    // MAIN / CONTROLS
+    // PREFAB REFERENCES
 
     [Space (10)]
-    [Header ("MAIN")]
-
+    [Header ("REFERENCES IN PREFABS")]
 
     public TMP_Dropdown dataSourceDropdown;
     public TMP_Text timelineStatusText;
     public TMP_Text timelineVizDateTimeText;
     public Button startButton;
     public TMP_Text startButtonText;
+
+
+    // MAIN / CONTROLS
+
+    [Space (10)]
+    [Header ("MAIN")]
+
+
+    [Tooltip ("Timeline status")]
+    public TimelineStatus status;
 
     [Serializable]
     public enum TimelineStatus {
@@ -43,8 +52,7 @@ public class Timeline : Singleton<Timeline> {
         bufferEmpty,    // display / logic only - reached end of buffer
         moveHistory,    // display / logic only - moving history to buffer
     }
-    [Tooltip ("Timeline status")]
-    public TimelineStatus status;
+
 
     [Tooltip ("Time since a data request made active")]
     public int waitingForDataProgress;
