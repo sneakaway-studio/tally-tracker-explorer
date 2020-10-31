@@ -4297,8 +4297,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "playerResolution (px): (586.0, 572.0)\nplayerViewSize (units): (51.2,
-    50.0, 0.0)\nplayerAspectRatio: 1.02:1 \nplayerFullScreen: False\ndeviceResolution:
+  m_text: "playerResolution (px): (889.0, 556.0)\nplayerViewSize (units): (79.9,
+    50.0, 0.0)\nplayerAspectRatio: 1.6:1 \nplayerFullScreen: False\ndeviceResolution:
     (2880.0, 1800.0)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

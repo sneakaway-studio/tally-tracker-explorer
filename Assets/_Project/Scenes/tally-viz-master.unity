@@ -4025,10 +4025,6 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1682990921}
-    - target: {fileID: 4581083968801448577, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetFullscreen
-      objectReference: {fileID: 0}
     - target: {fileID: 4581083969029378843, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4149,18 +4145,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1682990921}
-    - target: {fileID: 4581083970410788418, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetResolution
-      objectReference: {fileID: 0}
     - target: {fileID: 4581083970489117391, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1682990921}
-    - target: {fileID: 4581083970489117391, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetVolume
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
 --- !u!1001 &5127129699110428475
