@@ -9,13 +9,6 @@ public class ProjectManager : Singleton<ProjectManager> {
     protected ProjectManager () { }
     //public static new ProjectManager Instance;
 
-    Timeline timeline;
-    //SettingsManager settingsManager;
-
-    public TMP_Dropdown timelineStatusDropdown;
-
-
-
 
 
 

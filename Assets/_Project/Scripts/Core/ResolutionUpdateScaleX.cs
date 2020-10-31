@@ -7,6 +7,7 @@ using UnityEngine;
  *  Update components based on parameters from the ResolutionManager
  */
 
+
 public class ResolutionUpdateScaleX : ResolutionUpdateBase {
 
     // default settings @ 1920x1080
@@ -20,10 +21,10 @@ public class ResolutionUpdateScaleX : ResolutionUpdateBase {
     {
         base.Awake ();
 
-        // base original scale on transform (assuming 1920x1080)
+        // base original scale on transform (assuming 1920x1080) at startup
         originalScale = transform.localScale;
 
-        // set original scale (after everything is computer) based on startup aspect ratio
+        // set original scale (after everything is computed) based on startup aspect ratio
         UpdateResolution ();
     }
 

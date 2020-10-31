@@ -11,20 +11,37 @@ public class PlayerManager : Singleton<PlayerManager> {
     //listeners
     void OnEnable ()
     {
-        EventManager.StartListening ("ResetPlayers", ResetPlayers);
+        EventManager.StartListening ("AddAllPlayers", AddAllPlayers);
+        EventManager.StartListening ("RemoveAllPlayers", RemoveAllPlayers);
+        EventManager.StartListening ("CheckUpdatePlayers", CheckUpdatePlayers);
     }
     void OnDisable ()
     {
-        EventManager.StopListening ("ResetPlayers", ResetPlayers);
+        EventManager.StopListening ("AddAllPlayers", AddAllPlayers);
+        EventManager.StopListening ("RemoveAllPlayers", RemoveAllPlayers);
+        EventManager.StopListening ("CheckUpdatePlayers", CheckUpdatePlayers);
     }
 
+
     [Space (10)]
-    [Header ("Object References")]
+    [Header ("DETAILS")]
+
+    // number of players
+    public int playerCount;
+    public int playerToRemoveCount;
+    // min/max allowed at one time
+    public int minPlayersAllowed;
+    public int maxPlayersAllowed;
+
+
+    [Space (10)]
+    [Header ("OBJECTS")]
 
     // bounds, prefab, dict for instantiating players
     public BoxCollider worldContainerCollider;
     public GameObject playerPrefab;
     public Dictionary<string, GameObject> playerDict;
+    public Dictionary<string, GameObject> playersToRemoveDict;
     public CameraManager cameraManager;
 
     // temp sprites for assigning avatars
@@ -33,19 +50,19 @@ public class PlayerManager : Singleton<PlayerManager> {
 
 
     [Space (10)]
-    [Header ("Current Player Event")]
+    [Header ("CURRENT PLAYER")]
 
     // player currently showing an event
     public GameObject currentPlayerObj;
     public Player currentPlayerScript;
+    public string currentEventType;
 
-    // number of players
-    public int playerCount;
+
 
 
 
     [Space (10)]
-    [Header ("Animations")]
+    [Header ("ANIMATIONS")]
 
     // animations to play
     public GameObject attackSpriteAnim;
@@ -67,44 +84,142 @@ public class PlayerManager : Singleton<PlayerManager> {
     {
         //Instance = this;
         playerDict = new Dictionary<string, GameObject> ();
+        playersToRemoveDict = new Dictionary<string, GameObject> ();
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
     /**
-     *  Remove all players from stage, reset dict
+     *  Add all players to screen and dict - called at start or after data reset
+     *  - called when Timeline.status == TimelineStatus.newDataReceived
      */
-    public void ResetPlayers ()
+    void AddAllPlayers ()
     {
-        // remove any players first?
+        Debug.Log ("PlayerManager.AddAllPlayers()");
 
-        // clear the dictionary 
-        playerDict.Clear ();
-
-        // loop through the buffer and add players
+        // loop through the buffer and add players to scene and dict
         foreach (var feed in Timeline.Instance.buffer) {
+            // max hasn't been reached
+            if (playerDict.Count > maxPlayersAllowed) break;
+            // check if player exists and add if not 
             CreateNewPlayer (feed.username, feed.avatarPath);
         }
         foreach (var feed in Timeline.Instance.history) {
+            // max hasn't been reached
+            if (playerDict.Count > maxPlayersAllowed) break;
+            // check if player exists and add if not 
             CreateNewPlayer (feed.username, feed.avatarPath);
         }
 
-        // update player count
-        playerCount = playerDict.Count;
+        UpdateCounts ();
 
-        // trigger data updated event
-        EventManager.TriggerEvent ("PlayersUpdated");
     }
+
 
     /**
-    *  Remove players who haven't been active in a while
-    */
-    public void ClearNonActivePlayers ()
+     *  Remove all players from screen and dict
+     *  - called from Timeline.OnStartBtnClick() to stop timeline / reset data
+     */
+    void RemoveAllPlayers ()
     {
+        Debug.Log ("PlayerManager.RemoveAllPlayers()");
+
+        // for each in playerDict, remove from scene
+        foreach (KeyValuePair<string, GameObject> kvp in playerDict) {
+            Destroy (kvp.Value);
+        }
+
+        // clear the dictionary 
+        playerDict.Clear ();
+        // update the count
+        UpdateCounts ();
+    }
 
 
+    /**
+     *  - called when Timeline.status == TimelineStatus.newDataReceived
+     */
+    void CheckUpdatePlayers ()
+    {
+        Debug.Log ("PlayerManager.CheckUpdatePlayers()");
+
+        // make a copy of the current player dict
+        playersToRemoveDict = new Dictionary<string, GameObject> (playerDict);
+
+        GameObject player;
+
+        // loop through the buffer
+        foreach (var feed in Timeline.Instance.buffer) {
+            // if player still in playerDict
+            playerDict.TryGetValue (feed.username, out player);
+            if (player != null) {
+                // remove from playersToRemoveDict
+                playersToRemoveDict.Remove (feed.username);
+            } else {
+                // max hasn't been reached
+                if (playerDict.Count > maxPlayersAllowed) break;
+                // check if player exists and add
+                CreateNewPlayer (feed.username, feed.avatarPath);
+            }
+        }
+        foreach (var feed in Timeline.Instance.history) {
+            // if player still in playerDict
+            playerDict.TryGetValue (feed.username, out player);
+            if (player != null) {
+                // remove from playersToRemoveDict
+                playersToRemoveDict.Remove (feed.username);
+            } else {
+                // max hasn't been reached
+                if (playerDict.Count > maxPlayersAllowed) break;
+                // check if player exists and add
+                CreateNewPlayer (feed.username, feed.avatarPath);
+            }
+        }
+
+
+
+
+        // if players still left in playersToRemoveDict
+        if (playersToRemoveDict.Count > 0) {
+            // remove those players from scene and clear dict
+            // for each in playerDict, remove from scene
+            foreach (KeyValuePair<string, GameObject> kvp in playersToRemoveDict) {
+                Destroy (kvp.Value);
+            }
+            // clear the playersToRemoveDict dictionary 
+            playersToRemoveDict.Clear ();
+        }
+
+
+
+        // update counts
+        UpdateCounts ();
+    }
+
+
+
+
+    void UpdateCounts ()
+    {
+        // update player count
+        playerCount = playerDict.Count;
+        playerToRemoveCount = playersToRemoveDict.Count;
         // trigger data updated event
         EventManager.TriggerEvent ("PlayersUpdated");
     }
+
+
+
 
 
 
@@ -114,10 +229,10 @@ public class PlayerManager : Singleton<PlayerManager> {
     /**
      *  Create a new player
      */
-    public void CreateNewPlayer (string username, string avatarPath)
+    public bool CreateNewPlayer (string username, string avatarPath)
     {
         // make sure the player doesn't already exist
-        if (playerDict.ContainsKey (username)) return;
+        if (playerDict.ContainsKey (username)) return false;
 
         // get a position that doesn't contain any other colliders
         Vector3 spawnPosition = GetClearSpawnPosition ();
@@ -142,11 +257,12 @@ public class PlayerManager : Singleton<PlayerManager> {
             // finaly, add to dict
             playerDict.Add (username, obj);
             // sets a reference to the cameraManager
-            obj.GetComponent<Player>().cameraManager = cameraManager;
+            obj.GetComponent<Player> ().cameraManager = cameraManager;
 
             // Allow the player to be selected by the camera
             cameraManager.AddPlayer (username);
         }
+        return true;
     }
 
 
@@ -168,6 +284,12 @@ public class PlayerManager : Singleton<PlayerManager> {
 
         // reference to script (contains all the other references we need)
         currentPlayerScript = currentPlayerObj.GetComponent<Player> ();
+
+        // show event in public var
+        currentEventType = feed.eventType;
+
+
+
 
 
         // EFFECTS
@@ -198,7 +320,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             else if (feed.eventType == "badge") {
                 AttachDetachAnimation (badgeAnim, false, 1f, 3.5f);
                 // play the timeline animation
-                currentPlayerScript.animControllerScript.animName = "Swirl_r_md";
+                currentPlayerScript.animControllerScript.animName = "Swirl_r_sm";
             }
 
             // CONSUMABLE 
