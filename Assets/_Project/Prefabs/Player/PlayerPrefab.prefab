@@ -824,6 +824,9 @@ MonoBehaviour:
   distanceToWaypoint: 0
   rotateTimeElapsed: 0
   rotateDuration: 200
+  inputRotateTimeElapsed: 0
+  inputRotateDuration: 200
+  receivingInput: 0
 --- !u!114 &4060703217083337034
 MonoBehaviour:
   m_ObjectHideFlags: 0

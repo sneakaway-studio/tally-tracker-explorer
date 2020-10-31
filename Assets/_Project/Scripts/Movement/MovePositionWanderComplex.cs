@@ -20,6 +20,9 @@ public class MovePositionWanderComplex : PhysicsBase {
     public float rotateTimeElapsed = 0;
     public float rotateDuration = 200;
 
+    public float inputRotateTimeElapsed = 0;
+    public float inputRotateDuration = 200;
+
     private CameraManager cameraManager;
 
     public bool receivingInput;
@@ -79,10 +82,10 @@ public class MovePositionWanderComplex : PhysicsBase {
         // is someone pressing buttons
         if (receivingInput == true) {
             // rotate to that direction
-            //RotateTorwardsDirection2D ();
+            RotateTorwardsDirection2D ();
 
             // placeholder
-            RotateTowardsTarget2D ();
+            //RotateTowardsTarget2D ();
         } else {
             // rotate towards waypoint
             RotateTowardsTarget2D ();
@@ -96,9 +99,27 @@ public class MovePositionWanderComplex : PhysicsBase {
      */
     void RotateTorwardsDirection2D ()
     {
-        //Debug.Log ("RotateTorwardsDirection2D()");
+        // Reset other rotate time elapsed if not zero
+        if (rotateTimeElapsed != 0) rotateTimeElapsed = 0;
 
-        // TO DO
+        // Set position to rotate towards based on player input
+        Vector3 rotateTo = transform.position + (playerInput * 100);
+
+        // change look direction slowly
+        Vector3 temp = Vector3.Lerp(transform.right, (rotateTo - transform.position), inputRotateTimeElapsed / inputRotateDuration);
+
+        // Prevent possible flipping in y rotation
+        Transform cloneTransform = transform;
+        cloneTransform.right = temp;
+        if (cloneTransform.eulerAngles.y != 0)
+        {
+            temp = new Vector3(temp.x, 0.1f, 0);
+        }
+
+        // Set right vector
+        transform.right = temp;
+
+        inputRotateTimeElapsed += Time.deltaTime;
     }
 
     /**
@@ -109,16 +130,18 @@ public class MovePositionWanderComplex : PhysicsBase {
         // change look direction immediately 
         //transform.right = wayPoint - transform.position;
 
+        // Reset other rotate time elapsed if not zero
+        if (inputRotateTimeElapsed != 0) inputRotateTimeElapsed = 0;
+
         // change look direction slowly
         Vector3 temp = Vector3.Lerp (transform.right, (wayPoint - transform.position), rotateTimeElapsed / rotateDuration);
 
-        // Values used to check for bad flipping
-        float safetyX = Mathf.Abs (-1f - Mathf.Round (temp.x * 100.0f) / 100.0f);
-        float safetyY = Mathf.Round (temp.y * 100.0f) / 100.0f;
-
-        // If new rotation would flip player in y rotation, prevent this
-        if (safetyX <= 0.1f && safetyY == 0) {
-            temp = new Vector3 (temp.x, 0.1f, 0);
+        // Prevent possible flipping in y rotation
+        Transform cloneTransform = transform;
+        cloneTransform.right = temp;
+        if (cloneTransform.eulerAngles.y != 0)
+        {
+            temp = new Vector3(temp.x, 0.1f, 0);
         }
 
         // Set right vector

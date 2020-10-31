@@ -354,7 +354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51982269}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.43925, y: 0, z: 0}
+  m_LocalPosition: {x: -44.35484, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940025519}
@@ -612,7 +612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72876158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.43925, y: 0, z: 0}
+  m_LocalPosition: {x: 44.35484, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940025519}
@@ -3638,7 +3638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100.00008}
+  m_AnchoredPosition: {x: 0, y: -100.00005}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &411791380
@@ -8057,8 +8057,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "playerResolution (px): (951.0, 535.0)\nplayerViewSize (units): (88.9,
-    50.0, 0.0)\nplayerAspectRatio: 1.78:1 \nplayerFullScreen: False\ndeviceResolution:
+  m_text: "playerResolution (px): (330.0, 186.0)\nplayerViewSize (units): (88.7,
+    50.0, 0.0)\nplayerAspectRatio: 1.77:1 \nplayerFullScreen: False\ndeviceResolution:
     (3840.0, 2160.0)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9592,7 +9592,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244714986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.43925, y: 25, z: 0}
+  m_LocalPosition: {x: 44.35484, y: 25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2009773082}
@@ -10582,7 +10582,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355786328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.43925, y: 25, z: 0}
+  m_LocalPosition: {x: -44.35484, y: 25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1278232663}
@@ -11472,7 +11472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525331689}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.43925, y: -25, z: 0}
+  m_LocalPosition: {x: 44.35484, y: -25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940025519}
@@ -12109,7 +12109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100.00008}
+  m_AnchoredPosition: {x: 0, y: -100.00005}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617634874
@@ -12959,7 +12959,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100.00008}
+  m_AnchoredPosition: {x: 0, y: -100.00007}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1674065261
@@ -15316,15 +15316,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showMarkers: 1
   ninePointGrid:
-  - {x: -44.43925, y: 25}
+  - {x: -44.35484, y: 25}
   - {x: 0, y: 25}
-  - {x: 44.43925, y: 25}
-  - {x: -44.43925, y: 0}
+  - {x: 44.35484, y: 25}
+  - {x: -44.35484, y: 0}
   - {x: 0, y: 0}
-  - {x: 44.43925, y: 0}
-  - {x: -44.43925, y: -25}
+  - {x: 44.35484, y: 0}
+  - {x: -44.35484, y: -25}
   - {x: 0, y: -25}
-  - {x: 44.43925, y: -25}
+  - {x: 44.35484, y: -25}
   resolutionMarkers:
   - {fileID: 1355786328}
   - {fileID: 542316861}
@@ -15349,10 +15349,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSize: 25
   canvasRect: {fileID: 832129571}
-  canvasResolution: {x: 1919.888, y: 1080.0631}
-  playerResolution: {x: 951, y: 535}
-  playerViewSize: {x: 88.8785, y: 50, z: 0}
-  playerAspectRatio: 1.7775701
+  canvasResolution: {x: 1918.0635, y: 1081.0902}
+  playerResolution: {x: 330, y: 186}
+  playerViewSize: {x: 88.70968, y: 50, z: 0}
+  playerAspectRatio: 1.7741935
   playerFullScreen: 0
   deviceResolution: {x: 3840, y: 2160}
   deviceAspectRatio: 1.7777778
@@ -15369,7 +15369,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 88.8785, y: 50, z: 5}
+  m_Size: {x: 88.70968, y: 50, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1940025519
 Transform:
@@ -16119,7 +16119,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013964978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.43925, y: -25, z: 0}
+  m_LocalPosition: {x: -44.35484, y: -25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940025519}
