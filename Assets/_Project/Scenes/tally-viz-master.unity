@@ -1695,7 +1695,7 @@ MonoBehaviour:
   playerCount: 0
   playerToRemoveCount: 0
   minPlayersAllowed: 0
-  maxPlayersAllowed: 0
+  maxPlayersAllowed: 20
   worldContainerCollider: {fileID: 1940025518}
   playerPrefab: {fileID: 9008334923571228613, guid: ecec1fc7bdc6441a691ca908dfadc8b4, type: 3}
   cameraManager: {fileID: 136303413}
@@ -1722,7 +1722,7 @@ MonoBehaviour:
   attackSpriteAnim: {fileID: 7167580533093022045, guid: 428693ccec54b425e90574f5bc568b9e, type: 3}
   battleSpriteAnimFront: {fileID: 7167580533093022045, guid: b3da786dd6edc4bcf82cc83ed7c0b4db, type: 3}
   battleSpriteAnimBack: {fileID: 7167580533093022045, guid: aa2c349942b0c4a87ad4915e702781fa, type: 3}
-  rippleAnim: {fileID: 6463355425608986283, guid: e28bb3278a2c23c479840cad753f7fff, type: 3}
+  rippleAnim: {fileID: 6463355425608986283, guid: 4194b89b03d18e34caa1e4d834813938, type: 3}
   triangleTrailsAnim: {fileID: 6463355425608986283, guid: 3ceb13dbe4461294790660b6d503ff13, type: 3}
   attackAnim: {fileID: 6463355425608986283, guid: 68d918d015089cd49be7b012ceaeab19, type: 3}
   badgeAnim: {fileID: 6463355425608986283, guid: e848d97307ef3f24c81d461f292581b9, type: 3}
@@ -3864,7 +3864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 505618637074671896, guid: 71d36912c18444c77af791b5d8b04fc1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -75.37741
+      value: -99.99999
       objectReference: {fileID: 0}
     - target: {fileID: 505618637074671896, guid: 71d36912c18444c77af791b5d8b04fc1, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3884,7 +3884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 505618637464562791, guid: 71d36912c18444c77af791b5d8b04fc1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -75.37739
+      value: -99.999985
       objectReference: {fileID: 0}
     - target: {fileID: 505618637464562791, guid: 71d36912c18444c77af791b5d8b04fc1, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3892,7 +3892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 505618637471055666, guid: 71d36912c18444c77af791b5d8b04fc1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -75.37741
+      value: -99.99999
       objectReference: {fileID: 0}
     - target: {fileID: 505618637471055666, guid: 71d36912c18444c77af791b5d8b04fc1, type: 3}
       propertyPath: m_SizeDelta.y
