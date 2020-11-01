@@ -13,6 +13,8 @@ public class MonsterManager : Singleton<MonsterManager> {
     public Sprite [] monsters;
 
 
+    // temp sprites for assigning monsters
+    public Sprite [] monstersFromSheets;
 
 
 

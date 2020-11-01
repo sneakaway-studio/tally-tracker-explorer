@@ -24,7 +24,7 @@ public class MonsterAddSpritesFrameAnim : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer> ();
 
         // test
-        spriteRenderer.sprite = MonsterManager.Instance.monsters [0];
+        spriteRenderer.sprite = MonsterManager.Instance.monstersFromSheets [0];
         Debug.Log (spriteRenderer.sprite);
 
         // TEMP
@@ -39,9 +39,9 @@ public class MonsterAddSpritesFrameAnim : MonoBehaviour {
         }
 
         // set the next three as the sprites for this animation
-        frameAnimation.sprites [0] = MonsterManager.Instance.monsters [spriteIndex + 1];
-        frameAnimation.sprites [1] = MonsterManager.Instance.monsters [spriteIndex + 2];
-        frameAnimation.sprites [2] = MonsterManager.Instance.monsters [spriteIndex + 3];
+        frameAnimation.sprites [0] = MonsterManager.Instance.monstersFromSheets [spriteIndex + 1];
+        frameAnimation.sprites [1] = MonsterManager.Instance.monstersFromSheets [spriteIndex + 2];
+        frameAnimation.sprites [2] = MonsterManager.Instance.monstersFromSheets [spriteIndex + 3];
 
     }
 

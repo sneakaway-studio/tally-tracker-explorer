@@ -18,7 +18,7 @@ public class Timeline : Singleton<Timeline> {
 
 
 
-    // PREFAB REFERENCES
+    // REFERENCES INSIDE PREFABS
 
     [Space (10)]
     [Header ("REFERENCES IN PREFABS")]
