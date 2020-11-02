@@ -40,7 +40,7 @@
 	- [x] Timeline class
 	- [x] Create playback
 	- [x] Coroutine to play event at specific time
-
+- [ ] Export archive(s)
 
 
 
@@ -99,7 +99,7 @@
 	- [x] Dropdown to switch between live / local
 	- [x] Dropdown to switch resolutions
 	- [x] Button: playback restart
-
+- [ ] Add a screen with a key, statement, and link
 
 
 
@@ -213,8 +213,15 @@ Other ideas on movement:
 	- [ ] UI / Canvas
 	- [ ] What else?
 - [ ] Figure out player control device
+- [ ] Create documentation
+	- [ ] Transform this README (using [past project](https://github.com/immersive-scholar/community-gardens) as a guide) into a page with 
+		- [ ] Statement
+		- [ ] Details on the data
+		- [ ] Tech rider
+		- [ ] Credits (including "in the collection of" info and names of participants)
+		- [ ] Add the above to our exhibitions spreadhsheet
 - [ ] Testing: Platforms / Devices / Resolutions
-
+	- [ ] Do the security warnings go away if we publish with Itch.io?
 
 device | OS | resolution | aspect ratio | notes
 --- | --- | --- | --- | ---
