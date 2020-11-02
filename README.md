@@ -221,7 +221,7 @@ Other ideas on movement:
 		- [ ] Credits (including "in the collection of" info and names of participants)
 		- [ ] Add the above to our exhibitions spreadhsheet
 - [ ] Testing: Platforms / Devices / Resolutions
-	- [ ] Do the security warnings go away if we publish with Itch.io?
+	- [ ] Do the security warnings go away if [we publish with Itch.io](https://sneakaway.studio/the-speed-of-thinking)?
 
 device | OS | resolution | aspect ratio | notes
 --- | --- | --- | --- | ---
