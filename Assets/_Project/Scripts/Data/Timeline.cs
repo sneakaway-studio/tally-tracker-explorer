@@ -17,6 +17,18 @@ public class Timeline : Singleton<Timeline> {
     //public static new Timeline Instance;
 
 
+    // listeners 
+    void OnEnable ()
+    {
+        EventManager.StartListening ("DataRequestFinished", OnDataRequestFinished);
+    }
+    void OnDisable ()
+    {
+        EventManager.StopListening ("DataRequestFinished", OnDataRequestFinished);
+    }
+
+
+
 
     // REFERENCES INSIDE PREFABS
 
@@ -48,14 +60,17 @@ public class Timeline : Singleton<Timeline> {
         inactive,       // display / logic only - everything is off
         getRemoteData,  // display / logic only - get new data from server
         waitingForData, // display / logic only - holding pattern, waiting for data
+        noDataReceived, // display / logic only - was waiting for data, but none received
         newDataReceived,// display / logic only - called after data received or updated
         bufferEmpty,    // display / logic only - reached end of buffer
         moveHistory,    // display / logic only - moving history to buffer
     }
 
-
     [Tooltip ("Time since a data request made active")]
     public int waitingForDataProgress;
+
+    [Tooltip ("Time to wait for data request")]
+    public int dataRequestWaitTime = 20;
 
     public int totalEventCount;
 
@@ -65,6 +80,8 @@ public class Timeline : Singleton<Timeline> {
         live
     }
     public DataSource dataSource;
+
+    public string debugLogStr;
 
 
     // BUFFER
@@ -311,7 +328,17 @@ public class Timeline : Singleton<Timeline> {
         history.TrimExcess ();
     }
 
+    /**
+     *  Called from DataManager once request is finished
+     */
+    void OnDataRequestFinished ()
+    {
+        // was new data found?
+        if (DataManager.Instance.receivedNew > 0) {
 
+        }
+        waitingForDataProgress += dataRequestWaitTime;
+    }
 
 
 
@@ -332,8 +359,7 @@ public class Timeline : Singleton<Timeline> {
             UpdateCounts ();
 
             //Debug.Log ("Timeline.BufferLoop()");
-            DebugManager.Instance.UpdateDisplay ("Timeline.BufferLoop() status = " + status + ", count = " + bufferCount.ToString ());
-
+            debugLogStr = "Timeline.BufferLoop() status = " + status + ", bufferCount = " + bufferCount.ToString ();
 
 
             // INIT
@@ -378,16 +404,37 @@ public class Timeline : Singleton<Timeline> {
                 // time since request
                 waitingForDataProgress++;
 
+                debugLogStr = "Timeline.BufferLoop() status = " + status + ", waitingForDataProgress = " + waitingForDataProgress.ToString ();
+
                 // buffer WAS waiting, now has data
                 if (bufferCount > 0) {
-
                     // set status
                     SetTimelineStatus (TimelineStatus.newDataReceived);
-
-                } else if (waitingForDataProgress > 20) {
-                    // handle lack of data here
+                } else if (waitingForDataProgress > dataRequestWaitTime) {
+                    // set status
+                    SetTimelineStatus (TimelineStatus.noDataReceived);
                 }
             }
+
+
+
+           // NO DATA RECEIVED
+
+           else if (status == TimelineStatus.noDataReceived) {
+
+                // buffer WAS waiting, no data returned
+                // handle lack of data here
+
+                // reset counter
+                waitingForDataProgress = 0;
+
+                debugLogStr = "Timeline.BufferLoop() status = " + status + ", waitingForDataProgress = " + waitingForDataProgress.ToString ();
+
+                // try to get data again
+                SetTimelineStatus (TimelineStatus.start);
+            }
+
+
 
            // NEW DATA RECEIVED
 
@@ -473,6 +520,8 @@ public class Timeline : Singleton<Timeline> {
                 UpdateTimelineLogs ();
             }
 
+            DebugManager.Instance.UpdateDisplay (debugLogStr);
+
             yield return new WaitForSeconds (bufferCheckFrequency);
         }
     }
@@ -495,7 +544,7 @@ public class Timeline : Singleton<Timeline> {
             UpdateCounts ();
 
             //Debug.Log ("Timeline.HistoryLoop()");
-            //DebugManager.Instance.UpdateDisplay ("Timeline.HistoryLoop() count = " + historyCount.ToString ());
+            //DebugManager.Instance.UpdateDisplay ("Timeline.HistoryLoop() historyCount = " + historyCount.ToString ());
 
             // if buffer has items
             if (bufferCount > 0) {

@@ -9,7 +9,7 @@ using System.Linq;
 public class DataManager : Singleton<DataManager> {
     // singleton
     protected DataManager () { }
-    public static new DataManager Instance;
+    //public static new DataManager Instance;
 
 
 
@@ -26,15 +26,18 @@ public class DataManager : Singleton<DataManager> {
 
 
 
+    [Space (10)]
+    [Header ("HOST & ENDPOINT")]
 
     // HOST
+
+    public HostType chosenHost;
 
     [Serializable]
     public enum HostType {
         local,
         remote
     }
-    public HostType chosenHost;
     string [] hosts = {
         "https://127.0.0.1:5000/api/",
         "https://tallysavestheinternet.com/api/"
@@ -51,21 +54,23 @@ public class DataManager : Singleton<DataManager> {
         rangePlusStream6Hour,
         rangePlusStream3Hour,
         rangePlusStream1Hour,
-        rangePlusStreamFiveMinute
+        rangePlusStream30Minute,
+        rangePlusStream5Minute,
+        rangePlusStream1Minute
     }
     public EndpointType chosenEndpoint;
     string [] endpoints = {
-        "feed/recent",      // 20 recent
-        "feed/range/1/week", // 1 week
-        "feed/range/plusStream/1/day",  // 1 day
-        "feed/range/plusStream/12/hour", // 6 hour
-        "feed/range/plusStream/6/hour", // 6 hour
-        "feed/range/plusStream/3/hour", // 1 hour
-        "feed/range/plusStream/1/hour", // 1 hour
-        "feed/range/plusStream/5/minute" // 5 minutes
+        "feed/recent", // 20 recent - includes only game objects, no clicks / streams
+        "feed/range/1/week",
+        "feed/range/plusStream/1/day",
+        "feed/range/plusStream/12/hour",
+        "feed/range/plusStream/6/hour",
+        "feed/range/plusStream/3/hour",
+        "feed/range/plusStream/1/hour",
+        "feed/range/plusStream/30/minute",
+        "feed/range/plusStream/5/minute",
+        "feed/range/plusStream/1/minute"
     };
-
-    // FINAL PATH
 
     // chosen host and endpoint for API
     public string path;
@@ -74,21 +79,39 @@ public class DataManager : Singleton<DataManager> {
 
     // META
 
-    // the number of events
-    public static int dataCount;
-    // the current data as string
-    public static string currentEventStr;
-    // as list
-    public static IList<FeedData> feeds = new List<FeedData> ();
+
+    [Space (10)]
+    [Header ("RETURNED DATA")]
+
+    [Tooltip ("The number of events returned in this call")]
+    public int receivedTotal;
+    [Tooltip ("The number of events returned that were new (not duplicates)")]
+    public int receivedNew;
+    [Tooltip ("The number of events returned that were duplicates")]
+    public int receivedDuplicates;
+
+    [Serializable]
+    public enum DataRequestStatus {
+        requestData,
+        handleResponse,
+        requestComplete
+    }
+    [Tooltip ("The current status")]
+    public DataRequestStatus dataRequestStatus;
+
+    [Tooltip ("The current event being handled in the loop")]
+    public string currentEventStr;
+
+    [Tooltip ("The list of items returned")]
+    public IList<FeedData> feeds = new List<FeedData> ();
 
 
-    public static Dictionary<string, FeedData> eventDictionary = new Dictionary<string, FeedData> ();
 
 
 
     private void Start ()
     {
-        // start everything
+        // start everything - now called from Timeline
         //GetNewData ();
     }
 
@@ -108,8 +131,14 @@ public class DataManager : Singleton<DataManager> {
     }
 
     // do a get request for JSON data at url
-    public static IEnumerator GetRequest (string uri)
+    public IEnumerator GetRequest (string uri)
     {
+        // reset stats
+        receivedTotal = 0;
+        receivedNew = 0;
+        receivedDuplicates = 0;
+        dataRequestStatus = DataRequestStatus.requestData;
+
         using (UnityWebRequest webRequest = UnityWebRequest.Get (uri)) {
 
             // Request and wait for the desired page.
@@ -127,6 +156,12 @@ public class DataManager : Singleton<DataManager> {
                 // parse JSON array 
                 JArray a = JArray.Parse (webRequest.downloadHandler.text);
 
+                // update count
+                receivedTotal = a.Count;
+                dataRequestStatus = DataRequestStatus.handleResponse;
+
+                DebugManager.Instance.UpdateDisplay ("DataManager.GetNewData() uri = " + uri);
+
                 // loop through array and add each 
                 foreach (JObject item in a) {
                     // base class properties
@@ -140,10 +175,36 @@ public class DataManager : Singleton<DataManager> {
                     // parse string to ISO 8601 format
                     DateTime _createdAt = DateTime.Parse (_createdAtStr, null, System.Globalization.DateTimeStyles.RoundtripKind);
 
+
+
+
+
+
+                    // SKIP IF DUPLICATE
+
+                    // get any duplicate dates in buffer based on both conditions
+                    var results = Timeline.Instance.buffer.FindAll (found => (found.createdAt == _createdAt) && (found.eventType == _eventType));
+
+                    // skip this iteration
+                    if (results.Count > 0) {
+                        Debug.Log ("Duplicate");
+                        receivedDuplicates++;
+                        continue;
+                    }
+
+
+
+
+                    // IF NOT A DUPLICATE THEN PROCEED
+
+                    receivedNew++;
+
+                    //Debug.Log ("Not a duplicate!");
+
                     // parse eventData 
                     JObject d = JObject.Parse (item.GetValue ("eventData").ToString ());
 
-
+                    // object to hold data
                     FeedData output;
 
                     if (_eventType == "attack") {
@@ -238,92 +299,31 @@ public class DataManager : Singleton<DataManager> {
                         };
                     }
 
-                    feeds.Add (output);
-                    // Timeline.Instance.buffer.Add (_createdAt, output);
+                    // add to feeds - now adding to buffer in Timeline
+                    //feeds.Add (output);
+
+
+
+
+                    // if live mode == true
+
+                    // then attempt to add to buffer
                     Timeline.Instance.buffer.Add (output);
-
-
-                    // SAVE FOR CREATING BUFFER
-                    //// create key
-                    //string key = _createdAtStr + "_" + _username + "_" + _eventType;
-                    //FeedData val;
-                    //if (!eventDictionary.TryGetValue (key, out val)) {
-                    //    eventDictionary.Add (key, output);
-                    //}
-
-
 
                     //Debug.Log(_eventType);
                 }
 
-                // SAVE FOR CREATING BUFFER
-                ///// Acquire keys and sort them.
-                //var list = eventDictionary.Keys.ToList ();
-                //list.Sort ();
-
-                //// Loop through keys.
-                //foreach (var key in list) {
-                //    Debug.Log (key + ": " + eventDictionary [key]);
-                //}
 
 
-
-                // OLD METHOD - KEEPING FOR REFERENCEx
-                //feeds = a.Select(p => new FeedData
-                //{
-                //    username = (string)p["username"],
-                //    avatarPath = (string)p["avatarPath"],
-                //    eventType = (string)p["eventType"],
-                //    createdAt = (DateTime)p["createdAt"],
-
-                //    //type = (string)p["type"],
-                //    //name = (string)p["name"],
-                //    //level = (int)p["level"],
-                //    //stat = (string)p["stat"],
-                //    //captured = (int)p["captured"],
-                //}).ToList();
-                ////Debug.Log(a[0]);
-                //Debug.Log(feeds.ToString());
-
-
-
-
-                // FOR DEBUGGING - MAY OR MAY NOT HAVE A GARBAGE COLLECTION ISSUE
-
-                //// reset currentEventStr
-                //currentEventStr = "";
-
-                //foreach (var feed in feeds) {
-
-                //    var line =
-
-                //        feed.createdAt + "\t" +
-                //        feed.username + ", " +
-                //        feed.eventType + ", " +
-
-                //        //feed.type + ", " + feed.name + ", " + feed.level +
-                //        //", " + feed.type
-
-                //        ""
-                //        ;
-
-                //    currentEventStr += line + "<br>";
-
-                //    //Debug.Log(line);
-                //}
-
-
-
-
-                // update count
-                dataCount = feeds.Count;
+                // set status
+                dataRequestStatus = DataRequestStatus.requestComplete;
 
                 // trigger data updated event
-                EventManager.TriggerEvent ("DataDownloaded");
-
-
+                EventManager.TriggerEvent ("DataRequestFinished");
 
             }
         }
     }
+
+
 }

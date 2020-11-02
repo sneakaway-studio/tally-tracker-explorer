@@ -307,6 +307,11 @@ public class PlayerManager : Singleton<PlayerManager> {
                 AttachDetachAnimation (rippleAnim, false, 1f, 3.5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Pop_Shake_md";
+
+                // check to see if there are monsters following the player
+                if (feed.monsters != "") {
+                    Debug.Log ("PlayerManager.PlayEvent() monsters = " + feed.monsters);
+                }
             }
 
             // ATTACK 
