@@ -7,7 +7,7 @@ using UnityEngine;
  *  Adds sprites for PARTICLE animation
  */
 
-public class MonsterAddSpritesParticleAnim : MonoBehaviour {
+public class Monster : MonoBehaviour {
 
 
     // temp sprites for assigning monsters
