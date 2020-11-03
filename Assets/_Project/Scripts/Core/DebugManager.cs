@@ -51,10 +51,11 @@ public class DebugManager : Singleton<DebugManager> {
 
     public void UpdateDisplay (string str)
     {
-        //Debug.Log (str);
-        if (str != "") str = str + "<br>";
-        debugText.text += str;
-        UpdateScroll ();
+
+        ////Debug.Log (str);
+        //if (str != "") str = str + "<br>";
+        //debugText.text += str;
+        //UpdateScroll ();
     }
     public void ClearDisplay ()
     {

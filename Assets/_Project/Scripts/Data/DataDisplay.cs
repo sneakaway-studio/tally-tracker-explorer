@@ -6,6 +6,11 @@ using TMPro;
 public class DataDisplay : MonoBehaviour {
 
 
+
+    [Space (10)]
+    [Header ("DATA DETAILS PANEL")]
+
+
     // DataRequestStats
     public TMP_Text receivedTotalText;
     public TMP_Text receivedNewText;
@@ -14,10 +19,14 @@ public class DataDisplay : MonoBehaviour {
 
 
     // TimelineStats
-    public TMP_Text bufferPlusHistoryText;
+    public TMP_Text playerCountText;
+
+
+    [Space (10)]
+    [Header ("TIMELINE PANEL")]
+
     public TMP_Text bufferCountText;
     public TMP_Text historyCountText;
-    public TMP_Text playerCountText;
 
 
 
@@ -45,16 +54,17 @@ public class DataDisplay : MonoBehaviour {
     // update text
     public void OnUpdateDisplay ()
     {
-        // datamanager
+        // data details panel - col 1
         receivedTotalText.text = "Received: " + DataManager.Instance.receivedTotal.ToString ();
         receivedNewText.text = "New data: " + DataManager.Instance.receivedNew.ToString ();
         receivedDuplicatesText.text = "Duplicates: " + DataManager.Instance.receivedDuplicates.ToString ();
         dataRequestStatusText.text = DataManager.Instance.dataRequestStatus.ToString ();
-        // timeline
-        bufferPlusHistoryText.text = "Total: " + Timeline.Instance.totalEventCount.ToString ();
-        bufferCountText.text = "Buffer: " + Timeline.Instance.bufferCount.ToString ();
-        historyCountText.text = "History: " + Timeline.Instance.historyCount.ToString ();
+        // data details panel - col 2
         playerCountText.text = "Players: " + PlayerManager.Instance.playerCount.ToString ();
+
+        // timeline
+        bufferCountText.text = Timeline.Instance.bufferCount.ToString ();
+        historyCountText.text = Timeline.Instance.historyCount.ToString ();
 
     }
 
