@@ -40,7 +40,7 @@
 	- [x] Timeline class
 	- [x] Create playback
 	- [x] Coroutine to play event at specific time
-- [ ] Export archive(s)
+- [x] Export archive(s)
 
 
 
@@ -48,7 +48,7 @@
 
 - [ ] Create code that
 	- [x] Automatically gets, or handles a lack of, new events
-	- [ ] Can consume data from the live API or local `JSON` files by changing dropdown option
+	- [x] Can consume data from the live API or local `JSON` files by changing dropdown option
 	- [x] Potentially do it like:
 		- [x] Use two C# collections (either a List or Dictionary) named `buffer` and a `history` that can be sorted by a date string.
 		- [x] As the events are visualized, the event object is moved from the `buffer` to the `history`.
@@ -197,10 +197,10 @@ Other ideas on movement:
 - [x] Point lights on GameObjects
 - [x] Light emitters on player trails
 - [x] Environmental lighting @jdietrick are we happy?
-- [ ] Changes to lighting depending on time of day @jdietrick we need a visualization of this
-- [ ] Add Fog @jdietrick should we do this?
-	- [ ] Examples [1](https://forum.unity.com/threads/how-can-i-control-fog-color-based-on-skybox-color.311706/), [2](https://carlburton.itch.io/islands), [3](https://magazine.renderosity.com/article/5204/taking-a-look-at-unity-fog)
-- [ ] Add texture to background
+- [x] Changes to lighting depending on time of day @jdietrick we need a visualization of this
+- [x] Add Fog @jdietrick should we do this?
+	- [x] Examples [1](https://forum.unity.com/threads/how-can-i-control-fog-color-based-on-skybox-color.311706/), [2](https://carlburton.itch.io/islands), [3](https://magazine.renderosity.com/article/5204/taking-a-look-at-unity-fog)
+- [ ] Add texture to background @jdietrick ?
 
 
 ## Delivery
@@ -212,7 +212,7 @@ Other ideas on movement:
 	- [ ] Bake lighting?
 	- [ ] UI / Canvas
 	- [ ] What else?
-- [ ] Figure out player control device
+- [ ] Test Logitech game controller
 - [ ] Create documentation
 	- [ ] Transform this README (using [past project](https://github.com/immersive-scholar/community-gardens) as a guide) into a page with 
 		- [ ] Statement
