@@ -218,6 +218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2088279250105977008}
+  - component: {fileID: 1158092402349871756}
   m_Layer: 0
   m_Name: Monsters
   m_TagString: Untagged
@@ -247,6 +248,29 @@ Transform:
   m_Father: {fileID: 7059805733063876825}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1158092402349871756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2717742866972736653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d6428a1b32fb64dbf670085bac1b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leader: {fileID: 7059805733063876825}
+  spawnPoints:
+  - {fileID: 362761481423555645}
+  - {fileID: 2122073449063493095}
+  - {fileID: 8136147530491671666}
+  - {fileID: 2360048052055053883}
+  - {fileID: 6555136596890316404}
+  - {fileID: 2411022122490232301}
+  - {fileID: 4974404664852537660}
+  - {fileID: 1761832670278086896}
+  monsterPrefab: {fileID: 2530203380367830584, guid: e0010077fb580412581b6e09fa66ba19, type: 3}
 --- !u!1 &2973559880641173526
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +858,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8180638221493354709}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d6428a1b32fb64dbf670085bac1b3c, type: 3}
   m_Name: 
