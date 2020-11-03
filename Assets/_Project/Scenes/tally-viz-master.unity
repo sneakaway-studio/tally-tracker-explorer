@@ -708,7 +708,6 @@ MonoBehaviour:
   receivedNewText: {fileID: 4581083968424196714}
   receivedDuplicatesText: {fileID: 4581083968424196713}
   dataRequestStatusText: {fileID: 680953987}
-  bufferPlusHistoryText: {fileID: 0}
   playerCountText: {fileID: 1510429217}
   bufferCountText: {fileID: 4581083968424196718}
   historyCountText: {fileID: 4581083968424196717}
