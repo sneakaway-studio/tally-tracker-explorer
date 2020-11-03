@@ -141,8 +141,6 @@ public class PlayerManager : Singleton<PlayerManager> {
 
         // clear the dictionary 
         playerDict.Clear ();
-        // clear the camera manager's list of players
-        cameraManager.players.Clear ();
         // update the count
         UpdateCounts ();
     }
@@ -312,7 +310,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 
                 // check to see if there are monsters following the player
                 if (feed.monsters != "") {
-                    //Debug.Log ("PlayerManager.PlayEvent() monsters = " + feed.monsters);
+                    Debug.Log ("PlayerManager.PlayEvent() monsters = " + feed.monsters);
                 }
             }
 
