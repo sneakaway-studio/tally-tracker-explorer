@@ -684,7 +684,7 @@ MonoBehaviour:
   endpointDropdown: {fileID: 4581083968424196719}
   selectedEndpoint: 0
   path: 
-  localDataFile: {fileID: 4900000, guid: 7469f7ec6702a4ce5878e415365730a7, type: 3}
+  localDataFile: {fileID: 4900000, guid: fcb37c9310e794d35b9c68039061267c, type: 3}
   sizeOfDataRequests: 1
   sizeOfDataRequestsMax: 10
   receivedTotal: 0
@@ -3037,7 +3037,7 @@ MonoBehaviour:
   playerViewSize: {x: 88.888885, y: 50, z: 0}
   playerAspectRatio: 1.7777778
   playerFullScreen: 0
-  deviceResolution: {x: 2880, y: 1800}
+  deviceResolution: {x: 1920, y: 1200}
   deviceAspectRatio: 1.6
   worldContainerCollider: {fileID: 1940025518}
   resolutionReportText: {fileID: 1742007538}

@@ -325,9 +325,21 @@ public class DataManager : Singleton<DataManager> {
 
         // loop through array and add each 
         foreach (JObject item in a) {
+
             // base class properties
             string _username = item.GetValue ("username").ToString ();
             string _avatarPath = item.GetValue ("avatarPath").ToString ();
+
+            int _level = (int)item.GetValue ("level");
+            int _clicks = (int)item.GetValue ("clicks");
+            int _score = (int)item.GetValue ("score");
+            int _time = (int)item.GetValue ("time");
+            int _capturedTotal = (int)item.GetValue ("capturedTotal");
+            int _missedTotal = (int)item.GetValue ("missedTotal");
+            int _pageActionScrollDistance = (int)item.GetValue ("pageActionScrollDistance");
+            int _trackersBlocked = (int)item.GetValue ("trackersBlocked");
+            int _trackersSeen = (int)item.GetValue ("trackersSeen");
+
             string _eventType = item.GetValue ("eventType").ToString ();
             string _createdAtStr = item.GetValue ("createdAt").ToString ();
             string _monsters = item.GetValue ("monsters").ToString ();
@@ -335,8 +347,6 @@ public class DataManager : Singleton<DataManager> {
 
             // parse string to ISO 8601 format
             DateTime _createdAt = DateTime.Parse (_createdAtStr, null, System.Globalization.DateTimeStyles.RoundtripKind);
-
-
 
 
 
@@ -373,95 +383,67 @@ public class DataManager : Singleton<DataManager> {
 
             if (_eventType == "attack") {
                 output = new AttackData {
-                    username = _username,
-                    avatarPath = _avatarPath,
-                    eventType = _eventType,
-                    createdAt = _createdAt,
-                    monsters = _monsters,
-                    trackers = _trackers,
-
-                    name = (string)d ["name"],
-                    type = (string)d ["level"],
-                    selected = (bool)d ["selected"]
+                    _name = (string)d ["name"],
+                    _type = (string)d ["level"],
+                    _selected = (bool)d ["selected"]
                 };
             } else if (_eventType == "badge") {
                 output = new BadgeData {
-                    username = _username,
-                    avatarPath = _avatarPath,
-                    eventType = _eventType,
-                    createdAt = _createdAt,
-                    monsters = _monsters,
-                    trackers = _trackers,
-
-                    name = (string)d ["name"],
-                    level = (int)d ["level"]
+                    _name = (string)d ["name"],
+                    _level = (int)d ["level"]
                 };
             } else if (_eventType == "consumable") {
                 output = new ConsumableData {
-                    username = _username,
-                    avatarPath = _avatarPath,
-                    eventType = _eventType,
-                    createdAt = _createdAt,
-                    monsters = _monsters,
-                    trackers = _trackers,
-
-                    name = (string)d ["name"],
-                    slug = (string)d ["slug"],
-                    stat = (string)d ["stat"],
-                    type = (string)d ["type"],
-                    value = (int)d ["value"]
+                    _name = (string)d ["name"],
+                    _slug = (string)d ["slug"],
+                    _stat = (string)d ["stat"],
+                    _type = (string)d ["type"],
+                    _value = (int)d ["value"]
                 };
             } else if (_eventType == "disguise") {
                 output = new DisguiseData {
-                    username = _username,
-                    avatarPath = _avatarPath,
-                    eventType = _eventType,
-                    createdAt = _createdAt,
-                    monsters = _monsters,
-                    trackers = _trackers,
-
-                    name = (string)d ["name"],
-                    type = (string)d ["type"]
+                    _name = (string)d ["name"],
+                    _type = (string)d ["type"]
                 };
             } else if (_eventType == "monster") {
                 output = new MonsterData {
-                    username = _username,
-                    avatarPath = _avatarPath,
-                    eventType = _eventType,
-                    createdAt = _createdAt,
-                    monsters = _monsters,
-                    trackers = _trackers,
-
-                    mid = (int)d ["mid"],
-                    level = (int)d ["level"],
-                    captured = (int)d ["captured"],
+                    _mid = (int)d ["mid"],
+                    _level = (int)d ["level"],
+                    _captured = (int)d ["captured"],
                 };
             } else if (_eventType == "tracker") {
                 output = new TrackerData {
-                    username = _username,
-                    avatarPath = _avatarPath,
-                    eventType = _eventType,
-                    createdAt = _createdAt,
-                    monsters = _monsters,
-                    trackers = _trackers,
-
-                    tracker = (string)d ["tracker"],
-                    captured = (int)d ["captured"],
+                    _tracker = (string)d ["tracker"],
+                    _captured = (int)d ["captured"],
                 };
             } else { // if (_eventType == "stream")
                 output = new StreamData {
-                    username = _username,
-                    avatarPath = _avatarPath,
-                    eventType = _eventType,
-                    createdAt = _createdAt,
-                    monsters = _monsters,
-                    trackers = _trackers,
-
-                    score = (int)d ["score"],
-                    clicks = (int)d ["clicks"],
-                    likes = (int)d ["likes"],
+                    _score = (int)d ["score"],
+                    _clicks = (int)d ["clicks"],
+                    _likes = (int)d ["likes"],
                 };
             }
+
+            output.username = _username;
+            output.avatarPath = _avatarPath;
+
+            output.level = _level;
+            output.clicks = _clicks;
+            output.score = _score;
+            output.time = _time;
+            output.capturedTotal = _capturedTotal;
+            output.missedTotal = _missedTotal;
+            output.pageActionScrollDistance = _pageActionScrollDistance;
+            output.trackersBlocked = _trackersBlocked;
+            output.trackersSeen = _trackersSeen;
+            output.clicks = _clicks;
+
+            output.eventType = _eventType;
+            output.createdAt = _createdAt;
+            output.monsters = _monsters;
+            output.trackers = _trackers;
+
+
 
             // add to feeds - now adding to buffer in Timeline
             //feeds.Add (output);
