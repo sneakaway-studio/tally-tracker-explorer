@@ -108,17 +108,17 @@ public class PlayerManager : Singleton<PlayerManager> {
         Debug.Log ("PlayerManager.AddAllPlayers()");
 
         // loop through the buffer and add players to scene and dict
-        foreach (var feed in Timeline.Instance.buffer) {
+        foreach (var feedData in Timeline.Instance.buffer) {
             // max hasn't been reached
             if (playerDict.Count > maxPlayersAllowed) break;
             // check if player exists and add if not 
-            CreateNewPlayer (feed.username, feed.avatarPath);
+            CreateNewPlayer (feedData);
         }
-        foreach (var feed in Timeline.Instance.history) {
+        foreach (var feedData in Timeline.Instance.history) {
             // max hasn't been reached
             if (playerDict.Count > maxPlayersAllowed) break;
             // check if player exists and add if not 
-            CreateNewPlayer (feed.username, feed.avatarPath);
+            CreateNewPlayer (feedData);
         }
 
         UpdateCounts ();
@@ -161,30 +161,30 @@ public class PlayerManager : Singleton<PlayerManager> {
         GameObject player;
 
         // loop through the buffer
-        foreach (var feed in Timeline.Instance.buffer) {
+        foreach (var feedData in Timeline.Instance.buffer) {
             // if player still in playerDict
-            playerDict.TryGetValue (feed.username, out player);
+            playerDict.TryGetValue (feedData.username, out player);
             if (player != null) {
                 // remove from playersToRemoveDict
-                playersToRemoveDict.Remove (feed.username);
+                playersToRemoveDict.Remove (feedData.username);
             } else {
                 // max hasn't been reached
                 if (playerDict.Count > maxPlayersAllowed) break;
                 // check if player exists and add
-                CreateNewPlayer (feed.username, feed.avatarPath);
+                CreateNewPlayer (feedData);
             }
         }
-        foreach (var feed in Timeline.Instance.history) {
+        foreach (var feedData in Timeline.Instance.history) {
             // if player still in playerDict
-            playerDict.TryGetValue (feed.username, out player);
+            playerDict.TryGetValue (feedData.username, out player);
             if (player != null) {
                 // remove from playersToRemoveDict
-                playersToRemoveDict.Remove (feed.username);
+                playersToRemoveDict.Remove (feedData.username);
             } else {
                 // max hasn't been reached
                 if (playerDict.Count > maxPlayersAllowed) break;
                 // check if player exists and add
-                CreateNewPlayer (feed.username, feed.avatarPath);
+                CreateNewPlayer (feedData);
             }
         }
 
@@ -231,10 +231,10 @@ public class PlayerManager : Singleton<PlayerManager> {
     /**
      *  Create a new player
      */
-    public bool CreateNewPlayer (string username, string avatarPath)
+    public bool CreateNewPlayer (FeedData feedData)
     {
         // make sure the player doesn't already exist
-        if (playerDict.ContainsKey (username)) return false;
+        if (playerDict.ContainsKey (feedData.username)) return false;
 
         // get a position that doesn't contain any other colliders
         Vector3 spawnPosition = GetClearSpawnPosition ();
@@ -251,18 +251,18 @@ public class PlayerManager : Singleton<PlayerManager> {
             // instantiate prefab @ spawn position
             GameObject obj = (GameObject)Instantiate (playerPrefab, spawnPosition, spawnRotation);
             // call Init() on Player
-            obj.GetComponent<Player> ().Init (username, avatarPath);
+            obj.GetComponent<Player> ().Init (feedData);
             // set name in Unity Editor
-            obj.name = username;
+            obj.name = feedData.username;
             // parent under PlayerManger
             obj.transform.parent = gameObject.transform;
             // finaly, add to dict
-            playerDict.Add (username, obj);
+            playerDict.Add (feedData.username, obj);
             // sets a reference to the cameraManager
             obj.GetComponent<Player> ().cameraManager = cameraManager;
 
             // Allow the player to be selected by the camera
-            cameraManager.AddPlayer (username);
+            cameraManager.AddPlayer (feedData.username);
         }
         return true;
     }
@@ -286,6 +286,9 @@ public class PlayerManager : Singleton<PlayerManager> {
 
         // reference to script (contains all the other references we need)
         currentPlayerScript = currentPlayerObj.GetComponent<Player> ();
+
+        // store FeedData for zoom 
+        currentPlayerScript.feedData = feed;
 
         // show event in public var
         currentEventType = feed.eventType;

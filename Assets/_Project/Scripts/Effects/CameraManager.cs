@@ -210,9 +210,11 @@ public class CameraManager : MonoBehaviour {
                 yield return 0;
             }
             cameraMoving = false;
+            //Debug.Log (cameraTarget.GetComponentInParent<Player> ().feedData.username.ToString ());
+            playerDetails.updateData (cameraTarget.GetComponentInParent<Player> ().feedData);
             playerDetails.playerPanel.SetActive (true);
-            playerDetails.setUI (cameraTarget.GetComponentInParent<Player> ().username, "1", "1", "1", "1", "1", "1", "1");
         }
+
 
         /// ARCHIVED TRANSITION IN CASE YOU NEED IT LATER
         /// FEEL FREE TO DELETE AT ANY POINT
@@ -236,7 +238,7 @@ public class CameraManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Moves the camera to the targetPosition
+    /// Moves the camera to the targetPosition (used for zooming out)
     /// </summary>
     /// <param name="targetPosition"> Vector3 location to move the camera to </param>
     IEnumerator Transition (Vector3 targetPosition)
@@ -256,7 +258,7 @@ public class CameraManager : MonoBehaviour {
                 yield return 0;
             }
             cameraMoving = false;
-            playerDetails.setUI (cameraTarget.GetComponentInParent<Player> ().username, "1", "1", "1", "1", "1", "1", "1");
+            playerDetails.updateData (cameraTarget.GetComponentInParent<Player> ().feedData);
         }
     }
 
@@ -284,8 +286,8 @@ public class CameraManager : MonoBehaviour {
             }
             cameraZooming = false;
             cameraZoomed = true;
+            playerDetails.updateData (cameraTarget.GetComponentInParent<Player> ().feedData);
             playerDetails.playerPanel.SetActive (true);
-            playerDetails.setUI (cameraTarget.GetComponentInParent<Player> ().username, "1", "1", "1", "1", "1", "1", "1");
         }
     }
 

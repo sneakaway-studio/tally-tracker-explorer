@@ -169,7 +169,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 2
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.5686275, g: 0.3372549, b: 0.9137255, a: 1}
+  m_Color: {r: 0.8901961, g: 0.85882354, b: 0.93333334, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: d706c3f7
@@ -3037,7 +3037,7 @@ MonoBehaviour:
   playerViewSize: {x: 88.888885, y: 50, z: 0}
   playerAspectRatio: 1.7777778
   playerFullScreen: 0
-  deviceResolution: {x: 1920, y: 1200}
+  deviceResolution: {x: 2880, y: 1800}
   deviceAspectRatio: 1.6
   worldContainerCollider: {fileID: 1940025518}
   resolutionReportText: {fileID: 1742007538}
@@ -4308,6 +4308,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1513666772}
     m_Modifications:
+    - target: {fileID: 7302702482179364954, guid: 57f79b6f9813e4f8db3b1ab203257c05, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7302702482621429928, guid: 57f79b6f9813e4f8db3b1ab203257c05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
