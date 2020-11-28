@@ -19,7 +19,7 @@
 - [x] Create repo
 - [x] Create Unity project (2020.1.2f1)
 - [x] [Git, Git LFS, SmartMerge](https://github.com/omundy/dig250-game-art-dev/blob/master/reference-sheets/Unity-Git.md)
-- [ ] Choose a name! @jdietrick what should it be?
+- [ ] Choose a name and update repo name! @jdietrick what should it be?
 
 
 
@@ -105,12 +105,12 @@
 
 ### Players
 
-- [ ] Data
+- [x] Data
 	- [x] Use Feed data to build GameObjects and display in "Universe"
 	- [x] Ensure players aren't added twice with new feed data
 	- [x] Add player stats to API
-	- [ ] Get player stats json data from server 👈
-	- [ ] Populate zoomed-in UI display 👈
+	- [x] Get player stats json data from server 👈
+	- [x] Populate zoomed-in UI display 👈
 - [x] Movement
 	- [x] Create player (physics controlled) floating movement (Jellyfish?)
 - [ ] Actions (controlled from code) that visualize different event types on playback @jdietrick let's go through one last time and check these off
