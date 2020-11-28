@@ -1264,7 +1264,7 @@ MonoBehaviour:
   historyScrollRect: {fileID: 767216907}
   timeDiff: 0
   timeDiffScaled: 0
-  timeDiffScalar: 0.01
+  timeDiffScalar: 0.1
   minTimeDiff: 1
   maxTimeDiff: 10
 --- !u!1 &542316861
@@ -3037,7 +3037,7 @@ MonoBehaviour:
   playerViewSize: {x: 88.888885, y: 50, z: 0}
   playerAspectRatio: 1.7777778
   playerFullScreen: 0
-  deviceResolution: {x: 2880, y: 1800}
+  deviceResolution: {x: 1920, y: 1200}
   deviceAspectRatio: 1.6
   worldContainerCollider: {fileID: 1940025518}
   resolutionReportText: {fileID: 1742007538}
@@ -3873,10 +3873,6 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 481131868}
-    - target: {fileID: 4292567112276623488, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnChangeEndpointDropdown
-      objectReference: {fileID: 0}
     - target: {fileID: 4581083968801448577, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3979,16 +3975,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4581083969414152060, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
       propertyPath: m_Name
-      value: ControlsSettingsCanvas
+      value: ControlsCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 4581083969644465265, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 481131868}
-    - target: {fileID: 4581083969644465265, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnChangeModeDropdown
-      objectReference: {fileID: 0}
     - target: {fileID: 4581083969653978226, guid: 4c749e3453e984563be77cd1267ceeb3, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
