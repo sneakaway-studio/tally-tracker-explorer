@@ -223,14 +223,20 @@ Other ideas on movement:
 - [ ] Testing: Platforms / Devices / Resolutions
 	- [x] Do the security warnings go away if [we publish with Itch.io](https://sneakaway.studio/the-speed-of-thinking) – NO
 
-device | OS | resolution | aspect ratio | notes
---- | --- | --- | --- | ---
-Desktop | Mac | 1920x1080 | 16:9 | ---
-Desktop | Windows | 1920x1080 | 16:9 | ---
-Immersion Theater | Windows? | 6816 x 2240 | 3.04:1 | ---
-Game Lab | Windows? | 4800 x 1080 | 4.44:1 | ---
-Visualization Studio | Windows? | 27053 x 2160 | 12.52:1 | * estimated
-iPad | iOS | 1536 x 2048 | 1.33 | iPad 3&4, Air 1&2, Mini 2&3
+
+
+
+### Devices / Testing
+
+
+device | OS | resolution | aspect ratio | specs | notes
+--- | --- | --- | --- | --- | ---
+Desktop | Mac | 1920x1080 | 16:9 | --- | ---
+Desktop | Windows | 1920x1080 | 16:9 | --- | ---
+NCSU Immersion Theater | Windows 10 Pro 64 | 6816 x 2240 | 3.04:1 | Dell Precision T7910 ![specs](_Documentation/icons/info-15w.png "Dell Precision Tower 7910, 2x Intel Xeon CPU E5-2640 v4 @ 2.40GHz (3.4GHz Turbo), 128 Gb RAM, 2x Nvidia P5000 video cards2 x512 Gb SSD Hd") | ---
+NCSU Game Lab | Windows 10 Pro 64 | 4800 x 1080 | 4.44:1 | Dell Precision T7910 ![specs](_Documentation/icons/info-15w.png "Dell Precision T7910, Dual Intel Xeon Processor E5-2680 v4 14C, 2.4GHz, 3.3GHz Turbo, 128 Gb RAM, 2x Nvidia P5000 video card, 512 Gb SSD Hd (sys), 1 TB SATA Hd") | ---
+NCSU Visualization Studio | Windows | 27053 x 2160 | 12.52:1 | --- | ---
+iPad | iOS | 1536 x 2048 | 1.33 | iPad 3&4, Air 1&2, Mini 2&3 | ---
 
 
 
