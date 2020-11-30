@@ -88,7 +88,7 @@ Each player is represented by their avatar floating through the sky:
 - Time span that you are viewing
 - Zoomed in view of each player that shows you specific highlights from their game play which include km scrolled and trackers blocked
 
-Don't know what a product monster is? See Tally Saves the Internet About page.
+Don't know what a product monster is? See https://tallysavestheinternet.com/about
 
 ## Techrider
 
@@ -102,15 +102,10 @@ Don't know what a product monster is? See Tally Saves the Internet About page.
 - Game API - Node/Express
 - [More about our process](PROCESS.md)
 
-
-
 ## Credits
 
 Created by [Sneakaway Studio](https://sneakaway.studio) (Joelle Dietrick and Owen Mundy) during an eight-week artist residency funded by the [Andrew Mellon Foundation](https://mellon.org/) through the [Immersive Scholar](https://www.immersivescholar.org/) program with the [NC State University Libraries](https://www.lib.ncsu.edu/).
 
-Commissioned by NC State’s Immersive Scholar project,
+Supported by weekly, then bi-weekly residency meetings with an invaluable NC State support team, namely Micah Vandegrift, Walt Gurley, Hannah Rainey, Scott Bailey, and Colin Keenan. We are particularly grateful for Micah's support of Joseph Dasilva as a studio assistant. His knowledge of Unity was invaluable.
 
-- The project is in the collection of ______________
-- participants
-
-- List NCSU team (micah, hannah, walt, scott, colin, joseph), sound team, game Credit's page
+Many thanks to everyone involved with the October 2nd Immersive Scholar Symposium: Data, Surveillance, and Privacy, hosted by NC State, espeically Nick Merrill, Lauren Klein, Micah Vandegrift, Hannah Rainey, Ashley Evans Bandy, and Claire Cahoon.
