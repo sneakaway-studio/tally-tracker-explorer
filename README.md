@@ -92,9 +92,7 @@ Don't know what a product monster is? See https://tallysavestheinternet.com/abou
 
 ## Techrider
 
-??
-
-
+See the Devices / Testing section of [our Process page on GitHub](PROCESS.md)
 
 ## Technology
 
