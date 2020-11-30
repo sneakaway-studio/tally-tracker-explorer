@@ -34,11 +34,6 @@ NC State’s Immersive Scholar Project Page https://tallytrackerexplorer.immersi
 Tally Tracker Explorer on [Itch.io](https://itch.io/)
 
 
-
-
-
-
-
 ## Instructions
 
 
@@ -78,15 +73,14 @@ zoom out | ↓ | left joystick ↓
 
 ## About the data
 
-The anonymized data included in this project comes from live player activity (people browsing the internet, and the marketing categories and web trackers following them):
+The anonymized data included in this project comes from player activity on [Tally Saves the Internet](https://tallysavestheinternet.com) as a way to visualize  how people are browsing the internet and being placed into the marketing categories by web trackers.
 
-Each player is represented by their avatar floating through the sky:
-- Player avatars
-- Product monsters
-- Data trails (color from taxonomy)
-- Player events, which include clicks, battles and badges from the game
-- Time span that you are viewing
-- Zoomed in view of each player that shows you specific highlights from their game play which include km scrolled and trackers blocked
+Each player is represented by their avatar floating through the sky with the following:
+- Product monsters;
+- Data trails (color from IAB Taxonomy);
+- Player events, which include clicks, battles and badges from the game;
+- Time span selected; and,
+- A zoomed-in view of each player and some data (km scrolled and trackers blocked).
 
 Don't know what a product monster is? See https://tallysavestheinternet.com/about
 
@@ -106,4 +100,8 @@ Created by [Sneakaway Studio](https://sneakaway.studio) (Joelle Dietrick and Owe
 
 Supported by weekly, then bi-weekly residency meetings with an invaluable NC State support team, namely Micah Vandegrift, Walt Gurley, Hannah Rainey, Scott Bailey, and Colin Keenan. We are particularly grateful for Micah's support of Joseph Dasilva as a studio assistant. His knowledge of Unity was invaluable.
 
-Many thanks to everyone involved with the October 2nd Immersive Scholar Symposium: Data, Surveillance, and Privacy, hosted by NC State, espeically Nick Merrill, Lauren Klein, Micah Vandegrift, Hannah Rainey, Ashley Evans Bandy, and Claire Cahoon.
+Many thanks to everyone involved with the October 2nd, 2020 [Immersive Scholar Symposium: Data, Surveillance, and Privacy](https://www.lib.ncsu.edu/events/immersive-scholar-symposium-data-surveillance-and-privacy), hosted by NC State, espeically Nick Merrill, Lauren Klein, Micah Vandegrift, Hannah Rainey, Ashley Evans Bandy, and Claire Cahoon.
+
+## Contact
+
+For general questions or troubleshooting questions contact Walt Gurley.
