@@ -28,8 +28,10 @@ Both Tally Saves the Internet and Tally Tracker Explorer’s core goal is to vis
 Sure it’s beautiful, but what does Tally Tracker Explorer tell me about anything? Tally Saves the Internet gives you much more accurate insights into how advertisers see you and gives you reminders about data tracking in the form of playful product monsters while you block trackers. What Tally Tracker Explorer does offer is a light-hearted visualization and collective spirit during this tough year of isolation, in and out of quarantine.
 
 During COVID-19 quarantines, when we spend more time online, Tally Saves the Internet offers a way to reveal and re-envision the internet’s invisible structures as productive spaces for artistic interventions. As Klein and D’Agnozio describe in their 2020 book Data Feminism from MIT Press, if data is the new oil, those people who profit from this resource are thrilled while the rest of us range from indifferent to terrified. Tally offers its audience an alternative: it transforms advertising data into a multiplayer game that elevates emotion and alternative forms of embodiment as a way to examine power.
-NC State’s Immersive Scholar Project Page, https://tallytrackerexplorer.immersivescholar.org
-Tally Tracker Explorer on the App Store and https://itch.io/
+
+NC State’s Immersive Scholar Project Page https://tallytrackerexplorer.immersivescholar.org
+
+Tally Tracker Explorer on [Itch.io](https://itch.io/)
 
 
 
@@ -87,6 +89,16 @@ The data included in this project comes from live player activity (people browsi
 
 ## Techrider
 
+??
+
+
+
+## Technology
+
+- Visualization - Unity 2020.1.2f, Universal Render Pipeline (URP)
+- Game API - Node/Express
+- [More about our process](PROCESS.md)
+
 
 
 ## Credits
@@ -97,10 +109,3 @@ Commissioned by NC State’s Immersive Scholar project,
 
 - The project is in the collection of ______________
 - participants
-
-
-## Technology
-
-- Visualization - Unity 2020.1.2f, Universal Render Pipeline (URP)
-- Game API - Node/Express
-- [More about our process](PROCESS.md)
