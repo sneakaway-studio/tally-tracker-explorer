@@ -78,14 +78,17 @@ zoom out | ↓ | left joystick ↓
 
 ## About the data
 
-The data included in this project comes from live player activity (people browsing the internet, and the marketing categories and web trackers following them):
+The anonymized data included in this project comes from live player activity (people browsing the internet, and the marketing categories and web trackers following them):
 
-- Player data includes
-- Trackers
+Each player is represented by their avatar floating through the sky:
+- Player avatars
+- Product monsters
+- Data trails (color from taxonomy)
+- Player events, which include clicks, battles and badges from the game
+- Time span that you are viewing
+- Zoomed in view of each player that shows you specific highlights from their game play which include km scrolled and trackers blocked
 
-
-
-
+Don't know what a product monster is? See Tally Saves the Internet About page.
 
 ## Techrider
 
@@ -109,3 +112,5 @@ Commissioned by NC State’s Immersive Scholar project,
 
 - The project is in the collection of ______________
 - participants
+
+- List NCSU team (micah, hannah, walt, scott, colin, joseph), sound team, game Credit's page
