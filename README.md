@@ -3,7 +3,13 @@
 
 
 - [About](#About)
+- [About the data](#About-the-data)
 - [Instructions](#Instructions)
+	- [Running the application](#Running-the-application)
+	- [Zoom-to-player instructions](#Zoom-to-player instructions)
+	- [Control panel options](#Control panel options)
+- [Technology](#Technology)
+	- [Display requirements](#Display-requirements)
 - [Credits](#Credits)
 
 
@@ -34,6 +40,23 @@ NC State’s Immersive Scholar Project Page https://tallytrackerexplorer.immersi
 Tally Tracker Explorer on [Itch.io](https://itch.io/)
 
 
+
+## About the data
+
+The anonymized data included in this project comes from player activity on [Tally Saves the Internet](https://tallysavestheinternet.com) as a way to visualize  how people are browsing the internet and being placed into the marketing categories by web trackers.
+
+Each player is represented by their avatar floating through the sky with the following:
+- Product monsters;
+- Data trails (color from IAB Taxonomy);
+- Player events, which include clicks, battles and badges from the game;
+- Time span selected; and,
+- A zoomed-in view of each player and some data (km scrolled and trackers blocked).
+
+Don't know what a product monster is? See https://tallysavestheinternet.com/about
+
+
+
+
 ## Instructions
 
 
@@ -42,6 +65,7 @@ Tally Tracker Explorer on [Itch.io](https://itch.io/)
 Open the application and it will start automatically. Pressing the following keys will open / close various panels:
 
 - **C**ontrol panel - Settings and controls
+- **L**egend panel - A reference for the marketing taxonomy
 - **T**imeline panel - Shows the time of the event being played and size of the history and buffer
 - **F**eed panel - For debugging only (adds high performance overhead)
 - **ESC** / **Q**uit - Exit the application
@@ -71,28 +95,44 @@ zoom out | ↓ | left joystick ↓
 
 
 
-## About the data
-
-The anonymized data included in this project comes from player activity on [Tally Saves the Internet](https://tallysavestheinternet.com) as a way to visualize  how people are browsing the internet and being placed into the marketing categories by web trackers.
-
-Each player is represented by their avatar floating through the sky with the following:
-- Product monsters;
-- Data trails (color from IAB Taxonomy);
-- Player events, which include clicks, battles and badges from the game;
-- Time span selected; and,
-- A zoomed-in view of each player and some data (km scrolled and trackers blocked).
-
-Don't know what a product monster is? See https://tallysavestheinternet.com/about
-
-## Techrider
-
-See the Devices / Testing section of [our Process page on GitHub](PROCESS.md)
 
 ## Technology
+
+
+### How it was built
 
 - Visualization - Unity 2020.1.2f, Universal Render Pipeline (URP)
 - Game API - Node/Express
 - [More about our process](PROCESS.md)
+
+
+### Display requirements
+
+#### Suggested equipment
+
+- Powerful computer (FAAAASST)
+- High-quality display
+- Fast internet connection
+- Stereo speakers
+- Control device like a wireless gamepad or keyboard
+
+#### Responsive design
+
+The visualization can adapt to any screen size. The project has been tested on the following devices:
+
+device | OS | resolution | aspect ratio | specs | notes
+--- | --- | --- | --- | --- | ---
+Desktop | Mac | 1920x1080 | 16:9 | --- | ---
+Desktop | Windows | 1920x1080 | 16:9 | --- | ---
+NCSU Immersion Theater | Windows 10 Pro 64 | 6816 x 2240 | 3.04:1 | Dell Precision T7910 ![specs](_Documentation/icons/info-15w.png "Dell Precision Tower 7910, 2x Intel Xeon CPU E5-2640 v4 @ 2.40GHz (3.4GHz Turbo), 128 Gb RAM, 2x Nvidia P5000 video cards2 x512 Gb SSD Hd") | ---
+NCSU Game Lab | Windows 10 Pro 64 | 4800 x 1080 | 4.44:1 | Dell Precision T7910 ![specs](_Documentation/icons/info-15w.png "Dell Precision T7910, Dual Intel Xeon Processor E5-2680 v4 14C, 2.4GHz, 3.3GHz Turbo, 128 Gb RAM, 2x Nvidia P5000 video card, 512 Gb SSD Hd (sys), 1 TB SATA Hd") | ---
+NCSU Visualization Studio | Windows | 27053 x 2160 | 12.52:1 | --- | ---
+iPad | iOS | 1536 x 2048 | 1.33 | iPad 3&4, Air 1&2, Mini 2&3 | ---
+
+
+
+
+
 
 ## Credits
 
@@ -101,6 +141,9 @@ Created by [Sneakaway Studio](https://sneakaway.studio) (Joelle Dietrick and Owe
 Supported by weekly, then bi-weekly residency meetings with an invaluable NC State support team, namely Micah Vandegrift, Walt Gurley, Hannah Rainey, Scott Bailey, and Colin Keenan. We are particularly grateful for Micah's support of Joseph Dasilva as a studio assistant. His knowledge of Unity was invaluable.
 
 Many thanks to everyone involved with the October 2nd, 2020 [Immersive Scholar Symposium: Data, Surveillance, and Privacy](https://www.lib.ncsu.edu/events/immersive-scholar-symposium-data-surveillance-and-privacy), hosted by NC State, especially Nick Merrill, Lauren Klein, Micah Vandegrift, Hannah Rainey, Ashley Evans Bandy, and Claire Cahoon.
+
+
+
 
 ## Contact
 
