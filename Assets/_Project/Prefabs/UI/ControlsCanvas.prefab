@@ -2775,8 +2775,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<style=c2>c</style>ontrols <style=c2>t</style>imeline <style=c2>f</style>eed
-    <style=c2>esc</style> or <style=c2>q</style>uit \n"
+  m_text: "<style=c2>c</style>ontrols <style=c2>l</style>egend <style=c2>t</style>imeline
+    <style=c2>f</style>eed <style=c2>esc</style> or <style=c2>q</style>uit \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

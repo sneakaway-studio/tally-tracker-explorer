@@ -195,6 +195,14 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""LegendToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""e86e3c98-d0cf-4fc0-a4f5-8b429f676d00"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""FeedToggle"",
                     ""type"": ""Button"",
                     ""id"": ""dafd4647-22fc-4801-ac2b-553fb7fbd333"",
@@ -264,6 +272,17 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""TimelineToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c7ae6a2-a730-4579-99b8-8c05c4e88196"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LegendToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -581,6 +600,7 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Quit = m_UI.FindAction("Quit", throwIfNotFound: true);
         m_UI_ControlToggle = m_UI.FindAction("ControlToggle", throwIfNotFound: true);
+        m_UI_LegendToggle = m_UI.FindAction("LegendToggle", throwIfNotFound: true);
         m_UI_FeedToggle = m_UI.FindAction("FeedToggle", throwIfNotFound: true);
         m_UI_TimelineToggle = m_UI.FindAction("TimelineToggle", throwIfNotFound: true);
         // Player
@@ -732,6 +752,7 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_Quit;
     private readonly InputAction m_UI_ControlToggle;
+    private readonly InputAction m_UI_LegendToggle;
     private readonly InputAction m_UI_FeedToggle;
     private readonly InputAction m_UI_TimelineToggle;
     public struct UIActions
@@ -740,6 +761,7 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
         public UIActions(@TallyInputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @Quit => m_Wrapper.m_UI_Quit;
         public InputAction @ControlToggle => m_Wrapper.m_UI_ControlToggle;
+        public InputAction @LegendToggle => m_Wrapper.m_UI_LegendToggle;
         public InputAction @FeedToggle => m_Wrapper.m_UI_FeedToggle;
         public InputAction @TimelineToggle => m_Wrapper.m_UI_TimelineToggle;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
@@ -757,6 +779,9 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
                 @ControlToggle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnControlToggle;
                 @ControlToggle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnControlToggle;
                 @ControlToggle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnControlToggle;
+                @LegendToggle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnLegendToggle;
+                @LegendToggle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnLegendToggle;
+                @LegendToggle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnLegendToggle;
                 @FeedToggle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnFeedToggle;
                 @FeedToggle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnFeedToggle;
                 @FeedToggle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnFeedToggle;
@@ -773,6 +798,9 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
                 @ControlToggle.started += instance.OnControlToggle;
                 @ControlToggle.performed += instance.OnControlToggle;
                 @ControlToggle.canceled += instance.OnControlToggle;
+                @LegendToggle.started += instance.OnLegendToggle;
+                @LegendToggle.performed += instance.OnLegendToggle;
+                @LegendToggle.canceled += instance.OnLegendToggle;
                 @FeedToggle.started += instance.OnFeedToggle;
                 @FeedToggle.performed += instance.OnFeedToggle;
                 @FeedToggle.canceled += instance.OnFeedToggle;
@@ -879,6 +907,7 @@ public class @TallyInputSystem : IInputActionCollection, IDisposable
     {
         void OnQuit(InputAction.CallbackContext context);
         void OnControlToggle(InputAction.CallbackContext context);
+        void OnLegendToggle(InputAction.CallbackContext context);
         void OnFeedToggle(InputAction.CallbackContext context);
         void OnTimelineToggle(InputAction.CallbackContext context);
     }

@@ -36,7 +36,7 @@ public class ColorManager : Singleton<ColorManager> {
 
 
     // dictionary of all marketing colors, with mids as keys 
-    private static Dictionary<int, MarketingColor> MarketingColorDict = new Dictionary<int, MarketingColor> () {
+    public static Dictionary<int, MarketingColor> MarketingColorDict = new Dictionary<int, MarketingColor> () {
 
         { 453, new MarketingColor{  category = "Spiritual", colorStr = "0078C2"} },
         { 596, new MarketingColor{  category = "Tech", colorStr = "00A7E5"} },
@@ -83,6 +83,14 @@ public class ColorManager : Singleton<ColorManager> {
 
     }
 
+
+    /**
+     *  Return a random color
+     */
+    public static Color GetRandomColor ()
+    {
+        return Random.ColorHSV ();
+    }
 
 
     /**
