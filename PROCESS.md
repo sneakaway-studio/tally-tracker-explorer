@@ -19,7 +19,7 @@
 - [x] Create repo
 - [x] Create Unity project (2020.1.2f1)
 - [x] [Git, Git LFS, SmartMerge](https://github.com/omundy/dig250-game-art-dev/blob/master/reference-sheets/Unity-Git.md)
-- [ ] Choose a name and update repo name! @jdietrick what should it be?
+- [x] Choose a name and update repo name! @jdietrick what should it be?
 
 
 
@@ -99,7 +99,7 @@
 	- [x] Dropdown to switch between live / local
 	- [x] Dropdown to switch resolutions
 	- [x] Button: playback restart
-- [ ] Add a screen with a key, statement, and link
+- [x] Add Legend screen with a key, statement, and link
 
 
 

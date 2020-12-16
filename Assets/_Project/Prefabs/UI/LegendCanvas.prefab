@@ -612,7 +612,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tally Tracker Explorer appropriates color marketing trends to quickly visualize
     how advertizers place players into categories. Scan the legend below to connect
-    your data trail colors to your most prevalent search topics.
+    your data trail colors to your most prevalent search topics. Read more at <style=c2>tallysavestheinternet.com</style>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
