@@ -182,6 +182,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "LegendToggle",
+                    "type": "Button",
+                    "id": "e86e3c98-d0cf-4fc0-a4f5-8b429f676d00",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "FeedToggle",
                     "type": "Button",
                     "id": "dafd4647-22fc-4801-ac2b-553fb7fbd333",
@@ -251,6 +259,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "TimelineToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c7ae6a2-a730-4579-99b8-8c05c4e88196",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LegendToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

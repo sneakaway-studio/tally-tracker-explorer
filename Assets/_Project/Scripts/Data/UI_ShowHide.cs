@@ -6,15 +6,23 @@ public class UI_ShowHide : MonoBehaviour {
 
 
     public GameObject controlParent;
+    public GameObject legendParent;
     public GameObject feedParent;
     public GameObject timelineParent;
     TallyInputSystem inputs;
 
 
-    private void Start()
+    private void Start ()
     {
-        inputs = new TallyInputSystem();
-        inputs.Enable();
+        inputs = new TallyInputSystem ();
+        inputs.Enable ();
+
+        // show on run
+        controlParent.SetActive (true);
+        timelineParent.SetActive (true);
+        // hide on run
+        legendParent.SetActive (false);
+        feedParent.SetActive (false);
     }
 
 
@@ -24,13 +32,14 @@ public class UI_ShowHide : MonoBehaviour {
             Application.Quit ();
         } else if (inputs.UI.ControlToggle.triggered) {
             ShowHide (controlParent);
+        } else if (inputs.UI.LegendToggle.triggered) {
+            //Debug.Log ("inputs.UI.LegendToggle.triggered");
+            ShowHide (legendParent);
         } else if (inputs.UI.FeedToggle.triggered) {
             ShowHide (feedParent);
         } else if (inputs.UI.TimelineToggle.triggered) {
             ShowHide (timelineParent);
         }
-
-
 
     }
 
