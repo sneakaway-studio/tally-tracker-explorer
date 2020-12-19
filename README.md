@@ -12,7 +12,7 @@
 	- [Display requirements](#Display-requirements)
 - [Credits](#Credits)
 
-
+![tally tracker explorer](_Documentation/tally-explorer-combined.png)
 
 ### About
 
