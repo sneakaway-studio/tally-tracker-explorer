@@ -28,6 +28,8 @@ public class AudioManager : MonoBehaviour {
             s.source.loop = s.loop;
             // default to main mixergroup if not set
             s.source.outputAudioMixerGroup = s.mixerGroup ? s.mixerGroup : mixerGroup;
+
+            //Debug.Log (s.name.ToString () + ", " + s.loop.ToString ());
         }
 
 
@@ -55,7 +57,11 @@ public class AudioManager : MonoBehaviour {
         s.source.volume = s.volume * (1f + UnityEngine.Random.Range (-s.volumeVariance / 2f, s.volumeVariance / 2f));
         s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range (-s.pitchVariance / 2f, s.pitchVariance / 2f));
 
-        s.source.PlayOneShot (s.source.clip);
+        if (sound == "music")
+            s.source.Play (0);
+        else
+            s.source.PlayOneShot (s.source.clip);
+
     }
 
 

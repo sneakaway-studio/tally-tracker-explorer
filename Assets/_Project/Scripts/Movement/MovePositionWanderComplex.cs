@@ -10,7 +10,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     public Vector3 direction;           // the direction vector
 
     // for wandering algorithm
-    Collider worldContainerCollider;    // collider to test new positions
+    public BoxCollider worldContainerCollider;    // collider to test new positions
     public Vector3 wayPoint;            // new position to head towards
     public float targetThreshold = 1f;  // test distance to target - must be > 0
     public float pointSelectRange = 8f; // range from which to select new wayPoint
@@ -20,14 +20,22 @@ public class MovePositionWanderComplex : PhysicsBase {
     public float rotateTimeElapsed = 0;
     public float rotateDuration = 200;
 
+    public float inputRotateTimeElapsed = 0;
+    public float inputRotateDuration = 200;
+
+    private CameraManager cameraManager;
+
+    public bool receivingInput;
 
     private void Start ()
     {
         // get container collider
-        worldContainerCollider = GameObject.Find ("WorldContainer").GetComponent<Collider> ();
+        worldContainerCollider = GameObject.Find ("ResolutionManager").GetComponent<BoxCollider> ();
 
         // first wander point
         wayPoint = ReturnNewWanderPoint ();
+
+        cameraManager = GetComponentInParent<Player> ().cameraManager;
     }
 
     protected override void Update ()
@@ -51,9 +59,18 @@ public class MovePositionWanderComplex : PhysicsBase {
             wayPoint = ReturnNewWanderPoint ();
         }
 
-
-        // get direction
-        direction = transform.TransformDirection (Vector2.right);
+        // if player input is happening and the current object is targeted
+        if (playerInput.magnitude != 0 && cameraManager.getCameraTarget ().Equals (gameObject)) {
+            // get player input
+            direction = playerInput;
+            // is someone pressing buttons
+            receivingInput = true;
+        } else {
+            // get direction
+            direction = transform.TransformDirection (Vector2.right);
+            // is someone pressing buttons
+            receivingInput = false;
+        }
 
         // distance to move each frame = normalized distance vector * speed * time since last frame
         Vector3 step = direction * thrust * Time.deltaTime;
@@ -62,27 +79,76 @@ public class MovePositionWanderComplex : PhysicsBase {
         rb.MovePosition (transform.position + step);
         //rb.velocity = direction * thrust;
 
+        // is someone pressing buttons
+        if (receivingInput == true) {
+            // rotate to that direction
+            RotateTorwardsDirection2D ();
 
-        // rotate towards waypoint
-        RotateTowardsTarget2D ();
+            // placeholder
+            //RotateTowardsTarget2D ();
+        } else {
+            // rotate towards waypoint
+            RotateTowardsTarget2D ();
+        }
+
+
     }
 
     /**
-     *  Turn transform towards a target
+     *  Turn transform towards a direction vector over time
+     */
+    void RotateTorwardsDirection2D ()
+    {
+        // Reset other rotate time elapsed if not zero
+        if (rotateTimeElapsed != 0) rotateTimeElapsed = 0;
+
+        // Set position to rotate towards based on player input
+        Vector3 rotateTo = transform.position + (playerInput * 100);
+
+        // change look direction slowly
+        Vector3 temp = Vector3.Lerp(transform.right, (rotateTo - transform.position), inputRotateTimeElapsed / inputRotateDuration);
+
+        // Prevent possible flipping in y rotation
+        Transform cloneTransform = transform;
+        cloneTransform.right = temp;
+        if (cloneTransform.eulerAngles.y != 0)
+        {
+            temp = new Vector3(temp.x, 0.1f, 0);
+        }
+
+        // Set right vector
+        transform.right = temp;
+
+        inputRotateTimeElapsed += Time.deltaTime;
+    }
+
+    /**
+     *  Turn transform towards a target slowly over time
      */
     void RotateTowardsTarget2D ()
     {
         // change look direction immediately 
         //transform.right = wayPoint - transform.position;
 
+        // Reset other rotate time elapsed if not zero
+        if (inputRotateTimeElapsed != 0) inputRotateTimeElapsed = 0;
+
         // change look direction slowly
-        transform.right = Vector3.Lerp (transform.right, (wayPoint - transform.position), rotateTimeElapsed / rotateDuration);
+        Vector3 temp = Vector3.Lerp (transform.right, (wayPoint - transform.position), rotateTimeElapsed / rotateDuration);
+
+        // Prevent possible flipping in y rotation
+        Transform cloneTransform = transform;
+        cloneTransform.right = temp;
+        if (cloneTransform.eulerAngles.y != 0)
+        {
+            temp = new Vector3(temp.x, 0.1f, 0);
+        }
+
+        // Set right vector
+        transform.right = temp;
+
         rotateTimeElapsed += Time.deltaTime;
     }
-
-
-
-
 
     /**
 	 *	Show ray between two points 
@@ -93,12 +159,16 @@ public class MovePositionWanderComplex : PhysicsBase {
     }
 
     /**
-      *  Return a new target wander point within bounds of collider
-      */
+     *  Return a new target wander point within bounds of collider
+     */
     Vector3 ReturnNewWanderPoint ()
     {
         bool pointWithin = false;       // is the point within the collider?
-        Vector3 target = Vector3.zero;  // the new point
+        Vector3 target = Vector3.zero;  // the new point, which defaults to center
+        int safety = 0;
+
+        // update the selection range depending on the size of the resolution
+        pointSelectRange = worldContainerCollider.size.x * .1f;
 
         // loop until new point is within defined area
         while (!pointWithin) {
@@ -108,9 +178,14 @@ public class MovePositionWanderComplex : PhysicsBase {
                 Random.Range (transform.position.y - pointSelectRange, transform.position.y + pointSelectRange),
                 transform.position.z
             );
-            //Debug.Log("🙌 target is within collider = " + IsPointWithinCollider(worldContainerCollider, target));
+            //Debug.Log ("MovePositionWanderComplex.ReturnNewWanderPoint() - 🙌 target is within collider = " + IsPointWithinCollider (worldContainerCollider, target));
             // if found to be within safe area then return
             pointWithin = IsPointWithinCollider (worldContainerCollider, target);
+
+            if (++safety > 10) {
+                Debug.Log ("MovePositionWanderComplex.ReturnNewWanderPoint() - Safety first!");
+                return Vector3.zero;
+            }
         }
         return target;
     }
@@ -118,7 +193,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     /**
      *  Return true if point is inside worldcontainer collider
      */
-    public static bool IsPointWithinCollider (Collider collider, Vector3 point)
+    public static bool IsPointWithinCollider (BoxCollider collider, Vector3 point)
     {
         return (collider.ClosestPoint (point) - point).sqrMagnitude < Mathf.Epsilon * Mathf.Epsilon;
     }

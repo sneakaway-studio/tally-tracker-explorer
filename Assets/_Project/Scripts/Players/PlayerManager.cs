@@ -11,20 +11,38 @@ public class PlayerManager : Singleton<PlayerManager> {
     //listeners
     void OnEnable ()
     {
-        EventManager.StartListening ("DataDownloaded", ResetPlayers);
+        EventManager.StartListening ("AddAllPlayers", AddAllPlayers);
+        EventManager.StartListening ("RemoveAllPlayers", RemoveAllPlayers);
+        EventManager.StartListening ("CheckUpdatePlayers", CheckUpdatePlayers);
     }
     void OnDisable ()
     {
-        EventManager.StopListening ("DataDownloaded", ResetPlayers);
+        EventManager.StopListening ("AddAllPlayers", AddAllPlayers);
+        EventManager.StopListening ("RemoveAllPlayers", RemoveAllPlayers);
+        EventManager.StopListening ("CheckUpdatePlayers", CheckUpdatePlayers);
     }
 
+
     [Space (10)]
-    [Header ("Object References")]
+    [Header ("DETAILS")]
+
+    // number of players
+    public int playerCount;
+    public int playerToRemoveCount;
+    // min/max allowed at one time
+    public int minPlayersAllowed;
+    public int maxPlayersAllowed;
+
+
+    [Space (10)]
+    [Header ("OBJECTS")]
 
     // bounds, prefab, dict for instantiating players
-    public Collider worldContainerCollider;
+    public BoxCollider worldContainerCollider;
     public GameObject playerPrefab;
     public Dictionary<string, GameObject> playerDict;
+    public Dictionary<string, GameObject> playersToRemoveDict;
+    public CameraManager cameraManager;
 
     // temp sprites for assigning avatars
     public Sprite [] avatars;
@@ -32,19 +50,19 @@ public class PlayerManager : Singleton<PlayerManager> {
 
 
     [Space (10)]
-    [Header ("Current Player Event")]
+    [Header ("CURRENT PLAYER")]
 
     // player currently showing an event
     public GameObject currentPlayerObj;
     public Player currentPlayerScript;
+    public string currentEventType;
 
-    // number of players
-    public int playerCount;
+
 
 
 
     [Space (10)]
-    [Header ("Animations")]
+    [Header ("ANIMATIONS")]
 
     // animations to play
     public GameObject attackSpriteAnim;
@@ -58,6 +76,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     public GameObject disguiseAnim;
     public GameObject trackerAnim;
     public GameObject leaderboardAnim;
+    public GameObject selectionParticle;
 
 
 
@@ -65,41 +84,144 @@ public class PlayerManager : Singleton<PlayerManager> {
     {
         //Instance = this;
         playerDict = new Dictionary<string, GameObject> ();
+        playersToRemoveDict = new Dictionary<string, GameObject> ();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     *  Add all players to screen and dict - called at start or after data reset
+     *  - called when Timeline.status == TimelineStatus.newDataReceived
+     */
+    void AddAllPlayers ()
+    {
+        Debug.Log ("PlayerManager.AddAllPlayers()");
+
+        // loop through the buffer and add players to scene and dict
+        foreach (var feedData in Timeline.Instance.buffer) {
+            // max hasn't been reached
+            if (playerDict.Count > maxPlayersAllowed) break;
+            // check if player exists and add if not 
+            CreateNewPlayer (feedData);
+        }
+        foreach (var feedData in Timeline.Instance.history) {
+            // max hasn't been reached
+            if (playerDict.Count > maxPlayersAllowed) break;
+            // check if player exists and add if not 
+            CreateNewPlayer (feedData);
+        }
+
+        UpdateCounts ();
+
     }
 
 
     /**
-     *  Remove all players from stage, reset dict
+     *  Remove all players from screen and dict
+     *  - called from Timeline.OnStartBtnClick() to stop timeline / reset data
      */
-    public void ResetPlayers ()
+    void RemoveAllPlayers ()
     {
-        // remove any players first?
+        Debug.Log ("PlayerManager.RemoveAllPlayers()");
+
+        // for each in playerDict, remove from scene
+        foreach (KeyValuePair<string, GameObject> kvp in playerDict) {
+            Destroy (kvp.Value);
+        }
 
         // clear the dictionary 
         playerDict.Clear ();
-
-        // loop through the feed and add players
-        foreach (var feed in DataManager.feeds) {
-            CreateNewPlayer (feed.username, feed.avatarPath);
-        }
-
-        // update player count
-        playerCount = playerDict.Count;
-
-        // trigger data updated event
-        EventManager.TriggerEvent ("PlayersUpdated");
+        // clear the camera manager's list of players
+        cameraManager.players.Clear ();
+        // update the count
+        UpdateCounts ();
     }
+
 
     /**
-    *  Remove players who haven't been active in a while
-    */
-    public void ClearNonActivePlayers ()
+     *  - called when Timeline.status == TimelineStatus.newDataReceived
+     */
+    void CheckUpdatePlayers ()
     {
+        Debug.Log ("PlayerManager.CheckUpdatePlayers()");
+
+        // make a copy of the current player dict
+        playersToRemoveDict = new Dictionary<string, GameObject> (playerDict);
+
+        GameObject player;
+
+        // loop through the buffer
+        foreach (var feedData in Timeline.Instance.buffer) {
+            // if player still in playerDict
+            playerDict.TryGetValue (feedData.username, out player);
+            if (player != null) {
+                // remove from playersToRemoveDict
+                playersToRemoveDict.Remove (feedData.username);
+            } else {
+                // max hasn't been reached
+                if (playerDict.Count > maxPlayersAllowed) break;
+                // check if player exists and add
+                CreateNewPlayer (feedData);
+            }
+        }
+        foreach (var feedData in Timeline.Instance.history) {
+            // if player still in playerDict
+            playerDict.TryGetValue (feedData.username, out player);
+            if (player != null) {
+                // remove from playersToRemoveDict
+                playersToRemoveDict.Remove (feedData.username);
+            } else {
+                // max hasn't been reached
+                if (playerDict.Count > maxPlayersAllowed) break;
+                // check if player exists and add
+                CreateNewPlayer (feedData);
+            }
+        }
 
 
+
+
+        // if players still left in playersToRemoveDict
+        if (playersToRemoveDict.Count > 0) {
+            // remove those players from scene and clear dict
+            // for each in playerDict, remove from scene
+            foreach (KeyValuePair<string, GameObject> kvp in playersToRemoveDict) {
+                Destroy (kvp.Value);
+            }
+            // clear the playersToRemoveDict dictionary 
+            playersToRemoveDict.Clear ();
+        }
+
+
+
+        // update counts
+        UpdateCounts ();
+    }
+
+
+
+
+    void UpdateCounts ()
+    {
+        // update player count
+        playerCount = playerDict.Count;
+        playerToRemoveCount = playersToRemoveDict.Count;
         // trigger data updated event
         EventManager.TriggerEvent ("PlayersUpdated");
     }
+
+
+
 
 
 
@@ -109,10 +231,10 @@ public class PlayerManager : Singleton<PlayerManager> {
     /**
      *  Create a new player
      */
-    public void CreateNewPlayer (string username, string avatarPath)
+    public bool CreateNewPlayer (FeedData feedData)
     {
         // make sure the player doesn't already exist
-        if (playerDict.ContainsKey (username)) return;
+        if (playerDict.ContainsKey (feedData.username)) return false;
 
         // get a position that doesn't contain any other colliders
         Vector3 spawnPosition = GetClearSpawnPosition ();
@@ -129,14 +251,20 @@ public class PlayerManager : Singleton<PlayerManager> {
             // instantiate prefab @ spawn position
             GameObject obj = (GameObject)Instantiate (playerPrefab, spawnPosition, spawnRotation);
             // call Init() on Player
-            obj.GetComponent<Player> ().Init (username, avatarPath);
+            obj.GetComponent<Player> ().Init (feedData);
             // set name in Unity Editor
-            obj.name = username;
+            obj.name = feedData.username;
             // parent under PlayerManger
             obj.transform.parent = gameObject.transform;
             // finaly, add to dict
-            playerDict.Add (username, obj);
+            playerDict.Add (feedData.username, obj);
+            // sets a reference to the cameraManager
+            obj.GetComponent<Player> ().cameraManager = cameraManager;
+
+            // Allow the player to be selected by the camera
+            cameraManager.AddPlayer (feedData.username);
         }
+        return true;
     }
 
 
@@ -159,6 +287,15 @@ public class PlayerManager : Singleton<PlayerManager> {
         // reference to script (contains all the other references we need)
         currentPlayerScript = currentPlayerObj.GetComponent<Player> ();
 
+        // store FeedData for zoom 
+        currentPlayerScript.feedData = feed;
+
+        // show event in public var
+        currentEventType = feed.eventType;
+
+
+
+
 
         // EFFECTS
 
@@ -175,6 +312,11 @@ public class PlayerManager : Singleton<PlayerManager> {
                 AttachDetachAnimation (rippleAnim, false, 1f, 3.5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Pop_Shake_md";
+
+                // check to see if there are monsters following the player
+                if (feed.monsters != "") {
+                    //Debug.Log ("PlayerManager.PlayEvent() monsters = " + feed.monsters);
+                }
             }
 
             // ATTACK 
@@ -188,7 +330,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             else if (feed.eventType == "badge") {
                 AttachDetachAnimation (badgeAnim, false, 1f, 3.5f);
                 // play the timeline animation
-                currentPlayerScript.animControllerScript.animName = "Swirl_r_md";
+                currentPlayerScript.animControllerScript.animName = "Swirl_r_sm";
             }
 
             // CONSUMABLE 
@@ -240,10 +382,11 @@ public class PlayerManager : Singleton<PlayerManager> {
      */
     Vector3 GetClearSpawnPosition ()
     {
-        Vector3 spawnPosition = new Vector3 ();
-        float startTime = Time.realtimeSinceStartup;
+        Vector3 spawnPosition = Vector3.zero;
+        int safety = 0;
         bool positionClear = false;
         int layerMask = (1 << 8); // only Layer 8 "Players"
+        //Debug.Log ("PlayerManager.GetClearSpawnPosition() bounds = " + worldContainerCollider.bounds.ToString ());
         while (positionClear == false) {
             // get random position
             Vector3 spawnPositionRaw = RandomPointInBounds (worldContainerCollider.bounds);
@@ -253,12 +396,13 @@ public class PlayerManager : Singleton<PlayerManager> {
             Collider [] hitColliders = Physics.OverlapSphere (spawnPosition, 0.75f, layerMask);
             // if collider isn't touching another player collider then set true to stop loop
             if (hitColliders.Length <= 0) positionClear = true;
-            // else continue until time has run out
-            if (Time.realtimeSinceStartup - startTime > 0.5f) {
-                Debug.Log ("Time out placing GameObject!");
-                return Vector3.zero;
+            // safety
+            if (++safety > 10) {
+                Debug.Log ("PlayerManager.GetClearSpawnPosition() - Safety first!");
+                return spawnPosition;
             }
         }
+        //Debug.Log ("PlayerManager.GetClearSpawnPosition() spawnPosition = " + spawnPosition.ToString ());
         return spawnPosition;
     }
 
@@ -285,7 +429,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     /// <param name="destroyDelay">Destroy delay</param>
     void AttachDetachAnimation (GameObject prefab, bool randomPosition, float scaleMultiplier, float destroyDelay = -1f)
     {
-        Debug.Log ("AttachDetachAnimation() prefab.name = " + prefab.name);
+        //Debug.Log ("AttachDetachAnimation() prefab.name = " + prefab.name);
 
 
         // ATTACH THE GAME OBJECT WITH ANIMATION
@@ -336,7 +480,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 
     IEnumerator PlayBattleEffects (FeedData feed)
     {
-        Debug.Log ("PlayBattle() feed = " + feed.ToString ());
+        //Debug.Log ("PlayBattle() feed = " + feed.ToString ());
 
 
         // start battle

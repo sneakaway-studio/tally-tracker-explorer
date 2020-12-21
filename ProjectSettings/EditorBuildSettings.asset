@@ -6,6 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Scenes/tally-viz.unity
-    guid: 79bed350e4a684951abefde554514984
-  m_configObjects: {}
+    path: Assets/_Project/Scenes/tally-viz-master.unity
+    guid: 0d4332a27ec0e4f039e95110087dcc45
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: af910375707b09f468be694201fff070, type: 2}

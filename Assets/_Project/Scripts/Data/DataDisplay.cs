@@ -7,35 +7,65 @@ public class DataDisplay : MonoBehaviour {
 
 
 
-    public TMP_Text eventCountText;
+    [Space (10)]
+    [Header ("DATA DETAILS PANEL")]
+
+
+    // DataRequestStats
+    public TMP_Text receivedTotalText;
+    public TMP_Text receivedNewText;
+    public TMP_Text receivedDuplicatesText;
+    public TMP_Text dataRequestStatusText;
+
+
+    // TimelineStats
     public TMP_Text playerCountText;
-    public TMP_Text eventNumberText;
+
+
+    [Space (10)]
+    [Header ("TIMELINE PANEL")]
+
+    public TMP_Text bufferCountText;
+    public TMP_Text historyCountText;
 
 
 
     // listeners
     void OnEnable ()
     {
-        EventManager.StartListening ("DataDownloaded", UpdateDisplay);
-        EventManager.StartListening ("DataUpdated", UpdateDisplay);
-        EventManager.StartListening ("PlayersUpdated", UpdateDisplay);
-        EventManager.StartListening ("TimelineUpdated", UpdateDisplay);
+        // data requests
+        EventManager.StartListening ("GetNewData", OnUpdateDisplay);
+        EventManager.StartListening ("DataRequestFinished", OnUpdateDisplay);
+
+        EventManager.StartListening ("PlayersUpdated", OnUpdateDisplay);
+        EventManager.StartListening ("TimelineUpdated", OnUpdateDisplay);
     }
     void OnDisable ()
     {
-        EventManager.StopListening ("DataDownloaded", UpdateDisplay);
-        EventManager.StopListening ("DataUpdated", UpdateDisplay);
-        EventManager.StopListening ("PlayersUpdated", UpdateDisplay);
-        EventManager.StopListening ("TimelineUpdated", UpdateDisplay);
+        // data requests
+        EventManager.StopListening ("GetNewData", OnUpdateDisplay);
+        EventManager.StopListening ("DataRequestFinished", OnUpdateDisplay);
+
+        EventManager.StopListening ("PlayersUpdated", OnUpdateDisplay);
+        EventManager.StopListening ("TimelineUpdated", OnUpdateDisplay);
     }
 
 
     // update text
-    public void UpdateDisplay ()
+    public void OnUpdateDisplay ()
     {
-        eventCountText.text = DataManager.dataCount.ToString () + " events";
-        playerCountText.text = PlayerManager.Instance.playerCount.ToString () + " players";
-        eventNumberText.text = TimelineManager.Instance.feedIndex.ToString () + " / " + DataManager.dataCount.ToString ();
+        // data details panel - col 1
+        receivedTotalText.text = "Received: " + DataManager.Instance.receivedTotal.ToString ();
+        receivedNewText.text = "New data: " + DataManager.Instance.receivedNew.ToString ();
+        receivedDuplicatesText.text = "Duplicates: " + DataManager.Instance.receivedDuplicates.ToString ();
+        dataRequestStatusText.text = DataManager.Instance.dataRequestStatus.ToString ();
+        // data details panel - col 2
+        playerCountText.text = "Players: " + PlayerManager.Instance.playerCount.ToString ();
+
+        // timeline
+        bufferCountText.text = Timeline.Instance.bufferCount.ToString ();
+        historyCountText.text = Timeline.Instance.historyCount.ToString ();
+
     }
 
 

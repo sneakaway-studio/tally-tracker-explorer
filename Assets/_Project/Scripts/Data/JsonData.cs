@@ -69,7 +69,8 @@ public class JsonData : MonoBehaviour {
         // parse the string as JObject
         JObject jsonData = JObject.Parse (text);
 
-        print ("---- GradientsByMidPoint -> count: " + jsonData.Count);
+        //Debug.Log ("---- GradientsByMidPoint -> count: " + jsonData.Count);
+        DebugManager.Instance.UpdateDisplay ("JsonData.ParseGradientsByMid() GradientsByMidPoint count = " + jsonData.Count);
 
         // loop through each, accessing it as a string:JToken
         foreach (KeyValuePair<string, JToken> item in jsonData) {
@@ -89,7 +90,8 @@ public class JsonData : MonoBehaviour {
         // parse the string as JObject
         JObject jsonData = JObject.Parse (text);
 
-        print ("---- MonstersByMidPoint -> count: " + jsonData.Count);
+        //Debug.Log ("---- MonstersByMidPoint -> count: " + jsonData.Count);
+        DebugManager.Instance.UpdateDisplay ("JsonData.ParseGradientsByMid() MonstersByMidPoint count = " + jsonData.Count);
 
         // loop through each, accessing it as a string:JToken
         foreach (KeyValuePair<string, JToken> item in jsonData) {

@@ -5,6 +5,12 @@ EditorUserSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 4
   m_ConfigSettings:
+    UnityRemoteCompression:
+      value: 29617121
+      flags: 0
+    UnityRemoteDevice:
+      value: 5b01070352570b585e570e7342250c444011192878717064292c4f32bab53539bbb766efe568693f
+      flags: 0
     lightmappingDeviceAndPlatform:
       value: 53
       flags: 0

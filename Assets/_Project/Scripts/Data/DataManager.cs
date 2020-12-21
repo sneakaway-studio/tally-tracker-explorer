@@ -5,11 +5,13 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using UnityEngine.UI;
+using TMPro;
 
 public class DataManager : Singleton<DataManager> {
     // singleton
     protected DataManager () { }
-    public static new DataManager Instance;
+    //public static new DataManager Instance;
 
 
 
@@ -27,89 +29,260 @@ public class DataManager : Singleton<DataManager> {
 
 
 
-    // HOST
+    [Space (10)]
+    [Header ("MODE")]
+
+    public TMP_Dropdown modeDropdown;
+
+    [Tooltip ("The data source mode")]
+    public ModeType selectedMode;
+
+    [Serializable]
+    public enum ModeType {
+        remoteLive, // remote - refresh with new data from server - the endpoint automatic
+        remoteArchive, // remote - make only one data request, shuffle between buffer / history 
+        localArchive // same as remoteArchive except using local - the endpoint is disabled
+    }
+
+
+
+
+    [Space (10)]
+    [Header ("HOST + ENDPOINT")]
+
+    [Tooltip ("The selected host (users cannot choose)")]
+    public HostType selectedHost;
 
     [Serializable]
     public enum HostType {
-        local,
-        remote
+        remote,
+        local
     }
-    public HostType chosenHost;
     string [] hosts = {
-        "https://127.0.0.1:5000/api/",
-        "https://tallysavestheinternet.com/api/"
+        "https://tallysavestheinternet.com/api/feed/range/plusStream/",
+        "https://127.0.0.1:5000/api/feed/range/plusStream/"
     };
+
+
+
+
 
     // ENDPOINT
 
+    // 20 recent - includes only game objects, no clicks / streams
+
+    public TMP_Dropdown endpointDropdown;
+
+    [Tooltip ("The selected endpoint")]
+    public EndpointType selectedEndpoint;
+
     [Serializable]
     public enum EndpointType {
-        recent20,
-        rangeOneWeek,
-        rangePlusStreamOneDay,
-        rangePlusStream12Hour,
-        rangePlusStream6Hour,
-        rangePlusStream3Hour,
-        rangePlusStream1Hour,
-        rangePlusStreamFiveMinute
+        minute_1,
+        minute_2,
+        minute_3,
+        minute_4,
+        minute_5,
+        minute_10,
+        minute_30,
+        hour_1,
+        hour_2,
+        hour_3,
+        hour_6,
+        hour_12,
+        day_1,
+        day_2,
+        day_3,
+        week_1
     }
-    public EndpointType chosenEndpoint;
-    string [] endpoints = {
-        "feed/recent",      // 20 recent
-        "feed/range/1/week", // 1 week
-        "feed/range/plusStream/1/day",  // 1 day
-        "feed/range/plusStream/12/hour", // 6 hour
-        "feed/range/plusStream/6/hour", // 6 hour
-        "feed/range/plusStream/3/hour", // 1 hour
-        "feed/range/plusStream/1/hour", // 1 hour
-        "feed/range/plusStream/5/minute" // 5 minutes
-    };
 
-    // FINAL PATH
-
-    // chosen host and endpoint for API
+    // full API host + endpoint
     public string path;
+
+    public TextAsset localDataFile;
+
+
+
+
+
+    // return the path + endpoint
+    public string GetEndpoint ()
+    {
+        char [] delimiterChars = { '_', ' ', ',', '.', ':', '\t' };
+        string [] endpointArr = selectedEndpoint.ToString ().Split (delimiterChars);
+        return hosts [(int)selectedHost] + "" + endpointArr [1] + "/" + endpointArr [0];
+    }
+
+
+
+    public int sizeOfDataRequests = 1;
+    public int sizeOfDataRequestsMax = 10;
+
 
 
 
     // META
 
-    // the number of events
-    public static int dataCount;
-    // the current data as string
-    public static string currentEventStr;
-    // as list
-    public static IList<FeedData> feeds = new List<FeedData> ();
+
+    [Space (10)]
+    [Header ("RETURNED DATA")]
+
+    [Tooltip ("The number of events returned in this call")]
+    public int receivedTotal;
+    [Tooltip ("The number of events returned that were new (not duplicates)")]
+    public int receivedNew;
+    [Tooltip ("The number of events returned that were duplicates")]
+    public int receivedDuplicates;
+
+    [Serializable]
+    public enum DataRequestStatus {
+        requesting,
+        receiving,
+        handling,
+        finished
+    }
+    [Tooltip ("The current status")]
+    public DataRequestStatus dataRequestStatus;
+
+    [Tooltip ("The current event being handled in the loop")]
+    public string currentEventStr;
+
+    [Tooltip ("The list of items returned")]
+    public IList<FeedData> feeds = new List<FeedData> ();
 
 
-    public static Dictionary<string, FeedData> eventDictionary = new Dictionary<string, FeedData> ();
 
+
+
+
+
+
+
+    /**
+     *  Increase or decrease how much data we are trying to get - only called in live mode
+     */
+    public void ScaleSizeOfDataRequests (int scale)
+    {
+        // decrease
+        if (scale == -1) {
+
+        }
+        // increase
+        else if (scale == 1) {
+
+        }
+
+
+        if (sizeOfDataRequests < 1) {
+            sizeOfDataRequests = 1;
+        } else if (sizeOfDataRequests > sizeOfDataRequestsMax) {
+            sizeOfDataRequests = sizeOfDataRequestsMax;
+        }
+
+
+        // potentially change this var
+        //Timeline.Instance.bufferCountMax = n
+
+    }
+
+
+
+
+
+    private void Awake ()
+    {
+        // populate dropdown options
+        PopulateDropdown (modeDropdown, new ModeType ());
+        PopulateDropdown (endpointDropdown, new EndpointType ());
+
+        // get inspector values
+        modeDropdown.value = (int)selectedMode;
+        endpointDropdown.value = (int)selectedEndpoint;
+    }
+
+    /// <summary>
+    /// Populate TMP dropdown options
+    /// </summary>
+    /// <param name="dropdown">A reference to a TMP_Dropdown</param>
+    /// <param name="e">Use like this: "new Enum()"</param>
+    void PopulateDropdown (TMP_Dropdown dropdown, Enum e)
+    {
+        // clear the options in the dropdown
+        dropdown.ClearOptions ();
+        // save the enum options as a string[]
+        string [] enumOptions = Enum.GetNames (e.GetType ());
+        // create a new list for the available options
+        List<string> options = new List<string> (enumOptions);
+        // add options to list
+        dropdown.AddOptions (options);
+    }
+
+    /**
+     *  Called from UI to update the data source
+     */
+    public void OnChangeModeDropdown (int _status)
+    {
+        Debug.Log ("OnChangeModeDropdown() _status = " + _status);
+        // cast as Enum
+        selectedMode = (ModeType)_status;
+    }
+    /**
+     *  Called from UI to update endpoint
+     */
+    public void OnChangeEndpointDropdown (int _status)
+    {
+        Debug.Log ("OnChangeEndpointDropdown() _status = " + _status);
+        // cast as Enum
+        selectedEndpoint = (EndpointType)_status;
+    }
 
 
     private void Start ()
     {
-        // start everything
-        GetNewData ();
+        // start everything - now called from Timeline
+        //GetNewData ();
     }
 
 
     public void GetNewData ()
     {
-        // update path
-        path = hosts [(int)chosenHost] + endpoints [(int)chosenEndpoint];
+        // reset stats
+        receivedTotal = 0;
+        receivedNew = 0;
+        receivedDuplicates = 0;
+        // set status
+        dataRequestStatus = DataRequestStatus.requesting;
 
-        //Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() path = " + path);
+        // if using local archive file
+        if (selectedMode == ModeType.localArchive) {
 
-        StartCoroutine (GetRequest (path));
+            // jump straight to handle archived json
+            HandleJsonResponse (localDataFile.text);
 
-        // error test
-        // StartCoroutine(GetRequest("https://error.html"));
+        } else {
+
+            // update path
+            path = GetEndpoint ();
+
+            //Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() path = " + path);
+            //DebugManager.Instance.UpdateDisplay ("DataManager.GetNewData() path = " + path);
+
+            StartCoroutine (GetRequest (path));
+
+            // error test
+            // StartCoroutine(GetRequest("https://error.html"));
+
+        }
     }
 
+
     // do a get request for JSON data at url
-    public static IEnumerator GetRequest (string uri)
+    public IEnumerator GetRequest (string uri)
     {
+
         using (UnityWebRequest webRequest = UnityWebRequest.Get (uri)) {
+
+            //DebugManager.Instance.UpdateDisplay ("DataManager.GetNewData() uri = " + uri);
 
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest ();
@@ -120,207 +293,180 @@ public class DataManager : Singleton<DataManager> {
             if (webRequest.isNetworkError || webRequest.isHttpError) {
                 Debug.Log (DebugManager.GetSymbol ("asterisk") + " Error: " + webRequest.error);
             } else {
-                Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() " +
-                        uri + "\n" + webRequest.downloadHandler.text);
+                //Debug.Log ("DataManager.GetNewData() " + webRequest.downloadHandler.text);
 
-                // parse JSON array 
-                JArray a = JArray.Parse (webRequest.downloadHandler.text);
-
-                // loop through array and add each 
-                foreach (JObject item in a) {
-                    // base class properties
-                    string _username = item.GetValue ("username").ToString ();
-                    string _avatarPath = item.GetValue ("avatarPath").ToString ();
-                    string _eventType = item.GetValue ("eventType").ToString ();
-                    string _createdAtStr = item.GetValue ("createdAt").ToString ();
-                    string _monsters = item.GetValue ("monsters").ToString ();
-                    string _trackers = item.GetValue ("trackers").ToString ();
-
-                    // parse string to ISO 8601 format
-                    DateTime _createdAt = DateTime.Parse (_createdAtStr, null, System.Globalization.DateTimeStyles.RoundtripKind);
-
-                    // parse eventData 
-                    JObject d = JObject.Parse (item.GetValue ("eventData").ToString ());
-
-
-                    FeedData output;
-
-                    if (_eventType == "attack") {
-                        output = new AttackData {
-                            username = _username,
-                            avatarPath = _avatarPath,
-                            eventType = _eventType,
-                            createdAt = _createdAt,
-                            monsters = _monsters,
-                            trackers = _trackers,
-
-                            name = (string)d ["name"],
-                            type = (string)d ["level"],
-                            selected = (bool)d ["selected"]
-                        };
-                    } else if (_eventType == "badge") {
-                        output = new BadgeData {
-                            username = _username,
-                            avatarPath = _avatarPath,
-                            eventType = _eventType,
-                            createdAt = _createdAt,
-                            monsters = _monsters,
-                            trackers = _trackers,
-
-                            name = (string)d ["name"],
-                            level = (int)d ["level"]
-                        };
-                    } else if (_eventType == "consumable") {
-                        output = new ConsumableData {
-                            username = _username,
-                            avatarPath = _avatarPath,
-                            eventType = _eventType,
-                            createdAt = _createdAt,
-                            monsters = _monsters,
-                            trackers = _trackers,
-
-                            name = (string)d ["name"],
-                            slug = (string)d ["slug"],
-                            stat = (string)d ["stat"],
-                            type = (string)d ["type"],
-                            value = (int)d ["value"]
-                        };
-                    } else if (_eventType == "disguise") {
-                        output = new DisguiseData {
-                            username = _username,
-                            avatarPath = _avatarPath,
-                            eventType = _eventType,
-                            createdAt = _createdAt,
-                            monsters = _monsters,
-                            trackers = _trackers,
-
-                            name = (string)d ["name"],
-                            type = (string)d ["type"]
-                        };
-                    } else if (_eventType == "monster") {
-                        output = new MonsterData {
-                            username = _username,
-                            avatarPath = _avatarPath,
-                            eventType = _eventType,
-                            createdAt = _createdAt,
-                            monsters = _monsters,
-                            trackers = _trackers,
-
-                            mid = (int)d ["mid"],
-                            level = (int)d ["level"],
-                            captured = (int)d ["captured"],
-                        };
-                    } else if (_eventType == "tracker") {
-                        output = new TrackerData {
-                            username = _username,
-                            avatarPath = _avatarPath,
-                            eventType = _eventType,
-                            createdAt = _createdAt,
-                            monsters = _monsters,
-                            trackers = _trackers,
-
-                            tracker = (string)d ["tracker"],
-                            captured = (int)d ["captured"],
-                        };
-                    } else { // if (_eventType == "stream")
-                        output = new StreamData {
-                            username = _username,
-                            avatarPath = _avatarPath,
-                            eventType = _eventType,
-                            createdAt = _createdAt,
-                            monsters = _monsters,
-                            trackers = _trackers,
-
-                            score = (int)d ["score"],
-                            clicks = (int)d ["clicks"],
-                            likes = (int)d ["likes"],
-                        };
-                    }
-
-                    feeds.Add (output);
-
-
-                    // SAVE FOR CREATING BUFFER
-                    //// create key
-                    //string key = _createdAtStr + "_" + _username + "_" + _eventType;
-                    //FeedData val;
-                    //if (!eventDictionary.TryGetValue (key, out val)) {
-                    //    eventDictionary.Add (key, output);
-                    //}
-
-
-
-                    //Debug.Log(_eventType);
-                }
-
-                // SAVE FOR CREATING BUFFER
-                ///// Acquire keys and sort them.
-                //var list = eventDictionary.Keys.ToList ();
-                //list.Sort ();
-
-                //// Loop through keys.
-                //foreach (var key in list) {
-                //    Debug.Log (key + ": " + eventDictionary [key]);
-                //}
-
-
-
-                // OLD METHOD - KEEPING FOR REFERENCEx
-                //feeds = a.Select(p => new FeedData
-                //{
-                //    username = (string)p["username"],
-                //    avatarPath = (string)p["avatarPath"],
-                //    eventType = (string)p["eventType"],
-                //    createdAt = (DateTime)p["createdAt"],
-
-                //    //type = (string)p["type"],
-                //    //name = (string)p["name"],
-                //    //level = (int)p["level"],
-                //    //stat = (string)p["stat"],
-                //    //captured = (int)p["captured"],
-                //}).ToList();
-                ////Debug.Log(a[0]);
-                //Debug.Log(feeds.ToString());
-
-
-
-
-                // FOR DEBUGGING - MAY OR MAY NOT HAVE A GARBAGE COLLECTION ISSUE
-
-                //// reset currentEventStr
-                //currentEventStr = "";
-
-                //foreach (var feed in feeds) {
-
-                //    var line =
-
-                //        feed.createdAt + "\t" +
-                //        feed.username + ", " +
-                //        feed.eventType + ", " +
-
-                //        //feed.type + ", " + feed.name + ", " + feed.level +
-                //        //", " + feed.type
-
-                //        ""
-                //        ;
-
-                //    currentEventStr += line + "<br>";
-
-                //    //Debug.Log(line);
-                //}
-
-
-
-
-                // update count
-                dataCount = feeds.Count;
-
-                // trigger data updated event
-                EventManager.TriggerEvent ("DataDownloaded");
-
-
-
+                // handle the response
+                HandleJsonResponse (webRequest.downloadHandler.text);
             }
         }
+    }
+
+
+
+    /// <summary>
+    /// Handle JSON data 
+    /// </summary>
+    /// <param name="text">JSON data as string</param>
+    public void HandleJsonResponse (string text)
+    {
+        Debug.Log ("HandleJsonResponse()");
+
+        // set status
+        dataRequestStatus = DataRequestStatus.receiving;
+
+        // parse JSON array 
+        JArray a = JArray.Parse (text);
+
+        // update count
+        receivedTotal = a.Count;
+        dataRequestStatus = DataRequestStatus.handling;
+
+        DebugManager.Instance.UpdateDisplay ("DataManager.GetNewData() dataRequestStatus = " + dataRequestStatus);
+
+        // loop through array and add each 
+        foreach (JObject item in a) {
+
+            // base class properties
+            string _username = item.GetValue ("username").ToString ();
+            string _avatarPath = item.GetValue ("avatarPath").ToString ();
+
+            int _level = (int)item.GetValue ("level");
+            int _clicks = (int)item.GetValue ("clicks");
+            int _score = (int)item.GetValue ("score");
+            int _time = (int)item.GetValue ("time");
+            int _capturedTotal = (int)item.GetValue ("capturedTotal");
+            int _missedTotal = (int)item.GetValue ("missedTotal");
+            int _pageActionScrollDistance = (int)item.GetValue ("pageActionScrollDistance");
+            int _trackersBlocked = (int)item.GetValue ("trackersBlocked");
+            int _trackersSeen = (int)item.GetValue ("trackersSeen");
+
+            string _eventType = item.GetValue ("eventType").ToString ();
+            string _createdAtStr = item.GetValue ("createdAt").ToString ();
+            string _monsters = item.GetValue ("monsters").ToString ();
+            string _trackers = item.GetValue ("trackers").ToString ();
+
+            // parse string to ISO 8601 format
+            DateTime _createdAt = DateTime.Parse (_createdAtStr, null, System.Globalization.DateTimeStyles.RoundtripKind);
+
+
+
+
+            // LIVE MODE ONLY - SKIP DUPLICATES
+
+            if (selectedMode == ModeType.remoteLive) {
+                // get any duplicate dates in buffer based on both conditions
+                var bufferMatches = Timeline.Instance.buffer.FindAll (found => found.createdAt == _createdAt);
+                var historyMatches = Timeline.Instance.history.FindAll (found => found.createdAt == _createdAt);
+
+                // skip this iteration
+                if (bufferMatches.Count > 0 || historyMatches.Count > 0) {
+                    Debug.Log ("DUPLICATE createdAt = " + _createdAt + " AND eventType = " + _eventType);
+                    receivedDuplicates++;
+                    continue;
+                }
+            }
+
+
+
+
+
+
+            // IF NOT A DUPLICATE THEN PROCEED
+
+            receivedNew++;
+
+            // parse eventData 
+            JObject d = JObject.Parse (item.GetValue ("eventData").ToString ());
+
+            // object to hold data
+            FeedData output;
+
+            if (_eventType == "attack") {
+                output = new AttackData {
+                    _name = (string)d ["name"],
+                    _type = (string)d ["level"],
+                    _selected = (bool)d ["selected"]
+                };
+            } else if (_eventType == "badge") {
+                output = new BadgeData {
+                    _name = (string)d ["name"],
+                    _level = (int)d ["level"]
+                };
+            } else if (_eventType == "consumable") {
+                output = new ConsumableData {
+                    _name = (string)d ["name"],
+                    _slug = (string)d ["slug"],
+                    _stat = (string)d ["stat"],
+                    _type = (string)d ["type"],
+                    _value = (int)d ["value"]
+                };
+            } else if (_eventType == "disguise") {
+                output = new DisguiseData {
+                    _name = (string)d ["name"],
+                    _type = (string)d ["type"]
+                };
+            } else if (_eventType == "monster") {
+                output = new MonsterData {
+                    _mid = (int)d ["mid"],
+                    _level = (int)d ["level"],
+                    _captured = (int)d ["captured"],
+                };
+            } else if (_eventType == "tracker") {
+                output = new TrackerData {
+                    _tracker = (string)d ["tracker"],
+                    _captured = (int)d ["captured"],
+                };
+            } else { // if (_eventType == "stream")
+                output = new StreamData {
+                    _score = (int)d ["score"],
+                    _clicks = (int)d ["clicks"],
+                    _likes = (int)d ["likes"],
+                };
+            }
+
+            output.username = _username;
+            output.avatarPath = _avatarPath;
+
+            output.level = _level;
+            output.clicks = _clicks;
+            output.score = _score;
+            output.time = _time;
+            output.capturedTotal = _capturedTotal;
+            output.missedTotal = _missedTotal;
+            output.pageActionScrollDistance = _pageActionScrollDistance;
+            output.trackersBlocked = _trackersBlocked;
+            output.trackersSeen = _trackersSeen;
+            output.clicks = _clicks;
+
+            output.eventType = _eventType;
+            output.createdAt = _createdAt;
+            output.monsters = _monsters;
+            output.trackers = _trackers;
+
+
+
+            // add to feeds - now adding to buffer in Timeline
+            //feeds.Add (output);
+
+
+
+
+            // if live mode == true
+
+            // then attempt to add to buffer
+            Timeline.Instance.buffer.Add (output);
+
+
+            //Debug.Log ("Added " + _username + " event " + _eventType + " at " + _createdAt);
+        }
+
+
+
+        // set status
+        dataRequestStatus = DataRequestStatus.finished;
+
+        // trigger data updated event
+        EventManager.TriggerEvent ("DataRequestFinished");
+
     }
 }

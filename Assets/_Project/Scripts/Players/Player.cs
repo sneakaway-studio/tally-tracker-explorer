@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 
     // META
 
+    public FeedData feedData;
     public string username;
     public string avatarPath;
     public bool effectIsPlaying;
@@ -21,17 +22,21 @@ public class Player : MonoBehaviour {
     public AnimController animControllerScript; // animation controller script
 
 
+    // Camera manager
+    public CameraManager cameraManager;
+
     private void Awake ()
     {
         StartCoroutine (StartChecks ());
     }
 
-    public void Init (string _username, string _avatarPath)
+    public void Init (FeedData _feedData)
     {
         //Debug.Log ("Player.Init() _username = " + _username);
 
-        username = _username;
-        avatarPath = _avatarPath;
+        feedData = _feedData;
+        username = _feedData.username;
+        avatarPath = _feedData.avatarPath;
         lastActive = DateTime.Now;
     }
 
