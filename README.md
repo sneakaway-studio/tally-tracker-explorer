@@ -21,7 +21,7 @@ A visualization depicting live and archived game data from [Tally Saves the Inte
 > Tally Saves the Internet is a browser extension that transforms the data that advertisers collect into a multiplayer game. Once the browser extension is installed, a friendly pink blob named Tally lives in the corner of your screen and warns you when companies translate your human experiences into free behavioral data. When Tally encounters “product monsters” (online trackers and their corresponding product marketing categories) you can capture them in a turn-based battle (e.g. “Pokémon style”) transforming the game into a progressive tracker blocker, where you earn the right to be let alone through this playful experience.
 
 
-![tally tracker explorer](_Documentation/tally-explorer-combined.png)
+![tally tracker explorer](_Documentation/images/tracker-explorer-composite1.png)
 
 
 Developed during COVID when people are increasingly online, Tally Tracker Explorer captures live data from Tally Saves the Internet and displays this data as a sea of avatars, each surrounded by small product monsters and attached to their unique data trails, colored to match their top marketing categories.
@@ -38,7 +38,7 @@ Tally Tracker Explorer on [Itch.io](https://itch.io/)
 
 
 
-![tally tracker explorer legend](_Documentation/tally-explorer-legend.png)
+![tally tracker explorer legend](_Documentation/images/tracker-explorer-ui-legend.png)
 
 
 ## About the data
