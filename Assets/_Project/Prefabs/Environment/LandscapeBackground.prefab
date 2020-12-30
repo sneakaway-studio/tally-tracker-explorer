@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6402312741065781643}
   - component: {fileID: 7985579072109566294}
   m_Layer: 0
-  m_Name: landscape-sheet_2
+  m_Name: landscape-back-solid_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: -689375459
   m_SortingLayer: 1
   m_SortingOrder: 10
-  m_Sprite: {fileID: -7497128409027209995, guid: 88784465a9c8c48b09492a996aeef7dc, type: 3}
-  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  m_Sprite: {fileID: -7218716885621070878, guid: af4414167951744bba2f2d2c9d2d1d3b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: ea77175085fc241b9ad71284de5dc2c1, type: 3}
-  m_Color: {r: 0.5111449, g: 0.02055893, b: 0.6226415, a: 1}
+  m_Color: {r: 0.29803923, g: 0, b: 0.70980394, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 3598096773990620426}
   - component: {fileID: 4896557780804445136}
   m_Layer: 0
-  m_Name: landscape-sheet_3
+  m_Name: landscape-back-solid_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,8 +235,8 @@ SpriteRenderer:
   m_SortingLayerID: -689375459
   m_SortingLayer: 1
   m_SortingOrder: 10
-  m_Sprite: {fileID: -6676666773917688437, guid: 88784465a9c8c48b09492a996aeef7dc, type: 3}
-  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  m_Sprite: {fileID: -3167993622644327475, guid: af4414167951744bba2f2d2c9d2d1d3b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 3713333764717380806}
   - component: {fileID: 1199739123816853071}
   m_Layer: 0
-  m_Name: landscape-sheet_1
+  m_Name: landscape-back-solid_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,8 +317,8 @@ SpriteRenderer:
   m_SortingLayerID: -689375459
   m_SortingLayer: 1
   m_SortingOrder: 10
-  m_Sprite: {fileID: -3231824911785537187, guid: 88784465a9c8c48b09492a996aeef7dc, type: 3}
-  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  m_Sprite: {fileID: -3544353007721299134, guid: af4414167951744bba2f2d2c9d2d1d3b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 5772984957133889937}
   - component: {fileID: 605731235607054052}
   m_Layer: 0
-  m_Name: landscape-sheet_0
+  m_Name: landscape-back-solid_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,8 +399,8 @@ SpriteRenderer:
   m_SortingLayerID: -689375459
   m_SortingLayer: 1
   m_SortingOrder: 10
-  m_Sprite: {fileID: 5830268108675675534, guid: 88784465a9c8c48b09492a996aeef7dc, type: 3}
-  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  m_Sprite: {fileID: -8128257858553095761, guid: af4414167951744bba2f2d2c9d2d1d3b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

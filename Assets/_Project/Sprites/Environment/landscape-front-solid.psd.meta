@@ -1,0 +1,337 @@
+fileFormatVersion: 2
+guid: c6f46f27eda094b2397af910042f9f04
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4684226782197726276
+    second: landscape-front-solid_0
+  - first:
+      213: 3198505088321139502
+    second: landscape-front-solid_1
+  - first:
+      213: -6378510707265194479
+    second: landscape-front-solid_2
+  - first:
+      213: -5879578950678915279
+    second: landscape-front-solid_3
+  - first:
+      213: -1554146680958011043
+    second: landscape-front-solid_4
+  - first:
+      213: -3927383851755142588
+    second: landscape-front-solid_5
+  - first:
+      213: -3066931868208026056
+    second: landscape-front-solid_6
+  - first:
+      213: 815763682320231586
+    second: landscape-front-solid_7
+  - first:
+      213: 8361551872233954832
+    second: landscape-front-solid_8
+  - first:
+      213: -3066737208600820113
+    second: landscape-front-solid_9
+  - first:
+      213: -7667883747102899276
+    second: landscape-front-solid_10
+  - first:
+      213: -1204130404964272618
+    second: landscape-front-solid_11
+  - first:
+      213: 445511941592002863
+    second: landscape-front-solid_12
+  - first:
+      213: -890609845524796712
+    second: landscape-front-solid_13
+  - first:
+      213: -8999926016139533221
+    second: landscape-front-solid_14
+  - first:
+      213: -8354884264288660643
+    second: landscape-front-solid_15
+  - first:
+      213: -6036247342704637012
+    second: landscape-front-solid_16
+  - first:
+      213: -1477520451296813034
+    second: landscape-front-solid_17
+  - first:
+      213: -4765192862215640892
+    second: landscape-front-solid_18
+  - first:
+      213: 7478051411233305756
+    second: landscape-front-solid_19
+  - first:
+      213: -6199891240697342250
+    second: landscape-front-solid_20
+  - first:
+      213: -3419034196268455871
+    second: landscape-front-solid_21
+  - first:
+      213: 2977001775062165627
+    second: landscape-front-solid_22
+  - first:
+      213: 4335251003465840230
+    second: landscape-front-solid_23
+  - first:
+      213: 1962582745831677184
+    second: landscape-front-solid_24
+  - first:
+      213: 735465208730289213
+    second: landscape-front-solid_25
+  - first:
+      213: -6653021830123559541
+    second: landscape-front-solid_26
+  - first:
+      213: 4190108272014283927
+    second: landscape-front-solid_27
+  - first:
+      213: 113794487558042412
+    second: landscape-front-solid_28
+  - first:
+      213: 3038233024701009095
+    second: landscape-front-solid_29
+  - first:
+      213: 2670697733686515293
+    second: landscape-front-solid_30
+  - first:
+      213: -5788778065251721652
+    second: landscape-front-solid_31
+  - first:
+      213: 806239984509291365
+    second: landscape-front-solid_32
+  - first:
+      213: -2387512969291467508
+    second: landscape-front-solid_33
+  - first:
+      213: 1014190974855480769
+    second: landscape-front-solid_34
+  - first:
+      213: 608856307968010866
+    second: landscape-front-solid_35
+  - first:
+      213: -1113183884158491920
+    second: landscape-front-solid_36
+  - first:
+      213: -347826911779399368
+    second: landscape-front-solid_37
+  - first:
+      213: -5788308970697625872
+    second: landscape-front-solid_38
+  - first:
+      213: -467079062884778616
+    second: landscape-front-solid_39
+  - first:
+      213: -7534656317664225490
+    second: landscape-front-solid_40
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: landscape-front-solid_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 2048
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44c3448b077b10140800000000000000
+      internalID: 4684226782197726276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: landscape-front-solid_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 2048
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2339a17e6f536c20800000000000000
+      internalID: 3198505088321139502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: landscape-front-solid_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 2048
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 116be697e4afa77a0800000000000000
+      internalID: -6378510707265194479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: landscape-front-solid_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2048
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1375bef781a876ea0800000000000000
+      internalID: -5879578950678915279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 6977013642d20465fbeeb034568b8c55
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 1
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

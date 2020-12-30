@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7141268897457843975}
   - component: {fileID: 9145872935250176453}
   m_Layer: 0
-  m_Name: landscape-sheet_4
+  m_Name: landscape-front-solid_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 764283659
   m_SortingLayer: 9
   m_SortingOrder: 10
-  m_Sprite: {fileID: 6277747409923154117, guid: 88784465a9c8c48b09492a996aeef7dc, type: 3}
-  m_Color: {r: 0.0861262, g: 0.07529368, b: 0.11320752, a: 1}
+  m_Sprite: {fileID: 4684226782197726276, guid: c6f46f27eda094b2397af910042f9f04, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 343211442842077961}
   - component: {fileID: 6000075966050059535}
   m_Layer: 0
-  m_Name: landscape-sheet_6
+  m_Name: landscape-front-solid_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593161191555550623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.599997, y: 9.200003, z: 0}
+  m_LocalPosition: {x: 9.599997, y: 8.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2593632160525064746}
@@ -153,8 +153,8 @@ SpriteRenderer:
   m_SortingLayerID: 764283659
   m_SortingLayer: 9
   m_SortingOrder: 10
-  m_Sprite: {fileID: -6527607225041420016, guid: 88784465a9c8c48b09492a996aeef7dc, type: 3}
-  m_Color: {r: 0.0861262, g: 0.07529368, b: 0.11320752, a: 1}
+  m_Sprite: {fileID: -6378510707265194479, guid: c6f46f27eda094b2397af910042f9f04, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 3620126812387450852}
   - component: {fileID: 6449001656114923231}
   m_Layer: 0
-  m_Name: landscape-sheet_5
+  m_Name: landscape-front-solid_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,7 +189,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838270518881964303}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.400003, y: 9.040003, z: 0}
+  m_LocalPosition: {x: -10.400003, y: 8.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2593632160525064746}
@@ -235,8 +235,8 @@ SpriteRenderer:
   m_SortingLayerID: 764283659
   m_SortingLayer: 9
   m_SortingOrder: 10
-  m_Sprite: {fileID: -8993411565878641562, guid: 88784465a9c8c48b09492a996aeef7dc, type: 3}
-  m_Color: {r: 0.0861262, g: 0.07529368, b: 0.11320752, a: 1}
+  m_Sprite: {fileID: 3198505088321139502, guid: c6f46f27eda094b2397af910042f9f04, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -318,7 +318,7 @@ SpriteRenderer:
   m_SortingLayer: 9
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: ea77175085fc241b9ad71284de5dc2c1, type: 3}
-  m_Color: {r: 0.023368742, g: 0.017621916, b: 0.03773582, a: 1}
+  m_Color: {r: 0.20392157, g: 0.011764706, b: 0.4, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 5298361795114492436}
   - component: {fileID: 6041428922174945179}
   m_Layer: 0
-  m_Name: landscape-sheet_7
+  m_Name: landscape-front-solid_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,7 +353,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3633867148796739135}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 29.599997, y: 9.200003, z: 0}
+  m_LocalPosition: {x: 29.599997, y: 8.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2593632160525064746}
@@ -399,8 +399,8 @@ SpriteRenderer:
   m_SortingLayerID: 764283659
   m_SortingLayer: 9
   m_SortingOrder: 10
-  m_Sprite: {fileID: 1593538214791543905, guid: 88784465a9c8c48b09492a996aeef7dc, type: 3}
-  m_Color: {r: 0.0861262, g: 0.07529368, b: 0.11320752, a: 1}
+  m_Sprite: {fileID: -5879578950678915279, guid: c6f46f27eda094b2397af910042f9f04, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
