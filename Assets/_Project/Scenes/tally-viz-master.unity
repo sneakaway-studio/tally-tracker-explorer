@@ -695,7 +695,7 @@ MonoBehaviour:
   endpointDropdown: {fileID: 4581083968424196719}
   selectedEndpoint: 0
   path: 
-  localDataFile: {fileID: 4900000, guid: fcb37c9310e794d35b9c68039061267c, type: 3}
+  localDataFile: {fileID: 4900000, guid: 269ea01da55964a26b84d3c66ec8f8b2, type: 3}
   sizeOfDataRequests: 1
   sizeOfDataRequestsMax: 10
   receivedTotal: 0
