@@ -72,7 +72,7 @@ Open the application and it will start automatically. Pressing the following key
 - **C**ontrol panel - Settings and controls
 - **L**egend panel - A reference for the marketing taxonomy
 - **T**imeline panel - Shows the time of the event being played and size of the history and buffer
-- **F**eed panel - For debugging only (adds high performance overhead)
+~~- **F**eed panel - For debugging only (adds high performance overhead)~~
 - **ESC** / **Q**uit - Exit the application
 
 
@@ -87,15 +87,19 @@ zoom out | ↓ | left joystick ↓
 
 ### Control panel options
 
-- Settings - Set the resolution, fullscreen, and volume
-- View FPS and resolution details
-- Data - View the `status` and set the Mode (stop, set mode, then start):
-	- ~~`remoteLive` - Automatically refresh with live data from the server~~
-	- `remoteArchive` - Fetch a live dataset once (using selected endpoint) and shuffle between buffer / history
-	- `localArchive` - Same as `remoteArchive` except it uses the archived data in the project (endpoint is disabled)
+- View resolution details
+- Settings
+	- View: FPS
+	- Set: the resolution, fullscreen, and volume
+- Data
+ 	- View: the `status`
+	- Set: the `source` and `sample size` (stop, set `source`, then start)
+		- ~~`remoteLive` - Automatically refresh with live data from the server~~
+		- `remoteArchive` - Fetch a live dataset once (using selected endpoint) and shuffle between buffer / history
+		- `localArchive` - Same as `remoteArchive` except it uses the archived data in the project (endpoint is disabled)
 - Timeline - View the `status`, `history` and `buffer` counts, and stop/start the application.
 
-
+**NOTE**: Increase/decrease sample size in order to increase/decrease number of players
 
 
 

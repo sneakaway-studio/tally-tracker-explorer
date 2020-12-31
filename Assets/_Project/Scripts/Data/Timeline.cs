@@ -183,7 +183,11 @@ public class Timeline : Singleton<Timeline> {
      */
     public void OnStartBtnClick ()
     {
-        // if currently active
+        // immediately disable both 
+        SetStartBtnText (" --- ", false);
+        DataManager.Instance.EnableEndpointDropdown (false);
+
+        // if currently active (user has clicked "stop")
         if (status == TimelineStatus.active) {
             SetStartBtnText (" --- ", false);
             // stop everything
@@ -193,13 +197,15 @@ public class Timeline : Singleton<Timeline> {
             SetTimelineStatus (TimelineStatus.inactive);
             // update btn text and make interactable
             SetStartBtnText ("Start", true);
+            // should let them select
+            DataManager.Instance.EnableEndpointDropdown (true);
             // if there are players active
             if (PlayerManager.Instance.playerCount > 0) {
                 // then add them
                 EventManager.TriggerEvent ("RemoveAllPlayers");
             }
         }
-        // if not active
+        // if not active (user clicked "Start")
         else {
             // set status
             SetTimelineStatus (TimelineStatus.start);
@@ -320,14 +326,16 @@ public class Timeline : Singleton<Timeline> {
             // show status
             waitingForDataProgressText.text = " -- ";
             // disable button until data arrives
-            SetStartBtnText (" ... ", false);
+            SetStartBtnText (" --- ", false);
+            // disable
+            DataManager.Instance.EnableEndpointDropdown (false);
         }
         // still waiting 
         else if (_status == 1) {
             // time since request
             waitingForDataProgress--;
         }
-        // new data arrived 
+        // finished - new data arrived 
         else if (_status == 2) {
             // mark finished flag true
             waitingForDataFinished = true;
@@ -337,8 +345,22 @@ public class Timeline : Singleton<Timeline> {
             //// show status
             //waitingForDataProgressText.text = " -- ";
 
-            // update btn text and make interactable
+            UpdateCounts ();
+            // update btn text and disable
             SetStartBtnText ("Stop", true);
+            // disable
+            DataManager.Instance.EnableEndpointDropdown (false);
+
+        }
+        // finished - fail - NO DATA
+        else if (_status == 3) {
+            // mark finished flag true
+            waitingForDataFinished = true;
+            UpdateCounts ();
+            // update btn text and make interactable
+            SetStartBtnText ("START", true);
+            // should let them select
+            DataManager.Instance.EnableEndpointDropdown (true);
         }
 
 
@@ -422,7 +444,7 @@ public class Timeline : Singleton<Timeline> {
                     if (DataManager.Instance.selectedMode == DataManager.ModeType.remoteLive) {
 
                         // increase size of requests
-                        DataManager.Instance.ScaleSizeOfDataRequests (1);
+                        //DataManager.Instance.ScaleSizeOfDataRequests (1); // going to let app user control this now
 
                         // attempt to get new data 
                         SetTimelineStatus (TimelineStatus.refreshData);
@@ -549,15 +571,17 @@ public class Timeline : Singleton<Timeline> {
             else if (status == TimelineStatus.noDataReceived) {
 
                 // buffer WAS waiting, no data returned - increase size of requests
-                DataManager.Instance.ScaleSizeOfDataRequests (1);
+                //DataManager.Instance.ScaleSizeOfDataRequests (1); // going to let app user control this now 
 
-                // set finished
-                UpdateWaitingProgress (2);
+                // set finished - fail 
+                UpdateWaitingProgress (3);
 
                 //debugLogStr = "Timeline.BufferLoop() status = " + status + ", waitingForDataProgress = " + waitingForDataProgress.ToString ();
 
                 // try to get data again
-                //SetTimelineStatus (TimelineStatus.start);
+                //SetTimelineStatus (TimelineStatus.start); // going to let app user control this now
+
+                SetTimelineStatus (TimelineStatus.stop); // going to let app user control this now
             }
 
 
@@ -565,7 +589,7 @@ public class Timeline : Singleton<Timeline> {
 
             else if (status == TimelineStatus.newDataReceived) {
 
-                // set finished
+                // set finished - success 
                 UpdateWaitingProgress (2);
 
                 // after new data, sort ascending
@@ -766,7 +790,7 @@ public class Timeline : Singleton<Timeline> {
 
 
     /**
-     *  Update counts of both history and buffer
+     *  Update counts of both history and buffer - does not actually change display 
      */
     void UpdateCounts ()
     {

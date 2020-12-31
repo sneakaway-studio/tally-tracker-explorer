@@ -35,6 +35,7 @@ public class DataDisplay : MonoBehaviour {
     {
         // data requests
         EventManager.StartListening ("GetNewData", OnUpdateDisplay);
+        EventManager.StartListening ("DataManagerUpdated", OnUpdateDisplay);
         EventManager.StartListening ("DataRequestFinished", OnUpdateDisplay);
 
         EventManager.StartListening ("PlayersUpdated", OnUpdateDisplay);
@@ -44,6 +45,7 @@ public class DataDisplay : MonoBehaviour {
     {
         // data requests
         EventManager.StopListening ("GetNewData", OnUpdateDisplay);
+        EventManager.StopListening ("DataManagerUpdated", OnUpdateDisplay);
         EventManager.StopListening ("DataRequestFinished", OnUpdateDisplay);
 
         EventManager.StopListening ("PlayersUpdated", OnUpdateDisplay);
@@ -54,6 +56,8 @@ public class DataDisplay : MonoBehaviour {
     // update text
     public void OnUpdateDisplay ()
     {
+        //Debug.Log ("DataDisplay.OnUpdateDisplay()");
+
         // data details panel - col 1
         receivedTotalText.text = "Received: " + DataManager.Instance.receivedTotal.ToString ();
         receivedNewText.text = "New data: " + DataManager.Instance.receivedNew.ToString ();

@@ -14,6 +14,27 @@ public class DataManager : Singleton<DataManager> {
     //public static new DataManager Instance;
 
 
+    // singleton
+    private static DataManager dataManager;
+    public static DataManager instance {
+        get {
+            // if we don't have it
+            if (!dataManager) {
+                // then find it 
+                dataManager = FindObjectOfType (typeof (DataManager)) as DataManager;
+                // if null
+                if (!dataManager) {
+                    Debug.LogError ("There needs to be one active DataManager script on a GameObject in your scene.");
+                } else {
+                    // initialize 
+                    //dataManager.Init ();
+                }
+            }
+            return dataManager;
+        }
+    }
+
+
 
     // listeners 
     void OnEnable ()
@@ -76,41 +97,65 @@ public class DataManager : Singleton<DataManager> {
     [Tooltip ("The selected endpoint")]
     public EndpointType selectedEndpoint;
 
+    // all the endpoints - these should match the API downloads...
     [Serializable]
     public enum EndpointType {
-        minute_1,
-        minute_2,
-        minute_3,
-        minute_4,
-        minute_5,
-        minute_10,
-        minute_30,
-        hour_1,
-        hour_2,
-        hour_3,
-        hour_6,
-        hour_12,
-        day_1,
-        day_2,
-        day_3,
-        week_1
+        minute_1,   // 1 minute...
+        minute_2,   // 2
+        minute_5,   // 5
+        minute_10,  // 10
+        minute_30,  // 30
+        hour_1,     // 60
+        hour_2,     // 120
+        hour_6,     // 360
+        hour_12,    // 720
+        day_1,      // 1440
+        day_2,      // 2880
+        day_4,      // 5760
+        week_1      // 10080
     }
 
     // full API host + endpoint
     public string path;
 
     public TextAsset localDataFile;
+    // array of local files
+    public TextAsset [] localDataFiles;
 
 
 
 
-
-    // return the path + endpoint
-    public string GetEndpoint ()
+    // return the unit + sample size
+    public string [] GetUnitAndSampleSize ()
     {
         char [] delimiterChars = { '_', ' ', ',', '.', ':', '\t' };
-        string [] endpointArr = selectedEndpoint.ToString ().Split (delimiterChars);
-        return hosts [(int)selectedHost] + "" + endpointArr [1] + "/" + endpointArr [0];
+        string [] unitSampleSize = selectedEndpoint.ToString ().Split (delimiterChars);
+        return unitSampleSize;
+    }
+
+    // return the string from a local file
+    public string GetLocalFileString ()
+    {
+        // get unit (e.g. "minute") and sample size (e.g. "5")
+        string [] unitSampleArr = GetUnitAndSampleSize ();
+        // make a string to look for filename
+        string unitSampleStr = unitSampleArr [0] + "-" + unitSampleArr [1];
+        // loop through array (drag all files into inspector)
+        for (int i = 0; i < localDataFiles.Length; i++) {
+            //            Debug.Log (localDataFiles [i].name);
+            // if name is contained then return
+            if (localDataFiles [i].name.Contains (unitSampleStr)) {
+                return localDataFiles [i].text;
+            }
+        }
+        return "[]";
+    }
+
+    // return the path + endpoint
+    public string GetRemoteEndpoint ()
+    {
+        string [] unitSampleArr = GetUnitAndSampleSize ();
+        return hosts [(int)selectedHost] + "" + unitSampleArr [1] + "/" + unitSampleArr [0];
     }
 
 
@@ -139,7 +184,8 @@ public class DataManager : Singleton<DataManager> {
         requesting,
         receiving,
         handling,
-        finished
+        success,
+        noDataReceived
     }
     [Tooltip ("The current status")]
     public DataRequestStatus dataRequestStatus;
@@ -163,25 +209,29 @@ public class DataManager : Singleton<DataManager> {
      */
     public void ScaleSizeOfDataRequests (int scale)
     {
-        // decrease
-        if (scale == -1) {
 
-        }
-        // increase
-        else if (scale == 1) {
-
-        }
+        return; // going to let app user control this now 
 
 
-        if (sizeOfDataRequests < 1) {
-            sizeOfDataRequests = 1;
-        } else if (sizeOfDataRequests > sizeOfDataRequestsMax) {
-            sizeOfDataRequests = sizeOfDataRequestsMax;
-        }
+        //// decrease
+        //if (scale == -1) {
+
+        //}
+        //// increase
+        //else if (scale == 1) {
+
+        //}
 
 
-        // potentially change this var
-        //Timeline.Instance.bufferCountMax = n
+        //if (sizeOfDataRequests < 1) {
+        //    sizeOfDataRequests = 1;
+        //} else if (sizeOfDataRequests > sizeOfDataRequestsMax) {
+        //    sizeOfDataRequests = sizeOfDataRequestsMax;
+        //}
+
+
+        //// potentially change this var
+        ////Timeline.Instance.bufferCountMax = n
 
     }
 
@@ -231,7 +281,7 @@ public class DataManager : Singleton<DataManager> {
      */
     public void OnChangeEndpointDropdown (int _status)
     {
-        Debug.Log ("OnChangeEndpointDropdown() _status = " + _status);
+        //Debug.Log ("OnChangeEndpointDropdown() _status = " + _status);
         // cast as Enum
         selectedEndpoint = (EndpointType)_status;
     }
@@ -243,26 +293,44 @@ public class DataManager : Singleton<DataManager> {
         //GetNewData ();
     }
 
+    public void EnableEndpointDropdown (bool _status)
+    {
+        modeDropdown.interactable = _status;
+        endpointDropdown.interactable = _status;
+    }
+
 
     public void GetNewData ()
     {
+        Debug.Log ("DataManager.GetNewData() [1]");
+
+        // disable dropdown temporarily
+        EnableEndpointDropdown (false);
+
         // reset stats
         receivedTotal = 0;
         receivedNew = 0;
         receivedDuplicates = 0;
+
         // set status
         dataRequestStatus = DataRequestStatus.requesting;
+        // trigger data updated event
+        EventManager.TriggerEvent ("DataManagerUpdated");
+
+
+        Debug.Log ("DataManager.GetNewData() [2]");
 
         // if using local archive file
         if (selectedMode == ModeType.localArchive) {
 
             // jump straight to handle archived json
-            HandleJsonResponse (localDataFile.text);
+            //HandleJsonResponse (localDataFile.text);
+            HandleJsonResponse (GetLocalFileString ());
 
         } else {
 
             // update path
-            path = GetEndpoint ();
+            path = GetRemoteEndpoint ();
 
             //Debug.Log (DebugManager.GetSymbol ("asterisk") + " DataManager.GetNewData() path = " + path);
             //DebugManager.Instance.UpdateDisplay ("DataManager.GetNewData() path = " + path);
@@ -279,10 +347,12 @@ public class DataManager : Singleton<DataManager> {
     // do a get request for JSON data at url
     public IEnumerator GetRequest (string uri)
     {
+        // wait a second 
+        yield return new WaitForSeconds (1.0f);
 
         using (UnityWebRequest webRequest = UnityWebRequest.Get (uri)) {
 
-            //DebugManager.Instance.UpdateDisplay ("DataManager.GetNewData() uri = " + uri);
+            //DebugManager.Instance.UpdateDisplay ("DataManager.GetRequest() uri = " + uri);
 
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest ();
@@ -293,7 +363,7 @@ public class DataManager : Singleton<DataManager> {
             if (webRequest.isNetworkError || webRequest.isHttpError) {
                 Debug.Log (DebugManager.GetSymbol ("asterisk") + " Error: " + webRequest.error);
             } else {
-                //Debug.Log ("DataManager.GetNewData() " + webRequest.downloadHandler.text);
+                //Debug.Log ("DataManager.GetRequest() " + webRequest.downloadHandler.text);
 
                 // handle the response
                 HandleJsonResponse (webRequest.downloadHandler.text);
@@ -309,7 +379,7 @@ public class DataManager : Singleton<DataManager> {
     /// <param name="text">JSON data as string</param>
     public void HandleJsonResponse (string text)
     {
-        Debug.Log ("HandleJsonResponse()");
+        Debug.Log ("HandleJsonResponse() text.Length = " + text.Length);
 
         // set status
         dataRequestStatus = DataRequestStatus.receiving;
@@ -321,7 +391,22 @@ public class DataManager : Singleton<DataManager> {
         receivedTotal = a.Count;
         dataRequestStatus = DataRequestStatus.handling;
 
-        DebugManager.Instance.UpdateDisplay ("DataManager.GetNewData() dataRequestStatus = " + dataRequestStatus);
+        // no data received
+        if (receivedTotal == 0 || text == "[]" || text == "") {
+            //Debug.Log ("HandleJsonResponse() receivedTotal = " + receivedTotal);
+
+            // stop / display timeline 
+            Timeline.Instance.waitingForDataProgress = -1;
+
+            // set status
+            dataRequestStatus = DataRequestStatus.noDataReceived;
+            // trigger data updated event
+            EventManager.TriggerEvent ("DataRequestFinished");
+
+            return;
+        }
+
+        DebugManager.Instance.UpdateDisplay ("DataManager.HandleJsonResponse() dataRequestStatus = " + dataRequestStatus);
 
         // loop through array and add each 
         foreach (JObject item in a) {
@@ -463,10 +548,11 @@ public class DataManager : Singleton<DataManager> {
 
 
         // set status
-        dataRequestStatus = DataRequestStatus.finished;
-
+        dataRequestStatus = DataRequestStatus.success;
         // trigger data updated event
         EventManager.TriggerEvent ("DataRequestFinished");
-
     }
+
+
+
 }

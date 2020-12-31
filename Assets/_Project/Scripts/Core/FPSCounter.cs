@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
+// ATTACH THIS TO THE GameObject with the TMP_Text 
 
 [RequireComponent (typeof (TMP_Text))]
 public class FPSCounter : MonoBehaviour {
@@ -11,7 +11,7 @@ public class FPSCounter : MonoBehaviour {
     private int m_FpsAccumulator = 0;
     private float m_FpsNextPeriod = 0;
     private int m_CurrentFps;
-    const string display = "FPS: {0}";
+    const string display = "{0}";
     private TMP_Text m_Text;
 
 
