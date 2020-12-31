@@ -5,7 +5,7 @@ using UnityEngine;
 /**
  *  Attached to Player GameObject - Adds / removes monsters from the player
  */
-public class MonsterController : MonoBehaviour {
+public class MonsterManager : MonoBehaviour {
 
 
 
@@ -22,7 +22,7 @@ public class MonsterController : MonoBehaviour {
     // Start is called before the first frame update
     void Start ()
     {
-        //Debug.Log ("MonsterController " + gameObject.name);
+        //Debug.Log ("MonsterManager " + gameObject.name);
 
         inputs = new TallyInputSystem ();
         inputs.Debug.MonsterAdd.performed += ctx => AddMonster ();
@@ -39,7 +39,7 @@ public class MonsterController : MonoBehaviour {
 
         if (_mid < 1) {
             // get a random mid from those in the game
-            _mid = MonsterIndex.Instance.gameMids [(int)Random.Range (0, MonsterIndex.Instance.gameMids.Length)];
+            _mid = MonsterIndex.Instance.GetRandomMid ();
         }
 
 
