@@ -142,7 +142,8 @@ public class DataManager : Singleton<DataManager> {
         string unitSampleStr = unitSampleArr [0] + "-" + unitSampleArr [1];
         // loop through array (drag all files into inspector)
         for (int i = 0; i < localDataFiles.Length; i++) {
-            //            Debug.Log (localDataFiles [i].name);
+            //Debug.Log (localDataFiles [i].name);
+
             // if name is contained then return
             if (localDataFiles [i].name.Contains (unitSampleStr)) {
                 return localDataFiles [i].text;
@@ -272,7 +273,7 @@ public class DataManager : Singleton<DataManager> {
      */
     public void OnChangeModeDropdown (int _status)
     {
-        Debug.Log ("OnChangeModeDropdown() _status = " + _status);
+        //Debug.Log ("OnChangeModeDropdown() _status = " + _status);
         // cast as Enum
         selectedMode = (ModeType)_status;
     }
@@ -302,7 +303,7 @@ public class DataManager : Singleton<DataManager> {
 
     public void GetNewData ()
     {
-        Debug.Log ("DataManager.GetNewData() [1]");
+        //Debug.Log ("DataManager.GetNewData()");
 
         // disable dropdown temporarily
         EnableEndpointDropdown (false);
@@ -316,9 +317,6 @@ public class DataManager : Singleton<DataManager> {
         dataRequestStatus = DataRequestStatus.requesting;
         // trigger data updated event
         EventManager.TriggerEvent ("DataManagerUpdated");
-
-
-        Debug.Log ("DataManager.GetNewData() [2]");
 
         // if using local archive file
         if (selectedMode == ModeType.localArchive) {
@@ -379,7 +377,7 @@ public class DataManager : Singleton<DataManager> {
     /// <param name="text">JSON data as string</param>
     public void HandleJsonResponse (string text)
     {
-        Debug.Log ("HandleJsonResponse() text.Length = " + text.Length);
+        //Debug.Log ("HandleJsonResponse() text.Length = " + text.Length);
 
         // set status
         dataRequestStatus = DataRequestStatus.receiving;

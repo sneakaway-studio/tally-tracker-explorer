@@ -249,7 +249,7 @@ public class Timeline : Singleton<Timeline> {
      */
     public void StartBufferLoop ()
     {
-        Debug.Log ("Timeline.StartBufferLoop()");
+        //Debug.Log ("Timeline.StartBufferLoop()");
 
         // if coroutine running
         if (bufferCoroutine != null) StopCoroutine (bufferCoroutine);
@@ -261,7 +261,7 @@ public class Timeline : Singleton<Timeline> {
      */
     public void StopBufferLoop ()
     {
-        Debug.Log ("Timeline.StopBufferLoop()");
+        //Debug.Log ("Timeline.StopBufferLoop()");
 
         // if coroutine running
         if (bufferCoroutine != null) StopCoroutine (bufferCoroutine);
@@ -276,7 +276,7 @@ public class Timeline : Singleton<Timeline> {
      */
     public void StartHistoryLoop ()
     {
-        Debug.Log ("Timeline.StartHistoryLoop()");
+        //Debug.Log ("Timeline.StartHistoryLoop()");
 
         // if coroutine running
         if (historyCoroutine != null) StopCoroutine (historyCoroutine);
@@ -288,7 +288,7 @@ public class Timeline : Singleton<Timeline> {
      */
     public void StopHistoryLoop ()
     {
-        Debug.Log ("Timeline.StopHistoryLoop()");
+        //Debug.Log ("Timeline.StopHistoryLoop()");
 
         // if coroutine running
         if (historyCoroutine != null) StopCoroutine (historyCoroutine);
