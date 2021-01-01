@@ -33,6 +33,7 @@ public class FeedData {
     public string eventData { get; set; }
     public string monsters { get; set; }
     public string trackers { get; set; }
+    public string tagMatches { get; set; }
     public DateTime createdAt { get; set; }
 }
 

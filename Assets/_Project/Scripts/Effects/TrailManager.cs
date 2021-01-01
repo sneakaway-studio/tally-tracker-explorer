@@ -1,23 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TrailManager : MonoBehaviour {
+
+    private List<Transform> trails = new List<Transform> (); // List of trails following the leader
 
     public int minTrailCount = 3;
     public int maxTrailCount = 10;
     public int numberTrails = 0;
     public GameObject trailPrefab;
-    public Dictionary<string, GameObject> trailDict;
 
-    private void Awake ()
+
+
+    void Awake ()
     {
-        trailDict = new Dictionary<string, GameObject> ();
-
-        StartCoroutine (AddTestTrails (1f));
-
     }
-
 
 
     /**
@@ -31,55 +30,89 @@ public class TrailManager : MonoBehaviour {
         numberTrails = (int)Random.Range (minTrailCount, maxTrailCount);
         // add trail
         for (int i = 0; i < numberTrails; i++) {
-            AddTrail (i, false);
+            AddTrail (i);
         }
-        // update after a second
-        StartCoroutine (UpdateTrails (1f));
-
+        // update
+        StartCoroutine (UpdateTrails (0));
     }
 
 
 
     /**
-     *  Adds the trail at index
+     *  Adds a trail
      */
-    void AddTrail (int index, bool updateAll)
+    public void AddTrail (int _mid = -1)
     {
+        // if at max trails
+        if (trails.Count >= 8) return;
+
+        if (_mid < 1) {
+            // get a random mid from those in the game
+            _mid = MonsterIndex.Instance.GetRandomMid ();
+        }
+
+        // create name for obj
+        string name = _mid.ToString ();
+
+        // if already exists then exit
+        var exists = trails.Find (item => item.name.Equals (name));
+        if (exists != null) {
+            //Debug.Log ("TRAIL ALREADY EXISTS IN LIST");
+            return;
+        }
+
         // add trail to scene
         GameObject obj = (GameObject)Instantiate (trailPrefab);
-        // create name for trail obj
-        string name = "trail-" + (index + 1).ToString ();
         // set name in Unity Editor
         obj.name = name;
         // parent under this manger
         obj.transform.parent = gameObject.transform;
-        // if it already exists
-        if (trailDict.ContainsKey (name)) {
-            // update
-            //trailDict.Add (name, obj);
-        } else {
-            // add to dict
-            trailDict.Add (name, obj);
+        // add to list
+        trails.Add (obj.transform);
+    }
+
+    // Removes a trail
+    public void RemoveTrail (int _mid = -1)
+    {
+        if (_mid < 1 || trails.Count < 1) return;
+
+        for (int i = 0; i < trails.Count; i++) {
+            if (trails [i].name == _mid.ToString ()) {
+                // remove from game
+                Destroy (trails [i].gameObject);
+                // remove from list
+                trails.RemoveAt (i);
+                break;
+            }
         }
+    }
 
-
-        if (updateAll) StartCoroutine (UpdateTrails (1f));
+    public void RemoveAllTrails ()
+    {
+        for (int i = 0; i < trails.Count; i++) {
+            // remove from game
+            Destroy (trails [i].gameObject);
+        }
+        trails.Clear ();
     }
 
 
     /**
-     *  Loop through all the trails to update their positions after trails added or removed
+     *  Update positions after trails added / removed
      */
-    IEnumerator UpdateTrails (float wait)
+    public IEnumerator UpdateTrails (float wait)
     {
         yield return new WaitForSeconds (wait);
 
-        foreach (string t in trailDict.Keys) {
-            trailDict [t].GetComponent<Trail> ().Init ();
-        }
+        // sort trails first
+        trails = trails.OrderBy (o => o.name).ToList ();
 
+        for (int i = 0; i < trails.Count; i++) {
+            trails [i].GetComponent<Trail> ().Init ();
+        }
     }
 
 
 
 }
+

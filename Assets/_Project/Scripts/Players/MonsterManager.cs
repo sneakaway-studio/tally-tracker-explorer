@@ -7,23 +7,19 @@ using UnityEngine;
  */
 public class MonsterManager : MonoBehaviour {
 
-
-
-
-    public Transform leader;            // The character the monsters will follow
+    public Transform leader;            // player to follow
     private List<Transform> monsters = new List<Transform> (); // List of monsters following the leader
-    public Transform [] spawnPoints;     // Array of spawn points for monsters
+    public Transform [] spawnPoints;    // Array of spawn points for monsters
     public GameObject monsterPrefab;    // Prefab of monsters being instantiated
 
-
-
+    // testing
     TallyInputSystem inputs;
 
-    // Start is called before the first frame update
     void Start ()
     {
         //Debug.Log ("MonsterManager " + gameObject.name);
 
+        // testing
         inputs = new TallyInputSystem ();
         inputs.Debug.MonsterAdd.performed += ctx => AddMonster ();
         inputs.Debug.MonsterAdd.Enable ();
@@ -42,19 +38,24 @@ public class MonsterManager : MonoBehaviour {
             _mid = MonsterIndex.Instance.GetRandomMid ();
         }
 
+        // create name for obj
+        string name = _mid.ToString ();
+
+        // if already exists then exit
+        var exists = monsters.Find (item => item.name.Equals (name));
+        if (exists != null) {
+            //Debug.Log ("MONSTER ALREADY EXISTS IN LIST");
+            return;
+        }
 
         // Create new monster and make it a child of the next available spawn point
-        GameObject monsterObj;
-        monsterObj = Instantiate (monsterPrefab, spawnPoints [monsters.Count]);
-
+        GameObject obj = Instantiate (monsterPrefab, spawnPoints [monsters.Count]);
         // call Init() on monster to get data / display animation
-        monsterObj.GetComponent<Monster> ().Init (_mid);
-
-        // rename
-        monsterObj.name = "m" + _mid.ToString ();
-
+        obj.GetComponent<Monster> ().Init (_mid);
+        // set name in Unity Editor
+        obj.name = name;
         // add to list
-        monsters.Add (monsterObj.transform);
+        monsters.Add (obj.transform);
     }
 
     // Removes a monster from the circle
@@ -63,9 +64,9 @@ public class MonsterManager : MonoBehaviour {
         if (_mid < 1 || monsters.Count < 1) return;
 
         for (int i = 0; i < monsters.Count; i++) {
-            if (monsters [i].name == "m" + _mid) {
+            if (monsters [i].name == _mid.ToString ()) {
                 // remove from game
-                Destroy (monsters [i]);
+                Destroy (monsters [i].gameObject);
                 // remove from list
                 monsters.RemoveAt (i);
                 break;
@@ -73,5 +74,13 @@ public class MonsterManager : MonoBehaviour {
         }
     }
 
+    public void RemoveAllMonsters ()
+    {
+        for (int i = 0; i < monsters.Count; i++) {
+            // remove from game
+            Destroy (monsters [i].gameObject);
+        }
+        monsters.Clear ();
+    }
 
 }

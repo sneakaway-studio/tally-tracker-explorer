@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Trail : MonoBehaviour {
 
+
     public GameObject avatar;
     public TrailRenderer trailRenderer;
     public int mid;
@@ -26,26 +27,40 @@ public class Trail : MonoBehaviour {
 
 
 
+    /**
+    *  Set color on start 
+    */
+    public void SetColor ()
+    {
+        // get from mid
+        if (mid > 0) {
+            trailRenderer.material.color = ColorManager.GetColorFromDict (mid);
+        } else {
+            // testing
+            // random from array 
+            //trailRenderer.material.color = ColorManager.GetColorFromArray (-1);
+            // random from dictionary 
+            trailRenderer.material.color = ColorManager.GetColorFromDict (-1);
+        }
+    }
 
 
     private void Awake ()
     {
         // get renderer
         trailRenderer = GetComponent<TrailRenderer> ();
+        // disable until position is set 
         trailRenderer.enabled = false;
+        trailRenderer.emitting = false;
     }
-
-
-
 
 
     public void Init ()
     {
         //Debug.Log ("Init() called on Trail");
 
-        // testing 
-        //trailRenderer.material.color = ColorManager.GetColorFromArray (-1);
-        trailRenderer.material.color = ColorManager.GetColorFromDict (-1);
+        // set trail color 
+        SetColor ();
 
 
         // number of siblings (other trails)
@@ -91,7 +106,6 @@ public class Trail : MonoBehaviour {
         //trailRenderer.sortingOrder = avatar.GetComponent<SpriteRenderer> ().sortingOrder;
 
         trailRenderer.enabled = true;
+        trailRenderer.emitting = true;
     }
-
-
 }

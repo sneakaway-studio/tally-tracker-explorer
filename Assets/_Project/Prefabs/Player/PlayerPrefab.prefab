@@ -43,9 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5857d59f30e67413b8c66f0dccda2268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trailWidth: 0
+  positionMax: 1.5
+  positionMin: -1.5
+  widthExtra: 0.01
+  lengthScale: 0.9
   minTrailCount: 3
   maxTrailCount: 10
   numberTrails: 0
+  siblingCount: 0
   trailPrefab: {fileID: 5128190683315353078, guid: 6d235259a4bf44f33bd3788fc4ff9c95, type: 3}
 --- !u!1 &222891910277055850
 GameObject:
@@ -779,6 +785,7 @@ GameObject:
   - component: {fileID: 1136200282248349212}
   - component: {fileID: 6709949456728198174}
   - component: {fileID: 7456369409180451846}
+  - component: {fileID: 4719009883000338276}
   - component: {fileID: 4060703217083337034}
   - component: {fileID: 5138628123425424795}
   - component: {fileID: 6126172086549796474}
@@ -851,6 +858,26 @@ MonoBehaviour:
   inputRotateTimeElapsed: 0
   inputRotateDuration: 200
   receivingInput: 0
+--- !u!114 &4719009883000338276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8180638221493354709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4777ab7be135a426abbbc5af0cd1d6c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  min: 3
+  max: 10
+  count: 0
+  mids: 
+  midsPasses: []
+  highestPassesToDelete: 
+  monsterManager: {fileID: 4060703217083337034}
+  trailManager: {fileID: 8079730368140630767}
 --- !u!114 &4060703217083337034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,6 +1023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39aa0689ee5849aba97eda0f21d44f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterData: []
   username: 
   avatarPath: 
   effectIsPlaying: 0

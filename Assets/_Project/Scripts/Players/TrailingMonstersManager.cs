@@ -12,8 +12,8 @@ public class TrailingMonster {
     public int mid;
     public int passes = 0;
     // scene obj references
-    public Trail trail;
-    public Monster monster;
+    //public Trail trail;
+    //public Monster monster;
     // constructor
     public TrailingMonster (int mid)
     {
@@ -46,7 +46,7 @@ public class TrailingMonstersManager : MonoBehaviour {
 
     // min, max, count of trailing monsters
     public int min = 3;
-    public int max = 10;
+    public int max = 8;
     public int count;
 
     // dictionary: mid->TrailingMonster 
@@ -56,6 +56,10 @@ public class TrailingMonstersManager : MonoBehaviour {
     public List<string> midsPasses = new List<string> ();
     // the highest number of passes in each loop
     public List<int> highestPassesToDelete = new List<int> ();
+
+    // managers
+    public MonsterManager monsterManager;
+    public TrailManager trailManager;
 
     private void Awake ()
     {
@@ -70,7 +74,7 @@ public class TrailingMonstersManager : MonoBehaviour {
         // placeholder to turn on/off in inspector
     }
 
-
+    int safety = 0;
 
     /**
      *  Check and update dictionary
@@ -117,22 +121,21 @@ public class TrailingMonstersManager : MonoBehaviour {
             } else {
                 // add to dict
                 trailingMonstersDict.Add (mid, new TrailingMonster (mid));
+                // add monster
+                //monsterManager.AddMonster (mid);
+                //trailManager.AddTrail (mid);
             }
-
-
-
-
-            // create each trail from random ID
-            //GameObject obj = CreateTrail (i, false);
-
-            // create each trail from random MID
-            //GameObject obj = CreateTrail (MonsterIndex.Instance.GetRandomMid (), false);
-
 
         }
 
         // prune old monsters
         PruneTrailingMonsters ();
+
+        // TESTING
+        //monsterManager.RemoveAllMonsters ();
+        //StartCoroutine (DeleteAllThenAdd ());
+        //StartCoroutine (trailManager.UpdateTrails (0));
+
 
         // tests so we can watch in the inspector
         if (trailingMonstersDict.Count > 0) {
@@ -151,8 +154,11 @@ public class TrailingMonstersManager : MonoBehaviour {
 
         count = trailingMonstersDict.Count;
 
-        // test
-        StartCoroutine (UpdateTrailingMonsters (4f, true));
+
+
+        //if (++safety < 20)
+        // test (calls itself)
+        StartCoroutine (UpdateTrailingMonsters (5f, true));
     }
 
 
@@ -199,14 +205,47 @@ public class TrailingMonstersManager : MonoBehaviour {
             }
         }
 
+
         // 3. REMOVE
 
         // delete loop
         foreach (int mid in highestPassesToDelete) {
             trailingMonstersDict.Remove (mid);
+
+            // remove corresponding monster and trail
+            monsterManager.RemoveMonster (mid);
+            trailManager.RemoveTrail (mid);
         }
+
+        // 4. ADD NEW
+
+        foreach (KeyValuePair<int, TrailingMonster> t in trailingMonstersDict) {
+            monsterManager.AddMonster (t.Key);
+            trailManager.AddTrail (t.Key);
+            StartCoroutine (trailManager.UpdateTrails (0));
+        }
+
+
     }
 
+
+
+    // TEST - delete all and add only current back - automatically sorts them
+    IEnumerator DeleteAllThenAdd ()
+    {
+
+        monsterManager.RemoveAllMonsters ();
+        trailManager.RemoveAllTrails ();
+
+        yield return new WaitForSeconds (0);
+
+        foreach (KeyValuePair<int, TrailingMonster> t in trailingMonstersDict) {
+            monsterManager.AddMonster (t.Key);
+            trailManager.AddTrail (t.Key);
+            StartCoroutine (trailManager.UpdateTrails (0));
+        }
+
+    }
 
 
 
