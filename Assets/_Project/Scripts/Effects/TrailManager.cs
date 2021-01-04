@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class TrailManager : MonoBehaviour {
 
-    private List<Transform> trails = new List<Transform> (); // List of trails following the leader
+    // trails following the leader
+    private List<Transform> trails = new List<Transform> ();
+    // new list of trail mids in order
+    public List<int> newTrailMids = new List<int> ();
 
     public int minTrailCount = 3;
-    public int maxTrailCount = 10;
+    public int maxTrailCount = 8;
     public int numberTrails = 0;
     public GameObject trailPrefab;
 
@@ -104,12 +107,35 @@ public class TrailManager : MonoBehaviour {
     {
         yield return new WaitForSeconds (wait);
 
-        // sort trails first
+        // sort trails by name (mid)
         trails = trails.OrderBy (o => o.name).ToList ();
 
         for (int i = 0; i < trails.Count; i++) {
-            trails [i].GetComponent<Trail> ().Init ();
+            trails [i].GetComponent<Trail> ().UpdatePositions ();
         }
+    }
+
+    /**
+     *  Update positions
+     */
+    public IEnumerator UpdateTrailPositions (float wait)
+    {
+        yield return new WaitForSeconds (wait);
+
+        // sort trails by name (mid)
+        //trails = trails.OrderBy (o => o.name).ToList ();
+
+        for (int i = 0; i < trails.Count; i++) {
+            // get index of trail in new list
+            int newIndex = newTrailMids.IndexOf (trails [i].GetComponent<Trail> ().mid);
+            // set sibling index to updated index 
+            trails [i].transform.SetSiblingIndex (newIndex);
+        }
+
+        for (int i = 0; i < trails.Count; i++) {
+            trails [i].GetComponent<Trail> ().UpdatePositions ();
+        }
+
     }
 
 

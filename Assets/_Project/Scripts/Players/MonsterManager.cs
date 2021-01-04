@@ -7,22 +7,28 @@ using UnityEngine;
  */
 public class MonsterManager : MonoBehaviour {
 
-    public Transform leader;            // player to follow
-    private List<Transform> monsters = new List<Transform> (); // List of monsters following the leader
-    public Transform [] spawnPoints;    // Array of spawn points for monsters
-    public GameObject monsterPrefab;    // Prefab of monsters being instantiated
+    // player to follow
+    public Transform leader;
+    // monsters following the leader
+    private List<Transform> monsters = new List<Transform> ();
+    // new list of trail mids in order
+    public List<int> newTrailMids = new List<int> ();
+    // Array of spawn points for monsters
+    public Transform [] spawnPoints;
+    // Prefab of monsters being instantiated
+    public GameObject monsterPrefab;
 
     // testing
-    TallyInputSystem inputs;
+    //TallyInputSystem inputs;
 
     void Start ()
     {
         //Debug.Log ("MonsterManager " + gameObject.name);
 
         // testing
-        inputs = new TallyInputSystem ();
-        inputs.Debug.MonsterAdd.performed += ctx => AddMonster ();
-        inputs.Debug.MonsterAdd.Enable ();
+        //inputs = new TallyInputSystem ();
+        //inputs.Debug.MonsterAdd.performed += ctx => AddMonster ();
+        //inputs.Debug.MonsterAdd.Enable ();
     }
 
 
@@ -74,6 +80,7 @@ public class MonsterManager : MonoBehaviour {
         }
     }
 
+    // test
     public void RemoveAllMonsters ()
     {
         for (int i = 0; i < monsters.Count; i++) {
@@ -81,6 +88,38 @@ public class MonsterManager : MonoBehaviour {
             Destroy (monsters [i].gameObject);
         }
         monsters.Clear ();
+    }
+
+
+
+    public void UpdateMonsterPositions ()
+    {
+
+
+        Debug.Log ("spawnPoints.Length = " + spawnPoints.Length);
+        Debug.Log ("monsters.Count = " + monsters.Count);
+        Debug.Log ("newTrailMids.Count = " + newTrailMids.Count);
+
+        //for (int i = 0; i < monsters.Count; i++) {
+        //    // get mid of monster at i of monsters
+        //    int mid = monsters [i].GetComponent<Monster> ().mid;
+        //    // get index of monster in new list
+        //    int newTrailMidsIndex = newTrailMids.IndexOf (mid);
+        //    Debug.Log ("newTrailMidsIndex = " + newTrailMidsIndex + " monsters[" + i + "]=" + mid);
+
+        //    // set index to updated index 
+        //    monsters [i].transform.SetParent (spawnPoints [newTrailMidsIndex].transform);
+        //}
+
+
+        // simpler, loop through existing monsters list
+        for (int i = 0; i < monsters.Count; i++) {
+            // set spawn point by order
+            monsters [i].transform.SetParent (spawnPoints [i].transform);
+            // reset transform
+            monsters [i].transform.localPosition = new Vector3 (0, 0, 0);
+        }
+
     }
 
 }

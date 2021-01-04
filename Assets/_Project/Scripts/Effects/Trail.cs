@@ -8,6 +8,7 @@ public class Trail : MonoBehaviour {
     public GameObject avatar;
     public TrailRenderer trailRenderer;
     public int mid;
+    public int passes;
     public int siblingCount;
     public int trailIndex;
 
@@ -19,6 +20,8 @@ public class Trail : MonoBehaviour {
     public float positionMax = 1.5f;
     // Minimum position for overall trail edge
     public float positionMin = -1.5f;
+    // range between the positionMax and positionMin
+    float positionRange = 1.5f - -1.5f;
     // Extra amount added to width to hide background
     public float widthExtra = 0.01f;
     // length scale
@@ -27,9 +30,21 @@ public class Trail : MonoBehaviour {
 
 
 
+    private void Awake ()
+    {
+        // get renderer
+        trailRenderer = GetComponent<TrailRenderer> ();
+        // disable until position is set 
+        trailRenderer.enabled = false;
+        trailRenderer.emitting = false;
+
+        // set trail color 
+        SetColor ();
+    }
+
     /**
-    *  Set color on start 
-    */
+     *  Set color on start 
+     */
     public void SetColor ()
     {
         // get from mid
@@ -45,66 +60,62 @@ public class Trail : MonoBehaviour {
     }
 
 
-    private void Awake ()
+    public void UpdatePositions ()
     {
-        // get renderer
-        trailRenderer = GetComponent<TrailRenderer> ();
-        // disable until position is set 
-        trailRenderer.enabled = false;
-        trailRenderer.emitting = false;
-    }
+        //Debug.Log ("Trail.UpdatePositions() called");
 
 
-    public void Init ()
-    {
-        //Debug.Log ("Init() called on Trail");
+        // POSITION 
 
-        // set trail color 
-        SetColor ();
-
-
-        // number of siblings (other trails)
+        // set siblings count (other trails)
         siblingCount = transform.parent.childCount;
-        // define the width by the number of trails
-        trailWidth = siblingCount * .1f;
-        // set the position of this trail by its index in the hierarchy
+
+        // set trail index by its position in the hierarchy
         trailIndex = transform.GetSiblingIndex ();
 
-
-        // range between the positionMax and positionMin
-        float positionRange = positionMax - positionMin;
-
-        // sets positionsByIndex array by number of trails
+        // update array length to total number of trails
         positionsByIndex = new float [siblingCount];
 
         // calculate range between each trail
         float trailsRange = positionRange / (siblingCount);
 
-        // place trails so the outer edges are touching positionMin and positionMax
+        // create positions, placing trails so the outer edges are touching positionMin and positionMax
         for (int i = 0; i < siblingCount; i++) {
             // starts with positionMin plus an offset that lets the trail edge touch it
-            positionsByIndex [i] = positionMin + (trailsRange * (i + 0.5f)); // the 0.5 places it in the middle of the range, or something
-        }                                                                   // tbh I don't really know, I'm just glad it works
-
-        // set the trail width to the range plus a 'lil extra to cover the background
-        trailWidth = trailsRange + widthExtra;
-
-        // how long trail lasts, a.k.a. its length
-        trailRenderer.time = siblingCount * lengthScale;
+            // the 0.5 places it in the middle of the range, or something
+            // tbh I don't really know, I'm just glad it works
+            positionsByIndex [i] = positionMin + (trailsRange * (i + 0.5f));
+        }
 
         // set offset based on index
         transform.localPosition = new Vector3 (0, positionsByIndex [trailIndex], 0);
 
-        // set w & h
+
+        // WIDTH
+
+        // set width based on the number of trails
+        //trailWidth = siblingCount * .1f;
+
+        // set width based on the range + extra to cover the background
+        trailWidth = trailsRange + widthExtra;
+
+        // set start and end width 
         trailRenderer.startWidth = trailWidth; // 5 = 0.45f
         trailRenderer.endWidth = trailWidth;
 
-        // set vertices
+
+        // OPTIONS
+
+        // set vertices - how smooth the corners are
         trailRenderer.numCornerVertices = 10;
         trailRenderer.numCapVertices = 5;
 
+        // set length - how long trail lasts
+        trailRenderer.time = siblingCount * lengthScale;
+
         //trailRenderer.sortingOrder = avatar.GetComponent<SpriteRenderer> ().sortingOrder;
 
+        // enable and start emitting after all parameters are set
         trailRenderer.enabled = true;
         trailRenderer.emitting = true;
     }

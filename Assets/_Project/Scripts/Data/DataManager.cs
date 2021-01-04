@@ -427,6 +427,7 @@ public class DataManager : Singleton<DataManager> {
             string _createdAtStr = item.GetValue ("createdAt").ToString ();
             string _monsters = item.GetValue ("monsters").ToString ();
             string _trackers = item.GetValue ("trackers").ToString ();
+            string _tagMatches = item.GetValue ("tagMatches").ToString ();
 
             // parse string to ISO 8601 format
             DateTime _createdAt = DateTime.Parse (_createdAtStr, null, System.Globalization.DateTimeStyles.RoundtripKind);
@@ -525,6 +526,7 @@ public class DataManager : Singleton<DataManager> {
             output.createdAt = _createdAt;
             output.monsters = _monsters;
             output.trackers = _trackers;
+            output.tagMatches = _tagMatches;
 
 
 

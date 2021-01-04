@@ -105,7 +105,7 @@ public class PlayerManager : Singleton<PlayerManager> {
      */
     void AddAllPlayers ()
     {
-        Debug.Log ("PlayerManager.AddAllPlayers()");
+        //Debug.Log ("PlayerManager.AddAllPlayers()");
 
         // loop through the buffer and add players to scene and dict
         foreach (var feedData in Timeline.Instance.buffer) {
@@ -250,8 +250,10 @@ public class PlayerManager : Singleton<PlayerManager> {
         if (spawnPosition != Vector3.zero) {
             // instantiate prefab @ spawn position
             GameObject obj = (GameObject)Instantiate (playerPrefab, spawnPosition, spawnRotation);
+            // reference to script (contains all the other references we need)
+            currentPlayerScript = obj.GetComponent<Player> ();
             // call Init() on Player
-            obj.GetComponent<Player> ().Init (feedData);
+            currentPlayerScript.Init (feedData);
             // set name in Unity Editor
             obj.name = feedData.username;
             // parent under PlayerManger
@@ -259,10 +261,16 @@ public class PlayerManager : Singleton<PlayerManager> {
             // finaly, add to dict
             playerDict.Add (feedData.username, obj);
             // sets a reference to the cameraManager
-            obj.GetComponent<Player> ().cameraManager = cameraManager;
+            currentPlayerScript.cameraManager = cameraManager;
 
             // Allow the player to be selected by the camera
             cameraManager.AddPlayer (feedData.username);
+
+
+            // store FeedData for zoom 
+            currentPlayerScript.feedData = feedData;
+            // add the current monsters / trails for the player
+            currentPlayerScript.SaveTagMatchesFromStream (feedData.tagMatches);
         }
         return true;
     }
@@ -273,25 +281,28 @@ public class PlayerManager : Singleton<PlayerManager> {
      *  - The logic that determines effects. 
      *  - For example, whether a GO with sprite animation or particle effect animation is attached, and what timeline animation (when tally twirls, etc.) is played. 
      */
-    public void PlayEvent (FeedData feed)
+    public void PlayEvent (FeedData feedData)
     {
-        //Debug.Log (DebugManager.GetSymbol ("smilingFace") + " PlayerManager.PlayEvent() [1] feed = " + feed.username.ToString ());
+        //Debug.Log (DebugManager.GetSymbol ("smilingFace") + " PlayerManager.PlayEvent() [1] feed = " + feedData.username.ToString ());
 
 
         // PLAYER OBJECT REFERENCES
 
         // get the player from the dict
-        playerDict.TryGetValue (feed.username, out currentPlayerObj);
+        playerDict.TryGetValue (feedData.username, out currentPlayerObj);
         if (!currentPlayerObj) return;
 
         // reference to script (contains all the other references we need)
         currentPlayerScript = currentPlayerObj.GetComponent<Player> ();
 
         // store FeedData for zoom 
-        currentPlayerScript.feedData = feed;
+        currentPlayerScript.feedData = feedData;
+
+        // update trailing monsters and trails
+        currentPlayerScript.SaveTagMatchesFromStream (feedData.tagMatches);
 
         // show event in public var
-        currentEventType = feed.eventType;
+        currentEventType = feedData.eventType;
 
 
 
@@ -300,62 +311,62 @@ public class PlayerManager : Singleton<PlayerManager> {
         // EFFECTS
 
         // BATTLES ARE MORE COMPLEX
-        if (feed.eventType == "monster") {
-            StartCoroutine (PlayBattleEffects (feed));
+        if (feedData.eventType == "monster") {
+            StartCoroutine (PlayBattleEffects (feedData));
         } else {
 
 
 
 
             // STREAM (CLICK or LIKE)
-            if (feed.eventType == "stream") {
+            if (feedData.eventType == "stream") {
                 AttachDetachAnimation (rippleAnim, false, 1f, 3.5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Pop_Shake_md";
 
                 // check to see if there are monsters following the player
-                if (feed.monsters != "") {
-                    //Debug.Log ("PlayerManager.PlayEvent() monsters = " + feed.monsters);
+                if (feedData.monsters != "") {
+                    //Debug.Log ("PlayerManager.PlayEvent() monsters = " + feedData.monsters);
                 }
             }
 
             // ATTACK 
-            else if (feed.eventType == "attack") {
+            else if (feedData.eventType == "attack") {
                 AttachDetachAnimation (attackAnim, false, 1f, 3f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Swirl_r_sm";
             }
 
             // BADGE 
-            else if (feed.eventType == "badge") {
+            else if (feedData.eventType == "badge") {
                 AttachDetachAnimation (badgeAnim, false, 1f, 3.5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Swirl_r_sm";
             }
 
             // CONSUMABLE 
-            else if (feed.eventType == "consumable") {
+            else if (feedData.eventType == "consumable") {
                 AttachDetachAnimation (consumableAnim, false, 1f, 2.5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Pop_sm";
             }
 
             // DISGUISE 
-            else if (feed.eventType == "disguise") {
+            else if (feedData.eventType == "disguise") {
                 AttachDetachAnimation (disguiseAnim, false, 1f, 4f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Rotate_Pop_sm";
             }
 
             // TRACKER 
-            else if (feed.eventType == "tracker") {
+            else if (feedData.eventType == "tracker") {
                 AttachDetachAnimation (trackerAnim, false, 1f, 5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Rotate_md";
             }
 
             // LEADERBOARD - not currently storing / sending with API
-            else if (feed.eventType == "leaderboard") {
+            else if (feedData.eventType == "leaderboard") {
                 AttachDetachAnimation (leaderboardAnim, false, 1f, 3f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Pop_Shake_sm";
@@ -363,7 +374,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 
 
             // play matching sound
-            AudioManager.Instance.Play (feed.eventType);
+            AudioManager.Instance.Play (feedData.eventType);
 
         }
 
@@ -480,7 +491,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 
     IEnumerator PlayBattleEffects (FeedData feed)
     {
-        //Debug.Log ("PlayBattle() feed = " + feed.ToString ());
+        //Debug.Log ("PlayBattle() feed = " + feedData.ToString ());
 
 
         // start battle

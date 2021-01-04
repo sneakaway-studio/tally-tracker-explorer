@@ -121,4 +121,61 @@ public class DebugManager : Singleton<DebugManager> {
     }
 
 
+
+    /// <summary>
+    /// Print a list of integers
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="list"></param>
+    public void PrintList (string str, List<int> list)
+    {
+        int i = 0;
+        str += " [" + list.Count + "]: ";
+        foreach (var item in list) {
+            if (++i > 1) str += ", ";
+            str += item.ToString ();
+        }
+        Debug.Log (str);
+    }
+
+
+    public void PrintDict (string str, Dictionary<int, TrailingMonster> dict)
+    {
+        int i = 0;
+        str += " [" + dict.Count + "]: ";
+        foreach (KeyValuePair<int, TrailingMonster> t in dict) {
+            if (++i > 1) str += ", ";
+            str += dict [t.Key].mid + "-" + dict [t.Key].passes;
+        }
+        Debug.Log (str);
+    }
+
+
+
+    /// <summary>
+    /// Return list of random integers
+    /// </summary>
+    /// <param name="lengthMin">Minimum list length</param>
+    /// <param name="lengthMax">Maximum list length</param>
+    /// <param name="rangeMin">Minimum range for each index</param>
+    /// <param name="rangeMax">Maximum range for each index</param>
+    /// <returns></returns>
+    public List<int> GetListOfRandomInts (int lengthMin, int lengthMax, int rangeMin, int rangeMax)
+    {
+        // create list
+        List<int> newList = new List<int> ();
+        // use random number for length
+        int numberToAdd = (int)Random.Range (lengthMin, lengthMax);
+        // loop and add ints
+        for (int i = 0; i < numberToAdd; i++) {
+            // random int
+            //newList [i] = (int)Random.Range (rangeMin, rangeMax);
+            // random mid
+            newList.Add (MonsterIndex.Instance.GetRandomMid (rangeMin, rangeMax));
+        }
+        return newList;
+    }
+
+
+
 }
