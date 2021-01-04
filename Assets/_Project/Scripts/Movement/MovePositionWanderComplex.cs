@@ -13,7 +13,12 @@ public class MovePositionWanderComplex : PhysicsBase {
     public BoxCollider worldContainerCollider;    // collider to test new positions
     public Vector3 wayPoint;            // new position to head towards
     public float targetThreshold = 1f;  // test distance to target - must be > 0
-    public float pointSelectRange = 8f; // range from which to select new wayPoint
+
+    [Tooltip ("Range in Unity Units from which to select new wayPoint")]
+    public float pointSelectRange = 8f;
+    [Tooltip ("Overrides and scales default point select range by % of world width")]
+    public float pointSelectRangeScalar = 0.2f;
+
     public float distanceToWaypoint;
 
     // for rotation
@@ -94,6 +99,7 @@ public class MovePositionWanderComplex : PhysicsBase {
 
     }
 
+
     /**
      *  Turn transform towards a direction vector over time
      */
@@ -106,14 +112,13 @@ public class MovePositionWanderComplex : PhysicsBase {
         Vector3 rotateTo = transform.position + (playerInput * 100);
 
         // change look direction slowly
-        Vector3 temp = Vector3.Lerp(transform.right, (rotateTo - transform.position), inputRotateTimeElapsed / inputRotateDuration);
+        Vector3 temp = Vector3.Lerp (transform.right, (rotateTo - transform.position), inputRotateTimeElapsed / inputRotateDuration);
 
         // Prevent possible flipping in y rotation
         Transform cloneTransform = transform;
         cloneTransform.right = temp;
-        if (cloneTransform.eulerAngles.y != 0)
-        {
-            temp = new Vector3(temp.x, 0.1f, 0);
+        if (cloneTransform.eulerAngles.y != 0) {
+            temp = new Vector3 (temp.x, 0.1f, 0);
         }
 
         // Set right vector
@@ -139,9 +144,8 @@ public class MovePositionWanderComplex : PhysicsBase {
         // Prevent possible flipping in y rotation
         Transform cloneTransform = transform;
         cloneTransform.right = temp;
-        if (cloneTransform.eulerAngles.y != 0)
-        {
-            temp = new Vector3(temp.x, 0.1f, 0);
+        if (cloneTransform.eulerAngles.y != 0) {
+            temp = new Vector3 (temp.x, 0.1f, 0);
         }
 
         // Set right vector
@@ -168,7 +172,7 @@ public class MovePositionWanderComplex : PhysicsBase {
         int safety = 0;
 
         // update the selection range depending on the size of the resolution
-        pointSelectRange = worldContainerCollider.size.x * .1f;
+        pointSelectRange = worldContainerCollider.size.x * pointSelectRangeScalar;
 
         // loop until new point is within defined area
         while (!pointWithin) {
