@@ -294,7 +294,7 @@ public class DataManager : Singleton<DataManager> {
         //GetNewData ();
     }
 
-    public void EnableEndpointDropdown (bool _status)
+    public void EnableDataDropdowns (bool _status)
     {
         modeDropdown.interactable = _status;
         endpointDropdown.interactable = _status;
@@ -306,7 +306,7 @@ public class DataManager : Singleton<DataManager> {
         //Debug.Log ("DataManager.GetNewData()");
 
         // disable dropdown temporarily
-        EnableEndpointDropdown (false);
+        EnableDataDropdowns (false);
 
         // reset stats
         receivedTotal = 0;

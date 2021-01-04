@@ -176,49 +176,65 @@ public class Timeline : Singleton<Timeline> {
     /////////////////////////////////////////////////////////////
 
 
-
+    string startBtnAction = "Start";
 
     /**
      *  Called from the UI button to start / stop
      */
     public void OnStartBtnClick ()
     {
-        // immediately disable both 
-        SetStartBtnText (" --- ", false);
-        DataManager.Instance.EnableEndpointDropdown (false);
+        // 1. startBtnAction == "Start" - stopped
+        // button enabled = true
+        // dropdowns enabled = true
+        if (startBtnAction.Equals ("Start")) {
+            // disable both
+            SetStartBtnText ("---", false);
+            DataManager.Instance.EnableDataDropdowns (false);
 
-        // if currently active (user has clicked "stop")
-        if (status == TimelineStatus.active) {
-            SetStartBtnText (" --- ", false);
-            // stop everything
-            StopBufferLoop ();
-            StopHistoryLoop ();
-            // set status
-            SetTimelineStatus (TimelineStatus.inactive);
-            // update btn text and make interactable
-            SetStartBtnText ("Start", true);
-            // should let them select
-            DataManager.Instance.EnableEndpointDropdown (true);
-            // if there are players active
-            if (PlayerManager.Instance.playerCount > 0) {
-                // then add them
-                EventManager.TriggerEvent ("RemoveAllPlayers");
-            }
-        }
-        // if not active (user clicked "Start")
-        else {
             // set status
             SetTimelineStatus (TimelineStatus.start);
             // start loop
             StartBufferLoop ();
         }
+
+        // 2. startBtnAction == "Stop" - in play mode
+        // button enabled = true
+        // dropdowns enabled = false
+        else if (startBtnAction.Equals ("Stop")) {
+            // set status
+            SetTimelineStatus (TimelineStatus.inactive);
+
+            // stop everything
+            StopBufferLoop ();
+            StopHistoryLoop ();
+            // if there are players active
+            if (PlayerManager.Instance.playerCount > 0) {
+                // then remove them
+                EventManager.TriggerEvent ("RemoveAllPlayers");
+            }
+
+            // enable both
+            SetStartBtnText ("Start", true);
+            DataManager.Instance.EnableDataDropdowns (true);
+        }
+
+        // 3. startBtnAction == "---" - busy doing something 
+        // button enabled = false
+        // dropdowns enabled = false
+        else {
+
+        }
+
+
+
         UpdateCounts ();
         UpdateTimelineLogs ();
     }
 
     void SetStartBtnText (string txt, bool interact)
     {
-        startButtonText.text = txt;
+        startBtnAction = txt;
+        startButtonText.text = startBtnAction;
         startButton.interactable = interact;
     }
 
@@ -326,9 +342,9 @@ public class Timeline : Singleton<Timeline> {
             // show status
             waitingForDataProgressText.text = " -- ";
             // disable button until data arrives
-            SetStartBtnText (" --- ", false);
+            SetStartBtnText ("---", false);
             // disable
-            DataManager.Instance.EnableEndpointDropdown (false);
+            DataManager.Instance.EnableDataDropdowns (false);
         }
         // still waiting 
         else if (_status == 1) {
@@ -346,21 +362,19 @@ public class Timeline : Singleton<Timeline> {
             //waitingForDataProgressText.text = " -- ";
 
             UpdateCounts ();
-            // update btn text and disable
+            // show Stop button and disable dropdowns
             SetStartBtnText ("Stop", true);
-            // disable
-            DataManager.Instance.EnableEndpointDropdown (false);
-
+            DataManager.Instance.EnableDataDropdowns (false);
         }
         // finished - fail - NO DATA
         else if (_status == 3) {
             // mark finished flag true
             waitingForDataFinished = true;
             UpdateCounts ();
-            // update btn text and make interactable
-            SetStartBtnText ("START", true);
-            // should let them select
-            DataManager.Instance.EnableEndpointDropdown (true);
+
+            // show Start button and enable dropdowns
+            SetStartBtnText ("Start", true);
+            DataManager.Instance.EnableDataDropdowns (true);
         }
 
 
