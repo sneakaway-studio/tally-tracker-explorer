@@ -7,6 +7,9 @@ public class KeepUIInCameraView : MonoBehaviour {
     RectTransform rect;
     RectTransform parentRect;
 
+    // rect width
+    public float rectWidth;
+
     private void Awake ()
     {
         rect = GetComponent<RectTransform> ();
@@ -19,10 +22,13 @@ public class KeepUIInCameraView : MonoBehaviour {
         Vector2 thisPos = rect.anchoredPosition;
         Vector2 parentPos = parentRect.anchorMax;
 
+        rectWidth = rect.sizeDelta.x;
+
+
         if (parentPos.x < 0.05f) {
-            thisPos = new Vector3 (100, thisPos.y);
-        } else if (parentPos.x > 0.95f) {
-            thisPos = new Vector3 (-100, thisPos.y);
+            thisPos = new Vector3 (rectWidth / 2, thisPos.y);
+        } else if (parentPos.x > rect.sizeDelta.x) {
+            thisPos = new Vector3 (-(rectWidth / 2), thisPos.y);
         } else {
             thisPos = new Vector3 (0, thisPos.y);
         }
