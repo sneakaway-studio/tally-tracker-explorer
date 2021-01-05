@@ -97,7 +97,7 @@ public class Trail : MonoBehaviour {
         //trailWidth = siblingCount * .1f;
 
         // set width based on the range + extra to cover the background
-        trailWidth = trailsRange + widthExtra;
+        trailWidth = Mathf.Min (trailsRange + widthExtra, 1.4f);
 
         // set start and end width 
         trailRenderer.startWidth = trailWidth; // 5 = 0.45f

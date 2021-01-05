@@ -54,11 +54,11 @@ public class MonsterIndex : Singleton<MonsterIndex> {
      */
     public int GetGameMidIndex (int _mid)
     {
-        Debug.Log ("GetMonsterSpriteIndex() [1] _mid = " + _mid);
+        //Debug.Log ("GetMonsterSpriteIndex() [1] _mid = " + _mid);
         int midSpriteIndex = -1;
         if (gameMids.Contains (_mid))
             midSpriteIndex = Array.IndexOf (gameMids, _mid);
-        Debug.Log ("GetMonsterSpriteIndex() [2] midSpriteIndex = " + midSpriteIndex);
+        //Debug.Log ("GetMonsterSpriteIndex() [2] midSpriteIndex = " + midSpriteIndex);
         return midSpriteIndex;
     }
 

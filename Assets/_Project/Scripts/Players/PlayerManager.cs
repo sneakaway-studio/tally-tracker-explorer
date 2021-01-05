@@ -270,7 +270,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             // store FeedData for zoom 
             currentPlayerScript.feedData = feedData;
             // add the current monsters / trails for the player
-            currentPlayerScript.SaveTagMatchesFromStream (feedData.tagMatches);
+            StartCoroutine (currentPlayerScript.SaveTagMatchesFromStream (2.0f, feedData.tagMatches));
         }
         return true;
     }
@@ -299,7 +299,7 @@ public class PlayerManager : Singleton<PlayerManager> {
         currentPlayerScript.feedData = feedData;
 
         // update trailing monsters and trails
-        currentPlayerScript.SaveTagMatchesFromStream (feedData.tagMatches);
+        StartCoroutine (currentPlayerScript.SaveTagMatchesFromStream (.1f, feedData.tagMatches));
 
         // show event in public var
         currentEventType = feedData.eventType;

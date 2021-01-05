@@ -48,7 +48,7 @@ public class Monster : MonoBehaviour {
     // random
     void SetSpriteInParticleSystem (int _mid = -1, int _gameMidsIndex = -1)
     {
-        Debug.Log ("SetSpriteInParticleSystem() mid =" + mid + ", gameMidsIndex = " + gameMidsIndex);
+        //Debug.Log ("SetSpriteInParticleSystem() mid =" + mid + ", gameMidsIndex = " + gameMidsIndex);
 
         // choose random
         if (_mid < 1) {

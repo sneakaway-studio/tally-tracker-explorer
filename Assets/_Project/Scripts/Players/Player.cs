@@ -36,8 +36,7 @@ public class Player : MonoBehaviour {
 
     public void Init (FeedData _feedData)
     {
-        //Debug.Log ("Player.Init() _username = " + _username);
-        Debug.Log ("Player.Init() _feedData.tagMatches = " + _feedData.tagMatches);
+        //Debug.Log ("Player.Init() _feedData.tagMatches = " + _feedData.tagMatches);
 
         // test
         //SaveTagMatchesFromStream (_feedData.tagMatches);
@@ -46,6 +45,8 @@ public class Player : MonoBehaviour {
         username = _feedData.username;
         avatarPath = _feedData.avatarPath;
         lastActive = DateTime.Now;
+
+        Debug.Log ("Player.Init() username = " + username);
     }
 
     /**
@@ -63,8 +64,11 @@ public class Player : MonoBehaviour {
     /**
      *  Parse the tagMatches (monsters) string from the stream and update trails and monster sprites
      */
-    public void SaveTagMatchesFromStream (string tagMatchesStr)
+    public IEnumerator SaveTagMatchesFromStream (float wait, string tagMatchesStr)
     {
+        // wait a second 
+        yield return new WaitForSeconds (wait);
+
         // clear list
         tagMatchesMids.Clear ();
 
@@ -104,7 +108,7 @@ public class Player : MonoBehaviour {
                     }
                 }
                 // test
-                DebugManager.Instance.PrintList ("\n\ntagMatchesMids " + username + " ", tagMatchesMids);
+                DebugManager.Instance.PrintList ("tagMatchesMids " + username + " ", tagMatchesMids);
                 // update trailing monsters, with random set to false
                 StartCoroutine (trailingMonstersManager.UpdateTrailingMonsters (1f, false));
             }

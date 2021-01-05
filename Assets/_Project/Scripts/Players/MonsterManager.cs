@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -78,6 +79,7 @@ public class MonsterManager : MonoBehaviour {
                 break;
             }
         }
+        //Debug.Log ("RemoveMonster(" + _mid + ") monsters.Count = " + monsters.Count + ", " + String.Join ("; ", monsters));
     }
 
     // test
@@ -94,11 +96,9 @@ public class MonsterManager : MonoBehaviour {
 
     public void UpdateMonsterPositions ()
     {
-
-
-        Debug.Log ("spawnPoints.Length = " + spawnPoints.Length);
-        Debug.Log ("monsters.Count = " + monsters.Count);
-        Debug.Log ("newTrailMids.Count = " + newTrailMids.Count);
+        //Debug.Log ("spawnPoints.Length = " + spawnPoints.Length);
+        //Debug.Log ("monsters.Count = " + monsters.Count);
+        //Debug.Log ("newTrailMids.Count = " + newTrailMids.Count);
 
         //for (int i = 0; i < monsters.Count; i++) {
         //    // get mid of monster at i of monsters

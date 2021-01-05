@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -30,7 +31,7 @@ public class TrailManager : MonoBehaviour {
         yield return new WaitForSeconds (wait);
 
         // random num
-        numberTrails = (int)Random.Range (minTrailCount, maxTrailCount);
+        numberTrails = (int)UnityEngine.Random.Range (minTrailCount, maxTrailCount);
         // add trail
         for (int i = 0; i < numberTrails; i++) {
             AddTrail (i);
@@ -47,7 +48,10 @@ public class TrailManager : MonoBehaviour {
     public void AddTrail (int _mid = -1)
     {
         // if at max trails
-        if (trails.Count >= 8) return;
+        if (trails.Count >= 8) {
+            Debug.LogWarning ("trails.Count >= " + trails.Count);
+            return;
+        }
 
         if (_mid < 1) {
             // get a random mid from those in the game
@@ -60,7 +64,7 @@ public class TrailManager : MonoBehaviour {
         // if already exists then exit
         var exists = trails.Find (item => item.name.Equals (name));
         if (exists != null) {
-            //Debug.Log ("TRAIL ALREADY EXISTS IN LIST");
+            Debug.LogWarning ("TRAIL ALREADY EXISTS IN LIST");
             return;
         }
 
@@ -88,6 +92,7 @@ public class TrailManager : MonoBehaviour {
                 break;
             }
         }
+        //Debug.Log ("RemoveTrail(" + _mid + ") trails.Count = " + trails.Count + ", " + String.Join ("; ", trails));
     }
 
     public void RemoveAllTrails ()

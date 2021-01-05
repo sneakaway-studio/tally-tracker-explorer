@@ -20,7 +20,7 @@ public class DebugManager : Singleton<DebugManager> {
 
     public TMP_Text debugText;
     public ScrollRect debugScrollRect;
-
+    public bool DEBUG;
 
 
 
@@ -34,6 +34,9 @@ public class DebugManager : Singleton<DebugManager> {
 
     private void Awake ()
     {
+        DEBUG = false;
+
+
         AddSymbols ();
         // clear display
         ClearDisplay ();
@@ -129,6 +132,8 @@ public class DebugManager : Singleton<DebugManager> {
     /// <param name="list"></param>
     public void PrintList (string str, List<int> list)
     {
+        if (!DEBUG) return;
+
         int i = 0;
         str += " [" + list.Count + "]: ";
         foreach (var item in list) {
@@ -139,8 +144,11 @@ public class DebugManager : Singleton<DebugManager> {
     }
 
 
+
     public void PrintDict (string str, Dictionary<int, TrailingMonster> dict)
     {
+        if (!DEBUG) return;
+
         int i = 0;
         str += " [" + dict.Count + "]: ";
         foreach (KeyValuePair<int, TrailingMonster> t in dict) {

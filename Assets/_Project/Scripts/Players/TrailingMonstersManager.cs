@@ -11,7 +11,7 @@ public class TrailingMonster {
     // index
     public int mid;
     // increment each update unless this monster still exists in feed data
-    public int passes = 0;
+    public int passes = -1;
     // constructor
     public TrailingMonster (int mid)
     {
@@ -77,7 +77,7 @@ public class TrailingMonstersManager : MonoBehaviour {
         yield return new WaitForSeconds (wait);
 
 
-        Debug.Log ("\n\nTrailingMonsterManager.UpdateTrailingMonsters()");
+        //Debug.Log ("TrailingMonsterManager.UpdateTrailingMonsters()");
 
 
         // 0. GET NEW LIST OF MIDs
@@ -121,12 +121,15 @@ public class TrailingMonstersManager : MonoBehaviour {
             //trailingMonstersList = trailingMonstersDict.Keys.ToList ();
             // sorted by mids
             trailingMonstersList = trailingMonstersDict.OrderBy (x => x.Value.mid).Select (kvp => kvp.Key).ToList ();
-            // then update the lists inside the managers 
-            monsterManager.newTrailMids = trailingMonstersList;
-            trailManager.newTrailMids = trailingMonstersList;
-            // then tell them to all reset their order
-            StartCoroutine (trailManager.UpdateTrailPositions (0));
-            monsterManager.UpdateMonsterPositions ();
+            if (trailingMonstersList.Count > 0) {
+                // then update the lists inside the managers 
+                monsterManager.newTrailMids = trailingMonstersList;
+                trailManager.newTrailMids = trailingMonstersList;
+                // then tell them to all reset their order
+                StartCoroutine (trailManager.UpdateTrailPositions (0));
+                monsterManager.UpdateMonsterPositions ();
+
+            }
         }
         DebugManager.Instance.PrintDict ("trailingMonstersDict [1] (after passes++)", trailingMonstersDict);
 
@@ -134,6 +137,12 @@ public class TrailingMonstersManager : MonoBehaviour {
 
 
         // 2. RESET PASSES ON EXISTING MIDs / ADD NEW MIDs FROM FEED
+
+        // sort dict by # passes ascending, then mid, so we keep the newest ones (descending use: OrderByDescending())
+        trailingMonstersDict = trailingMonstersDict
+            .OrderBy (x => x.Value.passes)
+            .ThenBy (x => x.Value.mid)
+            .ToDictionary (x => x.Key, x => x.Value);
 
         // loop through list of new mids
         for (int i = 0; i < newMidsFromFeed.Count; i++) {
@@ -149,9 +158,17 @@ public class TrailingMonstersManager : MonoBehaviour {
                 // make sure MID is in the list of MIDs in the visualization
                 int gameMidsIndex = MonsterIndex.Instance.GetGameMidIndex (mid);
                 if (gameMidsIndex > -1) {
-                    // add to dict
+                    // if we are at max
+                    if (trailingMonstersDict.Count >= max) {
+                        // remove an old one
+                        int midToRemove = trailingMonstersDict.Last ().Key;
+                        //Debug.Log ("REMOVE midToRemove = " + midToRemove);
+                        trailingMonstersDict.Remove (midToRemove);
+                        monsterManager.RemoveMonster (midToRemove);
+                        trailManager.RemoveTrail (midToRemove);
+                    }
+                    // add new to dict
                     trailingMonstersDict.Add (mid, new TrailingMonster (mid));
-                    // add corresponding monster and trail
                     monsterManager.AddMonster (mid);
                     trailManager.AddTrail (mid);
                 } else {
@@ -182,40 +199,48 @@ public class TrailingMonstersManager : MonoBehaviour {
 
         // 4. REMOVE OLD MONSTERS FROM DICT
 
-        // now that it is sorted ascending, the last index has the highest value
-        int highestPasses = Mathf.Max (trailingMonstersDict.Last ().Value.passes, 1);
+        // make sure there are some
+        if (trailingMonstersDict.Count > 0) {
 
-        int j = 0;
+            // now that it is sorted ascending, the last index has the highest value
+            int highestPasses = Mathf.Max (trailingMonstersDict.Last ().Value.passes, 1);
 
-        // loop through copy of list of dict to avoid error when removing from dict
-        foreach (var t in trailingMonstersDict.ToList ()) {
-            //Debug.Log ("-- t.Key = " + t.Key + ", j = " + j + ", highestPasses = " + highestPasses);
-            // if >= max OR has high passes
-            if (j >= max || (t.Value.passes > 1 && t.Value.passes >= highestPasses)) {
-                Debug.Log ("REMOVE t.Key = " + t.Key + ", j = " + j);
-                trailingMonstersDict.Remove (t.Key);
-                // remove corresponding monster and trail
-                monsterManager.RemoveMonster (t.Key);
-                trailManager.RemoveTrail (t.Key);
+            int j = 0;
+
+            // loop through copy of list of dict to avoid error when removing from dict
+            foreach (var t in trailingMonstersDict.ToList ()) {
+                //Debug.Log ("-- t.Key = " + t.Key + ", j = " + j + ", highestPasses = " + highestPasses);
+                // if >= max OR has high passes
+                if (j >= max || (t.Value.passes > 1 && t.Value.passes >= highestPasses)) {
+                    //Debug.Log ("REMOVE t.Key = " + t.Key + ", j = " + j);
+                    trailingMonstersDict.Remove (t.Key);
+                    // remove corresponding monster and trail
+                    monsterManager.RemoveMonster (t.Key);
+                    trailManager.RemoveTrail (t.Key);
+                }
+                j++;
             }
-            j++;
+            DebugManager.Instance.PrintDict ("trailingMonstersDict [4] (after prune)", trailingMonstersDict);
         }
-        DebugManager.Instance.PrintDict ("trailingMonstersDict [4] (after prune)", trailingMonstersDict);
 
 
         // 4. ADD NEW
 
-        foreach (KeyValuePair<int, TrailingMonster> t in trailingMonstersDict) {
-            monsterManager.AddMonster (t.Key);
-            trailManager.AddTrail (t.Key);
-        }
+        //foreach (KeyValuePair<int, TrailingMonster> t in trailingMonstersDict) {
+        //    // it is new
+        //    if (t.Value.passes == -1) {
+        //        monsterManager.AddMonster (t.Key);
+        //        trailManager.AddTrail (t.Key);
+        //        trailingMonstersDict [t.Key].passes = 0;
+        //    }
+        //}
 
 
 
 
         // update all monster positions after new have been added
         monsterManager.UpdateMonsterPositions ();
-        //StartCoroutine (trailManager.UpdateTrailPositions (0));
+        StartCoroutine (trailManager.UpdateTrailPositions (0));
 
 
 
