@@ -72,8 +72,7 @@ Open the application and it will start automatically. Pressing the following key
 - **C**ontrol panel - Settings and controls
 - **L**egend panel - A reference for the marketing taxonomy
 - **T**imeline panel - Shows the time of the event being played and size of the history and buffer
-~~- **F**eed panel - For debugging only (adds high performance overhead)~~
-- **ESC** / **Q**uit - Exit the application
+- **Q**uit or **ESC** - Exit the application
 
 
 ### Zoom-to-player instructions
@@ -87,17 +86,13 @@ zoom out | ↓ | left joystick ↓
 
 ### Control panel options
 
-- View resolution details
-- Settings
-	- View: FPS
-	- Set: the resolution, fullscreen, and volume
-- Data
- 	- View: the `status`
-	- Set: the `source` and `sample size` (stop, set `source`, then start)
-		- ~~`remoteLive` - Automatically refresh with live data from the server~~
-		- `remoteArchive` - Fetch a live dataset once (using selected endpoint) and shuffle between buffer / history
-		- `localArchive` - Same as `remoteArchive` except it uses the archived data in the project (endpoint is disabled)
-- Timeline - View the `status`, `history` and `buffer` counts, and stop/start the application.
+
+- Player: View resolution, aspect ratio, FPS; Set `Resolution`, `Fullscreen`, and `Volume`
+- Data: View `status`; Set `Source` and `Sample size` (stop, set `Source`, then start)
+	- `live` - Fetch a live dataset once (using selected sample size), shuffle between buffer / history
+	- `archive` - Same as `live` except it uses the archived data in the project (endpoint is disabled)
+- Timeline: View `Status`, `History` and `Buffer` counts; Stop/Start the application.
+- Details: View `Players` and `Events` counts, and `current event`; Toggle monsters on/off.
 
 **NOTE**: Increase/decrease sample size in order to increase/decrease number of players
 

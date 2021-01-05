@@ -60,11 +60,14 @@ public class DataManager : Singleton<DataManager> {
 
     [Serializable]
     public enum ModeType {
-        remoteLive, // remote - refresh with new data from server - the endpoint automatic
-        remoteArchive, // remote - make only one data request, shuffle between buffer / history 
-        localArchive // same as remoteArchive except using local - the endpoint is disabled
+        liveRefresh, // remote - refresh with new data from server - the endpoint automatic
+        live, // live data - make only one data request, shuffle between buffer / history 
+        archive // same as live except using local - the endpoint is disabled
     }
-
+    public enum ModeTypeSansLive {
+        live,
+        archive
+    }
 
 
 
@@ -243,8 +246,8 @@ public class DataManager : Singleton<DataManager> {
     private void Awake ()
     {
         // populate dropdown options
-        PopulateDropdown (modeDropdown, new ModeType ());
-        PopulateDropdown (endpointDropdown, new EndpointType ());
+        PopulateDropdownFromEnum (modeDropdown, new ModeTypeSansLive ());
+        PopulateDropdownFromEnum (endpointDropdown, new EndpointType ());
 
         // get inspector values
         modeDropdown.value = (int)selectedMode;
@@ -256,7 +259,7 @@ public class DataManager : Singleton<DataManager> {
     /// </summary>
     /// <param name="dropdown">A reference to a TMP_Dropdown</param>
     /// <param name="e">Use like this: "new Enum()"</param>
-    void PopulateDropdown (TMP_Dropdown dropdown, Enum e)
+    void PopulateDropdownFromEnum (TMP_Dropdown dropdown, Enum e)
     {
         // clear the options in the dropdown
         dropdown.ClearOptions ();
@@ -319,7 +322,7 @@ public class DataManager : Singleton<DataManager> {
         EventManager.TriggerEvent ("DataManagerUpdated");
 
         // if using local archive file
-        if (selectedMode == ModeType.localArchive) {
+        if (selectedMode == ModeType.archive) {
 
             // jump straight to handle archived json
             //HandleJsonResponse (localDataFile.text);
@@ -437,7 +440,7 @@ public class DataManager : Singleton<DataManager> {
 
             // LIVE MODE ONLY - SKIP DUPLICATES
 
-            if (selectedMode == ModeType.remoteLive) {
+            if (selectedMode == ModeType.liveRefresh) {
                 // get any duplicate dates in buffer based on both conditions
                 var bufferMatches = Timeline.Instance.buffer.FindAll (found => found.createdAt == _createdAt);
                 var historyMatches = Timeline.Instance.history.FindAll (found => found.createdAt == _createdAt);

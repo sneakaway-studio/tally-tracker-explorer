@@ -454,8 +454,8 @@ public class Timeline : Singleton<Timeline> {
                 else if (bufferCount <= 0 && historyCount > 0) {
                     //Debug.Log ("bufferCount <= 0 && historyCount > 0");
 
-                    // LIVE - we should have received new data by now
-                    if (DataManager.Instance.selectedMode == DataManager.ModeType.remoteLive) {
+                    // REFRESH - we should have received new data by now
+                    if (DataManager.Instance.selectedMode == DataManager.ModeType.liveRefresh) {
 
                         // increase size of requests
                         //DataManager.Instance.ScaleSizeOfDataRequests (1); // going to let app user control this now
@@ -463,7 +463,7 @@ public class Timeline : Singleton<Timeline> {
                         // attempt to get new data 
                         SetTimelineStatus (TimelineStatus.refreshData);
                     }
-                    // ARCHIVE (remote or local data) 
+                    // static live or archive 
                     else {
                         // we are using prepackaged data archive so move history back to buffer
                         SetTimelineStatus (TimelineStatus.moveHistory);
@@ -479,12 +479,12 @@ public class Timeline : Singleton<Timeline> {
                 else if (bufferCount <= bufferCountMin) {
                     //Debug.Log ("bufferCount <= bufferCountMin");
 
-                    // LIVE
-                    if (DataManager.Instance.selectedMode == DataManager.ModeType.remoteLive) {
+                    // REFRESH
+                    if (DataManager.Instance.selectedMode == DataManager.ModeType.liveRefresh) {
                         // attempt to get new data 
                         SetTimelineStatus (TimelineStatus.refreshData);
                     }
-                    // ARCHIVE (remote or local data) - do nothing - this is handled above
+                    // static live or archive - do nothing - this is handled above
                 }
 
                 // buffer too full
@@ -492,11 +492,11 @@ public class Timeline : Singleton<Timeline> {
                 else if (bufferCount > bufferCountMax) {
                     //Debug.Log ("bufferCount > bufferCountMax");
 
-                    // LIVE
-                    if (DataManager.Instance.selectedMode == DataManager.ModeType.remoteLive) {
+                    // REFRESH
+                    if (DataManager.Instance.selectedMode == DataManager.ModeType.liveRefresh) {
                         // scale down size of requests
                     }
-                    // ARCHIVE (remote or local data) - do nothing - we can handle large files (?)
+                    // static live or archive - do nothing - we can handle large files (?)
                 }
 
                 // history too full
@@ -504,11 +504,11 @@ public class Timeline : Singleton<Timeline> {
                 else if (historyCount > historyCountMax) {
                     //Debug.Log ("historyCount > historyCountMax");
 
-                    // LIVE
-                    if (DataManager.Instance.selectedMode == DataManager.ModeType.remoteLive) {
+                    // REFRESH
+                    if (DataManager.Instance.selectedMode == DataManager.ModeType.liveRefresh) {
                         // scale down size of history
                     }
-                    // ARCHIVE (remote or local data) - do nothing - we can handle large files (?)
+                    // static live or archive - do nothing - we can handle large files (?)
 
                 }
 
@@ -543,8 +543,8 @@ public class Timeline : Singleton<Timeline> {
                 // set to waiting
                 UpdateWaitingProgress (0);
 
-                // LIVE DATA - prompt DataManager
-                if (DataManager.Instance.selectedMode == DataManager.ModeType.remoteLive) {
+                // REFRESH - prompt DataManager
+                if (DataManager.Instance.selectedMode == DataManager.ModeType.liveRefresh) {
 
                     // attempt to get new data from server,
                     EventManager.TriggerEvent ("GetNewData");
@@ -552,7 +552,9 @@ public class Timeline : Singleton<Timeline> {
                     // start waiting
                     SetTimelineStatus (TimelineStatus.waitingForData);
 
-                } else {
+                }
+                // static live or archive 
+                else {
                     // we are using prepackaged data archive so move history back to buffer
                     SetTimelineStatus (TimelineStatus.moveHistory);
                 }
