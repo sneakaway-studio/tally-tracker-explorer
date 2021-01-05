@@ -12,14 +12,12 @@ public class DataDisplay : MonoBehaviour {
 
 
     // DataRequestStats
-    public TMP_Text receivedTotalText;
     public TMP_Text receivedNewText;
     public TMP_Text receivedDuplicatesText;
     public TMP_Text dataRequestStatusText;
 
 
     // TimelineStats
-    public TMP_Text playerCountText;
 
 
     [Space (10)]
@@ -27,6 +25,15 @@ public class DataDisplay : MonoBehaviour {
 
     public TMP_Text bufferCountText;
     public TMP_Text historyCountText;
+
+
+
+    [Space (10)]
+    [Header ("INFO PANEL")]
+
+    public TMP_Text receivedTotalText;
+    public TMP_Text playerCountText;
+    public TMP_Text currentEventTxt;
 
 
 
@@ -59,17 +66,19 @@ public class DataDisplay : MonoBehaviour {
         //Debug.Log ("DataDisplay.OnUpdateDisplay()");
 
         // data details panel - col 1
-        receivedTotalText.text = "Received: " + DataManager.Instance.receivedTotal.ToString ();
-        receivedNewText.text = "New data: " + DataManager.Instance.receivedNew.ToString ();
-        receivedDuplicatesText.text = "Duplicates: " + DataManager.Instance.receivedDuplicates.ToString ();
+        //receivedNewText.text = "New data: " + DataManager.Instance.receivedNew.ToString ();
+        //receivedDuplicatesText.text = "Duplicates: " + DataManager.Instance.receivedDuplicates.ToString ();
         dataRequestStatusText.text = DataManager.Instance.dataRequestStatus.ToString ();
-        // data details panel - col 2
-        playerCountText.text = "Players: " + PlayerManager.Instance.playerCount.ToString ();
 
         // timeline
         bufferCountText.text = Timeline.Instance.bufferCount.ToString ();
         historyCountText.text = Timeline.Instance.historyCount.ToString ();
 
+
+        // InfoPanel
+        playerCountText.text = PlayerManager.Instance.playerCount.ToString ();
+        receivedTotalText.text = DataManager.Instance.receivedTotal.ToString ();
+        currentEventTxt.text = PlayerManager.Instance.currentEventText.ToString ();
     }
 
 

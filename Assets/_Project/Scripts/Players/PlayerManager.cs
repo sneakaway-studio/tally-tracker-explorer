@@ -56,6 +56,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     public GameObject currentPlayerObj;
     public Player currentPlayerScript;
     public string currentEventType;
+    public string currentEventText;
 
 
 
@@ -304,7 +305,7 @@ public class PlayerManager : Singleton<PlayerManager> {
         // show event in public var
         currentEventType = feedData.eventType;
 
-
+        currentEventText = feedData.username + ": " + feedData.eventType;
 
 
 

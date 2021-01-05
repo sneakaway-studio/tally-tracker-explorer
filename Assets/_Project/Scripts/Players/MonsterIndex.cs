@@ -40,6 +40,10 @@ public class MonsterIndex : Singleton<MonsterIndex> {
     public int monstersFromSheetsDistinctLength;
 
 
+    public List<GameObject> monsterMasterList = new List<GameObject> ();
+
+
+
     private void Awake ()
     {
         // remove duplicates from the spritesheet array

@@ -14,8 +14,10 @@ using TMPro;
 public class SettingsManager : MonoBehaviour {
 
     public Toggle fullscreenToggle;
-
     public bool isFullscreen;
+    public Toggle showMonstersToggle;
+    public bool showMonsters;
+
 
     public AudioMixer audioMixer;
 
@@ -28,6 +30,7 @@ public class SettingsManager : MonoBehaviour {
     {
         // update the values in the UI that are set in the inspector
         fullscreenToggle.isOn = isFullscreen;
+        showMonsters = showMonstersToggle.isOn;
     }
 
 
@@ -53,6 +56,8 @@ public class SettingsManager : MonoBehaviour {
         resolutionDropdown.AddOptions (options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue ();
+
+
     }
 
     public void SetResolution (int resolutionIndex)
@@ -72,6 +77,23 @@ public class SettingsManager : MonoBehaviour {
         isFullscreen = state;
     }
 
+    public void SetShowMonsters (bool state)
+    {
+        showMonsters = state;
+
+
+        GameObject [] currentMonsters = GameObject.FindGameObjectsWithTag ("monster");
+        foreach (GameObject m in currentMonsters) {
+            m.GetComponent<Monster> ().emission.enabled = showMonsters;
+        }
+
+        //// master list
+        //foreach (GameObject m in MonsterIndex.Instance.monsterMasterList) {
+        //    if (m != null)
+        //        m.SetActive (showMonsters);
+        //}
+
+    }
 
 
 }

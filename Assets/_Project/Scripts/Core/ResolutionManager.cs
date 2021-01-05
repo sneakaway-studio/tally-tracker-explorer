@@ -82,7 +82,8 @@ public class ResolutionManager : MonoBehaviour {
 
     [Tooltip ("Collider that defines the volume of the visible game world")]
     public BoxCollider worldContainerCollider;
-    public TMP_Text resolutionReportText;
+    public TMP_Text resolutionReport1Text;
+    public TMP_Text resolutionReport2Text;
 
 
 
@@ -166,15 +167,14 @@ public class ResolutionManager : MonoBehaviour {
     void UpdateReport ()
     {
         // update text in control panel
-        string report =
+        resolutionReport1Text.text =
             //"canvasResolution (px): " + canvasResolution.ToString () + "\n" + 
             "playerResolution (px): " + playerResolution.ToString () + "\n" +
             //"gameViewResolution (px): " + gameViewResolution.ToString () +
-            "playerViewSize (units): " + playerViewSize.ToString () + "\n" +
+            "playerViewSize (units): " + playerViewSize.ToString () + "\n";
+        resolutionReport2Text.text =
             "playerAspectRatio: " + (Mathf.Round (playerAspectRatio * 100) / 100).ToString () + ":1 \n" +
-            "playerFullScreen: " + playerFullScreen.ToString () + "\n" +
             "deviceResolution: " + deviceResolution.ToString ();
-        resolutionReportText.text = report;
     }
 
     void UpdateColliderSize ()

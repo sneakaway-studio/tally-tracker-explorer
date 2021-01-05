@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 2088279250105977008}
   - component: {fileID: 1158092402349871756}
   m_Layer: 0
-  m_Name: Monsters
+  m_Name: MonsterManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d6428a1b32fb64dbf670085bac1b3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsManager: {fileID: 0}
   leader: {fileID: 7059805733063876825}
   newTrailMids: 
   spawnPoints:
@@ -870,6 +871,7 @@ MonoBehaviour:
   min: 3
   max: 8
   count: 0
+  newMidsFromFeed: 
   trailingMonstersList: 
   mids: 
   midsPasses: []
@@ -877,7 +879,6 @@ MonoBehaviour:
   player: {fileID: 8446701999604096132}
   monsterManager: {fileID: 4060703217083337034}
   trailManager: {fileID: 8079730368140630767}
-  newMidsFromFeed: 
 --- !u!114 &4060703217083337034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -890,6 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d6428a1b32fb64dbf670085bac1b3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsManager: {fileID: 0}
   leader: {fileID: 7059805733063876825}
   newTrailMids: 
   spawnPoints:

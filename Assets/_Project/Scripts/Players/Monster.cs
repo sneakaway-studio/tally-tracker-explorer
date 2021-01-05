@@ -27,13 +27,20 @@ public class Monster : MonoBehaviour {
 
     public int totalSprites;
 
+
+    // this particle system
+    public ParticleSystem ps;
+    public ParticleSystem.EmissionModule emission;
+
+
     private void Awake ()
     {
-
+        ps = gameObject.GetComponent<ParticleSystem> ();
+        emission = ps.emission;
     }
 
 
-    public void Init (int _mid)
+    public void Init (int _mid, bool showOnInit)
     {
         // save the mid and it's position in the index
         mid = _mid;
@@ -42,6 +49,8 @@ public class Monster : MonoBehaviour {
         // set random sprite
         SetSpriteInParticleSystem (mid, gameMidsIndex);
 
+        // whether to show on init
+        emission.enabled = showOnInit;
     }
 
 

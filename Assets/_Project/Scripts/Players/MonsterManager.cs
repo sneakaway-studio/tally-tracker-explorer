@@ -8,6 +8,11 @@ using UnityEngine;
  */
 public class MonsterManager : MonoBehaviour {
 
+
+
+    public SettingsManager settingsManager;
+
+
     // player to follow
     public Transform leader;
     // monsters following the leader
@@ -21,6 +26,12 @@ public class MonsterManager : MonoBehaviour {
 
     // testing
     //TallyInputSystem inputs;
+
+    private void Awake ()
+    {
+        settingsManager = GameObject.FindObjectOfType<SettingsManager> ();
+    }
+
 
     void Start ()
     {
@@ -58,7 +69,7 @@ public class MonsterManager : MonoBehaviour {
         // Create new monster and make it a child of the next available spawn point
         GameObject obj = Instantiate (monsterPrefab, spawnPoints [monsters.Count]);
         // call Init() on monster to get data / display animation
-        obj.GetComponent<Monster> ().Init (_mid);
+        obj.GetComponent<Monster> ().Init (_mid, settingsManager.showMonsters);
         // set name in Unity Editor
         obj.name = name;
         // add to list
@@ -70,6 +81,15 @@ public class MonsterManager : MonoBehaviour {
     {
         if (_mid < 1 || monsters.Count < 1) return;
 
+        //// remove from master list first
+        //for (int i = 0; i < MonsterIndex.Instance.monsterMasterList.Count; i++) {
+        //    Debug.Log ("monsterMasterList name = " + monsters [i].name);
+        //    if (monsters [i].name == _mid.ToString ()) {
+        //        // remove from list
+        //        MonsterIndex.Instance.monsterMasterList.RemoveAt (i);
+        //        break;
+        //    }
+        //}
         for (int i = 0; i < monsters.Count; i++) {
             if (monsters [i].name == _mid.ToString ()) {
                 // remove from game
@@ -79,6 +99,10 @@ public class MonsterManager : MonoBehaviour {
                 break;
             }
         }
+
+
+
+
         //Debug.Log ("RemoveMonster(" + _mid + ") monsters.Count = " + monsters.Count + ", " + String.Join ("; ", monsters));
     }
 
@@ -119,6 +143,8 @@ public class MonsterManager : MonoBehaviour {
             // reset transform
             monsters [i].transform.localPosition = new Vector3 (0, 0, 0);
         }
+
+
 
     }
 
