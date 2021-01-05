@@ -11,7 +11,7 @@ public class CameraManager : MonoBehaviour {
 
     // Zoom distances
     public float zoomOutLevel = 25f;
-    public float zoomInLevel = 10f;
+    public float zoomInLevel = 13f;
 
     // Speed for movement
     public float speed = 15f;
