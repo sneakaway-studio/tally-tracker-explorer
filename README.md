@@ -39,7 +39,7 @@ During COVID-19 quarantines, when we spend more time online, Tally Saves the Int
 
 NC State’s [Immersive Scholar Project Page](https://osf.io/yve95/)
 
-Tally Tracker Explorer on [Itch.io](https://itch.io/)
+Tally Tracker Explorer on [Itch.io](https://sneakawaystudio.itch.io/tally-tracker-explorer)
 
 
 
@@ -64,6 +64,20 @@ Don't know what a product monster is? See https://tallysavestheinternet.com/abou
 
 ## Instructions
 
+### Downloading and launching the application
+
+- Go to [the project page on Itch.io](https://sneakawaystudio.itch.io/tally-tracker-explorer) and click the large Download Now at the bottom of the page.
+- Double-click to unzip file.
+- Double-click to launch application.
+
+### Bypassing developer warning
+
+![tally tracker explorer](_Documentation/images/tracker-explorer-dev-warning.png)
+If you see the warning above,
+- Hit cancel.
+- Go to System Preferences / General
+- Where it says "...was blocked from use because it is not from an identified developer," click Open Anyway. 
+- Next warning, click Open.
 
 ### Running the application
 
