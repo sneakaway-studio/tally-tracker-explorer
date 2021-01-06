@@ -72,7 +72,8 @@ Don't know what a product monster is? See https://tallysavestheinternet.com/abou
 
 ### Bypassing developer warning
 
-![tally tracker explorer](_Documentation/images/tracker-explorer-dev-warning.png)
+<img src="_Documentation/images/tracker-explorer-dev-warning.png" width="300">
+
 If you see the warning above,
 - Hit cancel.
 - Go to System Preferences / General
