@@ -72,7 +72,7 @@ Don't know what a product monster is? See https://tallysavestheinternet.com/abou
 
 ### Bypassing developer warning
 
-<img src="_Documentation/images/tracker-explorer-dev-warning.png" width="300">
+<img src="_Documentation/images/tracker-explorer-dev-warning.png" width="400">
 
 If you see the warning above,
 - Hit cancel.
