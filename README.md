@@ -165,4 +165,4 @@ Many thanks to everyone involved with the October 2nd, 2020 [Immersive Scholar S
 
 ## Contact
 
-For general questions or troubleshooting questions contact Walt Gurley.
+For general questions or troubleshooting questions contact [Walt Gurley](https://www.lib.ncsu.edu/staff/jwgurley). 
