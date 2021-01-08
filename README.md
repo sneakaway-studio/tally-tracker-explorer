@@ -5,7 +5,6 @@
 
 
 
-
 - [About](#About)
 - [About the data](#About-the-data)
 - [Instructions](#Instructions)
@@ -111,6 +110,7 @@ zoom out | ↓ | left joystick ↓
 
 
 
+![tally tracker explorer](_Documentation/images/tracker-explorer-unity-02.png)
 
 
 ## Technology
