@@ -16,7 +16,7 @@
 	- [Display requirements](#Display-requirements)
 - [Credits](#Credits)
 
-
+![tally tracker explorer](_Documentation/images/tracker-explorer-avatar-trails.png)
 
 ### About
 
