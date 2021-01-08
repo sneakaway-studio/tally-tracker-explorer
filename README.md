@@ -43,7 +43,7 @@ Tally Tracker Explorer on [Itch.io](https://sneakawaystudio.itch.io/tally-tracke
 
 
 
-![tally tracker explorer legend](_Documentation/images/tracker-explorer-ui-legend.png)
+![tally tracker explorer legend](_Documentation/images/tracker-explorer-legend.png)
 
 
 ## About the data
@@ -147,9 +147,11 @@ NCSU Game Lab | Windows 10 Pro 64 | 4800 x 1080 | 4.44:1 | Dell Precision T7910 
 NCSU Visualization Studio | Windows | 15360 x 1080 | 12.52:1 | --- | Formerly (27053 x 2160). Remaining issues: what events correspond to lines in display? is audio mixed correctly? is Control panel completely visible?
 iPad | iOS | 1536 x 2048 | 1.33 | iPad 3&4, Air 1&2, Mini 2&3 | ---
 
+## Troubleshooting
 
+If you select a non-native resolution in the control panel, the clickable of buttons may be misaligned. To fix, select resolution that matches your device.
 
-
+If you encounter a security warning, see above under Installation.
 
 
 ## Credits
