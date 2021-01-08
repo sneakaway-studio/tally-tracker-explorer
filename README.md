@@ -25,7 +25,7 @@ A visualization depicting live and archived game data from [Tally Saves the Inte
 
 
 
-![tally tracker explorer](_Documentation/images/tracker-explorer-composite1.png)
+![tally tracker explorer](_Documentation/images/tracker-explorer-avatar-monsters-trail-Z.png)
 
 
 Developed during COVID when people are increasingly online, Tally Tracker Explorer captures live data from Tally Saves the Internet and displays this data as a sea of avatars, each surrounded by small product monsters and attached to their unique data trails, colored to match their top marketing categories.
