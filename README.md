@@ -74,7 +74,7 @@ Don't know what a product monster is? See https://tallysavestheinternet.com/abou
 If you see the warning above,
 - Hit cancel.
 - Go to System Preferences / General
-- Where it says "...was blocked from use because it is not from an identified developer," click Open Anyway. 
+- Where it says "...was blocked from use because it is not from an identified developer," click Open Anyway.
 - Next warning, click Open.
 
 ### Running the application
@@ -145,11 +145,27 @@ NCSU Game Lab | Windows 10 Pro 64 | 4800 x 1080 | 4.44:1 | Dell Precision T7910 
 NCSU Visualization Studio | Windows | 15360 x 1080 | 12.52:1 | --- | Formerly (27053 x 2160). Remaining issues: what events correspond to lines in display? is audio mixed correctly? is Control panel completely visible?
 iPad | iOS | 1536 x 2048 | 1.33 | iPad 3&4, Air 1&2, Mini 2&3 | ---
 
+
 ## Troubleshooting
 
-If you select a non-native resolution in the control panel, the clickable of buttons may be misaligned. To fix, select resolution that matches your device.
+- If you select a non-native resolution in the control panel, the clickable of buttons may be misaligned. To fix, select resolution that matches your device.
+- If you encounter a security warning, see above under Installation.
 
-If you encounter a security warning, see above under Installation.
+
+
+## Documentation
+
+### Video
+
+Youtube https://www.youtube.com/watch?v=Gbm5D0nfwJs
+
+### Images
+
+Click for high resolution
+
+<a href="_Documentation/images/tracker-explorer-avatar-monsters-portrait.png" target="_blank"><img src="_Documentation/images/tracker-explorer-avatar-monsters-portrait.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-avatar-monsters-trail-Z.png" target="_blank"><img src="_Documentation/images/tracker-explorer-avatar-monsters-trail-Z.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-avatar-monsters-trail.png" target="_blank"><img src="_Documentation/images/tracker-explorer-avatar-monsters-trail.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-avatar-trails.png" target="_blank"><img src="_Documentation/images/tracker-explorer-avatar-trails.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-banner.png" target="_blank"><img src="_Documentation/images/tracker-explorer-banner.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-battle.png" target="_blank"><img src="_Documentation/images/tracker-explorer-battle.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-composite1.png" target="_blank"><img src="_Documentation/images/tracker-explorer-composite1.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-controls-monsters.png" target="_blank"><img src="_Documentation/images/tracker-explorer-controls-monsters.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-controls-portrait.png" target="_blank"><img src="_Documentation/images/tracker-explorer-controls-portrait.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-controls.png" target="_blank"><img src="_Documentation/images/tracker-explorer-controls.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-legend.png" target="_blank"><img src="_Documentation/images/tracker-explorer-legend.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-portrait-double.png" target="_blank"><img src="_Documentation/images/tracker-explorer-portrait-double.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-unity-01.png" target="_blank"><img src="_Documentation/images/tracker-explorer-unity-01.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-unity-02.png" target="_blank"><img src="_Documentation/images/tracker-explorer-unity-02.png" height="150px"></a> <a href="_Documentation/images/tracker-explorer-unity-03.png" target="_blank"><img src="_Documentation/images/tracker-explorer-unity-03.png" height="150px"></a>
+
+
 
 
 ## Credits
@@ -165,4 +181,4 @@ Many thanks to everyone involved with the October 2nd, 2020 [Immersive Scholar S
 
 ## Contact
 
-For general questions or troubleshooting questions contact [Walt Gurley](https://www.lib.ncsu.edu/staff/jwgurley). 
+For general questions or troubleshooting questions contact [Walt Gurley](https://www.lib.ncsu.edu/staff/jwgurley).
