@@ -41,9 +41,7 @@ NC State’s [Immersive Scholar Project Page](https://osf.io/yve95/)
 
 Tally Tracker Explorer on [Itch.io](https://sneakawaystudio.itch.io/tally-tracker-explorer)
 
-
-
-![tally tracker explorer legend](_Documentation/images/tracker-explorer-legend.png)
+![tally tracker explorer legend](_Documentation/images/tracker-explorer-controls.png)
 
 
 ## About the data
@@ -59,7 +57,7 @@ Each player is represented by their avatar floating through the sky with the fol
 
 Don't know what a product monster is? See https://tallysavestheinternet.com/about
 
-
+![tally tracker explorer legend](_Documentation/images/tracker-explorer-legend.png)
 
 
 ## Instructions
