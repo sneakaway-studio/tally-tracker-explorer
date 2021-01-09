@@ -149,7 +149,7 @@ iPad | iOS | 1536 x 2048 | 1.33 | iPad 3&4, Air 1&2, Mini 2&3 | ---
 ## Troubleshooting
 
 - If you select a non-native resolution in the control panel, the clickable of buttons may be misaligned. To fix, select resolution that matches your device.
-- If you encounter a security warning, see above under Installation.
+- If you encounter a security warning, see [above under Installation](https://github.com/sneakaway-studio/tally-tracker-explorer/blob/master/README.md#instructions).
 
 
 
