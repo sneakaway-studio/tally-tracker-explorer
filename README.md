@@ -13,6 +13,7 @@
 	- [Control panel options](#Control-panel-options)
 - [Technology](#Technology)
 	- [Display requirements](#Display-requirements)
+- [Documentation](#Documentation)
 - [Credits](#Credits)
 
 ![tally tracker explorer](_Documentation/images/tracker-explorer-avatar-trails.png)
