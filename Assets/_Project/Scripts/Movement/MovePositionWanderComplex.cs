@@ -47,7 +47,7 @@ public class MovePositionWanderComplex : PhysicsBase {
     {
         base.Update ();
 
-        ShowRayBetweenPoints (transform.position, wayPoint);
+        DrawRayBetweenPoints (transform.position, wayPoint);
     }
 
     void FixedUpdate ()
@@ -60,7 +60,7 @@ public class MovePositionWanderComplex : PhysicsBase {
 
             rotateTimeElapsed = 0;
 
-            // create a new target wayPoint 
+            // create a new target wayPoint
             wayPoint = ReturnNewWanderPoint ();
         }
 
@@ -132,7 +132,7 @@ public class MovePositionWanderComplex : PhysicsBase {
      */
     void RotateTowardsTarget2D ()
     {
-        // change look direction immediately 
+        // change look direction immediately
         //transform.right = wayPoint - transform.position;
 
         // Reset other rotate time elapsed if not zero
@@ -155,9 +155,10 @@ public class MovePositionWanderComplex : PhysicsBase {
     }
 
     /**
-	 *	Show ray between two points 
+	 *	Show ray between two points
+	 *	- added 2022 to SneakawayUtilities
 	 */
-    void ShowRayBetweenPoints (Vector3 p1, Vector3 p2)
+    void DrawRayBetweenPoints (Vector3 p1, Vector3 p2)
     {
         Debug.DrawRay (p1, (p2 - p1), Color.yellow);
     }
@@ -176,7 +177,7 @@ public class MovePositionWanderComplex : PhysicsBase {
 
         // loop until new point is within defined area
         while (!pointWithin) {
-            // create target 
+            // create target
             target = new Vector3 (
                 Random.Range (transform.position.x - pointSelectRange, transform.position.x + pointSelectRange),
                 Random.Range (transform.position.y - pointSelectRange, transform.position.y + pointSelectRange),
@@ -196,6 +197,7 @@ public class MovePositionWanderComplex : PhysicsBase {
 
     /**
      *  Return true if point is inside worldcontainer collider
+	 *	- added 2022 to SneakawayUtilities
      */
     public static bool IsPointWithinCollider (BoxCollider collider, Vector3 point)
     {
@@ -204,6 +206,7 @@ public class MovePositionWanderComplex : PhysicsBase {
 
     /**
      *  Return random Vector3 position inside bounds
+	 *	- added 2022 to SneakawayUtilities
      */
     public static Vector3 RandomPointInBounds (Bounds bounds)
     {

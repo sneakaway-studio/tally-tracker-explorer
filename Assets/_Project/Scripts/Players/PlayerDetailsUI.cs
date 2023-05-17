@@ -4,7 +4,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 
-public class PlayerDetailsUI : MonoBehaviour {
+public class PlayerDetailsUI : MonoBehaviour
+{
 
     // references
     public GameObject playerPanel;
@@ -13,34 +14,35 @@ public class PlayerDetailsUI : MonoBehaviour {
 
     // current data index displayed
     public int dataIndex = 0;
-    public string [] dataArray = new string [9];
+    public string[] dataArray = new string[9];
     private IEnumerator displayNewDataCoroutine;
 
-    private void Awake ()
+    private void Awake()
     {
         // hide in case I left open
-        playerPanel.SetActive (false);
+        playerPanel.SetActive(false);
 
-        displayNewDataCoroutine = displayNewData ();
-        StartCoroutine (displayNewDataCoroutine);
+        displayNewDataCoroutine = displayNewData();
+        StartCoroutine(displayNewDataCoroutine);
     }
 
-    void StopStartCouroutine ()
+    void StopStartCouroutine()
     {
-        StopCoroutine (displayNewDataCoroutine);
+        if (displayNewDataCoroutine != null)
+            StopCoroutine(displayNewDataCoroutine);
         dataIndex = 0;
-        StartCoroutine (displayNewDataCoroutine);
+        StartCoroutine(displayNewDataCoroutine);
     }
 
     // Sets the UI text to be filled with player data
-    public void updateData (FeedData feedData)
+    public void updateData(FeedData feedData)
     {
         // reset index
         dataIndex = 0;
         // update username 
         usernameText.text = "<style=c3>" + feedData.username + "</style>";
         // update data array 
-        dataArray = new string [9] {
+        dataArray = new string[9] {
             "level: " + string.Format("{0,1:###,###,###.##}",feedData.level) + "",
             "clicks: " + string.Format("{0,1:###,###,###.##}",feedData.clicks) + "",
             "score: " + string.Format("{0,1:###,###,###.##}",feedData.score) + "",
@@ -51,20 +53,21 @@ public class PlayerDetailsUI : MonoBehaviour {
             "trackers seen: " + string.Format("{0,1:###,###,###.##}",feedData.trackersSeen) + "",
             "trackers blocked: " + string.Format("{0,1:###,###,###.##}",feedData.trackersBlocked) + "",
         };
-        StopStartCouroutine ();
+        StopStartCouroutine();
     }
 
     // Makes a different data visible every n seconds
-    IEnumerator displayNewData ()
+    IEnumerator displayNewData()
     {
-        while (true) {
+        while (true)
+        {
 
-            dataText.text = "<style=c2>" + dataArray [dataIndex] + "</style>";
+            dataText.text = "<style=c2>" + dataArray[dataIndex] + "</style>";
 
             if (++dataIndex >= dataArray.Length)
                 dataIndex = 0;
 
-            yield return new WaitForSeconds (2f);
+            yield return new WaitForSeconds(2f);
         }
     }
 }

@@ -111,14 +111,14 @@ public class PlayerManager : Singleton<PlayerManager> {
         // loop through the buffer and add players to scene and dict
         foreach (var feedData in Timeline.Instance.buffer) {
             // max hasn't been reached
-            if (playerDict.Count > maxPlayersAllowed) break;
-            // check if player exists and add if not 
+            // if (playerDict.Count > maxPlayersAllowed) break;
+            // check if player exists and add if not
             CreateNewPlayer (feedData);
         }
         foreach (var feedData in Timeline.Instance.history) {
             // max hasn't been reached
-            if (playerDict.Count > maxPlayersAllowed) break;
-            // check if player exists and add if not 
+            // if (playerDict.Count > maxPlayersAllowed) break;
+            // check if player exists and add if not
             CreateNewPlayer (feedData);
         }
 
@@ -140,7 +140,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             Destroy (kvp.Value);
         }
 
-        // clear the dictionary 
+        // clear the dictionary
         playerDict.Clear ();
         // clear the camera manager's list of players
         cameraManager.players.Clear ();
@@ -199,7 +199,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             foreach (KeyValuePair<string, GameObject> kvp in playersToRemoveDict) {
                 Destroy (kvp.Value);
             }
-            // clear the playersToRemoveDict dictionary 
+            // clear the playersToRemoveDict dictionary
             playersToRemoveDict.Clear ();
         }
 
@@ -268,7 +268,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             cameraManager.AddPlayer (feedData.username);
 
 
-            // store FeedData for zoom 
+            // store FeedData for zoom
             currentPlayerScript.feedData = feedData;
             // add the current monsters / trails for the player
             StartCoroutine (currentPlayerScript.SaveTagMatchesFromStream (2.0f, feedData.tagMatches));
@@ -278,9 +278,9 @@ public class PlayerManager : Singleton<PlayerManager> {
 
 
     /**
-     *  Play a player event 
-     *  - The logic that determines effects. 
-     *  - For example, whether a GO with sprite animation or particle effect animation is attached, and what timeline animation (when tally twirls, etc.) is played. 
+     *  Play a player event
+     *  - The logic that determines effects.
+     *  - For example, whether a GO with sprite animation or particle effect animation is attached, and what timeline animation (when tally twirls, etc.) is played.
      */
     public void PlayEvent (FeedData feedData)
     {
@@ -296,7 +296,7 @@ public class PlayerManager : Singleton<PlayerManager> {
         // reference to script (contains all the other references we need)
         currentPlayerScript = currentPlayerObj.GetComponent<Player> ();
 
-        // store FeedData for zoom 
+        // store FeedData for zoom
         currentPlayerScript.feedData = feedData;
 
         // update trailing monsters and trails
@@ -331,35 +331,35 @@ public class PlayerManager : Singleton<PlayerManager> {
                 }
             }
 
-            // ATTACK 
+            // ATTACK
             else if (feedData.eventType == "attack") {
                 AttachDetachAnimation (attackAnim, false, 1f, 3f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Swirl_r_sm";
             }
 
-            // BADGE 
+            // BADGE
             else if (feedData.eventType == "badge") {
                 AttachDetachAnimation (badgeAnim, false, 1f, 3.5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Swirl_r_sm";
             }
 
-            // CONSUMABLE 
+            // CONSUMABLE
             else if (feedData.eventType == "consumable") {
                 AttachDetachAnimation (consumableAnim, false, 1f, 2.5f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Pop_sm";
             }
 
-            // DISGUISE 
+            // DISGUISE
             else if (feedData.eventType == "disguise") {
                 AttachDetachAnimation (disguiseAnim, false, 1f, 4f);
                 // play the timeline animation
                 currentPlayerScript.animControllerScript.animName = "Rotate_Pop_sm";
             }
 
-            // TRACKER 
+            // TRACKER
             else if (feedData.eventType == "tracker") {
                 AttachDetachAnimation (trackerAnim, false, 1f, 5f);
                 // play the timeline animation
@@ -420,6 +420,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 
     /**
      *  Return random Vector3 position inside bounds
+	 *	- added 2022 to SneakawayUtilities
      */
     public static Vector3 RandomPointInBounds (Bounds bounds)
     {
@@ -449,7 +450,7 @@ public class PlayerManager : Singleton<PlayerManager> {
         // instantiate prefab, parent under the Player obj transform, position is local space
         GameObject obj = (GameObject)Instantiate (prefab, currentPlayerScript.effects.transform, false);
 
-        // set slightly random position 
+        // set slightly random position
         if (randomPosition) obj.transform.localPosition = new Vector3 (Random.Range (-2, 2), Random.Range (-2, 2), 0);
         // or a default position
         else obj.transform.localPosition = Vector3.zero;
